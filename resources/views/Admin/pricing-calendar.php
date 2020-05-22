@@ -2,7 +2,7 @@
         <div class="container-fluid">
                 <div class="row">
                         <div class="col-sm-12">
-                                <h1 class="font-weight-light my-3">Pricing</h1>                                
+                                <h2 class="font-weight-light my-5"><?php echo esc_html( "Pricing" ); ?></h2>                                
                         </div>
                 </div>
                 <div class="bshb-calendar">

@@ -1,8 +1,8 @@
 <div class="bshb">
         <div class="container-fluid">
                 <div class="row">
-                        <div class="col-sm-12 my-3">
-                                <h2 class="font-weight-light my-4"><?php echo esc_html( "Dashboard" ); ?></h2>
+                        <div class="col-sm-12">
+                                <h2 class="font-weight-light my-5"><?php echo esc_html( "Dashboard" ); ?></h2>
                         </div>
                 </div>
                 <div class="bshb-dashboard">                        

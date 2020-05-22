@@ -1,5 +1,4 @@
 # hotel-booking
-Another hotel booking wordpress plugin.
+The sweetest hotel booking plugin.
+work in progress.
 
-Framework(s)
-WP Bones

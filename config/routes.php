@@ -11,18 +11,18 @@
 */
 
 return [
-  'room_calendar' => [
-    'title'      => 'Room Calendar',
-    'capability' => 'read',
-    'route'      => [
-      'get' => 'Admin\CalendarController@roomCalendar',      
-    ]
-  ],
-//   'second_custom_page' => [
-//     'title'      => 'Second',
-//     'capability' => 'read',
-//     'route'      => [
-//       'post' => 'Dashboard\DashboardController@secondCustomPage',
-//     ]
-//   ],
+        'room_calendar' => [
+                'title'      => 'Room Calendar',
+                'capability' => 'read',
+                'route'      => [
+                        'get' => 'Admin\CalendarController@individualRoomCalendar',      
+                ],
+        ],
+        'room_pricing' => [
+                'title'      => 'Room Pricing',
+                'capability' => 'read',
+                'route'      => [
+                        'get' => 'Admin\PricingController@individualRoomPricing',      
+                ]
+        ],
 ];

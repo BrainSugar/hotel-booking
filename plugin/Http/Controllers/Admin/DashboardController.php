@@ -12,13 +12,13 @@ use Carbon_Fields\Container;
 
 class DashboardController extends Controller
 {
-
-public function index(){
-
+        
+        public function index(){
+                
                 return Brainsugar()
-            ->view('dashboard.dashboard')
-            ->withAdminStyles('app')
-            ->withAdminScripts('dashboard-calendar');
-            
-}
+                ->view('dashboard.dashboard')
+                ->withAdminStyles('app')
+                ->withAdminScripts('dashboard-calendar');
+                
+        }
 }

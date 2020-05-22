@@ -6,10 +6,10 @@ use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\Model\Room;
 use Brainsugar\Model\Pricing;
 
+
 class PricingController extends Controller
 {
 
-        
         public function index(){
                 
         $roomData = get_posts(array(

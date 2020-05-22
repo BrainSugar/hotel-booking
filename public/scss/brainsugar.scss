@@ -1,0 +1,58 @@
+
+
+// Import Variables
+@import "var";
+
+// Import Mixins
+@import "mixins";
+
+// Vendors
+@import "vendors/font-awesome/fontawesome.scss";
+@import "vendors/font-awesome/duotone.scss";
+@import "vendors/font-awesome/solid.scss";
+
+
+
+// 
+// Modules
+// 
+
+
+      
+.bshb {
+      
+        
+@import"vendors/bootstrap/bootstrap";
+@import"modules/button";
+@import"modules/form_elements";
+@import"modules/room-sortable";
+@import"modules/cards";
+@import"modules/modal";
+@import"modules/calendar";
+@import"modules/dashboard";
+@import"modules/timeline";
+
+
+}
+
+
+
+@import"modules/title";
+
+.fa {
+        font-size: 1.8rem;
+}
+.icon-light {
+        color: $color-master-light;
+}
+.icon-dark {
+                color: $color-master;
+                :after {
+                        opacity: 0.5;
+                }                
+}
+.hover-warning {
+       &:hover {
+                color: $color-black;
+        }
+}

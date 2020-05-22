@@ -1,0 +1,65 @@
+.bshb-dashboard {
+        background: $color-white;
+        border-radius: $border-radius;
+        min-height: 600px;
+        padding: 1rem;
+        
+.selected {
+        background: $color-master;
+        color:$color-white;
+        border-radius: $border-radius;
+}
+}
+.reservations {
+        margin:2rem 0;
+        // Month year Style
+.month-year {
+        text-align:center;
+        
+        .clndr-previous-button {
+                background:$color-master-lighter;
+                left: 0;
+                top:70%;
+        }
+        .clndr-next-button {
+                background:$color-master-lighter;
+                right: 0;
+                top:70%;
+        }
+}
+        .reservation-days{
+        background:$color-master-light;
+        margin:0 0.5rem;
+        padding: 0 1rem;
+        .reservation-date {
+                margin: 1rem 0;
+                padding:0.5rem 0;
+                cursor:pointer;
+                transition: all 0.2s ease-in-out;
+                &:hover {
+                        background: $color-master;
+                        color:$color-white;
+                        border-radius: $border-radius;
+                }
+        }
+        }
+        .check-ins,
+        .check-outs {
+                margin:auto;
+              border-radius: $border-radius;        
+        padding:2rem;
+        background: $color-master-lighter;
+        transition: all 1s ease-in-out;
+        .duration {                
+                display: flex;
+                align-items:center;
+                justify-content: center;
+                i {
+                        margin-right:0.5rem;
+                }
+        }
+//        background:$color-white;box-shadow:  7px 7px 14px #d4d4d4, 
+//              -7px -7px 14px #ffffff;
+        }
+
+}

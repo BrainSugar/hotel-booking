@@ -1,0 +1,192 @@
+
+// Mixin To Create Different Buttons
+@mixin button($text-color, $background-color, $border-color) {
+    &,
+    &:focus{
+    color: $text-color;
+    background-color: $background-color;
+    border-color: $background-color;
+    }
+
+  &.active,
+  &:not(:disabled):not(.disabled):active,
+  &.active:focus,
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled):active:hover,
+  .show .dropdown-toggle#{&} {
+    background-color: mix($background-color, $color-black, $mix-percentage-dark);
+    border-color: mix($background-color, $color-black, $mix-percentage-dark);
+    color:$text-color;
+    box-shadow: none;
+  }
+  &.hover,
+  &:hover,
+  .show .dropdown-toggle#{&}
+  {
+    background-color: mix($background-color, $color-white, $mix-percentage-light);
+    border-color: mix($background-color, $color-white, $mix-percentage-light);
+    color: $text-color;
+  }
+    &.active:hover{
+    background: mix($background-color, #000, 86%) ;
+    border-color: mix($background-color, #000, 86%) ;
+    }
+
+      &.disabled,
+      &[disabled],
+      fieldset[disabled] & {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+          background-color: $color-grey;
+          border-color: $color-grey;
+        }
+      }
+
+    .badge {
+        color: $background-color;
+        background-color: $text-color;
+    }
+}
+
+// Button class
+.btn {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+//     -webkit-font-smoothing:antialiased;
+//     -webkit-text-size-adjust:100%;
+//     -ms-text-size-adjust:100%;
+//     -webkit-font-feature-settings: "kern" 1;
+//     -moz-font-feature-settings: "kern" 1;
+    margin-bottom: 0;
+    border: 1px solid $color-master-lighter;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    @include border-radius(3px);
+    background-image: none !important;
+    color: $color-master;
+    background-color:  $color-white ;
+    text-shadow: none;
+    box-shadow: none;
+    line-height: 21px;
+    position: relative;
+    transition: color 0.1s linear 0s,background-color 0.1s linear 0s,opacity 0.2s linear 0s !important;
+    padding: 6px $padding-base-horizontal;
+    &:hover{
+        background-color: #fafafa;
+        border: 1px solid fade-out($color-master,.73);
+        color: #333;
+    }
+    &.active{
+        border-color: $color-master-light;
+        background: #fff;
+        color: #333;
+    }
+    &:focus,
+    &:active:focus,
+    &.active:focus {
+        outline: none !important;
+        outline-style: none;
+        color: #333;
+    }
+    .caret {
+        margin-left: 3px;
+        &.single {
+            margin-left: 0px;
+        }
+    }
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    &.disabled,
+    &[disabled] {
+        box-shadow: none;
+    }
+}
+// Fix for chrome's button outline on focus
+button:focus{
+    outline: none !important;
+}
+
+
+/*
+Alternate buttons
+--------------------------------------------------
+*/
+
+.btn-primary {
+    @include button($color-white, $color-primary, $color-primary);
+}
+.btn-success {
+    @include button($color-white, $color-success, $color-success);
+}
+.btn-complete{
+    @include button($color-white, $color-complete, $color-complete);
+}
+.btn-info {
+    @include button($color-white, $color-info, $color-info);
+}
+.btn-warning {
+    @include button($color-white, $color-warning, $color-warning);
+}
+.btn-danger {
+    @include button($color-white, $color-danger, $color-danger);
+}
+.btn-default, .btn-default:focus{
+    color: #5e5e5e;
+    background-color: $color-white;
+    border-color: $color-master-lighter;
+}
+.btn-default {
+  &.active, &:active, &.active:focus, &:active:focus, &:active:hover{
+    background-color: $color-master-lighter;
+    border-color: $color-master-light;
+    color:$color-master-dark;
+  }
+  &.hover, &:hover{
+    background-color: $color-master-lightest;
+    border-color: fade-out($color-master,.73);
+    color: $color-master-darker;
+  }
+  &.active:hover{
+    background: mix($color-white, #000, 94%) ;
+  }
+}
+
+// Counter numbers Input
+.quantity-number {
+                        width: auto;
+                        max-width: 4rem;
+                        padding:0;
+                      background: none;
+                        min-width: 1.5rem;                        
+                        font-size: 4rem;
+                        font-weight:600;
+                        text-align: center;
+                        border: none;
+                        color: $color-primary;
+}
+.minus,
+.plus {
+        color: $color-primary;
+        font-size: 1.3rem;
+        margin-top: 2rem;
+        cursor:pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

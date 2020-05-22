@@ -1,0 +1,17 @@
+.modal {
+        background:rgba(255, 255, 255, 0.651);
+        transition:all 1s ease-in;
+
+        .modal-dialog {
+                margin-top:30vh;
+        }
+        .modal-title {
+                font-size: 1.5rem;
+                font-weight: 100;
+                padding: 1rem;
+        }
+        .modal-header,
+        .modal-footer {
+                border:none;
+        }
+}

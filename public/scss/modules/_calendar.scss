@@ -1,0 +1,285 @@
+// Calendar Container
+.bshb-calendar {
+        padding: 1rem;
+        background: $color-white;
+        border-radius: $border-radius;
+        min-height: 600px;
+}
+
+// Styles for tables.
+.availability-calendar-table,
+.room-calendar-table,
+.pricing-calendar-table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        table-layout: fixed;
+        width: 100%;
+}
+
+
+.availability-calendar-table,
+.room-calendar-table {
+        // Prevent events overflowing from container
+.calendar-dow-6 {
+                overflow: hidden;
+}
+}
+
+
+// Calendar Controls.
+.clndr-previous-button,
+.clndr-next-button {
+        background: $color-master-light;
+        border-radius: $border-radius;
+        color: $color-master;
+        cursor: pointer;
+        padding: 0.2rem;
+        position: absolute;
+        top: 40%;
+}
+
+// Month year Style
+.month-year {
+        text-align: center;
+
+        .clndr-previous-button {
+                left: 2rem;
+        }
+
+        .clndr-next-button {
+                right: 2rem;
+        }
+}
+
+// Room Thumbnail
+.room-thumbnail {
+        margin: 1rem;
+
+        img {
+                height: 45px;
+                width: 45px;
+                border-radius: 50%;
+        }
+}
+
+// Styling for each table cell displaying a day.
+.room-days {
+        border-bottom: 1px dashed $color-grey;
+        min-height: 140px;
+        padding-top: 1.5rem;
+        position: relative;
+
+
+        // Position absolutely inside table and center the date.
+        .room-date {
+                bottom: 0;
+                left: 0;
+                position: absolute;
+                width: 100%;
+
+                p {
+                        color: $color-text;
+                        text-align: center;
+                }
+        }
+}
+
+// 
+// Availability Calendar Styles
+// 
+.header-row {
+
+        // Month year in availability calendar.
+        .month-year {
+                position: relative;
+                width: 200px;
+
+                .clndr-previous-button {
+                        left: 0.25rem;
+                }
+
+                .clndr-next-button {
+                        right: 0.25rem;
+                }
+        }
+
+        .today {
+                h1 {
+                        color: $color-master;
+                }
+
+                background:$color-master-light;
+                color:$color-master;
+        }
+}
+
+.room-row {
+        .room-info-container {
+
+                padding: 1rem;
+                text-align: center;
+
+                a {
+                        color: $color-text;
+                        display: block;
+                        padding: 0.5rem;
+                        text-decoration: none;
+                        transition: all 0.2s ease-in-out;
+
+                        &:focus {
+                                outline: none;
+                        }
+
+                        &:hover {
+                                background: $color-master-light;
+                        }
+                }
+
+                .room-info {
+                        margin-bottom: 1rem;
+                }
+        }
+}
+
+// Start of Days in the room row.
+.bookings {
+        display: block;
+        height: 4rem;
+        padding: 1rem 0.25rem;
+        cursor: pointer;
+
+        p {
+                display: none;
+                margin-left: 1rem;
+        }
+
+
+        &.booked {
+                background: $color-master-light;
+
+                &.start-day {
+                        border-left: 5px solid $color-master;
+                        border-top-left-radius: $border-radius;
+                        border-bottom-left-radius: $border-radius;
+                        color: $color-master;
+                        position: absolute;
+                        left: 55%;
+                        width: 100%;
+                        z-index: 10;
+
+                        p {
+                                display: block;
+                        }
+
+                }
+
+                &.end-day {
+                        border-right: 5px solid $color-master;
+                        border-top-right-radius: $border-radius;
+                        border-bottom-right-radius: $border-radius;
+                        color: $color-master;
+                        position: absolute;
+                        right: 55%;
+
+                        p {
+                                display: block;
+                        }
+                }
+        }
+}
+
+// End of Rows of room.
+
+// End of calendar row styling
+
+
+
+// Room Calendar
+.room-calendar-table {
+        .room-days {
+                padding-top: 2rem;
+        }
+
+        .day-cell {
+                padding: 0;
+        }
+
+}
+
+.room-calendar-header {
+        margin: 2rem 0;
+
+        // Room info DIV
+        .room-thumbnail {
+                img {
+                        height: 70px;
+                        width: 70px;
+                        border-radius: 50%;
+
+                }
+        }
+
+        .room-info {
+                margin-top: 0.5rem;
+        }
+}
+
+.adjacent-month {
+        background: $color-master-lighter;
+
+        .room-date {
+                p {
+                        color: $color-grey;
+                }
+        }
+}
+
+
+// 
+// 
+// Pricing Calendar
+// 
+// 
+.pricing-calendar-table {
+
+   .new-price{
+           color:$color-success;
+   }
+        
+        .add-icon {
+                visibility:hidden;
+                opacity:0;
+                transition: all 0.2s ease-in-out;              
+        }
+        .room-days {
+                .new-price {
+                        color:$color-success;
+                }
+                .room-price {
+                        color: $color-text;
+                }
+                &:hover {
+                        .add-icon {
+                                opacity:1;
+                                visibility:visible;
+                        }
+                }
+        }  
+}
+.room-type-info{
+        display:flex;
+        align-items: center;
+}
+
+.current-price {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        span {
+                margin-right:1rem;                
+        }
+        .price {
+                margin:0;
+                font-weight:100;
+        }
+}

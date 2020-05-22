@@ -1,0 +1,41 @@
+
+// The Nestable Jquery Plugin
+// http://dbushell.github.io/Nestable/
+// 
+// Styles for Brainugar
+#sortable-container {
+        
+}
+.room-sortable,
+.room-add,
+.room-sortable-ghost {
+        display: inline-block;              
+        background-color: $color-master-light;
+        height:150px;
+        width: 100%;
+        padding: 1rem;       
+        margin: 1rem 0; 
+        border-radius: $border-radius;
+        text-overflow: ellipsis;
+        
+
+        h5 {               
+                padding-top: 1rem;                
+                font-weight: 300;                
+        }
+
+        .sortable-grip {
+                cursor: -webkit-grab;
+        }
+        .room-sortable-header {  
+                margin-bottom:1.5rem;
+        }
+        
+}
+
+.room-sortable-ghost {
+        background-color: $color-master-lighter;
+}
+.room-add {
+        background:none;
+}

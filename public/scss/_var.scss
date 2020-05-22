@@ -1,0 +1,133 @@
+
+//Base unit used for spacing gutters
+$base-unit:8px;
+
+//Screen Sizes
+$screen-sm: 480px;
+$screen-md: 624px;
+$screen-lg: 744px;
+
+
+$color-master: #10cfbd !default;
+
+// Lighter Grey colors
+$color-master-light:mix($color-master, #fff, 10%) !default;
+$color-master-lighter:mix($color-master, #fff, 5%) !default;
+$color-master-lightest:mix($color-master, #fff, 3%) !default;
+
+// Darker Grey colors
+$color-master-dark:mix($color-master, #000, 45%) !default;
+$color-master-darker:mix($color-master, #000, 27%) !default;
+$color-master-darkest:mix($color-master, #000, 18%) !default;
+
+
+$color-white: #fff !default;
+$color-black: #000 !default;
+$color-grey: #d2d2d2 !default;
+$color-hover: #f6fdff;
+$color-heading: #000000;
+$color-text: #676767;
+
+$color-success: #10cfbd !default;
+$color-complete : #48b0f7 !default;
+$color-primary: #4CAF50  !default; //#8BC34A
+$color-warning: #f8d053 !default;
+$color-danger: #f55753 !default;
+$color-info: #3b4752 !default;
+
+$base-font-family: wf_segoe-ui_light,wf_segoe-ui_normal,"Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+// Border 
+$border : 1px solid #e6e6e6;
+$border-radius : 0.25rem;
+
+// Transitions
+$transition : all 1s ease;
+
+//Mixing Color varriable for creating both light and dark colors
+$mix-percentage-dark: 81% !default;
+$mix-percentage-darker: 60% !default;
+$mix-percentage-light: 80% !default;
+$mix-percentage-lighter: 20% !default;
+
+
+//Forms
+$form-group-height: 54px !default;
+$form-control-border-color: rgba($color-black, .09) !default;
+
+//Lighter colors
+$color-success-light: mix($color-success, $color-white, $mix-percentage-light) !default;
+$color-success-lighter: mix($color-success, $color-white, $mix-percentage-lighter) !default;
+
+$color-complete-light: mix($color-complete, $color-white, $mix-percentage-light) !default;
+$color-complete-lighter: mix($color-complete, $color-white, $mix-percentage-lighter) !default;
+
+$color-primary-light: mix($color-primary, $color-white, $mix-percentage-light) !default;
+$color-primary-lighter: mix($color-primary, $color-white, $mix-percentage-lighter) !default;
+
+$color-warning-light: mix($color-warning, $color-white, $mix-percentage-light) !default;
+$color-warning-lighter: mix($color-warning, $color-white, $mix-percentage-lighter) !default;
+
+$color-danger-light: mix($color-danger, $color-white, $mix-percentage-light) !default;
+$color-danger-lighter: mix($color-danger, $color-white, $mix-percentage-lighter) !default;
+
+$color-info-light: mix($color-info, $color-white, $mix-percentage-light) !default;
+$color-info-lighter: mix($color-info, $color-white, $mix-percentage-lighter) !default;
+
+//Darker colors
+$color-success-dark: mix($color-success, $color-black, $mix-percentage-dark) !default;
+$color-success-darker: mix($color-success, $color-black, $mix-percentage-darker) !default;
+
+$color-complete-dark: mix($color-complete, $color-black, $mix-percentage-dark) !default;
+$color-complete-darker: mix($color-complete, $color-black, $mix-percentage-darker) !default;
+
+$color-primary-dark: mix($color-primary, $color-black, $mix-percentage-dark) !default;
+$color-primary-darker: mix($color-primary, $color-black, $mix-percentage-darker) !default;
+
+$color-warning-dark: mix($color-warning, $color-black, $mix-percentage-dark) !default;
+$color-warning-darker: mix($color-warning, $color-black, $mix-percentage-darker) !default;
+
+$color-danger-dark: mix($color-danger, $color-black, $mix-percentage-dark) !default;
+$color-danger-darker: mix($color-danger, $color-black, $mix-percentage-darker) !default;
+
+$color-info-dark: mix($color-info, $color-black, $mix-percentage-dark) !default;
+$color-info-darker: mix($color-info, $color-black, $mix-percentage-darker) !default;
+
+
+// Components
+// --------------------------------------------------
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+//$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   17px !default;
+
+// $padding-lg-vertical:    28px !default;
+$padding-lg-horizontal:  28px !default;
+
+// $padding-sm-vertical:    5px !default;
+$padding-sm-horizontal:  16px !default;
+
+$padding-xs-vertical:       2px !default;
+$padding-xs-horizontal:     9px !default;
+
+// z-index scale 
+$zIndex-1:   100;
+$zIndex-2:   200;
+$zIndex-3:   300;
+$zIndex-4:   400;
+$zIndex-5:   500;
+$zIndex-6:   600;
+$zIndex-7:   700;
+$zIndex-8:   800;
+$zIndex-9:   900;
+$zIndex-10: 1000;
+
+$zIndex-sidebar : $zIndex-10;
+$zIndex-tooltips : $zIndex-10;
+$zIndex-quickview: $zIndex-10;
+$zIndex-horizontal-menu-mobile: $zIndex-10;
+$zIndex-notifications : $zIndex-9;
+$zIndex-navbar : $zIndex-8;
+$zIndex-dropdown : $zIndex-7;
+$zIndex-dropdownMask : $zIndex-6;
+$zIndex-portlet : $zIndex-6;

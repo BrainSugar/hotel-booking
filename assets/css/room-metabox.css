@@ -1,0 +1,13 @@
+/* BrainsugarStyles */
+/*
+ Metaboxes
+Room Metabox
+ */
+#bshb_room_metabox {
+  background: #f6f9fa;
+}
+
+#bshb_room_metabox .inside {
+  margin-top: 30px;
+}
+/*# sourceMappingURL=room-metabox.css.map */

@@ -15,7 +15,7 @@ return [
     'title'      => 'Room Calendar',
     'capability' => 'read',
     'route'      => [
-      'get' => 'Calendar\CalendarController@roomCalendar',      
+      'get' => 'Admin\CalendarController@roomCalendar',      
     ]
   ],
 //   'second_custom_page' => [

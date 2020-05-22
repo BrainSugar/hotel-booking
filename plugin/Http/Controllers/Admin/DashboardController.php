@@ -12,14 +12,9 @@ use Carbon_Fields\Container;
 
 class DashboardController extends Controller
 {
-        
-/**
- * Define the metabox and field configurations.
- */
-public function placeholder(){
-        // get events
-        // localize
-        
+
+public function index(){
+
                 return Brainsugar()
             ->view('dashboard.dashboard')
             ->withAdminStyles('app')

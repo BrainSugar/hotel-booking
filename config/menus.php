@@ -19,7 +19,7 @@ return [
                 'dashboard' =>[
                         "menu_title" => "Dashboard",
                         'route' => [
-                                'get' => 'Admin\DashboardController@placeholder',
+                                'get' => 'Admin\DashboardController@index',
                         ]
                 ],                
                 'calendar' => [
@@ -31,7 +31,7 @@ return [
                  'pricing' => [
                         "menu_title" => "Pricing",
                         'route' => [
-                        'get' => 'Admin\CalendarController@pricingCalendar',
+                        'get' => 'Admin\PricingController@index',
                         ]
                 ],
   

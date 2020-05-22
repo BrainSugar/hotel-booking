@@ -19,19 +19,19 @@ return [
                 'dashboard' =>[
                         "menu_title" => "Dashboard",
                         'route' => [
-                                'get' => 'Dashboard\DashboardController@placeholder',
+                                'get' => 'Admin\DashboardController@placeholder',
                         ]
                 ],                
                 'calendar' => [
                         "menu_title" => "Calendar",
                         'route' => [
-                        'get' => 'Calendar\CalendarController@availabilityCalendar',
+                        'get' => 'Admin\CalendarController@availabilityCalendar',
                         ]
                 ],
                  'pricing' => [
                         "menu_title" => "Pricing",
                         'route' => [
-                        'get' => 'Calendar\CalendarController@pricingCalendar',
+                        'get' => 'Admin\CalendarController@pricingCalendar',
                         ]
                 ],
   

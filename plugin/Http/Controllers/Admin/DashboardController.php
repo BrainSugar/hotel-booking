@@ -1,6 +1,6 @@
 <?php
 
-namespace Brainsugar\Http\Controllers\Dashboard;
+namespace Brainsugar\Http\Controllers\Admin;
 
 use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\PureCSSTabs\PureCSSTabsProvider;

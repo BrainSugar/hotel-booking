@@ -16,7 +16,7 @@ class DashboardController extends Controller
         public function index(){
                 
                 return Brainsugar()
-                ->view('dashboard.dashboard')
+                ->view('Admin.dashboard')
                 ->withAdminStyles('app')
                 ->withAdminScripts('dashboard-calendar');
                 

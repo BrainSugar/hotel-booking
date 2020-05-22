@@ -8,3 +8,7 @@ use Brainsugar\Model\Pricing;
 
 class CalendarController extends Controller
 {
+        public function index(){
+                
+        }
+}

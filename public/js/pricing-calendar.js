@@ -15,7 +15,7 @@
                         });
                 }
 
-                $('#pricing-calendar').clndr({
+                var pricingCalendar = $('#pricing-calendar').clndr({
                         // events: bookings,
                         selectedDate: null,
                         trackSelectedData: true,
@@ -160,6 +160,11 @@
                                 clicks: 0,
 
                         }
+
+                });
+
+                $('body').on('click', '.months', function () {
+                        pricingCalendar.setIntervalStart('march');
 
                 });
 

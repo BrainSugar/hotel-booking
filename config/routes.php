@@ -22,7 +22,7 @@ return [
                 'title'      => 'Room Pricing',
                 'capability' => 'read',
                 'route'      => [
-                        'get' => 'Admin\PricingController@individualRoomPricing',      
+                        'get' => 'Admin\PricingController@individualRoomTypePricing',      
                 ]
         ],
 ];

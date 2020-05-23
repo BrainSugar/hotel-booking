@@ -18,6 +18,17 @@
 </div>
 
 <script type="text/html" id="tmpl-pricing-calendar">
+<!-- Calendar Controls -->
+<div class="row">
+        <div class="col-sm-8 d-flex">
+        <# for(i=0; i<=12 ; i++) { #>
+        <div class="col months" data-month = "{{moment()}}">
+                <p>{{ i }}</p>
+        </div>
+        <# } #>
+        </>
+        <div class="col-sm-4"></div>
+</div>
         <table class="pricing-calendar-table">
                 <thead>
                         <tr class="header-row">
@@ -41,7 +52,7 @@
                 <!-- Room Data -->
                         <tr class="room-row">                        
                                 <td class="room-info-container">
-                                        <a href="<?php echo $plugin->getPageUrl('room_calendar'); ?>&room_id={{room.ID}}">
+                                        <a href="<?php echo $plugin->getPageUrl('room_pricing'); ?>&room_type={{room.ID}}">
                                                  <div class="room-thumbnail">
                                                         <img src = "{{room.room_thumbnail_url}}">
                                                  </div>

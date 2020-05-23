@@ -58,7 +58,7 @@ class CalendarController extends Controller
                 wp_localize_script('room-calendar', 'roomData', $roomData );
                 
                 return Brainsugar()
-                ->view('Admin.room-calendar') 
+                ->view('Admin.room-availability') 
                 ->withAdminStyles('app')               
                 ->withAdminScripts('room-calendar');
                 

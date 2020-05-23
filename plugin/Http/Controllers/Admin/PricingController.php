@@ -45,5 +45,15 @@ class PricingController extends Controller
                 
                 //     Get the Room Type from the requesting URL.
                 $roomType = $_GET['room_type'];
+
+                $roomData = get_posts($roomType);
+                $pricingModel = new Pricing;
+
+                
+                                
+                return Brainsugar()
+                ->view('Admin.room-pricing') 
+                ->withAdminStyles('app')               
+                ->withAdminScripts('room-calendar');
         }
 }

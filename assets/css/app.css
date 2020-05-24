@@ -15,7 +15,7 @@ Alternate buttons
   /* Input Sizes
 --------------------------------------------------
 */
-  /* Checkboxes and Radio buttons 
+  /* Checkboxes and Radio buttons
 --------------------------------------------------
 */
 }
@@ -3882,14 +3882,14 @@ a.brainsugar-wrap .badge-dark:focus, a.brainsugar-wrap .badge-dark.focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
 
 .brainsugar-wrap .modal-header .close {
-  padding: 1rem 1rem;
+  padding: 1rem;
   margin: -1rem -1rem -1rem auto;
 }
 
@@ -4182,13 +4182,13 @@ a.brainsugar-wrap .badge-dark:focus, a.brainsugar-wrap .badge-dark.focus {
 
 .brainsugar-wrap .bs-popover-bottom > .arrow::before, .brainsugar-wrap .bs-popover-auto[x-placement^="bottom"] > .arrow::before {
   top: 0;
-  border-width: 0 0.5rem 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem;
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
 .brainsugar-wrap .bs-popover-bottom > .arrow::after, .brainsugar-wrap .bs-popover-auto[x-placement^="bottom"] > .arrow::after {
   top: 1px;
-  border-width: 0 0.5rem 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem;
   border-bottom-color: #fff;
 }
 
@@ -8270,7 +8270,7 @@ a.brainsugar-wrap .badge-dark:focus, a.brainsugar-wrap .badge-dark.focus {
 }
 
 .brainsugar-wrap .bshb-btn .caret.single {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .brainsugar-wrap .bshb-btn:hover, .brainsugar-wrap .bshb-btn:focus, .brainsugar-wrap .bshb-btn:active, .brainsugar-wrap .bshb-btn.active, .brainsugar-wrap .bshb-btn.disabled, .brainsugar-wrap .bshb-btn[disabled] {
@@ -8590,7 +8590,7 @@ fieldset[disabled] .brainsugar-wrap .btn-danger.active {
 }
 
 .brainsugar-wrap form legend {
-  margin: 15px 0px 10px 0px;
+  margin: 15px 0 10px;
 }
 
 .brainsugar-wrap .form-control {
@@ -8717,7 +8717,7 @@ fieldset[disabled] .brainsugar-wrap .form-control {
 }
 
 .brainsugar-wrap .select2-lg .select2-container .select2-selection.select2-selection--single .select2-selection__rendered {
-  padding-top: 0px;
+  padding-top: 0;
   line-height: 22px;
   font-size: 18px;
 }
@@ -8732,7 +8732,7 @@ fieldset[disabled] .brainsugar-wrap .form-control {
 }
 
 .brainsugar-wrap .select2-sm .select2-container .select2-selection.select2-selection--single .select2-selection__rendered {
-  padding-top: 0px;
+  padding-top: 0;
   line-height: 16px;
   font-size: 13px;
 }
@@ -8745,7 +8745,7 @@ fieldset[disabled] .brainsugar-wrap .form-control {
 .brainsugar-wrap .checkbox {
   margin-bottom: 10px;
   margin-top: 10px;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .brainsugar-wrap .radio label,
@@ -8773,7 +8773,7 @@ fieldset[disabled] .brainsugar-wrap .form-control {
   height: 17px;
   margin-right: 10px;
   position: absolute;
-  left: 0px;
+  left: 0;
   background-color: #fff;
   border: 1px solid #f6f6f6;
 }
@@ -8869,7 +8869,7 @@ fieldset[disabled] .brainsugar-wrap .form-control {
   height: 16px;
   position: absolute;
   left: 3.5px;
-  top: 0px;
+  top: 0;
   font-size: 11px;
   -webkit-transition: border 0.2s linear 0s, color 0.2s linear 0s;
   transition: border 0.2s linear 0s, color 0.2s linear 0s;
@@ -9022,4 +9022,3 @@ fieldset[disabled] .brainsugar-wrap .form-control {
 .brainsugar-wrap .input-group-prepend .input-group-text {
   border-right: 0;
 }
-/*# sourceMappingURL=app.css.map */

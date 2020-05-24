@@ -121,7 +121,7 @@ Alternate buttons
 */
 
 .btn-primary {
-    @include button($color-white, $color-primary, $color-primary);
+    @include button($color-white, $color-master, $color-master);
 }
 .btn-success {
     @include button($color-white, $color-success, $color-success);

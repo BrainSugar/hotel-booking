@@ -20066,14 +20066,14 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
 
 .bshb .modal-header .close {
-  padding: 1rem;
+  padding: 1rem 1rem;
   margin: -1rem -1rem -1rem auto;
 }
 
@@ -20366,13 +20366,13 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 
 .bshb .bs-popover-bottom > .arrow::before, .bshb .bs-popover-auto[x-placement^="bottom"] > .arrow::before {
   top: 0;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
 .bshb .bs-popover-bottom > .arrow::after, .bshb .bs-popover-auto[x-placement^="bottom"] > .arrow::after {
   top: 1px;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: #fff;
 }
 
@@ -24449,7 +24449,7 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 }
 
 .bshb .btn .caret.single {
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 .bshb .btn:hover, .bshb .btn:focus, .bshb .btn:active, .bshb .btn.active, .bshb .btn.disabled, .bshb .btn[disabled] {
@@ -24463,14 +24463,14 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 
 .bshb .btn-primary, .bshb .btn-primary:focus {
   color: #fff;
-  background-color: #4CAF50;
-  border-color: #4CAF50;
+  background-color: #10cfbd;
+  border-color: #10cfbd;
 }
 
 .bshb .btn-primary.active, .bshb .btn-primary:not(:disabled):not(.disabled):active, .bshb .btn-primary.active:focus, .bshb .btn-primary:not(:disabled):not(.disabled):active:focus, .bshb .btn-primary:not(:disabled):not(.disabled):active:hover,
 .bshb .btn-primary .show .dropdown-toggle.bshb .btn-primary {
-  background-color: #3e8e41;
-  border-color: #3e8e41;
+  background-color: #0da899;
+  border-color: #0da899;
   color: #fff;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -24478,14 +24478,14 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 
 .bshb .btn-primary.hover, .bshb .btn-primary:hover,
 .bshb .btn-primary .show .dropdown-toggle.bshb .btn-primary {
-  background-color: #70bf73;
-  border-color: #70bf73;
+  background-color: #40d9ca;
+  border-color: #40d9ca;
   color: #fff;
 }
 
 .bshb .btn-primary.active:hover {
-  background: #419745;
-  border-color: #419745;
+  background: #0eb2a3;
+  border-color: #0eb2a3;
 }
 
 .bshb .btn-primary.disabled, .bshb .btn-primary.disabled:hover, .bshb .btn-primary.disabled:focus, .bshb .btn-primary.disabled:active, .bshb .btn-primary.disabled.active, .bshb .btn-primary[disabled], .bshb .btn-primary[disabled]:hover, .bshb .btn-primary[disabled]:focus, .bshb .btn-primary[disabled]:active, .bshb .btn-primary[disabled].active,
@@ -24499,7 +24499,7 @@ fieldset[disabled] .bshb .btn-primary.active {
 }
 
 .bshb .btn-primary .badge {
-  color: #4CAF50;
+  color: #10cfbd;
   background-color: #fff;
 }
 
@@ -25294,8 +25294,8 @@ fieldset[disabled] .bshb .form-control {
 
 .bshb .card .card-header {
   background: transparent;
-  border-radius: 0;
-  border-bottom: 0;
+  border-radius: 0px;
+  border-bottom: 0px;
   padding: 1rem;
   position: relative;
   z-index: 3;
@@ -25328,7 +25328,7 @@ fieldset[disabled] .bshb .form-control {
   line-height: normal;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-text-stroke: 0;
+  -webkit-text-stroke: 0px;
   filter: alpha(opacity=40);
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
@@ -25510,7 +25510,7 @@ fieldset[disabled] .bshb .form-control {
 }
 
 .bshb .card .card-body .title {
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 .bshb .card .card-body.scrollable {
@@ -25703,7 +25703,7 @@ fieldset[disabled] .bshb .form-control {
 }
 
 .bshb .ui-sortable {
-  min-height: 0 !important;
+  min-height: 0px !important;
 }
 
 .bshb .ui-sortable-placeholder {
@@ -25720,7 +25720,7 @@ fieldset[disabled] .bshb .form-control {
   background-color: #f3fdfc;
   border: 1px dashed #e7faf8;
   display: block;
-  margin-top: 0 !important;
+  margin-top: 0px !important;
   margin-bottom: 24px !important;
 }
 
@@ -26176,3 +26176,4 @@ fieldset[disabled] .bshb .form-control {
 .hover-warning:hover {
   color: #000;
 }
+/*# sourceMappingURL=brainsugar.css.map */

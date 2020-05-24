@@ -11,7 +11,7 @@ class PricingController extends Controller
 {
         
         public function index(){
-
+                
                 $pricingModel = new Pricing; 
                 $priceRange = $pricingModel->all();
                 
@@ -41,15 +41,23 @@ class PricingController extends Controller
                 
                 //     Get the Room Type from the requesting URL.
                 $roomType = $_GET['room_type'];
-
-                $roomData = get_posts($roomType);
-                $pricingModel = new Pricing;
-
                 
-                                
+                $roomData = get_post($roomType);
+                $pricingModel = new Pricing;
+                $priceRange = $pricingModel->getPriceRange($roomType);
+                
+                // Add Room Featured image to the Data.        
+                $roomData->room_thumbnail_url = get_the_post_thumbnail_url($roomType);
+                $roomData->room_price = get_post_meta($roomType , $key = 'bshb_room_price');
+                
+                var_dump($priceRange);
+
+                // Send room data to calendar template.
+                wp_localize_script('room-pricing', 'roomData', array('room' => $roomData, 'price' => $priceRange));               
+                
                 return Brainsugar()
                 ->view('Admin.room-pricing') 
                 ->withAdminStyles('app')               
-                ->withAdminScripts('room-calendar');
+                ->withAdminScripts('room-pricing');
         }
 }

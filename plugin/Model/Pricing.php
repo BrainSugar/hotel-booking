@@ -114,4 +114,11 @@ class Pricing extends Model
                 $response = $this->save();
                 return $response;
         }
+
+        public function getPriceRange($roomType) {
+
+                $response = $this->where('room_type', $roomType)->get();
+                return $response;
+
+        }
 }

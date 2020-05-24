@@ -3,6 +3,7 @@
         'use strict';
 
         $(document).ready(function () {
+                alert("pricing-calendar");
                 var priceRange = roomData.price;
                 console.log(priceRange);
 

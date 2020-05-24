@@ -39,11 +39,6 @@
                         render: function (data) {
                                 return roomCalendarTemplate(data);
                         },
-
-                        // lengthOfTime: {
-                        //         days: 7,
-                        //         interval: 7,
-                        // }
                 });
         });
 })(window.jQuery);

@@ -63,6 +63,8 @@ function calendarScripts($hook) {
                 else if($screen === "brainsugar-hotel-booking_page_brainsugar_pricing") {
                  wp_enqueue_script( 'pricing-calendar' );
                 }
+                // else if($screen === )
+                wp_enqueue_script( 'room-pricing' );
                 
                 
         }
@@ -103,6 +105,8 @@ function setupPluginScripts() {
        
        
         wp_register_script('pricing-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/pricing-calendar.js', ), array( 'jquery' ));
+
+        wp_register_script('room-pricing',plugins_url( '/brainsugar-hotel-booking/public/js/room-pricing.js', ), array( 'jquery' ));
         
         
 }

@@ -10,7 +10,7 @@
                                 <div class="col-sm-12">
                               
                                         <!-- Displays the wp template -->
-                                        <div id="room-calendar" class="p-3"></div>
+                                        <div id="room-pricing-calendar" class="p-3"></div>
                                 </div>                        
                         </div>
                 </div>
@@ -18,15 +18,14 @@
 </div>
 
 <!-- Wp template for the room Calendar -->
-<script type="text/html" id="tmpl-room-calendar">
+<script type="text/html" id="tmpl-room-pricing">
 <div class="row room-calendar-header">
 <div class="col-sm-4 d-flex">
         <div class="room-thumbnail">
-                <img src = "{{roomData.room_thumbnail_url}}">
+                <img src = "{{roomData.room.room_thumbnail_url}}">
         </div>
         <div class="room-info align-self-center">
-                <h4 class="font-weight-light">{{roomData.name}}</h4>
-                <p>{{"Type : " + roomData.room_type_name}}</p>
+                <h4 class="font-weight-light">{{roomData.room.post_title}}</h4>                
         </div>
 
 </div>

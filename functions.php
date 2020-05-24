@@ -21,7 +21,6 @@ if ( ! function_exists( 'myGlobalFunction' ) ) {
 myGlobalFunction();
 
 
-// TODO : Arrange scripts to footer and header and sort the dependencies of each script
 // Register Global Scripts
 function registerGlobalAdminScripts(){
         if ( is_admin() ) {

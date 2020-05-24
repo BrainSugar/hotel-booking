@@ -49,15 +49,14 @@ class PricingController extends Controller
                 // Add Room Featured image to the Data.        
                 $roomData->room_thumbnail_url = get_the_post_thumbnail_url($roomType);
                 $roomData->room_price = get_post_meta($roomType , $key = 'bshb_room_price');
-                
-                var_dump($priceRange);
 
                 // Send room data to calendar template.
                 wp_localize_script('room-pricing', 'roomData', array('room' => $roomData, 'price' => $priceRange));               
                 
                 return Brainsugar()
                 ->view('Admin.room-pricing') 
-                ->withAdminStyles('app')               
+                ->withAdminStyles('app')
+                 ->withAdminScripts('bootstrap.bundle')
                 ->withAdminScripts('room-pricing');
         }
 }

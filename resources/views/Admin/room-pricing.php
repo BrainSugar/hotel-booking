@@ -38,7 +38,7 @@
 <div class="col-sm-4"></div>
 </div>
 
-        <table class="room-calendar-table">
+        <table class="room-pricing-table">
                 <thead>
                         <tr>
                         <# for(var i = 0; i < 7; i++) {   #>
@@ -55,23 +55,21 @@
                                 <tr>
                                         <# for(var j=0; j < 7; j++) { #>
                                                 <# var d = j + i * 7; #>
-                                                <td class="day-cell">
-                                                        <div class="room-days {{data.days[d].classes}}">
+                                                <td>
+                                                        <div class="room-days text-center {{data.days[d].classes}}"data-room-id = "{{roomData.room.ID}}" data-room-date="{{data.days[d].date}}">
                                                                 <# _.each(data.days[d].events, function (events) {    #>
-                                                                <span class="bookings {{events.status}}
-                                                                <# if(moment(events.startDate).isSame( data.days[d].date , 'date') ) { #>
-                                                                start-day
-                                                                <# } if(moment(events.endDate).isSame( data.days[d].date , 'date')) { #>
-                                                                end-day
-                                                                 <# } #>" data-booking-id = "{{events.bookingId}}"> 
-                                                                                <p class="mb-0">Reservation</p>                                                                           
-                                                                                <p class="mb-0"># {{events.bookingId}}</p>
-                                                                </span>
-                                                                <# });#>   
-                                              
-                                                         <span class="room-date">
-                                                                <p class="font-weight-light"> {{data.days[d].day}} </p>
-                                                        </span>
+                                                                        <# if(events.room_type == roomData.room.ID) { #>
+                                                                                <!-- Check if its the start of an event or end of an event and output relevent class -->
+                                                                                        <span class="new-price"> 
+                                                                                                <h5 class="mb-0">{{events.price}}</h5>
+                                                                                        </span>
+                                                                        <# } #>
+                                                                <# }); #>
+                                                        <i class="add-icon fad fa-plus fa-2x  icon-dark" title="Change room Price"></i>                                              
+                                                          <span class="room-date">                                                        
+                                                                <h6 class="room-price" title="Rack rate">{{roomData.room_price}}</h6>
+                                                                <p class="font-weight-light">{{ data.days[d].day }} </p>
+                                                        </span>        
                                                         </div>
                                                 </td>
                                         <# } #>
@@ -81,3 +79,73 @@
                              
         </table>
 </script>
+
+
+
+<!-- Modal for Pricing event Click -->
+
+<div class="bshb">
+        <div id="show-pricing-modal" class="modal  mt-5 fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header pb-0">
+                                        <h5 class="modal-title"></h5>
+                                </div>
+
+                                <div class="modal-body pt-0">
+                                        <div class="container-fluid">
+                                                <div class="row">
+                                                        <div class="col-sm-6">
+                                                                <div class="room-type-info">
+                                                                        <div class="room-thumbnail">
+                                                                                <img class="room-image">
+                                                                        </div>                                                                                                                                                       
+                                                                        <h6 class="room-type font-weight-light"></h6>                                                                       
+                                                                </div>                                                                
+                                                        </div>
+                                                        <div class="col-sm-6 text-center">                                                                
+                                                                <ul class="timeline">
+                                                                <li class="event">
+                                                                                <p class="left">Start</p>
+                                                                                <h6 class = "right range-start font-weight-light"></h6>
+                                                                </li>    
+                                                                <li class="event">
+                                                                                <p class="left">End</p>
+                                                                                <h6 class = "right range-end font-weight-light"></h6>
+                                                                </li>    
+                                                                </ul>                                                                                                            
+                                                        </div>                                                        
+                                                </div>
+                                                <hr>
+                                                <div class="row">                                                        
+                                                        <div class="col-sm-6 d-flex justify-content-center">
+                                                                <div class="current-price">
+                                                                        <span>Rack Rate</span>
+                                                                        <h3 class="price"></h3>                                                                
+                                                                </div>                                                                                                                     
+                                                        </div>
+                                                        
+                                                        <div class="col-sm-6 m-auto">
+                                                                <div class="input-group">
+                                                                        <input id="new-price" class="form-control" type = "number" placeholder="New price" required="true"> 
+                                                                </div>                                                              
+                                                        </div>
+                                                        
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                <span class="restore-price">
+                                        <i class="fad fa-history fa-1x icon-dark"></i>
+                                        <a id="delete-price">Restore rack rate</a>
+                                </span>
+                                         
+                                        <button id="update-price-modal-button" type="submit" class="btn btn-primary">Update Pricing</button>
+                                        <button id="update-price-cancel-button" type="button" class="btn btn-secondary">Cancel</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+<!-- End of Modal -->

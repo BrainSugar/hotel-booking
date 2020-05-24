@@ -93,7 +93,7 @@
 </script>
 
 
-<!-- Modal for booking event Click -->
+<!-- Modal for Pricing event Click -->
 
 <div class="bshb">
         <div id="show-pricing-modal" class="modal  mt-5 fade" tabindex="-1" role="dialog">

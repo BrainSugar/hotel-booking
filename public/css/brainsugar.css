@@ -25778,7 +25778,8 @@ fieldset[disabled] .bshb .form-control {
 
 .bshb .availability-calendar-table,
 .bshb .room-calendar-table,
-.bshb .pricing-calendar-table {
+.bshb .pricing-calendar-table,
+.bshb .room-pricing-table {
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
@@ -25964,10 +25965,12 @@ fieldset[disabled] .bshb .form-control {
   color: #d2d2d2;
 }
 
+.bshb .room-pricing-table .new-price,
 .bshb .pricing-calendar-table .new-price {
   color: #10cfbd;
 }
 
+.bshb .room-pricing-table .add-icon,
 .bshb .pricing-calendar-table .add-icon {
   visibility: hidden;
   opacity: 0;
@@ -25975,14 +25978,17 @@ fieldset[disabled] .bshb .form-control {
   transition: all 0.2s ease-in-out;
 }
 
+.bshb .room-pricing-table .room-days .new-price,
 .bshb .pricing-calendar-table .room-days .new-price {
   color: #10cfbd;
 }
 
+.bshb .room-pricing-table .room-days .room-price,
 .bshb .pricing-calendar-table .room-days .room-price {
   color: #676767;
 }
 
+.bshb .room-pricing-table .room-days:hover .add-icon,
 .bshb .pricing-calendar-table .room-days:hover .add-icon {
   opacity: 1;
   visibility: visible;

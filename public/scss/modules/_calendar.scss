@@ -9,7 +9,8 @@
 // Styles for tables.
 .availability-calendar-table,
 .room-calendar-table,
-.pricing-calendar-table {
+.pricing-calendar-table,
+.room-pricing-table {
         border-collapse: collapse;
         border-spacing: 0;
         table-layout: fixed;
@@ -241,8 +242,8 @@
 // Pricing Calendar
 // 
 // 
+.room-pricing-table,
 .pricing-calendar-table {
-
    .new-price{
            color:$color-success;
    }

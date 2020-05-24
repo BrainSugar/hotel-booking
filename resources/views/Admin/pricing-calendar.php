@@ -19,7 +19,7 @@
 
 <script type="text/html" id="tmpl-pricing-calendar">
 <!-- Calendar Controls -->
-<div class="row">
+<!-- <div class="row">
         <div class="col-sm-8 d-flex">
         <# for(i=0; i<=12 ; i++) { #>
         <div class="col months" data-month = "{{moment()}}">
@@ -28,7 +28,7 @@
         <# } #>
         </>
         <div class="col-sm-4"></div>
-</div>
+</div> -->
         <table class="pricing-calendar-table">
                 <thead>
                         <tr class="header-row">

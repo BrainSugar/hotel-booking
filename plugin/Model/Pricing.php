@@ -48,96 +48,70 @@ class Pricing extends Model
                 
                 return $wpdb->prefix . preg_replace('/[[:<:]]' . $wpdb->prefix . '/', '', parent::getTable(), 1);
         }
-
+        
         /**
-         * Insert a Price range into the DB
-         *
-         * @param [type] $roomType
-         * @param [type] $price
-         * @param [type] $startDate
-         * @param [type] $endDate
-         * @return void
-         */
-
+        * Insert a Price range into the DB
+        *
+        * @param [type] $roomType
+        * @param [type] $price
+        * @param [type] $startDate
+        * @param [type] $endDate
+        * @return void
+        */
         public function insertPriceRange($roomType , $price , $startDate , $endDate) { 
-
                 // Check if the given range overlaps with the other ranges.
-
                 // Get all the ranges with the same room type.
-                //  $allRanges = $this->where('room_type', $roomType)->get();
-
-                //  foreach($allRanges as $range) {
-
-
-                //         $checkStart =  Carbon::parse($startDate)->between($range->start_date, $range->end_date , false);
-                //         $checkEnd = Carbon::parse($endDate)->betweenIncluded($range->start_date, $range->end_date , false);
-                //         $checkMid = Carbon::parse($range->start)->greaterThan($startDate);
-
-                //          if($checkStart == true) {                                                 
-                //                 $this->create(array(
-                //                 'room_type' => $roomType, 
-                //                 'price' => $range->price,
-                //                 'start_date' => $range->start_date,
-                //                 'end_date' => Carbon::parse($startDate)->subDay(),
-                //                 )); 
-                //          }
-                //         if($checkEnd == true){
-                //                 $this->create(array(
-                //                 'room_type' => $roomType, 
-                //                 'price' => $range->price,
-                //                 'start_date' =>  Carbon::parse($endDate)->addDay(),
-                //                 'end_date' => $range->end_date,
-                //                 )); 
-                //         }
-                //         // if($checkStart == true || $checkEnd == true) {
-                //         //         $this->destroy($range->id);
-                //         // }
-                //         if($checkMid == true) {
-                //                 $this->destroy($range->id);
-                //         }
-                //  }
-
-               $this->fill(array(
+                $allRanges = $this->where('room_type', $roomType)->get();
+                
+                foreach($allRanges as $range) {                        
+                        $checkStart =  Carbon::parse($startDate)->between($range->start_date, $range->end_date);
+                        $checkEnd = Carbon::parse($endDate)->between($range->start_date, $range->end_date); 
+                        
+                        // If the start date lies between any of the previous price ranges.
+                        if($checkStart == true) {
+                                $leftRangeStart = Carbon::parse($range->start_date);
+                                $leftRangeEnd = Carbon::parse($startDate)->subDay();
+                                if($leftRangeStart <= $leftRangeEnd) {
+                                        $this->create(array(
+                                                'room_type' => $roomType, 
+                                                'price' => $range->price,
+                                                'start_date' => $leftRangeStart,
+                                                'end_date' => $leftRangeEnd,
+                                        ));                                        
+                                }
+                        }
+                        
+                        //  If the end date lies between any of the previous price ranges.
+                        if($checkEnd == true){
+                                $rightRangeStart = Carbon::parse($endDate)->addDay();
+                                $rightRangeEnd = Carbon::parse($range->end_date);
+                                if($rightRangeStart <= $rightRangeEnd) {
+                                        $this->create(array(
+                                                'room_type' => $roomType, 
+                                                'price' => $range->price,
+                                                'start_date' =>$rightRangeStart,
+                                                'end_date' =>$rightRangeEnd,
+                                        )); 
+                                }
+                        }
+                        // If either of the dates lies between the current looping range then delete the range.
+                        if($checkStart == true || $checkEnd == true) {
+                                $this->destroy($range->id);
+                        }
+                        // If there are any other price ranges between the current price range then delete them.
+                        if($range->start_date >= $startDate && $range->end_date <= $endDate) {
+                                $this->destroy($range->id);
+                        }
+                }
+                
+                // If the Given price range doesn't lie between any previous range then insert into DB.
+                $this->fill(array(
                         'room_type' => $roomType , 
                         'price' => $price,
                         'start_date' => $startDate,
                         'end_date' => $endDate
                 )); 
-                 $response = $this->save();
+                $response = $this->save();
                 return $response;
         }
-
-
-
-        public function getPriceRange($room_id) {
-                 $price_arr = '';
-
-        $all_room_prices = self::all()->where( 'room_type', $room_id )->map( function( $args ) {
-            $sd_date = Carbon::parse( $args->toArray()['start_date'] );
-            $ed_date = Carbon::parse( $args->toArray()['end_date'] );
-
-            while( $sd_date->lte( $ed_date ) ){
-                $price_arr[ $sd_date->toDateString() ] = $args->toArray()['price'];
-                $sd_date->addDay(1);
-            }
-
-            return $price_arr;
-        });
-
-        $merged_collection = new Collection;
-        foreach( $all_room_prices as $args){
-            $merged_collection = $merged_collection->merge($args);
-        }
-
-        $grouped_collection = $merged_collection->mapToGroups(function ($key, $value) {
-            return [$key => $value];
-        })->map( function( $key, $value ){
-            return [$value => $key->min() . ' to ' . $key->max()];
-        });
-
-        return $grouped_collection;
-        }
-
-                      
-    
 }

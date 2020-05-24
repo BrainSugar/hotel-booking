@@ -63,4 +63,5 @@ class CalendarController extends Controller
                 ->withAdminScripts('room-calendar');
                 
         }
+        
 }

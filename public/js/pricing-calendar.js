@@ -163,10 +163,10 @@
 
                 });
 
-                $('body').on('click', '.months', function () {
-                        pricingCalendar.setIntervalStart('march');
+                // $('body').on('click', '.months', function () {
+                //         pricingCalendar.setIntervalStart('march');
 
-                });
+                // });
 
         });
 })(window.jQuery);

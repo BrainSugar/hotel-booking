@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAMA,AAAA,kBAAkB,AAAC,CACX,UAAU,CAAE,OAAO,CAM1B,AAPD,AAGQ,kBAHU,CAGV,OAAO,AAAC,CACA,UAAU,CAAE,IAAI,CACvB",
-    "sources": [
-        "../room-metabox.scss"
-    ],
-    "names": [],
-    "file": "room-metabox.min.css"
-}

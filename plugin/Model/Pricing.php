@@ -58,8 +58,40 @@ class Pricing extends Model
         * @param [type] $endDate
         * @return void
         */
-        public function insertPriceRange($roomType , $price , $startDate , $endDate) { 
-                // Check if the given range overlaps with the other ranges.
+        public function insertPriceRange($roomType , $price , $startDate , $endDate) {
+                // Check if there are overlapping price ranges before inserting into DB
+                $this->checkOverlap($roomType , $startDate , $endDate);
+                
+                // If the Given price range doesn't lie between any previous range then insert into DB.
+                $this->fill(array(
+                        'room_type' => $roomType , 
+                        'price' => $price,
+                        'start_date' => $startDate,
+                        'end_date' => $endDate
+                )); 
+                $response = $this->save();
+                return $response;
+        }
+
+        public function deletePriceRange($roomType , $startDate , $endDate) {
+                // Check where the dates lie and check overlapping Ranges.
+                $response = $this->checkOverlap($roomType , $startDate , $endDate);
+                return $response;
+        }
+
+        /**
+         * Check overlapping price ranges.
+         * Check left and right overlapping ranges ,
+         * Create new left and right Price range
+         * Delete the ranges in between
+         *
+         * @param [type] $roomType
+         * @param [type] $startDate
+         * @param [type] $endDate
+         * @return void
+         */
+        public function checkOverlap($roomType , $startDate , $endDate) {
+                 // Check if the given range overlaps with the other ranges.
                 // Get all the ranges with the same room type.
                 $allRanges = $this->where('room_type', $roomType)->get();
                 
@@ -103,18 +135,15 @@ class Pricing extends Model
                                 $this->destroy($range->id);
                         }
                 }
-                
-                // If the Given price range doesn't lie between any previous range then insert into DB.
-                $this->fill(array(
-                        'room_type' => $roomType , 
-                        'price' => $price,
-                        'start_date' => $startDate,
-                        'end_date' => $endDate
-                )); 
-                $response = $this->save();
-                return $response;
+                return true;
         }
 
+        /**
+         * Get price range for a room type
+         *
+         * @param [type] $roomType
+         * @return void
+         */
         public function getPriceRange($roomType) {
 
                 $response = $this->where('room_type', $roomType)->get();

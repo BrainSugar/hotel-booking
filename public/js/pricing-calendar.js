@@ -105,7 +105,7 @@
                                                         modal.find('.range-start').text(calendar.options.extras.rangeStart.format('D-M-Y'));
                                                         modal.find('.range-end').text(calendar.options.extras.rangeEnd.format('D-M-Y'));
 
-                                                        $.each(roomData.room, function (key, value) {
+                                                        $.each(roomData.room, function (_key, value) {
                                                                 if (value.ID == roomId) {
                                                                         modal.find('.room-type').text(value.post_title);
                                                                         modal.find('.room-image').attr('src', value.room_thumbnail_url);
@@ -119,13 +119,45 @@
 
                                                         // When price is updated.
                                                         $('#update-price-modal-button').on('click', function () {
-                                                                var price = modal.find('#new-price').val();
+                                                                var priceInput = modal.find('#new-price');
+                                                                var price = priceInput.val();
+                                                                if (!price) {
+                                                                        $('#new-price').validate();
+                                                                        return;
+                                                                }
+                                                                else {
+                                                                        $.post(
+                                                                                ajaxurl,
+                                                                                {
+                                                                                        action: 'insertPriceRange',
+                                                                                        roomType: roomId,
+                                                                                        price: price,
+                                                                                        startDate: calendar.options.extras.rangeStart.format('D-M-Y'),
+                                                                                        endDate: calendar.options.extras.rangeEnd.format('D-M-Y'),
+                                                                                },
+                                                                                function (response) {
+                                                                                        if (response == true) {
+                                                                                                modal.modal('hide');
+                                                                                                location.reload();
+                                                                                        }
+                                                                                }
+                                                                        );
+                                                                }
+                                                        });
+
+                                                        // Modal Cancel Button
+                                                        $('#update-price-cancel-button').on('click', function () {
+                                                                modal.modal('hide');
+                                                                location.reload();
+                                                        });
+
+                                                        // Restore Price Range link
+                                                        $('#delete-price').on('click', function () {
                                                                 $.post(
                                                                         ajaxurl,
                                                                         {
-                                                                                action: 'insertPriceRange',
+                                                                                action: 'deletePriceRange',
                                                                                 roomType: roomId,
-                                                                                price: price,
                                                                                 startDate: calendar.options.extras.rangeStart.format('D-M-Y'),
                                                                                 endDate: calendar.options.extras.rangeEnd.format('D-M-Y'),
                                                                         },
@@ -136,12 +168,6 @@
                                                                                 }
                                                                         }
                                                                 );
-                                                        });
-
-                                                        // Modal Cancel Button
-                                                        $('#update-price-cancel-button').on('click', function () {
-                                                                modal.modal('hide');
-                                                                calendar.render();
                                                         });
 
                                                         // Set the Room Id extras variable back to null.

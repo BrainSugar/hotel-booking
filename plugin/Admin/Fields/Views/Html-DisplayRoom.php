@@ -57,7 +57,7 @@
                         <div class="modal-body">
                               <div class="col-sm-12 my-2">
                                         <div class="input-group">                                                
-                                                <input id="edit-name-input" type="text" placeholder="Enter room name." class="form-control" maxlength = "25" required="true">                                      
+                                                <input id="edit-name-input" name="edit-name" type="text" placeholder="Enter room name." class="form-control" maxlength = "25" required="true">                                      
                                         </div>                                          
                                 </div>
                         </div>

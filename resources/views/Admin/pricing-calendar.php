@@ -75,7 +75,7 @@
                                                                                 </span>
                                                                 <# } #>
                                                         <# }); #>
-                                                        <i class="add-icon fad fa-plus fa-2x  mt-3  icon-dark" title="Change room Price"></i>     
+                                                        <i class="add-icon fad fa-plus fa-2x  icon-dark" title="Change room Price"></i>     
                                                         <!-- <h4 class="new-price">$23</h4> -->
                                                         <span class="room-date">                                                        
                                                                 <h6 class="room-price" title="Rack rate">{{room.room_price}}</h6>
@@ -131,12 +131,15 @@
                                                 <div class="row">                                                        
                                                         <div class="col-sm-6 d-flex justify-content-center">
                                                                 <div class="current-price">
-                                                                <span>Current Price  </span>
-                                                                <h3 class="price"></h3>
-                                                                </div>
+                                                                        <span>Rack Rate</span>
+                                                                        <h3 class="price"></h3>                                                                
+                                                                </div>                                                                                                                     
                                                         </div>
+                                                        
                                                         <div class="col-sm-6 m-auto">
-                                                                <input id="new-price" type = "number" placeholder="New price">                                                               
+                                                                <div class="input-group">
+                                                                        <input id="new-price" class="form-control" type = "number" placeholder="New price" required="true"> 
+                                                                </div>                                                              
                                                         </div>
                                                         
                                                 </div>
@@ -144,6 +147,11 @@
                                 </div>
 
                                 <div class="modal-footer">
+                                <span class="restore-price">
+                                        <i class="fad fa-history fa-1x icon-dark"></i>
+                                        <a id="delete-price">Restore rack rate</a>
+                                </span>
+                                         
                                         <button id="update-price-modal-button" type="submit" class="btn btn-primary">Update Pricing</button>
                                         <button id="update-price-cancel-button" type="button" class="btn btn-secondary">Cancel</button>
                                 </div>

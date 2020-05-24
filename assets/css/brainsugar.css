@@ -25747,10 +25747,12 @@ fieldset[disabled] .bshb .form-control {
 
 .bshb .modal {
   background: rgba(255, 255, 255, 0.651);
+  -webkit-transition: all 1s ease-in;
+  transition: all 1s ease-in;
 }
 
 .bshb .modal .modal-dialog {
-  margin-top: 10vh;
+  margin-top: 30vh;
 }
 
 .bshb .modal .modal-title {
@@ -25762,11 +25764,6 @@ fieldset[disabled] .bshb .form-control {
 .bshb .modal .modal-header,
 .bshb .modal .modal-footer {
   border: none;
-}
-
-.bshb .modal-footer .restore-price {
-  margin-left: 1rem;
-  margin-right: auto;
 }
 
 .bshb .bshb-calendar {
@@ -26016,6 +26013,11 @@ fieldset[disabled] .bshb .form-control {
 .bshb .current-price .price {
   margin: 0;
   font-weight: 100;
+}
+
+.bshb .restore-price {
+  margin-left: 1rem;
+  margin-right: auto;
 }
 
 .bshb .bshb-dashboard {

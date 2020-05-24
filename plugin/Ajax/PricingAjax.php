@@ -26,11 +26,8 @@ class PricingAjax extends ServiceProvider {
         * @var array
         */
         protected $logged = [   
-                'insertPriceRange',                
-                // 'updateRoomOrder',
-                // 'updateRoomName',
-                // 'addRoom',
-              
+                'insertPriceRange',
+                'deletePriceRange',
         ];
         
         /**
@@ -42,27 +39,44 @@ class PricingAjax extends ServiceProvider {
         protected $notLogged = [
                 'notLogged'
         ];
-
-
+        
+        
         /**
-         * Insert Price Range
-         *
-         * @return json
+        * Insert Price Range
+        *
+        * @return json
         */
         public function insertPriceRange() {
-
+                
                 $roomType = $_POST['roomType'];
                 $price = $_POST['price'];
                 $startDate = Carbon::create( $_POST['startDate'] )->format('Y-m-d');
                 $endDate = Carbon::create( $_POST['endDate'] )->format('Y-m-d');                
-
+                
                 $priceModel = new Pricing;
-
+                
                 // Call model
                 $response = $priceModel->insertPriceRange($roomType , $price , $startDate , $endDate);       
                 
                 wp_send_json($response);
         }
-
         
+        /**
+        * Delete prices from select dates.
+        *
+        * @return Json
+        */
+        public function deletePriceRange() {
+                
+                $roomType = $_POST['roomType'];
+                $startDate = Carbon::create( $_POST['startDate'] )->format('Y-m-d');
+                $endDate = Carbon::create( $_POST['endDate'] )->format('Y-m-d');
+                
+                $priceModel = new Pricing;
+                
+                // Call model
+                $response = $priceModel->deletePriceRange($roomType , $startDate , $endDate);       
+                
+                wp_send_json($response);
+        }        
 }

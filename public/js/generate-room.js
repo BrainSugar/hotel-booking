@@ -59,7 +59,6 @@
                                 return;
                         }
                         else {
-
                                 $.post(
                                         ajaxurl,
                                         {

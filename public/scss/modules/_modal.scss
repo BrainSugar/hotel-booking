@@ -1,9 +1,8 @@
 .modal {
-        background:rgba(255, 255, 255, 0.651);
-        transition:all 1s ease-in;
+        background:rgba(255, 255, 255, 0.651);        
 
         .modal-dialog {
-                margin-top:30vh;
+                margin-top:10vh;
         }
         .modal-title {
                 font-size: 1.5rem;
@@ -13,5 +12,13 @@
         .modal-header,
         .modal-footer {
                 border:none;
+        }
+}
+
+// Pricing Calendar Modal
+.modal-footer{
+        .restore-price {
+                margin-left: 1rem;
+                margin-right: auto;
         }
 }

@@ -32,7 +32,7 @@ class PricingController extends Controller
                 return Brainsugar()
                 ->view('Admin.pricing-calendar')                    
                 ->withAdminScripts('pricing-calendar')
-                ->withAdminScripts('bootstrap.bundle')            
+                ->withAdminScripts('bootstrap.bundle')
                 ->withAdminStyles('app');
                 
         }

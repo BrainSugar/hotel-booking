@@ -67,7 +67,7 @@
                                                                 <# }); #>
                                                         <i class="add-icon fad fa-plus fa-2x  icon-dark" title="Change room Price"></i>                                              
                                                           <span class="room-date">                                                        
-                                                                <h6 class="room-price" title="Rack rate">{{roomData.room_price}}</h6>
+                                                                <h6 class="room-price" title="Rack rate">{{roomData.room.room_price}}</h6>
                                                                 <p class="font-weight-light">{{ data.days[d].day }} </p>
                                                         </span>        
                                                         </div>

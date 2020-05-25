@@ -2,12 +2,12 @@
         <div class="container-fluid">
                 <div class="row">
                         <div class="col-sm-12">
-                                <h2 class="font-weight-light my-5"><?php echo esc_html( "Dashboard" ); ?></h2>
+                                <h3 class="font-weight-light my-5"><?php echo esc_html( "Dashboard" ); ?></h3>
                         </div>
-                </div>
+                </div>             
                 <div class="bshb-dashboard">                        
                         <div id="dashboard-reservations"></div>
-                </div>
+                </div>           
         </div>
 </div>
 

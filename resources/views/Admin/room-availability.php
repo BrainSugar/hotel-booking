@@ -2,7 +2,7 @@
         <div class="container-fluid">
                 <div class="row">
                         <div class="col-sm-12">
-                                <h2 class="font-weight-light my-5"><?php echo esc_html( "Room Calendar" ); ?></h2>                                                                                                                                  
+                                <h3 class="font-weight-light my-5"><?php echo esc_html( "Room Calendar" ); ?></h3>                                                                                                                                  
                         </div>
                 </div>
                 <div class="bshb-calendar">

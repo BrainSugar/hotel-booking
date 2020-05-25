@@ -2,7 +2,7 @@
         <div class="container-fluid">
                 <div class="row">
                         <div class="col-sm-12">
-                                <h2 class="font-weight-light my-5"><?php echo esc_html( "Pricing" ); ?></h2>                                
+                                <h3 class="font-weight-light my-5"><?php echo esc_html( "Pricing" ); ?></h3>                                
                         </div>
                 </div>
                 <div class="bshb-calendar">
@@ -138,6 +138,9 @@
                                                         
                                                         <div class="col-sm-6 m-auto">
                                                                 <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                                <span class="input-group-text">$</span>
+                                                                        </div>
                                                                         <input id="new-price" class="form-control" type = "number" placeholder="New price" required="true"> 
                                                                 </div>                                                              
                                                         </div>

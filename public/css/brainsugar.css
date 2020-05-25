@@ -16621,6 +16621,7 @@ readers do not read off random characters that represent icons */
 }
 
 .bshb {
+  margin-right: 1rem;
   /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -20066,14 +20067,14 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
 
 .bshb .modal-header .close {
-  padding: 1rem;
+  padding: 1rem 1rem;
   margin: -1rem -1rem -1rem auto;
 }
 
@@ -20366,13 +20367,13 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 
 .bshb .bs-popover-bottom > .arrow::before, .bshb .bs-popover-auto[x-placement^="bottom"] > .arrow::before {
   top: 0;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
 .bshb .bs-popover-bottom > .arrow::after, .bshb .bs-popover-auto[x-placement^="bottom"] > .arrow::after {
   top: 1px;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: #fff;
 }
 
@@ -24449,7 +24450,7 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 }
 
 .bshb .btn .caret.single {
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 .bshb .btn:hover, .bshb .btn:focus, .bshb .btn:active, .bshb .btn.active, .bshb .btn.disabled, .bshb .btn[disabled] {
@@ -25294,8 +25295,8 @@ fieldset[disabled] .bshb .form-control {
 
 .bshb .card .card-header {
   background: transparent;
-  border-radius: 0;
-  border-bottom: 0;
+  border-radius: 0px;
+  border-bottom: 0px;
   padding: 1rem;
   position: relative;
   z-index: 3;
@@ -25328,7 +25329,7 @@ fieldset[disabled] .bshb .form-control {
   line-height: normal;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-text-stroke: 0;
+  -webkit-text-stroke: 0px;
   filter: alpha(opacity=40);
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
@@ -25510,7 +25511,7 @@ fieldset[disabled] .bshb .form-control {
 }
 
 .bshb .card .card-body .title {
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 .bshb .card .card-body.scrollable {
@@ -25703,7 +25704,7 @@ fieldset[disabled] .bshb .form-control {
 }
 
 .bshb .ui-sortable {
-  min-height: 0 !important;
+  min-height: 0px !important;
 }
 
 .bshb .ui-sortable-placeholder {
@@ -25720,7 +25721,7 @@ fieldset[disabled] .bshb .form-control {
   background-color: #f3fdfc;
   border: 1px dashed #e7faf8;
   display: block;
-  margin-top: 0 !important;
+  margin-top: 0px !important;
   margin-bottom: 24px !important;
 }
 
@@ -26147,6 +26148,13 @@ fieldset[disabled] .bshb .form-control {
   background: #10cfbd;
 }
 
+.bshb .bshb-settings {
+  background: #fff;
+  border-radius: 0.25rem;
+  min-height: 600px;
+  padding: 1rem;
+}
+
 .bshb-title h5 {
   color: #000000;
   font-size: 1.5rem;
@@ -26176,3 +26184,4 @@ fieldset[disabled] .bshb .form-control {
 .hover-warning:hover {
   color: #000;
 }
+/*# sourceMappingURL=brainsugar.css.map */

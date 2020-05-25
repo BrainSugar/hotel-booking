@@ -34,6 +34,12 @@ return [
                         'get' => 'Admin\PricingController@index',
                         ]
                 ],
+                'settings' => [
+                        "menu_title" => "Settings",
+                        'route' => [
+                        'get' => 'Admin\SettingsController@index',
+                        ]
+                ],
   
         //     [
         //         "menu_title" => "Reservation Calendar",

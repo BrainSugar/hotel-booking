@@ -32,8 +32,8 @@ class PricingController extends Controller
                 return Brainsugar()
                 ->view('Admin.pricing-calendar')                    
                 ->withAdminScripts('pricing-calendar')
-                ->withAdminScripts('bootstrap.bundle')
-                ->withAdminStyles('app');
+                ->withAdminScripts('bootstrap.bundle');
+                
                 
         }
         
@@ -54,8 +54,7 @@ class PricingController extends Controller
                 wp_localize_script('room-pricing', 'roomData', array('room' => $roomData, 'price' => $priceRange));               
                 
                 return Brainsugar()
-                ->view('Admin.room-pricing') 
-                ->withAdminStyles('app')
+                ->view('Admin.room-pricing')                 
                  ->withAdminScripts('bootstrap.bundle')
                 ->withAdminScripts('room-pricing');
         }

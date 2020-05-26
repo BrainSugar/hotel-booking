@@ -9,9 +9,8 @@ class SettingsController extends Controller
   public function index()
   {
         return Brainsugar()
-            ->view('Admin.settings')
-            ->withAdminStyles('brainsugar-common');
-
+            ->view('Admin.settings')            
+            ->withAdminScripts('bootstrap.bundle');
   }
 
   public function store()

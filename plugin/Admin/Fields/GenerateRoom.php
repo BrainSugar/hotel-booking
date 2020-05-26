@@ -16,8 +16,7 @@ class GenerateRoom{
         
         
         public function __construct() {
-
-
+                
                 add_action( 'cmb2_render_generate_room', array($this ,'renderField' ) , 10, 5 );
                 
                 add_filter( 'cmb2_sanitize_generate_room', array( $this ,'sanitizeField'), 10, 2 ); 

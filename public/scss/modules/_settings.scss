@@ -25,6 +25,15 @@
         .settings-section{
                 padding:1rem;
                 margin:2rem 0;
+
+                .setting-desc {
+                        color:$color-text;
+                }
+                .option-desc {
+                        color:$color-grey;
+                        font-style:italic;
+                        margin-top:0.5rem;
+                }
         }
 }
 

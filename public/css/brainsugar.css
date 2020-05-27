@@ -16633,8 +16633,11 @@ Alternate buttons
 --------------------------------------------------
 */
   /* Firefox */
-  /*------------------------------------------------------------------
-[15. Form Elements]
+  /*
+*       Styles for all the form input Elements.
+*       Input text
+*       Textarea
+*       
 */
   /* Input Sizes
 --------------------------------------------------
@@ -16642,6 +16645,7 @@ Alternate buttons
   /* Checkboxes and Radio buttons
 --------------------------------------------------
 */
+  /* CSS3 on/off switches */
 }
 
 .bshb :root {
@@ -25029,8 +25033,8 @@ fieldset[disabled] .bshb .btn-primary:hover,
 fieldset[disabled] .bshb .btn-primary:focus,
 fieldset[disabled] .bshb .btn-primary:active,
 fieldset[disabled] .bshb .btn-primary.active {
-  background-color: #d2d2d2;
-  border-color: #d2d2d2;
+  background-color: #9e9e9e;
+  border-color: #9e9e9e;
 }
 
 .bshb .btn-primary .badge {
@@ -25071,8 +25075,8 @@ fieldset[disabled] .bshb .btn-success:hover,
 fieldset[disabled] .bshb .btn-success:focus,
 fieldset[disabled] .bshb .btn-success:active,
 fieldset[disabled] .bshb .btn-success.active {
-  background-color: #d2d2d2;
-  border-color: #d2d2d2;
+  background-color: #9e9e9e;
+  border-color: #9e9e9e;
 }
 
 .bshb .btn-success .badge {
@@ -25113,8 +25117,8 @@ fieldset[disabled] .bshb .btn-complete:hover,
 fieldset[disabled] .bshb .btn-complete:focus,
 fieldset[disabled] .bshb .btn-complete:active,
 fieldset[disabled] .bshb .btn-complete.active {
-  background-color: #d2d2d2;
-  border-color: #d2d2d2;
+  background-color: #9e9e9e;
+  border-color: #9e9e9e;
 }
 
 .bshb .btn-complete .badge {
@@ -25155,8 +25159,8 @@ fieldset[disabled] .bshb .btn-info:hover,
 fieldset[disabled] .bshb .btn-info:focus,
 fieldset[disabled] .bshb .btn-info:active,
 fieldset[disabled] .bshb .btn-info.active {
-  background-color: #d2d2d2;
-  border-color: #d2d2d2;
+  background-color: #9e9e9e;
+  border-color: #9e9e9e;
 }
 
 .bshb .btn-info .badge {
@@ -25197,8 +25201,8 @@ fieldset[disabled] .bshb .btn-warning:hover,
 fieldset[disabled] .bshb .btn-warning:focus,
 fieldset[disabled] .bshb .btn-warning:active,
 fieldset[disabled] .bshb .btn-warning.active {
-  background-color: #d2d2d2;
-  border-color: #d2d2d2;
+  background-color: #9e9e9e;
+  border-color: #9e9e9e;
 }
 
 .bshb .btn-warning .badge {
@@ -25239,8 +25243,8 @@ fieldset[disabled] .bshb .btn-danger:hover,
 fieldset[disabled] .bshb .btn-danger:focus,
 fieldset[disabled] .bshb .btn-danger:active,
 fieldset[disabled] .bshb .btn-danger.active {
-  background-color: #d2d2d2;
-  border-color: #d2d2d2;
+  background-color: #9e9e9e;
+  border-color: #9e9e9e;
 }
 
 .bshb .btn-danger .badge {
@@ -25306,9 +25310,10 @@ fieldset[disabled] .bshb .btn-danger.active {
 .bshb button,
 .bshb select,
 .bshb textarea {
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: normal;
   line-height: 20px;
+  color: #676767;
 }
 
 .bshb input[type="radio"],
@@ -25317,7 +25322,7 @@ fieldset[disabled] .bshb .btn-danger.active {
   line-height: normal;
   cursor: pointer;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .bshb select[multiple],
@@ -25332,18 +25337,13 @@ fieldset[disabled] .bshb .btn-danger.active {
 .bshb input[type="radio"]:focus,
 .bshb input[type="checkbox"]:focus {
   outline: none;
-}
-
-.bshb form legend {
-  margin: 15px 0 10px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .bshb .form-control {
   background-color: #fff;
-  background-image: none;
-  border: 1px solid rgba(0, 0, 0, 0.09);
-  font-family: Arial, sans-serif;
-  -webkit-appearance: none;
+  border: 1px solid #dadada;
   color: #075d55;
   outline: 0;
   padding: 8px 12px;
@@ -25352,77 +25352,23 @@ fieldset[disabled] .bshb .btn-danger.active {
   font-weight: normal;
   vertical-align: middle;
   min-height: 35px;
-  -webkit-transition: all 0.12s ease;
-  transition: all 0.12s ease;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s linear 0s;
-  transition: background 0.2s linear 0s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bshb .form-control {
-    -webkit-transition: none;
-    transition: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bshb .form-control {
-    -webkit-transition: none;
-    transition: none;
-  }
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.25rem;
 }
 
 .bshb .form-control:focus {
   border-color: rgba(0, 0, 0, 0.1);
   background-color: #f3fdfc;
   outline: 0 !important;
-}
-
-.bshb .form-control:focus::-moz-placeholder {
-  color: inherit;
-  opacity: 0.7;
-}
-
-.bshb .form-control:focus:-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.7;
-}
-
-.bshb .form-control:focus::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.7;
-}
-
-.bshb .form-control::-moz-placeholder {
-  color: inherit;
-  opacity: 0.33;
-}
-
-.bshb .form-control:-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.33;
-}
-
-.bshb .form-control::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.33;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .bshb .form-control[disabled], .bshb .form-control[readonly],
 fieldset[disabled] .bshb .form-control {
-  background: #f9fefe;
+  background: #f3fdfc;
   color: rgba(16, 207, 189, 0.23);
-}
-
-.bshb .form-control.transparent {
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.bshb .form-control.transparent:focus {
-  background-color: transparent;
-  border-color: transparent;
 }
 
 .bshb .input-sm,
@@ -25456,36 +25402,6 @@ fieldset[disabled] .bshb .form-control {
   min-height: 32px;
 }
 
-.bshb .select2-lg .select2-container .select2-selection.select2-selection--single {
-  height: 45px;
-  padding: 11px 13px;
-}
-
-.bshb .select2-lg .select2-container .select2-selection.select2-selection--single .select2-selection__rendered {
-  padding-top: 0;
-  line-height: 22px;
-  font-size: 18px;
-}
-
-.bshb .select2-lg .select2-container .select2-selection.select2-selection--single .select2-selection__arrow {
-  bottom: 9px;
-}
-
-.bshb .select2-sm .select2-container .select2-selection.select2-selection--single {
-  height: 32px;
-  padding: 8px 9px;
-}
-
-.bshb .select2-sm .select2-container .select2-selection.select2-selection--single .select2-selection__rendered {
-  padding-top: 0;
-  line-height: 16px;
-  font-size: 13px;
-}
-
-.bshb .select2-sm .select2-container .select2-selection.select2-selection--single .select2-selection__arrow {
-  bottom: 4px;
-}
-
 .bshb .radio,
 .bshb .checkbox {
   margin-bottom: 10px;
@@ -25510,8 +25426,8 @@ fieldset[disabled] .bshb .form-control {
 
 .bshb .radio label:before,
 .bshb .checkbox label:before {
-  -webkit-box-sizing: inherit;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   content: "";
   display: inline-block;
   width: 17px;
@@ -25520,7 +25436,7 @@ fieldset[disabled] .bshb .form-control {
   position: absolute;
   left: 0;
   background-color: #fff;
-  border: 1px solid #b7f1eb;
+  border: 1px solid #10cfbd;
 }
 
 .bshb .radio label {
@@ -25530,15 +25446,8 @@ fieldset[disabled] .bshb .form-control {
 .bshb .radio label:before {
   bottom: 2.5px;
   border-radius: 99px;
-  -webkit-transition: border 0.3s 0s cubic-bezier(0.455, 0.03, 0.215, 1.33);
-  transition: border 0.3s 0s cubic-bezier(0.455, 0.03, 0.215, 1.33);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bshb .radio label:before {
-    -webkit-transition: none;
-    transition: none;
-  }
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
 }
 
 .bshb .radio input[type=radio]:checked + label:before {
@@ -25644,7 +25553,7 @@ fieldset[disabled] .bshb .form-control {
 
 .bshb .checkbox input[type=checkbox]:checked + label::after {
   font-family: 'FontAwesome';
-  content: "\F00C";
+  content: "\f00c";
   color: #fff;
 }
 
@@ -25737,22 +25646,22 @@ fieldset[disabled] .bshb .form-control {
 }
 
 .bshb .input-group-text.success {
-  background-color: #0090d9;
+  background-color: #10cfbd;
   color: #fff;
 }
 
 .bshb .input-group-text.info {
-  background-color: #1f3853;
+  background-color: #3b4752;
   color: #fff;
 }
 
 .bshb .input-group-text.warning {
-  background-color: #fbb05e;
+  background-color: #f8d053;
   color: #fff;
 }
 
 .bshb .input-group-text.danger {
-  background-color: #f35958;
+  background-color: #f55753;
   color: #fff;
 }
 
@@ -25768,6 +25677,89 @@ fieldset[disabled] .bshb .form-control {
 .bshb .input-group-prepend .input-group-text {
   border-right: 0;
   border-radius: 0.25rem;
+}
+
+.bshb .switch {
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.bshb .switch + .switch-body {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+  float: left;
+  margin-right: 10px;
+}
+
+.bshb .switch + .switch-body:before {
+  content: "";
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  border-radius: 100px;
+  top: auto;
+}
+
+.bshb .switch + .switch-body + .switch-text {
+  display: inline-block;
+  color: #676767;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.bshb .switch.switch-button + .switch-body:before {
+  background-color: #dadada;
+  width: 50px;
+  height: 30px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.bshb .switch.switch-button + .switch-body:after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  background-color: #fff;
+  border: 4px solid #fff;
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
+}
+
+.bshb .switch.switch-button:checked + .switch-body:after {
+  left: 21px;
+  background-color: #fff;
+  border: 4px solid #fff;
+  text-shadow: 0 -1px 0 #075d55;
+}
+
+.bshb .switch-primary > .switch.switch-button:checked + .switch-body::before {
+  background-color: #10cfbd;
+}
+
+.bshb .switch-success > .switch.switch-button:checked + .switch-body::before {
+  background-color: #10cfbd;
+}
+
+.bshb .switch-danger > .switch.switch-button:checked + .switch-body::before {
+  background-color: #f55753;
+}
+
+.bshb .switch-info > .switch.switch-button:checked + .switch-body::before {
+  background-color: #3b4752;
+}
+
+.bshb .switch-warning > .switch.switch-button:checked + .switch-body::before {
+  background-color: #f8d053;
 }
 
 .bshb .room-sortable,
@@ -25890,7 +25882,7 @@ fieldset[disabled] .bshb .form-control {
 }
 
 .bshb .room-days {
-  border-bottom: 1px dashed #d2d2d2;
+  border-bottom: 1px dashed #9e9e9e;
   min-height: 140px;
   padding-top: 1.5rem;
   position: relative;
@@ -26027,7 +26019,7 @@ fieldset[disabled] .bshb .form-control {
 }
 
 .bshb .adjacent-month .room-date p {
-  color: #d2d2d2;
+  color: #9e9e9e;
 }
 
 .bshb .room-pricing-table .new-price,
@@ -26184,7 +26176,7 @@ fieldset[disabled] .bshb .form-control {
 .bshb .timeline .event .left {
   padding: 1rem 0;
   padding-right: 1rem;
-  color: #d2d2d2;
+  color: #9e9e9e;
   border-right: 3px solid #e7faf8;
   width: 100px;
   margin: 0;
@@ -26221,7 +26213,7 @@ fieldset[disabled] .bshb .form-control {
 
 .bshb .bshb-nav .nav-link {
   background: #fff;
-  border-right: 1px solid #d2d2d2;
+  border-right: 1px solid #9e9e9e;
   color: #676767;
   border-radius: 0;
   padding: 1rem 0;
@@ -26240,6 +26232,16 @@ fieldset[disabled] .bshb .form-control {
 .bshb .settings-container .settings-section {
   padding: 1rem;
   margin: 2rem 0;
+}
+
+.bshb .settings-container .settings-section .setting-desc {
+  color: #676767;
+}
+
+.bshb .settings-container .settings-section .option-desc {
+  color: #9e9e9e;
+  font-style: italic;
+  margin-top: 0.5rem;
 }
 
 .bshb-title h5 {

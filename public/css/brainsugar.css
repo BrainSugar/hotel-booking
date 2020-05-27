@@ -26237,6 +26237,11 @@ fieldset[disabled] .bshb .form-control {
   padding: 2rem;
 }
 
+.bshb .settings-container .settings-section {
+  padding: 1rem;
+  margin: 2rem 0;
+}
+
 .bshb-title h5 {
   color: #000000;
   font-size: 1.5rem;

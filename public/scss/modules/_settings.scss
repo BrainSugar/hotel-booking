@@ -4,6 +4,22 @@
         min-height: 600px;
         padding: 1rem;
 }
-.nav-tabs {
-        background: $color-master;
+.bshb-nav{
+        .nav-link {
+                background: $color-white;
+                border-right: 1px solid $color-grey;
+                color:$color-text;
+                border-radius:0;
+                padding: 1rem 0;
+                
+                &.active {
+                        background:$color-white;
+                        border-right: 3px solid $color-master;
+                        color: $color-black;
+                }
+        }
+}
+
+.settings-container {
+        padding:2rem;
 }

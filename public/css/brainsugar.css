@@ -26219,8 +26219,22 @@ fieldset[disabled] .bshb .form-control {
   padding: 1rem;
 }
 
-.bshb .nav-tabs {
-  background: #10cfbd;
+.bshb .bshb-nav .nav-link {
+  background: #fff;
+  border-right: 1px solid #d2d2d2;
+  color: #676767;
+  border-radius: 0;
+  padding: 1rem 0;
+}
+
+.bshb .bshb-nav .nav-link.active {
+  background: #fff;
+  border-right: 3px solid #10cfbd;
+  color: #000;
+}
+
+.bshb .settings-container {
+  padding: 2rem;
 }
 
 .bshb-title h5 {

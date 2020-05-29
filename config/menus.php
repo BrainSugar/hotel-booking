@@ -38,6 +38,7 @@ return [
                         "menu_title" => "Settings",
                         'route' => [
                         'get' => 'Admin\SettingsController@index',
+                        'post' => 'Admin\SettingsController@saveOptions'
                         ]
                 ],
   

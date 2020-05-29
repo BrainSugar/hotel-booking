@@ -18,12 +18,10 @@
   },
   "require": {
     "php": ">=7.1",
-    "wpbones/wpbones": "dev-master",
-    "wpbones/pure-css-tabs": "~1.0",
-    "wpbones/pure-css-switch": "~1.0",
+    "wpbones/wpbones": "dev-master",     
     "wpbones/wptables": "~1.0",
     "wpbones/useragent": "^1.0",    
-    "cmb2/cmb2": "^2.7"  
+    "cmb2/cmb2": "^2.7"
   },
   "autoload": {
     "psr-4": {

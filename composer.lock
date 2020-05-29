@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a54e5ad3bf783f3562b057bf5925c2ea",
+    "content-hash": "0a2830b23b8b4ea30e71076f759d9c73",
     "packages": [
         {
             "name": "cmb2/cmb2",
@@ -61,33 +61,38 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "1.3.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "ec3a55242203ffa6a4b27c58176da97ff0a7aec1"
+                "reference": "889b42b8155f2aa274596b6e0424371b1e3c51bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/ec3a55242203ffa6a4b27c58176da97ff0a7aec1",
-                "reference": "ec3a55242203ffa6a4b27c58176da97ff0a7aec1",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/889b42b8155f2aa274596b6e0424371b1e3c51bb",
+                "reference": "889b42b8155f2aa274596b6e0424371b1e3c51bb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.2"
+                "doctrine/coding-standard": "^7.0",
+                "phpstan/phpstan": "^0.11",
+                "phpstan/phpstan-phpunit": "^0.11",
+                "phpstan/phpstan-strict-rules": "^0.11",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector"
+                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector",
+                    "Doctrine\\Inflector\\": "lib/Doctrine/Inflector"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -116,15 +121,21 @@
                     "email": "schmittjoh@gmail.com"
                 }
             ],
-            "description": "Common String Manipulations with regard to casing and singular/plural rules.",
-            "homepage": "http://www.doctrine-project.org",
+            "description": "PHP Doctrine Inflector is a small library that can perform string manipulations with regard to upper/lowercase and singular/plural forms of words.",
+            "homepage": "https://www.doctrine-project.org/projects/inflector.html",
             "keywords": [
                 "inflection",
-                "pluralize",
-                "singularize",
-                "string"
+                "inflector",
+                "lowercase",
+                "manipulation",
+                "php",
+                "plural",
+                "singular",
+                "strings",
+                "uppercase",
+                "words"
             ],
-            "time": "2019-10-30T19:59:35+00:00"
+            "time": "2020-05-25T20:02:40+00:00"
         },
         {
             "name": "illuminate/container",
@@ -338,24 +349,26 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.31.0",
+            "version": "2.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d"
+                "reference": "4b9bd835261ef23d36397a46a76b496a458305e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d",
-                "reference": "bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4b9bd835261ef23d36397a46a76b496a458305e5",
+                "reference": "4b9bd835261ef23d36397a46a76b496a458305e5",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.1.8 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.0",
                 "symfony/translation": "^3.4 || ^4.0 || ^5.0"
             },
             "require-dev": {
+                "doctrine/orm": "^2.7",
                 "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
                 "kylekatarnls/multi-tester": "^1.1",
                 "phpmd/phpmd": "^2.8",
@@ -369,7 +382,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "2.x-dev",
+                    "dev-3.x": "3.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -404,7 +418,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-03-01T11:11:58+00:00"
+            "time": "2020-05-24T18:27:52+00:00"
         },
         {
             "name": "psr/container",
@@ -505,16 +519,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.14.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2"
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/34094cfa9abe1f0f14f48f490772db7a775559f2",
-                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fa79b11539418b02fc5e1897267673ba2c19419c",
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
                 "shasum": ""
             },
             "require": {
@@ -526,7 +540,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -560,20 +574,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-01-13T11:15:53+00:00"
+            "time": "2020-05-12T16:47:27+00:00"
         },
         {
             "name": "symfony/translation",
-            "version": "v5.0.5",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b"
+                "reference": "c3879db7a68fe3e12b41263b05879412c87b27fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b",
-                "reference": "e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/c3879db7a68fe3e12b41263b05879412c87b27fd",
+                "reference": "c3879db7a68fe3e12b41263b05879412c87b27fd",
                 "shasum": ""
             },
             "require": {
@@ -637,24 +651,24 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-04T07:41:34+00:00"
+            "time": "2020-04-12T16:45:47+00:00"
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v2.0.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "8cc682ac458d75557203b2f2f14b0b92e1c744ed"
+                "reference": "e5ca07c8f817f865f618aa072c2fe8e0e637340e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/8cc682ac458d75557203b2f2f14b0b92e1c744ed",
-                "reference": "8cc682ac458d75557203b2f2f14b0b92e1c744ed",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/e5ca07c8f817f865f618aa072c2fe8e0e637340e",
+                "reference": "e5ca07c8f817f865f618aa072c2fe8e0e637340e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2.5"
+                "php": ">=7.2.5"
             },
             "suggest": {
                 "symfony/translation-implementation": ""
@@ -662,7 +676,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -694,87 +708,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-11-18T17:27:11+00:00"
-        },
-        {
-            "name": "wpbones/pure-css-switch",
-            "version": "1.0.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wpbones/pure-css-switch.git",
-                "reference": "69ab35529e08979401f80450c9ca0d51f96ee9e6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wpbones/pure-css-switch/zipball/69ab35529e08979401f80450c9ca0d51f96ee9e6",
-                "reference": "69ab35529e08979401f80450c9ca0d51f96ee9e6",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Brainsugar\\PureCSSSwitch\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Giovambattista Fazioli",
-                    "email": "giovambattista.fazioli@gmail.com",
-                    "homepage": "http://undolog.com"
-                }
-            ],
-            "description": "Pure CSS Switch Button for WP Bones",
-            "homepage": "https://github.com/wpbones/pure-css-switch",
-            "keywords": [
-                "WP Bones",
-                "css",
-                "less"
-            ],
-            "time": "2017-02-11T11:50:52+00:00"
-        },
-        {
-            "name": "wpbones/pure-css-tabs",
-            "version": "1.0.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wpbones/pure-css-tabs.git",
-                "reference": "c6b6c45bfc77dd3a9481a781d94b71106facfa41"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wpbones/pure-css-tabs/zipball/c6b6c45bfc77dd3a9481a781d94b71106facfa41",
-                "reference": "c6b6c45bfc77dd3a9481a781d94b71106facfa41",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Brainsugar\\PureCSSTabs\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Giovambattista Fazioli",
-                    "email": "giovambattista.fazioli@gmail.com",
-                    "homepage": "http://undolog.com"
-                }
-            ],
-            "description": "Pure CSS tabs for WP Bones",
-            "homepage": "https://github.com/wpbones/pure-css-tabs",
-            "keywords": [
-                "WP Bones",
-                "css",
-                "less"
-            ],
-            "time": "2017-03-11T12:59:59+00:00"
+            "time": "2020-05-20T17:43:50+00:00"
         },
         {
             "name": "wpbones/useragent",
@@ -839,7 +773,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "WPKirk\\WPBones\\": "src/"
+                    "Brainsugar\\WPBones\\": "src/"
                 },
                 "files": [
                     "src/helpers.php"

@@ -4,7 +4,7 @@
                         <div class="col-sm-12">
                                 <h3 class="font-weight-light my-5"><?php echo esc_html( "Settings" ); ?></h3>
                         </div>                        
-                </div>                
+                </div>                  
                 <div class="bshb-settings">
                                <div class="row">
                                        <div class="col-sm-2">
@@ -18,18 +18,23 @@
                                        <div class="col-sm-10">
 
 
-
+<form id="bshb_settings" method="post" enctype="multipart/form-data" encoding="multipart/form-data">
+        <?php wp_nonce_field( 'Settings' ); ?>
         <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="general-settings" role="tabpanel" aria-labelledby="general-settings-tab">
-                        <?php echo Brainsugar()->view( 'Admin.Settings.general-settings' ) ?>
+                        <?php echo Brainsugar()->view( 'Admin.Settings.general-settings' ); ?>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <?php echo Brainsugar()->view( 'Admin.Settings.room-settings' ) ?>
+                        <?php echo Brainsugar()->view( 'Admin.Settings.room-settings' ); ?>
                 </div>
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">popopopop</div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">poopuu</div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">popopopop</div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">poopuu</div>
         </div>
-
+        <div class="d-flex">
+                <button class="btn btn-primary mr-4 ml-auto mb-4">Save changes</button>
+        </div>
+        
+</form>
 
 
                                        

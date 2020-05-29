@@ -16637,7 +16637,7 @@ Alternate buttons
 *       Styles for all the form input Elements.
 *       Input text
 *       Textarea
-*
+*       
 */
   /* Input Sizes
 --------------------------------------------------
@@ -20605,14 +20605,14 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
 
 .bshb .modal-header .close {
-  padding: 1rem;
+  padding: 1rem 1rem;
   margin: -1rem -1rem -1rem auto;
 }
 
@@ -20905,13 +20905,13 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 
 .bshb .bs-popover-bottom > .arrow::before, .bshb .bs-popover-auto[x-placement^="bottom"] > .arrow::before {
   top: 0;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
 .bshb .bs-popover-bottom > .arrow::after, .bshb .bs-popover-auto[x-placement^="bottom"] > .arrow::after {
   top: 1px;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: #fff;
 }
 
@@ -24988,7 +24988,7 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
 }
 
 .bshb .btn .caret.single {
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 .bshb .btn:hover, .bshb .btn:focus, .bshb .btn:active, .bshb .btn.active, .bshb .btn.disabled, .bshb .btn[disabled] {
@@ -26273,3 +26273,4 @@ fieldset[disabled] .bshb .form-control {
 .hover-warning:hover {
   color: #000;
 }
+/*# sourceMappingURL=brainsugar.css.map */

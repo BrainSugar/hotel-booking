@@ -21,7 +21,8 @@
     "wpbones/wpbones": "dev-master",     
     "wpbones/wptables": "~1.0",
     "wpbones/useragent": "^1.0",    
-    "cmb2/cmb2": "^2.7"
+    "cmb2/cmb2": "^2.7",
+    "nette/utils": "^3.1"
   },
   "autoload": {
     "psr-4": {

@@ -1,46 +1,41 @@
 <div class="settings-container">
-  	<?php if ( isset( $feedback ) ) : ?>
-		<div id="message" class="updated notice is-dismissible">
-			<p><?php echo $feedback ?></p>
-		</div>
-	<?php endif; ?>
-        <h2 class="font-weight-light">General settings</h2>
+        <h2 class="font-weight-light"><?php esc_html_e( 'General Settings', 'bshb' ) ?></h2>
         <div class="settings-section">
-                <h4 class="font-weight-light">Hotel</h4>
-                <p class="setting-desc mb-4">General information about your hotel</p>
+                <h4 class="font-weight-light"><?php esc_html_e( 'Hotel', 'bshb' ) ?></h4>
+                <p class="setting-desc mb-4"><?php esc_html_e( 'General information about your hotel', 'bshb' ) ?></p>
                 <div class="row">
-                        <div class="col-sm-4">                                
+                        <div class="col-sm-4">
                                 <div class="input-group">
                                         <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="text" name="General/hotel_name" id="hotel_name" class="form-control" placeholder="Hotel Name" value="<?php echo esc_html(Brainsugar()->options->get('General.hotel_name')); ?>" />
+                                        <input type="text" maxlength="75" name="General/hotel_name" id="hotel_name" class="form-control" placeholder="<?php echo esc_attr('Hotel Name'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get('General.hotel_name')); ?>" />
                                 </div>
-                                <p class="option-desc">The name of your hotel</p>                              
-                        </div>                       
+                                <p class="option-desc"><?php esc_html_e( 'The name of your Hotel', 'bshb' ) ?></p>
+                        </div>
                 </div>
                 <hr>
-                  <p class="setting-desc">Address of your Hotel</p>
+                <p class="setting-desc"><?php esc_html_e( 'Address of your Hotel', 'bshb' ) ?></p>
                 <div class="row my-3">
                         <div class="col-sm-4">
-                               <div class="input-group">                  
-                                        <input type="text" name="General/hotel_address_line_1" id="Hotel/address_line_1" class="form-control" placeholder="Address 1" value="<?php echo Brainsugar()->options->get( 'General.hotel_address_line_1' ); ?>" />
+                                <div class="input-group">
+                                        <input type="text" maxlength="75" name="General/hotel_address_line_1" id="Hotel/address_line_1" class="form-control" placeholder="<?php echo esc_attr('Address 1'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_address_line_1' )); ?>" />
                                 </div>
-                                <p class="option-desc">Address line 1</p>
+                                <p class="option-desc"><?php esc_html_e( 'Address line 1', 'bshb' ) ?></p>
                         </div>
-                        <div class="col-sm-4">                                 
-                                <div class="input-group">                             
-                                        <input type="text" name="General/hotel_address_line_2" id="Hotel/address_line_2" class="form-control" placeholder="Address 2" value="<?php echo Brainsugar()->options->get( 'General.hotel_address_line_2' ); ?>" />
+                        <div class="col-sm-4">
+                                <div class="input-group">
+                                        <input type="text" maxlength="75" name="General/hotel_address_line_2" id="Hotel/address_line_2" class="form-control" placeholder="<?php echo esc_attr('Address 2'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_address_line_2' )); ?>" />
                                 </div>
-                                <p class="option-desc">Address line 2</p>
+                                <p class="option-desc"><?php esc_html_e( 'Address line 2', 'bshb' ) ?></p>
                         </div>
                 </div>
                 <div class="row my-3">
-                <div class="col-sm-4">
-                        <div class="input-group">                  
-                                <input type="text" name="General/hotel_city" id="hotel_city" class="form-control" placeholder="City" value="<?php echo Brainsugar()->options->get( 'General.hotel_city' ); ?>" />
-                        </div>
-                                <p class="option-desc">Locality of your hotel</p>
+                        <div class="col-sm-4">
+                                <div class="input-group">
+                                        <input type="text" maxlength="75" name="General/hotel_city" id="hotel_city" class="form-control" placeholder="<?php echo esc_attr('City'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_city' )); ?>" />
+                                </div>
+                                <p class="option-desc"><?php esc_html_e( 'Locality of your hotel', 'bshb' ) ?></p>
                         </div>
                 </div>
         </div>

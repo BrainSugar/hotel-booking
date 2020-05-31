@@ -24,7 +24,7 @@
                                        </div>
                                        <div class="col-sm-10">
 <form id="bshb_settings" method="post" enctype="multipart/form-data" encoding="multipart/form-data">
-        <?php wp_nonce_field( 'Settings' ); ?>
+        <?php wp_nonce_field( 'bshb-settings' ); ?>
         <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="general-settings" role="tabpanel" aria-labelledby="general-settings-tab">
                         <?php echo Brainsugar()->view( 'Admin.Settings.general-settings' ); ?>

@@ -5,6 +5,7 @@ use Brainsugar\Http\Controllers\Controller;
 use Nette\Utils\Validators;
 use Nette\Utils\Html;
 
+
 class SettingsController extends Controller
 {
         
@@ -27,22 +28,27 @@ class SettingsController extends Controller
                 
                 
         }
-        // public function sanitizeForm() {
-        //           if ( $this->request->verifyNonce( 'Settings' ) ) {
-        //                 Brainsugar()->options->update( $this->request->getAsOptions() );
-        //           }
-        //           $this->saveOptions($this->request());
-        // }
+        public function store() {
+                // $op = (array) $options;
+
+                var_dump($this->request);
+                // return $options;
+        }
         
         
-        public function saveOptions(Request $request)
+        public function saveSettings()
         {
-        //                       $hotelCity = $this->request->get('General/hotel_city');
-        //        var_dump($this->request->get('General'));
-               var_dump($request);
-                
-                if ( $this->request->verifyNonce( 'Settings' ) ) {
-                        Brainsugar()->options->update( $this->request->getAsOptions() );
+                $options = $this->request->getAsOptions();
+                if ( $this->request->verifyNonce( 'bshb-settings' ) ) {
+                        $hotelName = $this->request->get('General.hotel_name');
+
+                        if(isset($hotelName)){
+                                $hotelName = sanitize_text_field($hotelName);
+                                Brainsugar()->options->set('General.hotel_name' , $hotelName);
+                        }
+
+                      
+                        // Brainsugar()->options->update( $options);
                         return Brainsugar()
                         ->view('Admin.settings')            
                         ->withAdminScripts('bootstrap.bundle')
@@ -50,6 +56,7 @@ class SettingsController extends Controller
                         
                 }
         }
+
         
         
         

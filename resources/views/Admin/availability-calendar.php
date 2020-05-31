@@ -44,7 +44,7 @@
                 <!-- Room Data -->
                         <tr class="room-row">                        
                                 <td class="room-info-container">
-                                        <a href="<?php echo $plugin->getPageUrl('room_calendar'); ?>&room_id={{room.id}}">
+                                        <a href="<?php echo esc_url(Brainsugar()->getPageUrl('room_calendar')); ?>&room_id={{room.id}}">
                                                  <div class="room-thumbnail">
                                                         <img src = "{{room.room_thumbnail_url}}">
                                                  </div>

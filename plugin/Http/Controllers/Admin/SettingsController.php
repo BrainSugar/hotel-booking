@@ -2,6 +2,7 @@
 
 namespace Brainsugar\Http\Controllers\Admin;
 use Brainsugar\Http\Controllers\Controller;
+use Brainsugar\Admin\Validate\SettingsValidate;
 use Nette\Utils\Validators;
 use Nette\Utils\Html;
 
@@ -39,13 +40,17 @@ class SettingsController extends Controller
         public function saveSettings()
         {
                 $options = $this->request->getAsOptions();
+                
                 if ( $this->request->verifyNonce( 'bshb-settings' ) ) {
-                        $hotelName = $this->request->get('General.hotel_name');
 
-                        if(isset($hotelName)){
-                                $hotelName = sanitize_text_field($hotelName);
-                                Brainsugar()->options->set('General.hotel_name' , $hotelName);
-                        }
+                $validator = new SettingsValidate($options);
+                $validator->validate();
+                        // $hotelName = $this->request->get('General.hotel_name');
+
+                        // if(isset($hotelName)){
+                        //         $hotelName = sanitize_text_field($hotelName);
+                        //         Brainsugar()->options->set('General.hotel_name' , $hotelName);
+                        // }
 
                       
                         // Brainsugar()->options->update( $options);

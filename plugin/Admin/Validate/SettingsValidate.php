@@ -8,6 +8,8 @@ class SettingsValidate extends validate{
         protected $hotelCity;
         protected $hotelCountry;
         protected $hotelPostcode;
+        protected $hotelPhone;
+        protected $hotelEmail;
         
         public function __construct($options) {
                 $this->hotelName = $options['General']['hotel_name'];
@@ -15,7 +17,10 @@ class SettingsValidate extends validate{
                 $this->hotelAddress2 = $options['General']['hotel_address_line_2'];
                 $this->hotelCity = $options['General']['hotel_city'];
                 $this->hotelCountry = $options['General']['hotel_country'];
-                $this->hotelPostcode = $options['General']['hotel_postcode'];                
+                $this->hotelPostcode = $options['General']['hotel_postcode'];
+                $this->hotelPhone = $options['General']['hotel_phone'];
+                $this->hotelEmail = $options['General']['hotel_email'];
+
                 
         }
         
@@ -26,6 +31,8 @@ class SettingsValidate extends validate{
                $this->validateHotelCity();
                $this->validateHotelCountry();
                $this->validateHotelPostcode();
+                $this->validateHotelPhone();
+                 $this->validateHotelEmail();
         }
         
         public function validateHotelName() {                
@@ -57,6 +64,9 @@ class SettingsValidate extends validate{
         public function validateHotelCountry() {
                  if(isset($this->hotelCountry)){                        
                         $hotelCountry = sanitize_text_field( $this->hotelCountry );
+                        if($hotelCountry == "Select Country"){
+                                $hotelCountry = "";
+                        }
                         Brainsugar()->options->set('General.hotel_country' , $hotelCountry);
                 }
 
@@ -67,4 +77,18 @@ class SettingsValidate extends validate{
                         Brainsugar()->options->set('General.hotel_postcode' , $hotelPostcode);
                 }
         }
+        public function validateHotelPhone(){
+                if(isset($this->hotelPhone)){                        
+                        $hotelPhone = sanitize_text_field( $this->hotelPhone );
+                        Brainsugar()->options->set('General.hotel_phone' , $hotelPhone);
+                }
+        }
+                public function validateHotelEmail(){
+                if(isset($this->hotelEmail)){                        
+                        $hotelEmail = is_email( $this->hotelEmail );
+                        Brainsugar()->options->set('General.hotel_email' , $hotelEmail);
+                }
+        }
+        
+
 }

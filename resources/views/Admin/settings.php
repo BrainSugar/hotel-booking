@@ -1,4 +1,3 @@
-<?php var_dump($countries); ?>
 <div class="bshb">
         <div class="container-fluid">
                 <div class="row">

@@ -4,12 +4,15 @@
         <div class="settings-section">
                 <h4 class="font-weight-light"><?php esc_html_e( 'Hotel', 'bshb' ) ?></h4>
                 <p class="setting-desc mb-4"><?php esc_html_e( 'General information about your hotel', 'bshb' ) ?></p>
-                <div class="row">
+        <!-- General Info Row -->
+                <div class="row my-4">
                 <!-- Hotel Name -->
                         <div class="col-sm-4">
                                 <div class="input-group">
                                         <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
+                                                <span class="input-group-text">
+                                                <i class ="fad fa-home"></i>
+                                                </span>
                                         </div>
                                         <input type="text" maxlength="75" name="General/hotel_name" id="hotel_name" class="form-control" placeholder="<?php echo esc_attr('Hotel Name'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get('General.hotel_name')); ?>" />
                                 </div>
@@ -17,9 +20,11 @@
                         </div>
                 <!-- Hotel Name End -->
                 </div>
-                <hr>
-                <p class="setting-desc"><?php esc_html_e( 'Address of your Hotel', 'bshb' ) ?></p>
-                <div class="row my-3">
+        <!-- General Info Row  End-->
+                <hr>        
+                <p class="setting-desc"><?php esc_html_e( 'Address of your hotel', 'bshb' ) ?></p>
+        <!-- Hotel Address Row -->
+                <div class="row my-4">
                 <!-- Hotel Address 1 -->
                         <div class="col-sm-4">
                                 <div class="input-group">
@@ -62,16 +67,48 @@
                  <!-- Hotel Postcode -->
                         <div class="col-sm-4">
                                 <div class="input-group">
-                                        <input type="text" maxlength="20" name="General/hotel_postcode" id="hotel_postcode" class="form-control" placeholder="<?php echo esc_attr('Postcode'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_postcode' )); ?>" />
+                                        <input type="text" maxlength="30" name="General/hotel_postcode" id="hotel_postcode" class="form-control" placeholder="<?php echo esc_attr('Postcode'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_postcode' )); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'Postcode for your hotel', 'bshb' ) ?></p>
                         </div>
                  <!-- Hotel Postcode End-->                
                 </div>
+        <!-- Hotel Address Row -->
+        <hr>
+        <p class="setting-desc"><?php esc_html_e( 'Communication for your hotel', 'bshb' ) ?></p>
+                <div class="row my-4">
+                <!-- Hotel Phone -->
+                         <div class="col-sm-4">                                
+                                <div class="input-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                <i class ="fad fa-phone"></i>
+                                                </span>
+                                                
+                                        </div>
+                                        <input type="tel" maxlength="30" name="General/hotel_phone" id="hotel_phone" class="form-control" placeholder="<?php echo esc_attr('Phone'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_phone' )); ?>" />
+                                </div>
+                                <p class="option-desc"><?php esc_html_e( 'Telephone number', 'bshb' ) ?></p>
+                        </div>
+                <!-- Hotel Phone End-->
+                <!-- Hotel Email -->
+                         <div class="col-sm-4">                                
+                                <div class="input-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                <i class ="fad fa-envelope"></i>
+                                                </span>                                                
+                                        </div>
+                                        <input type="email" maxlength="50" name="General/hotel_email" id="hotel_email" class="form-control" placeholder="<?php echo esc_attr('E-Mail'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_email' )); ?>" />
+                                </div>
+                                <p class="option-desc"><?php esc_html_e( 'Email Address', 'bshb' ) ?></p>
+                        </div>
+                <!-- Hotel Email End-->
+                </div>
         </div>
-<!--Settings Seciton -->
+<!--Settings Section END-->
 </div>
-
+<!-- Settings container End -->
 
 
 

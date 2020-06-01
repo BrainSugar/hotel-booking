@@ -1,3 +1,4 @@
+<?php var_dump($countries); ?>
 <div class="bshb">
         <div class="container-fluid">
                 <div class="row">
@@ -27,7 +28,7 @@
         <?php wp_nonce_field( 'bshb-settings' ); ?>
         <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="general-settings" role="tabpanel" aria-labelledby="general-settings-tab">
-                        <?php echo Brainsugar()->view( 'Admin.Settings.general-settings' ); ?>
+                        <?php echo Brainsugar()->view( 'Admin.Settings.general-settings' )->with('countries', $countries); ?>
                 </div>
                 <div class="tab-pane fade" id="room-settings" role="tabpanel" aria-labelledby="room-settings-tab">
                         <?php echo Brainsugar()->view( 'Admin.Settings.room-settings' ); ?>

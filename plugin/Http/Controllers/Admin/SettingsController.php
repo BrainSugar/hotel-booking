@@ -3,6 +3,7 @@
 namespace Brainsugar\Http\Controllers\Admin;
 use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\Admin\Validate\SettingsValidate;
+use Brainsugar\Admin\World;
 use Nette\Utils\Validators;
 use Nette\Utils\Html;
 
@@ -12,10 +13,26 @@ class SettingsController extends Controller
         
         public function index()
         {
+       
                 
-                
+                $world = new World;
+                $countries = $world->getCountries();
+                // print_r($countries);
+
+                // foreach($countries as $country) {
+                //         var_dump($country);
+                // }
+
+        
                 $a = Validators::isNone(0);
-                var_dump($a);
+                // foreach($world as $key => $value) {
+                //         var_dump($value['name']['common']);
+                        // $countries = 
+                        // foreach($value['name'] as $key){
+                        //  var_dump($key['official']);
+                //         // }
+                // }
+               
                 // $countries = new Countries();
                 
                 // $all = $countries->where('name.common', 'Brazil');
@@ -25,7 +42,8 @@ class SettingsController extends Controller
                 
                 return Brainsugar()
                 ->view('Admin.settings')            
-                ->withAdminScripts('bootstrap.bundle');
+                ->withAdminScripts('bootstrap.bundle')
+                ->with('countries', $countries);
                 
                 
         }

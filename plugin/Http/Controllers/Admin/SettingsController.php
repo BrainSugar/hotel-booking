@@ -17,7 +17,8 @@ class SettingsController extends Controller
                 
                 $world = new World;
                 $countries = $world->getCountries();
-                // print_r($countries);
+                $currencies = $world->getCurrencies();
+                print_r($currencies);
 
                 // foreach($countries as $country) {
                 //         var_dump($country);
@@ -63,6 +64,10 @@ class SettingsController extends Controller
 
                 $validator = new SettingsValidate($options);
                 $validator->validate();
+                
+                $world = new World;
+                $countries = $world->getCountries();
+                $currencies = $world->getCurrencies();
                         // $hotelName = $this->request->get('General.hotel_name');
 
                         // if(isset($hotelName)){
@@ -75,6 +80,7 @@ class SettingsController extends Controller
                         return Brainsugar()
                         ->view('Admin.settings')            
                         ->withAdminScripts('bootstrap.bundle')
+                        ->with('countries', $countries)
                         ->with( 'feedback', 'Options updated!' );
                         
                 }

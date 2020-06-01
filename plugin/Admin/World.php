@@ -19,6 +19,14 @@ class World {
                 }
                 return $countries;
         }
-        
-        
+        public function getCurrencies() {
+                $currencies = array();
+                      if(isset($this->worldData)) {
+                        foreach($this->worldData as $key => $value) {
+                                array_push($currencies , $value['currencies']);
+                        }
+                }
+                return $currencies;
+
+        }
 }

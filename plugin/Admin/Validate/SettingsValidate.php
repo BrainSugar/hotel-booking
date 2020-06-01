@@ -6,12 +6,16 @@ class SettingsValidate extends validate{
         protected $hotelAddress1;
         protected $hotelAddress2;
         protected $hotelCity;
+        protected $hotelCountry;
+        protected $hotelPostcode;
         
         public function __construct($options) {
                 $this->hotelName = $options['General']['hotel_name'];
                 $this->hotelAddress1 = $options['General']['hotel_address_line_1'];
                 $this->hotelAddress2 = $options['General']['hotel_address_line_2'];
                 $this->hotelCity = $options['General']['hotel_city'];
+                $this->hotelCountry = $options['General']['hotel_country'];
+                $this->hotelPostcode = $options['General']['hotel_postcode'];                
                 
         }
         
@@ -20,6 +24,8 @@ class SettingsValidate extends validate{
                 $this->validateHotelAddress1();
                $this->validateHotelAddress2();
                $this->validateHotelCity();
+               $this->validateHotelCountry();
+               $this->validateHotelPostcode();
         }
         
         public function validateHotelName() {                
@@ -46,6 +52,19 @@ class SettingsValidate extends validate{
                 if(isset($this->hotelCity)){                        
                         $hotelCity = sanitize_text_field( $this->hotelCity );
                         Brainsugar()->options->set('General.hotel_city' , $hotelCity);
+                }
+        }
+        public function validateHotelCountry() {
+                 if(isset($this->hotelCountry)){                        
+                        $hotelCountry = sanitize_text_field( $this->hotelCountry );
+                        Brainsugar()->options->set('General.hotel_country' , $hotelCountry);
+                }
+
+        }
+        public function validateHotelPostcode(){
+                if(isset($this->hotelPostcode)){                        
+                        $hotelPostcode = sanitize_text_field( $this->hotelPostcode );
+                        Brainsugar()->options->set('General.hotel_postcode' , $hotelPostcode);
                 }
         }
 }

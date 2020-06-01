@@ -52,7 +52,7 @@
                                         <select name="General/hotel_country" id="hotel_country" class="form-control">
                                         <option><?php esc_html_e( 'Select Country', 'bshb' ); ?></option>
                                         <?php foreach($countries as $country) { ?>                                        
-                                        <option value = "<?php echo $country; ?>"><?php echo $country; ?></option>   
+                                        <option value = "<?php echo $country; ?>" <?php if (Brainsugar()->options->get( 'General.hotel_country' ) == $country) echo ' selected="selected"';?>><?php echo $country; ?></option>   
                                         <?php } ?>
                                         </select>
                                 </div>

@@ -42,7 +42,7 @@
                         </div>
                 <!-- Hotel Address 2 End -->
                 </div>
-                <div class="row my-3">
+                <div class="row my-4">
                  <!-- Hotel City -->
                         <div class="col-sm-4">
                                 <div class="input-group">

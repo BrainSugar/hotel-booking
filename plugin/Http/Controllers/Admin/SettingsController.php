@@ -16,11 +16,14 @@ class SettingsController extends Controller
                 $world = new World;
                 $countries = $world->getCountries();
                 $currencies = $world->getCurrencies();
+                print_r($currencies);
                 
                 return Brainsugar()
                 ->view('Admin.settings')            
                 ->withAdminScripts('bootstrap.bundle')
-                ->with('countries', $countries);
+                ->with('countries', $countries)
+                ->with('currencies', $currencies);
+
                 
                 
         }

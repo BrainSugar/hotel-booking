@@ -23,9 +23,18 @@ class World {
                 $currencies = array();
                       if(isset($this->worldData)) {
                         foreach($this->worldData as $key => $value) {
-                                array_push($currencies , $value['currencies']);
+
+                                foreach($value['currencies'] as $key => $value){
+
+                                if(!in_array($value, $currencies, true)){                                
+                                        array_push($currencies , array(
+                                        'name' => $value['name'] , 
+                                        'symbol' => $value['symbol']));
+                                }
                         }
-                }
+                        }
+                 
+                }               
                 return $currencies;
 
         }

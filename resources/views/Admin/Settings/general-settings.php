@@ -1,5 +1,7 @@
 <div class="settings-container">
         <h2 class="font-weight-light"><?php esc_html_e( 'General Settings', 'bshb' ) ?></h2>
+
+
 <!--Settings Seciton -->
         <div class="settings-section">
                 <h4 class="font-weight-light"><?php esc_html_e( 'Hotel', 'bshb' ) ?></h4>
@@ -83,8 +85,7 @@
                                         <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                 <i class ="fad fa-phone"></i>
-                                                </span>
-                                                
+                                                </span>                                                
                                         </div>
                                         <input type="tel" maxlength="30" name="General/hotel_phone" id="hotel_phone" class="form-control" placeholder="<?php echo esc_attr('Phone'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_phone' )); ?>" />
                                 </div>
@@ -107,6 +108,33 @@
                 </div>
         </div>
 <!--Settings Section END-->
+
+<!-- Settings Section -->
+<div class="settings-section">
+        <h4 class="font-weight-light"><?php esc_html_e( 'Currency', 'bshb' ) ?></h4>
+        <p class="setting-desc mb-4"><?php esc_html_e( 'Your hotel currency settings', 'bshb' ) ?></p>
+        <!-- Currency Row -->
+                <div class="row my-4">
+                <!-- Hotel Currency -->
+                        <div class="col-sm-4">
+                                <div class="input-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                <i class ="fad fa-home"></i>
+                                                </span>
+                                        </div>
+                                        <select name="General/hotel_currency" id="hotel_currency" class="form-control">
+                                                <option><?php esc_html_e( 'Select Currency', 'bshb' ); ?></option>
+                                                <?php foreach($currencies as $currency) { ?>                                        
+                                                <option value = "<?php echo $currency['name']; ?>" <?php if (Brainsugar()->options->get( 'General.hotel_currency' ) == $currency['name']) echo ' selected="selected"';?>><?php echo $currency['name'] . ' - ' . $currency['symbol'];?></option>   
+                                                <?php } ?>
+                                        </select>
+                                </div>                                
+                                <p class="option-desc"><?php esc_html_e( 'The Currency of your Hotel', 'bshb' ) ?></p>
+                        </div>
+                <!-- Hotel Currency End -->
+                </div>
+</div>
 </div>
 <!-- Settings container End -->
 

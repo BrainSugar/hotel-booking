@@ -2,7 +2,7 @@
 namespace Brainsugar\Admin\Validate;
 use Brainsugar\Admin\World;
 
-class SettingsValidate extends validate{
+class SettingsValidate extends validate {
         protected $hotelName;
         protected $hotelAddress1;
         protected $hotelAddress2;
@@ -14,6 +14,7 @@ class SettingsValidate extends validate{
         protected $hotelCurrency;
         
         public function __construct($options) {
+                
                 $this->hotelName = $options['General']['hotel_name'];
                 $this->hotelAddress1 = $options['General']['hotel_address_line_1'];
                 $this->hotelAddress2 = $options['General']['hotel_address_line_2'];
@@ -22,96 +23,114 @@ class SettingsValidate extends validate{
                 $this->hotelPostcode = $options['General']['hotel_postcode'];
                 $this->hotelPhone = $options['General']['hotel_phone'];
                 $this->hotelEmail = $options['General']['hotel_email'];
-                 $this->hotelCurrency = $options['General']['hotel_currency'];
-
+                $this->hotelCurrency = $options['General']['hotel_currency'];
                 
         }
         
         public function validate() {
-                $this->validateHotelName();
-                $this->validateHotelAddress1();
-               $this->validateHotelAddress2();
-               $this->validateHotelCity();
-               $this->validateHotelCountry();
-               $this->validateHotelPostcode();
-                $this->validateHotelPhone();
-                 $this->validateHotelEmail();
-                 $this->validateHotelCurrency();
+                $this->validateHotelInfo();
+                $this->validateHotelCurrency();
         }
         
-        public function validateHotelName() {                
+        
+        /**
+        * Validate all the Fields from the Hotel Section
+        *
+        * @return void
+        */        
+        public function validateHotelInfo()  {
+                // Check if the fields are set and sanitize the fields.
+                
+                // Hotel Name 
                 if(isset($this->hotelName)){                        
                         $hotelName = sanitize_text_field( $this->hotelName );
-                        Brainsugar()->options->set('General.hotel_name' , $hotelName);
                 }
-        }
-        
-        public function validateHotelAddress1() {                
+                
+                // Address Line 1
                 if(isset($this->hotelAddress1)){                        
-                        $hotelAddress1 = sanitize_text_field( $this->hotelAddress1 );
-                        Brainsugar()->options->set('General.hotel_address_line_1' , $hotelAddress1);
+                        $hotelAddress1 = sanitize_text_field( $this->hotelAddress1 );                        
                 }
-        }
-        public function validateHotelAddress2() {                
+                
+                // Address Line 2
                 if(isset($this->hotelAddress2)){                        
-                        $hotelAddress2 = sanitize_text_field( $this->hotelAddress2 );
-                        Brainsugar()->options->set('General.hotel_address_line_2' , $hotelAddress2);
+                        $hotelAddress2 = sanitize_text_field( $this->hotelAddress2 );                        
                 }
-        }
-        
-        public function validateHotelCity() {                
+                
+                // Hotel City
                 if(isset($this->hotelCity)){                        
-                        $hotelCity = sanitize_text_field( $this->hotelCity );
-                        Brainsugar()->options->set('General.hotel_city' , $hotelCity);
+                        $hotelCity = sanitize_text_field( $this->hotelCity );                     
                 }
-        }
-        public function validateHotelCountry() {
-                 if(isset($this->hotelCountry)){                        
+                
+                // Hotel Country
+                if(isset($this->hotelCountry)){                        
                         $hotelCountry = sanitize_text_field( $this->hotelCountry );
                         if($hotelCountry == "Select Country"){
                                 $hotelCountry = "";
                         }
-                        Brainsugar()->options->set('General.hotel_country' , $hotelCountry);
                 }
-
-        }
-        public function validateHotelPostcode(){
+                
+                // Hotel Postcode
                 if(isset($this->hotelPostcode)){                        
-                        $hotelPostcode = sanitize_text_field( $this->hotelPostcode );
-                        Brainsugar()->options->set('General.hotel_postcode' , $hotelPostcode);
+                        $hotelPostcode = sanitize_text_field( $this->hotelPostcode );                       
                 }
-        }
-        public function validateHotelPhone(){
+                
+                // Hotel Phone                
                 if(isset($this->hotelPhone)){                        
-                        $hotelPhone = sanitize_text_field( $this->hotelPhone );
-                        Brainsugar()->options->set('General.hotel_phone' , $hotelPhone);
+                        $hotelPhone = sanitize_text_field( $this->hotelPhone );                        
                 }
-        }
-                public function validateHotelEmail(){
-                if(isset($this->hotelEmail )){         
+                
+                // Hotel Email
+                if(isset($this->hotelEmail )){
                         if(is_email( $this->hotelEmail )) {
-                                Brainsugar()->options->set('General.hotel_email' , $this->hotelEmail);
+                                $hotelEmail = $this->hotelEmail;
                         } 
+                        else $hotelEmail = '';
                 }
+                
+                // Insert all the sanitized values into Wp options table.
+                Brainsugar()->options->update([
+                        'General' => [
+                                'hotel' =>[
+                                        'name' => $hotelName,
+                                        'address_line_1' => $hotelAddress1,
+                                        'address_line_2' => $hotelAddress2,
+                                        'city' => $hotelCity,
+                                        'country' => $hotelCountry,
+                                        'postcode' => $hotelPostcode,
+                                        'phone' => $hotelPhone,
+                                        'email' => $hotelEmail,
+                                ],
+                        ],
+                ],);
         }
-
+        
+        
+        /**
+        * Validate the fields from Currency Section
+        *
+        * @return void
+        */
         public function validateHotelCurrency(){
-
-                        if(isset($this->hotelCurrency)){ 
+                
+                if(!empty($this->hotelCurrency)){ 
                         $hotelCurrency = sanitize_text_field( $this->hotelCurrency );
-
-                        if(strlen($hotelCurrency) == 3) {
-
+                        
+                        // Check if valid Code
+                        if(strlen($hotelCurrency) == 3) {                                        
+                                
                                 $world = new World;
                                 $currencySymbol = $world->getCurrencySymbol($hotelCurrency);
                                 $currencyName = $world->getCurrencyName($hotelCurrency);
-
-                                Brainsugar()->options->update(['General' =>['hotel_currency' =>[
-                                        'currency_code' => $hotelCurrency,
-                                        'currency_symbol' => $currencySymbol,
-                                        'currency_name' => $currencyName,
-                                        ]
-                                ]]);
+                                
+                                Brainsugar()->options->update([
+                                        'General' => [
+                                                'hotel_currency' =>[
+                                                        'code' => $hotelCurrency,
+                                                        'name' => $currencyName,
+                                                        'symbol' => $currencySymbol,                                                
+                                                ],
+                                        ],
+                                ],);
                         }
                 }
         }

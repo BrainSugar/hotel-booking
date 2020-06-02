@@ -16,7 +16,7 @@
                                                 <i class ="fad fa-home"></i>
                                                 </span>
                                         </div>
-                                        <input type="text" maxlength="75" name="General/hotel_name" id="hotel_name" class="form-control" placeholder="<?php echo esc_attr('Hotel Name'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get('General.hotel_name')); ?>" />
+                                        <input type="text" maxlength="75" name="General/hotel_name" id="hotel_name" class="form-control" placeholder="<?php echo esc_attr('Hotel Name'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get('General.hotel.name')); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'The name of your Hotel', 'bshb' ) ?></p>
                         </div>
@@ -30,7 +30,7 @@
                 <!-- Hotel Address 1 -->
                         <div class="col-sm-4">
                                 <div class="input-group">
-                                        <input type="text" maxlength="75" name="General/hotel_address_line_1" id="Hotel/address_line_1" class="form-control" placeholder="<?php echo esc_attr('Address 1'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_address_line_1' )); ?>" />
+                                        <input type="text" maxlength="75" name="General/hotel_address_line_1" id="Hotel/address_line_1" class="form-control" placeholder="<?php echo esc_attr('Address 1'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel.address_line_1' )); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'Address line 1', 'bshb' ) ?></p>
                         </div>
@@ -38,7 +38,7 @@
                 <!-- Hotel Address 2 -->
                         <div class="col-sm-4">
                                 <div class="input-group">
-                                        <input type="text" maxlength="75" name="General/hotel_address_line_2" id="Hotel/address_line_2" class="form-control" placeholder="<?php echo esc_attr('Address 2'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_address_line_2' )); ?>" />
+                                        <input type="text" maxlength="75" name="General/hotel_address_line_2" id="Hotel/address_line_2" class="form-control" placeholder="<?php echo esc_attr('Address 2'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel.address_line_2' )); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'Address line 2', 'bshb' ) ?></p>
                         </div>
@@ -48,7 +48,7 @@
                  <!-- Hotel City -->
                         <div class="col-sm-4">
                                 <div class="input-group">
-                                        <input type="text" maxlength="75" name="General/hotel_city" id="hotel_city" class="form-control" placeholder="<?php echo esc_attr('City'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_city' )); ?>" />
+                                        <input type="text" maxlength="75" name="General/hotel_city" id="hotel_city" class="form-control" placeholder="<?php echo esc_attr('City'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel.city' )); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'Locality of your hotel', 'bshb' ) ?></p>
                         </div>
@@ -59,7 +59,7 @@
                                         <select name="General/hotel_country" id="hotel_country" class="form-control">
                                         <option><?php esc_html_e( 'Select Country', 'bshb' ); ?></option>
                                         <?php foreach($countries as $country) { ?>                                        
-                                        <option value = "<?php echo $country; ?>" <?php if (Brainsugar()->options->get( 'General.hotel_country' ) == $country) echo ' selected="selected"';?>><?php echo $country; ?></option>   
+                                        <option value = "<?php echo $country; ?>" <?php if (Brainsugar()->options->get( 'General.hotel.country' ) == $country) echo ' selected="selected"';?>><?php echo $country; ?></option>   
                                         <?php } ?>
                                         </select>
                                 </div>
@@ -69,7 +69,7 @@
                  <!-- Hotel Postcode -->
                         <div class="col-sm-4">
                                 <div class="input-group">
-                                        <input type="text" maxlength="30" name="General/hotel_postcode" id="hotel_postcode" class="form-control" placeholder="<?php echo esc_attr('Postcode'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_postcode' )); ?>" />
+                                        <input type="text" maxlength="30" name="General/hotel_postcode" id="hotel_postcode" class="form-control" placeholder="<?php echo esc_attr('Postcode'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel.postcode' )); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'Postcode for your hotel', 'bshb' ) ?></p>
                         </div>
@@ -87,7 +87,7 @@
                                                 <i class ="fad fa-phone"></i>
                                                 </span>                                                
                                         </div>
-                                        <input type="tel" maxlength="30" name="General/hotel_phone" id="hotel_phone" class="form-control" placeholder="<?php echo esc_attr('Phone'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_phone' )); ?>" />
+                                        <input type="tel" maxlength="30" name="General/hotel_phone" id="hotel_phone" class="form-control" placeholder="<?php echo esc_attr('Phone'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel.phone' )); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'Telephone number', 'bshb' ) ?></p>
                         </div>
@@ -100,7 +100,7 @@
                                                 <i class ="fad fa-envelope"></i>
                                                 </span>                                                
                                         </div>
-                                        <input type="email" maxlength="50" name="General/hotel_email" id="hotel_email" class="form-control" placeholder="<?php echo esc_attr('E-Mail'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel_email' )); ?>" />
+                                        <input type="email" maxlength="50" name="General/hotel_email" id="hotel_email" class="form-control" placeholder="<?php echo esc_attr('E-Mail'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel.email' )); ?>" />
                                 </div>
                                 <p class="option-desc"><?php esc_html_e( 'Email Address', 'bshb' ) ?></p>
                         </div>
@@ -126,7 +126,7 @@
                                         <select name="General/hotel_currency" id="hotel_currency" class="form-control">
                                                 <option><?php esc_html_e( 'Select Currency', 'bshb' ); ?></option>
                                                 <?php foreach($currencies as $currency) { ?>                                        
-                                                <option value = "<?php echo $currency['code']; ?>" <?php if (Brainsugar()->options->get( 'General.hotel_currency.currency_code' ) == $currency['code']) echo ' selected="selected"';?>><?php echo $currency['name'] . ' - ' . $currency['symbol'];?></option>   
+                                                <option value = "<?php echo $currency['code']; ?>" <?php if (Brainsugar()->options->get( 'General.hotel_currency.code' ) == $currency['code']) echo ' selected="selected"';?>><?php echo $currency['name'] . ' - ' . $currency['symbol'];?></option>   
                                                 <?php } ?>
                                         </select>                                        
                                 </div>                                

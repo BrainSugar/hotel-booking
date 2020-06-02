@@ -124,7 +124,7 @@ class SettingsValidate extends validate {
                                 
                                 Brainsugar()->options->update([
                                         'General' => [
-                                                'hotel_currency' =>[
+                                                'currency' =>[
                                                         'code' => $hotelCurrency,
                                                         'name' => $currencyName,
                                                         'symbol' => $currencySymbol,                                                

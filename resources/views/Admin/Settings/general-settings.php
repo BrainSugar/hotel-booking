@@ -126,7 +126,7 @@
                                         <select name="General/hotel_currency" id="hotel_currency" class="form-control">
                                                 <option><?php esc_html_e( 'Select Currency', 'bshb' ); ?></option>
                                                 <?php foreach($currencies as $currency) { ?>                                        
-                                                <option value = "<?php echo $currency['name']; ?>" <?php if (Brainsugar()->options->get( 'General.hotel_currency' ) == $currency['name']) echo ' selected="selected"';?>><?php echo $currency['name'] . ' - ' . $currency['symbol'];?></option>   
+                                                <option value = "<?php echo $currency['code']; ?>" <?php if (Brainsugar()->options->get( 'General.hotel_currency' ) == $currency['code']) echo ' selected="selected"';?>><?php echo $currency['name'] . ' - ' . $currency['symbol'];?></option>   
                                                 <?php } ?>
                                         </select>
                                 </div>                                

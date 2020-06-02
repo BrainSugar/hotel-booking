@@ -15,8 +15,9 @@ class SettingsController extends Controller
                 
                 $world = new World;
                 $countries = $world->getCountries();
-                $currencies = $world->getCurrencies();
-                print_r($currencies);
+                $currencies = $world->getCurrencies();              
+                
+                
                 
                 return Brainsugar()
                 ->view('Admin.settings')            

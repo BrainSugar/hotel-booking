@@ -24,6 +24,7 @@ return [
     'hotel_postcode' => '',
     'hotel_phone' => '',
     'hotel_email' => '',
+    'hotel_currency' => '',
   ],
   ];
 //    'Form'          => [

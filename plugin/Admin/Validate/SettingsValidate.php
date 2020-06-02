@@ -10,6 +10,7 @@ class SettingsValidate extends validate{
         protected $hotelPostcode;
         protected $hotelPhone;
         protected $hotelEmail;
+        protected $hotelCurrency;
         
         public function __construct($options) {
                 $this->hotelName = $options['General']['hotel_name'];
@@ -20,6 +21,7 @@ class SettingsValidate extends validate{
                 $this->hotelPostcode = $options['General']['hotel_postcode'];
                 $this->hotelPhone = $options['General']['hotel_phone'];
                 $this->hotelEmail = $options['General']['hotel_email'];
+                 $this->hotelCurrency = $options['General']['hotel_currency'];
 
                 
         }
@@ -33,6 +35,7 @@ class SettingsValidate extends validate{
                $this->validateHotelPostcode();
                 $this->validateHotelPhone();
                  $this->validateHotelEmail();
+                 $this->validateHotelCurrency();
         }
         
         public function validateHotelName() {                
@@ -88,6 +91,16 @@ class SettingsValidate extends validate{
                         $hotelEmail = is_email( $this->hotelEmail );
                         Brainsugar()->options->set('General.hotel_email' , $hotelEmail);
                 }
+        }
+
+        public function validateHotelCurrency(){
+                        if(isset($this->hotelCurrency)){                        
+                        $hotelCurrency = sanitize_text_field( $this->hotelCurrency );
+                        if(strlen($hotelCurrency) == 3) {
+                                Brainsugar()->options->set('General.hotel_currency' , $hotelCurrency);
+                        }
+                }
+
         }
         
 

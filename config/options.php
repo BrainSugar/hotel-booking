@@ -24,7 +24,11 @@ return [
     'hotel_postcode' => '',
     'hotel_phone' => '',
     'hotel_email' => '',
-    'hotel_currency' => '',
+    'hotel_currency' => [
+            'currency_code' => '',
+            'currency_symbol' => '',
+            'currency_name' => ''
+    ],
   ],
   ];
 //    'Form'          => [

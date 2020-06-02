@@ -15,7 +15,9 @@ class SettingsController extends Controller
                 
                 $world = new World;
                 $countries = $world->getCountries();
-                $currencies = $world->getCurrencies();              
+                $currencies = $world->getCurrencies();     
+                $currenciename = $world->getCurrencyName('INR');
+                var_dump( $currenciename);
                 
                 
                 

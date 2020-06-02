@@ -33,6 +33,30 @@ class World {
                 } 
                 $currency = array_unique($currencies , SORT_REGULAR);
                 return $currency;
-
         }
+        
+        public function getCurrencySymbol($currencyCode) {
+                $currencies = $this->getCurrencies();
+                foreach($currencies as $currency)
+                {
+                        if($currency['code'] == $currencyCode){
+                                $currencySymbol = $currency['symbol'];
+                        }
+                }
+                return $currencySymbol;
+        }
+
+        public function getCurrencyName($currencyCode) {
+                $currencies = $this->getCurrencies();
+                foreach($currencies as $currency)
+                {
+                        if($currency['code'] == $currencyCode){
+                                $currencyName = $currency['name'];
+                        }
+                }
+                return $currencyName;
+        }
+
 }
+
+        

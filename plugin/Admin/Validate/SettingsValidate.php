@@ -1,5 +1,6 @@
 <?php
 namespace Brainsugar\Admin\Validate;
+use Brainsugar\Admin\World;
 
 class SettingsValidate extends validate{
         protected $hotelName;
@@ -87,21 +88,31 @@ class SettingsValidate extends validate{
                 }
         }
                 public function validateHotelEmail(){
-                if(isset($this->hotelEmail)){                        
-                        $hotelEmail = is_email( $this->hotelEmail );
-                        Brainsugar()->options->set('General.hotel_email' , $hotelEmail);
+                if(isset($this->hotelEmail )){         
+                        if(is_email( $this->hotelEmail )) {
+                                Brainsugar()->options->set('General.hotel_email' , $this->hotelEmail);
+                        } 
                 }
         }
 
         public function validateHotelCurrency(){
-                        if(isset($this->hotelCurrency)){                        
+
+                        if(isset($this->hotelCurrency)){ 
                         $hotelCurrency = sanitize_text_field( $this->hotelCurrency );
+
                         if(strlen($hotelCurrency) == 3) {
-                                Brainsugar()->options->set('General.hotel_currency' , $hotelCurrency);
+
+                                $world = new World;
+                                $currencySymbol = $world->getCurrencySymbol($hotelCurrency);
+                                $currencyName = $world->getCurrencyName($hotelCurrency);
+
+                                Brainsugar()->options->update(['General' =>['hotel_currency' =>[
+                                        'currency_code' => $hotelCurrency,
+                                        'currency_symbol' => $currencySymbol,
+                                        'currency_name' => $currencyName,
+                                        ]
+                                ]]);
                         }
                 }
-
         }
-        
-
 }

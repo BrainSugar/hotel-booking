@@ -29,9 +29,12 @@ return [
                 ],                
                 'currency' => [
                         'code' => '',
-                        'name' => '',
+                        'name' => '',                        
                         'symbol' => '',
-                        
+                        'symbol_position' => '',
+                        'thousand_separator' => '',
+                        'decimal_separator' => '',
+                        'decimals' => '',
                 ],
         ],
 ];

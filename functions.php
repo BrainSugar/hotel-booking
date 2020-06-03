@@ -81,31 +81,31 @@ function setupPluginScripts() {
         //     Ajax Calls
   
         
-        wp_enqueue_style( 'brainsugar-css', plugins_url( '/brainsugar-hotel-booking/public/css/brainsugar.css',), array());
+        wp_enqueue_style( 'brainsugar-css', plugins_url( '/brainsugar-hotel-booking/public/css/brainsugar.css'), array());
         wp_enqueue_style( 'brainsugar-css' );     
         
         
         
-        wp_register_script( 'moment', plugins_url( '/brainsugar-hotel-booking/resources/assets/js/moment.js', ), array( 'jquery' ));
+        wp_register_script( 'moment', plugins_url( '/brainsugar-hotel-booking/resources/assets/js/moment.js'), array( 'jquery' ));
         wp_enqueue_script( 'moment' );
         
         
         //     Wp alternative for underscore JS
 
-        wp_register_script('availability-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/availability-calendar.js', ), array( 'jquery' , 'clndr' ));
+        wp_register_script('availability-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/availability-calendar.js'), array( 'jquery' , 'clndr' ));
         // wp_enqueue_script( 'availability-calendar' );
 
         
-        wp_register_script('room-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/room-calendar.js', ), array( 'jquery' ));
+        wp_register_script('room-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/room-calendar.js'), array( 'jquery' ));
         // wp_enqueue_script( 'room-calendar' );
         
 
-        wp_register_script('dashboard-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/dashboard-calendar.js', ), array( 'jquery' ));
+        wp_register_script('dashboard-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/dashboard-calendar.js' ), array( 'jquery' ));
        
        
-        wp_register_script('pricing-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/pricing-calendar.js', ), array( 'jquery' ));
+        wp_register_script('pricing-calendar',plugins_url( '/brainsugar-hotel-booking/public/js/pricing-calendar.js'), array( 'jquery' ));
 
-        wp_register_script('room-pricing',plugins_url( '/brainsugar-hotel-booking/public/js/room-pricing.js', ), array( 'jquery' ));
+        wp_register_script('room-pricing',plugins_url( '/brainsugar-hotel-booking/public/js/room-pricing.js'), array( 'jquery' ));
         
         
 }
@@ -118,7 +118,7 @@ function footerScripts () {
         // Wordpress Util functions. Required for Underscore Templating in Calendar.
         wp_enqueue_script( 'wp-util' );
                         
-        wp_register_script( 'clndr', plugins_url( '/brainsugar-hotel-booking/resources/assets/js/clndr.js', ), array( 'jquery' , 'moment' ) , false , true);
+        wp_register_script( 'clndr', plugins_url( '/brainsugar-hotel-booking/resources/assets/js/clndr.js'), array( 'jquery' , 'moment' ) , false , true);
         wp_enqueue_script( 'clndr' );
 
 }

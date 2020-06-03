@@ -76,10 +76,10 @@ namespace Brainsugar\Admin\Fields;
          */
         public function setupAdminScripts() {
  
-            wp_register_script( 'cmb-tabs', plugins_url( '/brainsugar-hotel-booking/public/js/tabs.js', ), array( 'jquery' ));
+            wp_register_script( 'cmb-tabs', plugins_url( '/brainsugar-hotel-booking/public/js/tabs.js'), array( 'jquery' ));
             wp_enqueue_script( 'cmb-tabs' );
 
-            wp_enqueue_style( 'cmb-tabs', plugins_url( '/brainsugar-hotel-booking/public/css/tabs.css',), array());
+            wp_enqueue_style( 'cmb-tabs', plugins_url( '/brainsugar-hotel-booking/public/css/tabs.css'), array());
             wp_enqueue_style( 'cmb-tabs' );
 
           

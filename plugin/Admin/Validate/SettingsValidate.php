@@ -12,6 +12,10 @@ class SettingsValidate extends validate {
         protected $hotelPhone;
         protected $hotelEmail;
         protected $hotelCurrency;
+        protected $symbolPosition;
+        protected $currencyDecimals;
+        protected $decimalSeparator;
+        protected $thousandsSeparator;
         
         public function __construct($options) {
                 
@@ -24,12 +28,17 @@ class SettingsValidate extends validate {
                 $this->hotelPhone = $options['General']['hotel_phone'];
                 $this->hotelEmail = $options['General']['hotel_email'];
                 $this->hotelCurrency = $options['General']['hotel_currency'];
+                $this->symbolPosition = $options['General']['symbol_position'];
+                $this->currencyDecimals = $options['General']['currency_decimals'];
+                $this->decimalSeparator= $options['General']['decimal_separator'];
+                $this->thousandsSeparator = $options['General']['thousands_separator'];
+
                 
         }
         
         public function validate() {
                 $this->validateHotelInfo();
-                $this->validateHotelCurrency();
+                $this->validateHotelCurrency();                
         }
         
         
@@ -53,12 +62,12 @@ class SettingsValidate extends validate {
                 
                 // Address Line 2
                 if(isset($this->hotelAddress2)){                        
-                        $hotelAddress2 = sanitize_text_field( $this->hotelAddress2 );                        
+                        $hotelAddress2 = sanitize_text_field( $this->hotelAddress2 ); 
                 }
                 
                 // Hotel City
                 if(isset($this->hotelCity)){                        
-                        $hotelCity = sanitize_text_field( $this->hotelCity );                     
+                        $hotelCity = sanitize_text_field( $this->hotelCity ); 
                 }
                 
                 // Hotel Country
@@ -99,9 +108,10 @@ class SettingsValidate extends validate {
                                         'postcode' => $hotelPostcode,
                                         'phone' => $hotelPhone,
                                         'email' => $hotelEmail,
-                                ],
-                        ],
-                ],);
+                                ]
+                        ]
+                ]);
+                return $hotelCity;
         }
         
         
@@ -132,6 +142,16 @@ class SettingsValidate extends validate {
                                         ],
                                 ],);
                         }
+                }
+
+                if(isset($this->symbolPosition)){
+                        if($this->symbolPosition == 'before'){
+                                $symbolPosition = 'before';
+                        }
+                        else {
+                                $symbolPosition = 'after';
+                        }
+                        
                 }
         }
 }

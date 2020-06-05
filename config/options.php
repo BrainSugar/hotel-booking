@@ -32,7 +32,7 @@ return [
                         'name' => '',                        
                         'symbol' => '',
                         'symbol_position' => '',
-                        'thousand_separator' => '',
+                        'thousands_separator' => '',
                         'decimal_separator' => '',
                         'decimals' => '',
                 ],

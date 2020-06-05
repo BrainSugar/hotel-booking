@@ -1,5 +1,5 @@
 <?php 
-namespace Brainsugar\Admin;
+namespace Brainsugar\Core;
 
 class World {
         

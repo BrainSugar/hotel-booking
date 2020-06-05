@@ -27,7 +27,7 @@
         <?php wp_nonce_field( 'bshb-settings' ); ?>
         <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="general-settings" role="tabpanel" aria-labelledby="general-settings-tab">
-                        <?php echo Brainsugar()->view( 'Admin.Settings.general-settings' )->with('countries', $countries)->with('currencies', $currencies); ?>
+                        <?php echo Brainsugar()->view( 'Admin.Settings.general-settings' )->with('countries', $countries)->with('currencies', $currencies)->with('currencyDisplay', $currencyDisplay); ?>
                 </div>
                 <div class="tab-pane fade" id="room-settings" role="tabpanel" aria-labelledby="room-settings-tab">
                         <?php echo Brainsugar()->view( 'Admin.Settings.room-settings' ); ?>

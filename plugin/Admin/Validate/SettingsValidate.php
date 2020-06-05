@@ -1,6 +1,6 @@
 <?php
 namespace Brainsugar\Admin\Validate;
-use Brainsugar\Admin\World;
+use Brainsugar\Core\World;
 
 class SettingsValidate extends validate {
         protected $hotelName;
@@ -32,7 +32,7 @@ class SettingsValidate extends validate {
                 $this->currencyDecimals = $options['General']['currency_decimals'];
                 $this->decimalSeparator= $options['General']['decimal_separator'];
                 $this->thousandsSeparator = $options['General']['thousands_separator'];
-
+                
                 
         }
         
@@ -108,10 +108,9 @@ class SettingsValidate extends validate {
                                         'postcode' => $hotelPostcode,
                                         'phone' => $hotelPhone,
                                         'email' => $hotelEmail,
-                                ]
-                        ]
-                ]);
-                return $hotelCity;
+                                ],
+                        ],
+                ],);                
         }
         
         
@@ -122,7 +121,7 @@ class SettingsValidate extends validate {
         */
         public function validateHotelCurrency(){
                 
-                if(!empty($this->hotelCurrency)){ 
+                if(isset($this->hotelCurrency)){ 
                         $hotelCurrency = sanitize_text_field( $this->hotelCurrency );
                         
                         // Check if valid Code
@@ -132,18 +131,13 @@ class SettingsValidate extends validate {
                                 $currencySymbol = $world->getCurrencySymbol($hotelCurrency);
                                 $currencyName = $world->getCurrencyName($hotelCurrency);
                                 
-                                Brainsugar()->options->update([
-                                        'General' => [
-                                                'currency' =>[
-                                                        'code' => $hotelCurrency,
-                                                        'name' => $currencyName,
-                                                        'symbol' => $currencySymbol,                                                
-                                                ],
-                                        ],
-                                ],);
+                        }
+                        else {
+                                $currencySymbol = '';
+                                $currencyName = '';
                         }
                 }
-
+                
                 if(isset($this->symbolPosition)){
                         if($this->symbolPosition == 'before'){
                                 $symbolPosition = 'before';
@@ -151,7 +145,35 @@ class SettingsValidate extends validate {
                         else {
                                 $symbolPosition = 'after';
                         }
-                        
                 }
+                
+                
+                
+                if(isset($this->currencyDecimals)){
+                        $decimals = absint($this->currencyDecimals);
+                }
+
+                if(isset($this->decimalSeparator)) {                         
+                                $decimalSeparator = sanitize_text_field($this->decimalSeparator);                   
+                }
+
+               if(isset($this->thousandsSeparator)) {                      
+                                $thousandsSeparator = sanitize_text_field($this->thousandsSeparator);                     
+                }
+                
+                
+                Brainsugar()->options->update([
+                        'General' => [
+                                'currency' =>[
+                                        'code' => $hotelCurrency,
+                                        'name' => $currencyName,
+                                        'symbol' => $currencySymbol,
+                                        'symbol_position' => $symbolPosition,
+                                        'decimals' => $decimals,
+                                        'decimal_separator' => $decimalSeparator,
+                                        'thousands_separator' => $thousandsSeparator,
+                                ],
+                        ],
+                ],);                                        
         }
 }

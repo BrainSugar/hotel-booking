@@ -117,7 +117,7 @@ return [
   |
   */
 
-  'providers' => ['\Brainsugar\Providers\CoreService'],
+//   'providers' => ['\Brainsugar\Providers\CoreService'],
 
 
 

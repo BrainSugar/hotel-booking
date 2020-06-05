@@ -3,7 +3,9 @@
 namespace Brainsugar\Http\Controllers\Admin;
 use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\Admin\Validate\SettingsValidate;
-use Brainsugar\Admin\World;
+use Brainsugar\Core\World;
+use Brainsugar\Core\CoreFunctions;
+
 
 
 class SettingsController extends Controller
@@ -17,7 +19,8 @@ class SettingsController extends Controller
                 $countries = $world->getCountries();
                 $currencies = $world->getCurrencies();     
                 $currenciename = $world->getCurrencyName('INR');
-                var_dump( $currenciename);
+                $currencyDisplay = CoreFunctions::formatCurrency('100000');
+                
                 
                 
                 
@@ -25,7 +28,8 @@ class SettingsController extends Controller
                 ->view('Admin.settings')            
                 ->withAdminScripts('bootstrap.bundle')
                 ->with('countries', $countries)
-                ->with('currencies', $currencies);
+                ->with('currencies', $currencies)
+                ->with('currencyDisplay', $currencyDisplay);
 
                 
                 

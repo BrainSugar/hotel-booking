@@ -37,6 +37,13 @@ return [
                         'thousands_separator' => ',',
                 ],
         ],
+        'Room' => [
+                'display' => [
+                        'display_amenities' => 'true',
+                        'display_policies' => 'true',
+                        'sorting' => 'ascending',
+                ],
+        ],
 ];
 //    'Form'          => [
         //         'reservation_mode'                  => 'single',

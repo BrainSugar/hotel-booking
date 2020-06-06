@@ -5,6 +5,7 @@ namespace Brainsugar\Http\Controllers\Admin;
 use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\Model\Room;
 use Brainsugar\Model\Pricing;
+use Brainsugar\Core\CoreFunctions;
 
 class CalendarController extends Controller
 {
@@ -12,7 +13,9 @@ class CalendarController extends Controller
         public function availabilityCalendar()
         {
                 $roomModel = new Room;
-                $roomData = $roomModel->get();
+                $sort = CoreFunctions::getRoomSorting();
+                var_dump($sort['column']);
+                $roomData = $roomModel->orderBy('room_type' )->orderBy($sort['column'],$sort['order'] )->get();
                 
                 
                 //     $roomJson = json_encode($roomIds); 

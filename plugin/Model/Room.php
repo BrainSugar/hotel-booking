@@ -66,7 +66,7 @@ class Room extends Model
          */
         public function getAllRoomUnits($postId) {
                 
-                $response = $this->where('room_type', $postId)->orderBy('order', 'asc')->get();
+                $response = $this->where('room_type', $postId)->orderBy('order' , 'asc')->get();
                 return $response;
         }
 

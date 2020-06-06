@@ -38,6 +38,7 @@ class CoreFunctions {
         public static function getRoomSorting() {
                 
                 $roomSort = Brainsugar()->options->get( 'Room.display.sorting' ); 
+                
                 switch($roomSort ) {
                         case  'manual' : 
                                 $column = 'order';
@@ -56,11 +57,11 @@ class CoreFunctions {
                                 $order = 'desc';
                         break;
                 }
-                $sort = (array) [
+                $response = (array) [
                         'column' => $column,
                         'order' => $order,
                 ];
-                return $sort;
+                return $response;
                 
         }
 }

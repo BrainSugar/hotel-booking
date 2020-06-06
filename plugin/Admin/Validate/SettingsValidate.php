@@ -35,6 +35,13 @@ class SettingsValidate extends validate {
                 
                 
         }
+
+        public function sanitizeInputs($value) {
+               $sanitize =  sanitize_text_field($value);
+                $response = \stripslashes($sanitize);
+                return $response;
+        }
+
         
         public function validate() {
                 $this->validateHotelInfo();
@@ -52,27 +59,27 @@ class SettingsValidate extends validate {
                 
                 // Hotel Name 
                 if(isset($this->hotelName)){                        
-                        $hotelName = sanitize_text_field( $this->hotelName );
+                        $hotelName = $this->sanitizeInputs( $this->hotelName );
                 }
                 
                 // Address Line 1
-                if(isset($this->hotelAddress1)){                        
-                        $hotelAddress1 = sanitize_text_field( $this->hotelAddress1 );                        
+                if(isset($this->hotelAddress1)){
+                        $hotelAddress1 = $this->sanitizeInputs( $this->hotelAddress1 );                        
                 }
                 
                 // Address Line 2
                 if(isset($this->hotelAddress2)){                        
-                        $hotelAddress2 = sanitize_text_field( $this->hotelAddress2 ); 
+                        $hotelAddress2 = $this->sanitizeInputs( $this->hotelAddress2 ); 
                 }
                 
                 // Hotel City
                 if(isset($this->hotelCity)){                        
-                        $hotelCity = sanitize_text_field( $this->hotelCity ); 
+                        $hotelCity = $this->sanitizeInputs( $this->hotelCity ); 
                 }
                 
                 // Hotel Country
                 if(isset($this->hotelCountry)){                        
-                        $hotelCountry = sanitize_text_field( $this->hotelCountry );
+                        $hotelCountry = $this->sanitizeInputs( $this->hotelCountry );
                         if($hotelCountry == "Select Country"){
                                 $hotelCountry = "";
                         }
@@ -80,12 +87,12 @@ class SettingsValidate extends validate {
                 
                 // Hotel Postcode
                 if(isset($this->hotelPostcode)){                        
-                        $hotelPostcode = sanitize_text_field( $this->hotelPostcode );                       
+                        $hotelPostcode = $this->sanitizeInputs( $this->hotelPostcode );                       
                 }
                 
                 // Hotel Phone                
                 if(isset($this->hotelPhone)){                        
-                        $hotelPhone = sanitize_text_field( $this->hotelPhone );                        
+                        $hotelPhone = $this->sanitizeInputs( $this->hotelPhone );                        
                 }
                 
                 // Hotel Email
@@ -122,7 +129,7 @@ class SettingsValidate extends validate {
         public function validateHotelCurrency(){
                 
                 if(isset($this->hotelCurrency)){ 
-                        $hotelCurrency = sanitize_text_field( $this->hotelCurrency );
+                        $hotelCurrency = $this->sanitizeInputs( $this->hotelCurrency );
                         
                         // Check if valid Code
                         if(strlen($hotelCurrency) == 3) {                                        
@@ -154,11 +161,11 @@ class SettingsValidate extends validate {
                 }
 
                 if(isset($this->decimalSeparator)) {                         
-                                $decimalSeparator = sanitize_text_field($this->decimalSeparator);                   
+                                $decimalSeparator = $this->sanitizeInputs($this->decimalSeparator);                   
                 }
 
                if(isset($this->thousandsSeparator)) {                      
-                                $thousandsSeparator = sanitize_text_field($this->thousandsSeparator);                     
+                                $thousandsSeparator = $this->sanitizeInputs($this->thousandsSeparator);                     
                 }
                 
                 

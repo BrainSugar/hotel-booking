@@ -26,7 +26,7 @@
                 <!-- Hotel Address 1 -->
                 <div class="col-sm-4">
                         <div class="input-group">
-                                <input type="text" maxlength="75" name="General/hotel_address_line_1" id="address_line_1" class="form-control" placeholder="<?php echo esc_attr('Address 1'); ?>" value="<?php echo esc_attr(Brainsugar()->options->get( 'General.hotel.address_line_1' )); ?>" />
+                                <input type="text" maxlength="75" name="General/hotel_address_line_1" id="address_line_1" class="form-control" placeholder="<?php echo esc_attr('Address 1'); ?>" value="<?php echo esc_attr_e(Brainsugar()->options->get( 'General.hotel.address_line_1' )); ?>" />
                         </div>
                         <p class="option-desc"><?php esc_html_e( 'Address line 1', 'bshb' ) ?></p>
                 </div>

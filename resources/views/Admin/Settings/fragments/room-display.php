@@ -8,7 +8,8 @@
                 <div class="col-sm-6">
                         <div class="input-group">
                                 <label class="switch-primary">
-                                <input type="checkbox" class="switch switch-button" name="status" id="" value="1" checked="checked">
+                                <input name="Room/display_amenities" value="false" type="hidden">
+                                <input type="checkbox" class="switch switch-button" name="Room/display_amenities" id="display_amenities" value="true" <?php if (Brainsugar()->options->get( 'Room.display.display_amenities' ) == 'true') echo ' checked="checked"';?>>
                                 <span class="switch-body"></span>
                                 <span class="switch-text"><?php esc_html_e( 'Display Amenities', 'bshb' ) ?></span>
                                 </label>
@@ -16,18 +17,19 @@
                         <p class="option-desc"><?php esc_html_e( 'Display amenities section on your room type post', 'bshb' ) ?></p>
                 </div>
                 <!-- Display Amenities End -->
-                <!-- Display Amenities -->
+                <!-- Display Policies -->
                 <div class="col-sm-6">
                         <div class="input-group">
                                 <label class="switch-primary">
-                                <input type="checkbox" class="switch switch-button" name="dpol" id="" value="1" checked="checked">
+                                <input name="Room/display_policies" value="false" type="hidden">
+                                <input type="checkbox" class="switch switch-button" name="Room/display_policies" id="display_policies" value="true" <?php if (Brainsugar()->options->get( 'Room.display.display_policies' ) == 'true') echo ' checked="checked"';?>>
                                 <span class="switch-body"></span>
                                 <span class="switch-text"><?php esc_html_e( 'Display policies', 'bshb' ) ?></span>
                                 </label>
                         </div>
                         <p class="option-desc"><?php esc_html_e( 'Display policies section on your room type post', 'bshb' ) ?></p>
                 </div>
-                <!-- Display Amenities End -->
+                <!-- Display Policies End -->
         <!-- Row End -->
         </div>
         <hr>
@@ -46,6 +48,6 @@
                         </div>
                         <p class="option-desc"><?php esc_html_e( 'The order of the rooms to be reserved , Manual order can be changed in the room post type by drag n drop', 'bshb' ) ?></p>
                 </div>
-                </div>
+        </div>
 </div>
 <!--Settings Section END-->

@@ -46,6 +46,14 @@ return [
                 'max_rooms' => '8',
                 'size_unit' => 'ft',
         ],
+        'Reservation' => [
+                'mode' => 'instant',
+                'rules' => [
+                        'max_nights' => '0',
+                        'min_nights' => '1',
+                        'advance_days' => '0',
+                ],
+        ],
 ];
 //    'Form'          => [
         //         'reservation_mode'                  => 'single',

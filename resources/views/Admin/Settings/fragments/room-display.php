@@ -34,6 +34,7 @@
         </div>
         <hr>
         <p class="setting-desc mb-4"><?php esc_html_e( 'Room Sorting', 'bshb' ) ?></p>
+        <!-- Row Start -->
         <div class="row my-4">
                 <div class="col-sm-12">
                         <div class="radio">
@@ -49,5 +50,7 @@
                         <p class="option-desc"><?php esc_html_e( 'The order of the rooms to be reserved , Manual order can be changed in the room post type by drag n drop', 'bshb' ) ?></p>
                 </div>
         </div>
+        <!-- Row End --> 
 </div>
 <!--Settings Section END-->
+

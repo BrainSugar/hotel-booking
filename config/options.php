@@ -43,6 +43,7 @@ return [
                         'display_policies' => 'true',
                         'sorting' => 'ascending',
                 ],
+                'max_rooms' => '8',
         ],
 ];
 //    'Form'          => [

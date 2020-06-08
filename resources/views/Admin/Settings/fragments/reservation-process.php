@@ -1,7 +1,7 @@
 
 <div class="settings-section">
-        <h4 class="font-weight-light"><?php esc_html_e( 'Room Attributes', 'bshb' ) ?></h4>
-        <p class="setting-desc mb-4"><?php esc_html_e( 'Specify the attributes for your room', 'bshb' ) ?></p>
+        <h4 class="font-weight-light"><?php esc_html_e( 'Booking process', 'bshb' ) ?></h4>
+        <p class="setting-desc mb-4"><?php esc_html_e( 'Settings related to the process of booking a reservation', 'bshb' ) ?></p>
 <!-- Row Start -->
         <div class="row my-4">
         <!-- Max Rooms -->

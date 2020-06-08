@@ -9,6 +9,7 @@ class RoomSettings extends Validate {
         protected $roomDisplayAmenities;
         protected $roomDisplayPolicies;
         protected $roomSorting;
+        protected $maxRooms;
 
 
                public function __construct($options) {
@@ -16,6 +17,7 @@ class RoomSettings extends Validate {
                 $this->roomDisplayAmenities = $options['display_amenities'];
                 $this->roomDisplayPolicies = $options['display_policies'];
                 $this->roomSorting = $options['sorting'];
+                $this->maxRooms = $options['max_rooms'];
                 // $this->hotelCity = $options['hotel_city'];
                 // $this->hotelCountry = $options['hotel_country'];
                 // $this->hotelPostcode = $options['hotel_postcode'];
@@ -38,6 +40,7 @@ class RoomSettings extends Validate {
         
         public function validate() {
                 $this->validateDisplayOptions();
+                $this->validateMaxRooms();
         }
         
         
@@ -89,6 +92,17 @@ class RoomSettings extends Validate {
                                 ],
                         ],
                 ],);                
+        }
+
+        public function validateMaxRooms() {
+                        if(isset($this->maxRooms)){
+                        $maxRooms = absint( $this->maxRooms );
+                        Brainsugar()->options->update(['Room' => [
+                                'max_rooms' => $maxRooms,
+                        ],
+                ],);
+                }
+
         }
         
         

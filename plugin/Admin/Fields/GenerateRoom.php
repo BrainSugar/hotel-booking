@@ -36,7 +36,7 @@ class GenerateRoom{
                         $roomsPresent = count($roomsGenerated);
 
                         // yet more work : Settings
-                        $maxRooms = Brainsugar()->options->get( 'General.max_rooms');
+                        $maxRooms = Brainsugar()->options->get( 'Room.max_rooms');
                         if($roomsGenerated){
 
                                 // Get all the Rooms for the Room Type

@@ -20,11 +20,9 @@
         <!-- Room size units -->
                 <div class="col-sm-6">
                           <div class="input-group w-50">
-                                <select name="Room/size_unit" id="size_unit" class="form-control">
-                                        <option><?php esc_html_e( 'Select units', 'bshb' ); ?></option>
-                                        <option value="Ft" <?php if (Brainsugar()->options->get( 'Room.size_unit' ) == 'ft') echo ' selected="selected"';?>><?php echo esc_html_e( 'Ft', 'bshb' ) ?></option>
-                                        <option value="Mt" <?php if (Brainsugar()->options->get( 'Room.size_unit' ) == 'mt') echo ' selected="selected"';?>><?php echo esc_html_e( 'Mt', 'bshb' ) ?></option>
-                                      
+                                <select name="Room/size_unit" id="size_unit" class="form-control">                                       
+                                        <option value="ft" <?php if (Brainsugar()->options->get( 'Room.size_unit' ) == 'ft') echo ' selected="selected"';?>><?php echo esc_html_e( 'Square feet (ft²)', 'bshb' ) ?></option>
+                                        <option value="mt" <?php if (Brainsugar()->options->get( 'Room.size_unit' ) == 'mt') echo ' selected="selected"';?>><?php echo esc_html_e( 'Square Meters (m²)', 'bshb' ) ?></option>
                                 </select>
                         </div>
                         <p class="option-desc"><?php esc_html_e( 'Measurement Unit for your Room size', 'bshb' ) ?></p>

@@ -10,6 +10,7 @@ class RoomSettings extends Validate {
         protected $roomDisplayPolicies;
         protected $roomSorting;
         protected $maxRooms;
+        protected $sizeUnit;
 
 
                public function __construct($options) {
@@ -18,6 +19,8 @@ class RoomSettings extends Validate {
                 $this->roomDisplayPolicies = $options['display_policies'];
                 $this->roomSorting = $options['sorting'];
                 $this->maxRooms = $options['max_rooms'];
+                $this->sizeUnit = $options['size_unit'];
+
                 // $this->hotelCity = $options['hotel_city'];
                 // $this->hotelCountry = $options['hotel_country'];
                 // $this->hotelPostcode = $options['hotel_postcode'];
@@ -41,6 +44,7 @@ class RoomSettings extends Validate {
         public function validate() {
                 $this->validateDisplayOptions();
                 $this->validateMaxRooms();
+                $this->validateSizeUnit();
         }
         
         
@@ -102,72 +106,21 @@ class RoomSettings extends Validate {
                         ],
                 ],);
                 }
-
         }
-        
-        
-        // /**
-        // * Validate the fields from Currency Section
-        // *
-        // * @return void
-        // */
-        // public function validateHotelCurrency(){
-                
-        //         if(isset($this->hotelCurrency)){ 
-        //                 $hotelCurrency = $this->sanitizeInputs( $this->hotelCurrency );
-                        
-        //                 // Check if valid Code
-        //                 if(strlen($hotelCurrency) == 3) {                                        
-                                
-        //                         $world = new World;
-        //                         $currencySymbol = $world->getCurrencySymbol($hotelCurrency);
-        //                         $currencyName = $world->getCurrencyName($hotelCurrency);
-                                
-        //                 }
-        //                 else {
-        //                         $currencySymbol = '';
-        //                         $currencyName = '';
-        //                 }
-        //         }
-                
-        //         if(isset($this->symbolPosition)){
-        //                 if($this->symbolPosition == 'before'){
-        //                         $symbolPosition = 'before';
-        //                 }
-        //                 else {
-        //                         $symbolPosition = 'after';
-        //                 }
-        //         }
-                
-                
-                
-        //         if(isset($this->currencyDecimals)){
-        //                 $decimals = absint($this->currencyDecimals);
-        //         }
+        public function validateSizeUnit() {
+                        if(isset($this->sizeUnit)){
+                        $sizeUnit = $this->sanitizeInputs($this->sizeUnit);
+                        if($sizeUnit == "") {
+                                $sizeUnit = "ft";
+                        }
 
-        //         if(isset($this->decimalSeparator)) {                         
-        //                         $decimalSeparator = $this->sanitizeInputs($this->decimalSeparator);                   
-        //         }
+                        Brainsugar()->options->update(['Room' => [
+                                'size_unit' => $sizeUnit,
+                        ],
+                ],);
+                }
+        }
 
-        //        if(isset($this->thousandsSeparator)) {                      
-        //                         $thousandsSeparator = $this->sanitizeInputs($this->thousandsSeparator);                     
-        //         }
-                
-                
-        //         Brainsugar()->options->update([
-        //                 'General' => [
-        //                         'currency' =>[
-        //                                 'code' => $hotelCurrency,
-        //                                 'name' => $currencyName,
-        //                                 'symbol' => $currencySymbol,
-        //                                 'symbol_position' => $symbolPosition,
-        //                                 'decimals' => $decimals,
-        //                                 'decimal_separator' => $decimalSeparator,
-        //                                 'thousands_separator' => $thousandsSeparator,
-        //                         ],
-        //                 ],
-        //         ],);                                        
-        // }
 
-        
+
 }

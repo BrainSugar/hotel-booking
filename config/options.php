@@ -44,6 +44,7 @@ return [
                         'sorting' => 'ascending',
                 ],
                 'max_rooms' => '8',
+                'size_unit' => 'ft',
         ],
 ];
 //    'Form'          => [

@@ -1,29 +1,21 @@
 <?php
 namespace Brainsugar\Admin\Validate;
-use Brainsugar\Admin\Validate\GeneralSettings;
+// use Brainsugar\Admin\Validate\GeneralSettings;
+// use Brainsugar\Admin\Validate\RoomSettings;
+// use Brainsugar\Admin\Validate\ReservationSettings;
 
-class SettingsValidate extends validate {
-        // protected $hotelName;
-        // protected $hotelAddress1;
-        // protected $hotelAddress2;
-        // protected $hotelCity;
-        // protected $hotelCountry;
-        // protected $hotelPostcode;
-        // protected $hotelPhone;
-        // protected $hotelEmail;
-        // protected $hotelCurrency;
-        // protected $symbolPosition;
-        // protected $currencyDecimals;
-        // protected $decimalSeparator;
-        // protected $thousandsSeparator;
+class SettingsValidate extends Validate {
+
         
         public function __construct($options) {
 
 
                 $generalSettings = new GeneralSettings($options['General']);
                 $roomSettings = new RoomSettings($options['Room']);
+                $reservationSettings = new ReservationSettings($options['Reservation']);
 
                 $generalSettings->validate();
                 $roomSettings->validate();
+                $reservationSettings->validate();
         }
 }

@@ -38,12 +38,6 @@ class GeneralSettings extends Validate {
 
                }
 
-                public function sanitizeInputs($value) {
-                        $sanitize =  sanitize_text_field($value);
-                        $response = \stripslashes($sanitize);
-                return $response;
-        }
-
         
         public function validate() {
                 $this->validateHotelInfo();

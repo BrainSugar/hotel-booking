@@ -55,7 +55,7 @@
                                                 <i class="fad fa-home"></i>
                                         </span>
                                 </div>
-                                <input type="number" name="Reservation/advance_days" id="advance_days" class="form-control" value="<?php echo esc_attr(Brainsugar()->options->get( 'Rerservation.rules.advance_days' )); ?>" />
+                                <input type="number" name="Reservation/advance_days" id="advance_days" class="form-control" value="<?php echo esc_attr(Brainsugar()->options->get( 'Reservation.rules.advance_days' )); ?>" />
                         </div>
                         <p class="option-desc"><?php esc_html_e( 'Accept bookings if booked only these many days before Arrival date', 'bshb' ) ?></p>
                 </div>

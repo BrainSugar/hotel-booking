@@ -29,7 +29,14 @@ if (class_exists('\Brainsugar\WPBones\Foundation\Plugin')) {
 
 
 
-//add_action( 'init', function() { } );
+add_action( 'init', function() {
+        if ( ! defined( 'BSHB_BASE_PATH' ) ) {
+                define('BSHB_BASE_PATH', plugin_dir_path( __DIR__ ));
+        }
+         if ( ! defined( 'BSHB_ASSETS_PATH' ) ) {       
+                define('BSHB_ASSETS_PATH' , plugins_url('brainsugar-hotel-booking/resources/assets/'));
+         }
+ } );
 
     /*
     |--------------------------------------------------------------------------

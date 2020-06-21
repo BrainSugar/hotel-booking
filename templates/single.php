@@ -1,21 +1,17 @@
 <?php
-/*
-Plugin Name: Brainsugar Hotel Booking
-Plugin URL: http://wp.tutsplus.com/
-Description: Loads a custom template file instead of the default single.php
-Version: 0.1
-Author: Remi Corson
-Author URI: http://wp.tutsplus.com/
-*/
-
-
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+}
 get_header();
+
+do_action('bshb_room_type_container_start');
 
  if ( have_posts() ) : 
     while ( have_posts() ) : the_post(); 
-
-the_content();  
-
+get_template_part( 'bshb', 'title' );
     endwhile; 
 endif;
+
+do_action('bshb_room_type_container_end');
+
 get_footer();

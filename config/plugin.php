@@ -117,7 +117,10 @@ return [
   |
   */
 
-  'providers' => ['\Brainsugar\Providers\TemplateServiceProvider'],
+  'providers' => [
+        '\Brainsugar\Providers\TemplateServiceProvider',
+        '\Brainsugar\Providers\ScriptServiceProvider'
+],
 
 
 

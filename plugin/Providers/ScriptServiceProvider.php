@@ -24,11 +24,11 @@ class ScriptServiceProvider extends ServiceProvider
 function registerGlobalAdminScripts(){
         if ( is_admin() ) {
                 // Register Bootstrap JS 
-                wp_register_script( 'bootstrap-bundle', plugin_dir_url( __FILE__ ) . "public/js/bootstrap.bundle.js", array( "jquery" ));
+                wp_register_script( 'bootstrap-bundle',  plugins_url('/brainsugar-hotel-booking/public/js/bootstrap.bundle.js'), array( "jquery" ));
                 // Sortable JS vendor script
-                wp_register_script( "sortable", plugin_dir_url( __FILE__ ) . "/public/js/vendor/Sortable.js", array( "jquery")); 
+                wp_register_script( "sortable", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/Sortable.js'), array( "jquery")); 
                 // Register Scripts for generating room fields in CMB2
-                wp_register_script( "generate-room", plugin_dir_url( __FILE__ ) . "/public/js/generate-room.js", array( "jquery", "bootstrap-bundle" , "sortable"), Brainsugar()->Version , true);
+                wp_register_script( "generate-room", plugins_url( '/brainsugar-hotel-booking/public/js/generate-room.js'), array( "jquery", "bootstrap-bundle" , "sortable"), Brainsugar()->Version , true);
 
 
         }

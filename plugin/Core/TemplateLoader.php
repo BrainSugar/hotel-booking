@@ -4,10 +4,10 @@ namespace Brainsugar\Core;
 
 
 class TemplateLoader {
-
+        
         
         public function __construct() {
-                add_action( 'template_include', array($this ,'templateRender' ) , 10, 5 );
+                add_action( 'template_include', array($this ,'templateRender' ) , 10, 5 );                
         }
         
         
@@ -23,9 +23,8 @@ class TemplateLoader {
                 }
                 
                 // Else use custom template
-                if ( is_single() ) {                       
-                        
-                        return $this->templateHierarchy( 'double' );
+                if ( is_single() ) { 
+                        return $this->templateHierarchy( 'single' );
                 }
                 
                 
@@ -54,5 +53,28 @@ class TemplateLoader {
                 return $file;
         }
         
+//         function getTemplatePart($template_names, $load = false, $require_once = true ) {
+//                 $located = ''; 
+//                 foreach ( (array) $template_names as $template_name ) { 
+//                         if ( !$template_name ) 
+//                         continue; 
+                        
+//                         /* search file within the PLUGIN_DIR_PATH only */ 
+//                         var_dump($template_name);
+                        
+//                         if ( file_exists(BSHB_BASE_PATH . 'templates/' . $template_name)) { 
+//                                 $located = BSHB_BASE_PATH . 'templates/' . $template_name; 
+//                         break; 
+//                 } 
+//         }
+        
+//         if ( $load && '' != $located )
+//         load_template( $located, $require_once );
+        
+//         return $located;
+// }
+
+
+
 }
 

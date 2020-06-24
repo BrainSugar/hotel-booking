@@ -17,9 +17,8 @@ class TemplateServiceProvider extends ServiceProvider
         public function templateManager($template) {
                 $templateLoader = new TemplateLoader;
                 $postId = get_post_type( );
-                $getTemplate = $templateLoader->templateRender('double');
-                var_dump($getTemplate);
-                return $getTemplate;
+                $getTemplate = $templateLoader->templateRender($template);
+                 return $getTemplate;
         }
 
         

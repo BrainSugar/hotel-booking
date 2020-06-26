@@ -14,23 +14,32 @@ get_header();
 /**
  * Room type container hook - before
  *  
+ * 
+ * @Hooked
+ * bshb_container_start - 10 , 5
+ * 
  */
-do_action('bshb_room_type_before');
+do_action('bshb_container_start');
+
 
  if ( have_posts() ) : 
     while ( have_posts() ) : the_post(); 
 
-    bshb_get_template_part('single-room-type/title');
-    bshb_get_template_part('single-room-type/content');
+        bshb_get_single_title();
+        bshb_get_single_content();
 
     endwhile; 
 endif;
 
+
  /**
+* 
  * Room type container hook - after.
  * 
+ * @Hooked
+ * bshb_container_start - 10 , 5
  */
-do_action('bshb_room_type_after');
+do_action('bshb_container_end');
 
 
 get_footer();

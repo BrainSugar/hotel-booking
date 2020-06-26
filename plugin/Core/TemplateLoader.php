@@ -24,7 +24,7 @@ class TemplateLoader {
                 
                 // Else use custom template
                 if ( is_single() ) { 
-                        return $this->templateHierarchy( 'single' );
+                        return $this->templateHierarchy( 'single-room-type' );
                 }
                 
                 

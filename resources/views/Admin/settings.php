@@ -18,8 +18,8 @@
                                                <div class="bshb-nav nav flex-column nav-pills mt-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                                         <a class="nav-link active" id="general-settings-tab" data-toggle="pill" href="#general-settings" role="tab" aria-controls="general-settings" aria-selected="true">General</a>
                                                         <a class="nav-link" id="room-settings-tab" data-toggle="pill" href="#room-settings" role="tab" aria-controls="room-settings" aria-selected="false">Room</a>
-                                                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Reservation</a>
-                                                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                                                        <a class="nav-link" id="reservation-settings-tab" data-toggle="pill" href="#reservation-settings" role="tab" aria-controls="reservation-settings" aria-selected="false">Reservation</a>
+                                                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#ui-settings" role="tab" aria-controls="ui-settings" aria-selected="false">User Interface</a>
                                                 </div>
                                        </div>
                                        <div class="col-sm-10">
@@ -32,10 +32,12 @@
                 <div class="tab-pane fade" id="room-settings" role="tabpanel" aria-labelledby="room-settings-tab">
                         <?php echo Brainsugar()->view( 'Admin.Settings.room-settings' ); ?>
                 </div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <div class="tab-pane fade" id="reservation-settings" role="tabpanel" aria-labelledby="reservation-settings-tab">
                          <?php echo Brainsugar()->view( 'Admin.Settings.reservation-settings' ); ?>
                 </div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">poopuu</div>
+                <div class="tab-pane fade" id="ui-settings" role="tabpanel" aria-labelledby="ui-settings-tab">
+                        <?php echo Brainsugar()->view( 'Admin.Settings.ui-settings' ); ?>
+                </div>
         </div>
         <div class="d-flex">
                 <button class="btn btn-primary mr-4 ml-auto mb-4">Save changes</button>

@@ -95,3 +95,13 @@ function bshb_container_end() {
         bshb_get_template_part('template-parts/global/wrapper-end');
 }
 add_action( 'bshb_container_end' , 'bshb_container_end' , 10 , 5 );
+
+function bshb_get_style($element) {
+        $style = "";
+        switch($element) {
+                case  'search-button'  :
+                        $style = "color: #000000; background:#fff;";
+                break;
+        }
+        return $style;
+}

@@ -27,7 +27,7 @@ do_action('bshb_container_start');
 
         bshb_get_single_title();
         bshb_get_single_content();
-        bshb_get_template_part('search/search-form/button');
+        bshb_get_template_part('search/search-form');
 
     endwhile; 
 endif;

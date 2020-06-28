@@ -4,6 +4,6 @@
         <p class="setting-desc mb-4"><?php esc_html_e( 'Change the styling of your search form displayed in the frontend.', 'bshb' ) ?></p>
         <!-- General Info Row -->        
         <div class="row my-5">
-        <?php bshb_get_template_part('search/search-form/button');?>
+        <?php bshb_get_template_part('search/search-form');?>
         </div>
 </div>

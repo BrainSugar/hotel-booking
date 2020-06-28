@@ -14,6 +14,8 @@ class ScriptServiceProvider extends ServiceProvider
     add_action("admin_enqueue_scripts" , array($this,'calendarScripts'));
     add_action( 'admin_enqueue_scripts', array($this,'setupPluginScripts') ); 
     add_action('admin_footer' , array($this,'footerScripts'));
+
+    add_action( 'wp_enqueue_scripts', array($this,'frontendScripts') );
   }
 
 
@@ -120,6 +122,11 @@ function footerScripts () {
         wp_register_script( 'clndr', plugins_url( '/brainsugar-hotel-booking/resources/assets/js/clndr.js'), array( 'jquery' , 'moment' ) , false , true);
         wp_enqueue_script( 'clndr' );
 
+}
+
+function frontendScripts() {
+        wp_enqueue_style( 'brainsugar-frontend', plugins_url( '/brainsugar-hotel-booking/public/css/bshb-frontend.css'), array());
+        wp_enqueue_style( 'brainsugar-frontend' );     
 }
 
 

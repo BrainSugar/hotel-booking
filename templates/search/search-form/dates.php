@@ -1,3 +1,3 @@
-<div class="input-group-2">
+<div class="input-group">
        <input type="date" readonly placeholder="" autocomplete="off" aria-haspopup="true">        
 </div>

@@ -22,5 +22,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 </div> -->
 <div class="col-sm-3 d-flex">
-<button class="btn btn-large m-auto" style = "<?php echo esc_attr(bshb_get_style('search-button')); ?>"><?php esc_html_e( 'Check Availability', 'bshb' ); ?></button>
+        <button class="btn btn-large m-auto" style = "<?php echo esc_attr(bshb_get_style('search-button')); ?>"><?php esc_html_e( 'Check Availability', 'bshb' ); ?></button>
 </div>

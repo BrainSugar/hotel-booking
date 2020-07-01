@@ -54,6 +54,9 @@ return [
                         'advance_days' => '0',
                 ],
         ],
+        'Pages' => [
+                'search' => '',
+        ],
 ];
 //    'Form'          => [
         //         'reservation_mode'                  => 'single',

@@ -20,8 +20,7 @@ class SettingsController extends Controller
                 $currencies = $world->getCurrencies();     
                 $currenciename = $world->getCurrencyName('INR');
                 $currencyDisplay = CoreFunctions::formatCurrency('100000');
-                
-                
+                $pages = get_pages(array('post_status' => 'publish'));
                 
                 
                 return Brainsugar()
@@ -29,7 +28,8 @@ class SettingsController extends Controller
                 ->withAdminScripts('bootstrap.bundle')
                 ->with('countries', $countries)
                 ->with('currencies', $currencies)
-                ->with('currencyDisplay', $currencyDisplay);
+                ->with('currencyDisplay', $currencyDisplay)
+                ->with('pages', $pages);
 
                 
                 

@@ -7,6 +7,7 @@ use Brainsugar\WPBones\Support\ServiceProvider;
 class TemplateServiceProvider extends ServiceProvider
 {
         
+        
         public function register()
         {                
                 add_action( 'template_include', array($this ,'loadTemplate' ) , 10, 5 );
@@ -15,6 +16,7 @@ class TemplateServiceProvider extends ServiceProvider
                 include( plugin_dir_path( __DIR__ ) .  'Core/TemplateFunctions.php');
                 
         }
+        
         
         /**
         * Loads the Template
@@ -25,20 +27,37 @@ class TemplateServiceProvider extends ServiceProvider
         * @return void
         */
         public function loadTemplate($template){
-                $postId = get_post_type( );
                 
-                // For all other CPT
-                if ( $postId != 'bshb_room' ) {
-                        return $template;
-                }
+                // Get post type for cpt pages
+                $postId = get_post_type();
                 
-                // Else use custom template
-                if ( is_single() ) { 
-                        return $this->getTemplate( 'single-room-type' );
-                }
+                // Get page id for all the frontend pages.
+                $pageId = get_the_ID(); 
+
+                // Pages set by the user.
+                $searchPage = Brainsugar()->options->get( 'Pages.search');
                 
+                // If is page then return page templates or return default.
+                if( is_page() ){
+                        if ($pageId == $searchPage) {                        
+                                return $this->getTemplate( 'search-page' );
+                        }
+                        else {
+                                return $template;
+                        }
+                } 
                 
+                // If is single display templates for Cpt's.
+                if ( is_single() ) {
+                        if ( $postId == 'bshb_room' ) {
+                                return $this->getTemplate( 'single-room-type' );
+                        }
+                        else {
+                                return $template;
+                        }
+                }                
         }
+        
         
         /**
         * getTemplate
@@ -48,7 +67,7 @@ class TemplateServiceProvider extends ServiceProvider
         * @param [type] $template
         * @return void
         */
-
+        
         function getTemplate( $template ) {
                 
                 // Get the template slug
@@ -66,7 +85,7 @@ class TemplateServiceProvider extends ServiceProvider
                 
                 return $file;
         }
-
+        
         
         
         

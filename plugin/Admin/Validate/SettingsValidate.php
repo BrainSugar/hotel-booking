@@ -13,7 +13,9 @@ class SettingsValidate extends Validate {
                 $generalSettings = new GeneralSettings($options['General']);
                 $roomSettings = new RoomSettings($options['Room']);
                 $reservationSettings = new ReservationSettings($options['Reservation']);
+                $pageSettings = new PageSettings($options['Page']);
 
+                $pageSettings->validate();
                 $generalSettings->validate();
                 $roomSettings->validate();
                 $reservationSettings->validate();

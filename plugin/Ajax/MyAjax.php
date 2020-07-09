@@ -3,6 +3,7 @@
 namespace Brainsugar\Ajax;
 
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
+use Brainsugar\Model\Reservations;
 
 class MyAjax extends ServiceProvider {
 
@@ -38,11 +39,14 @@ class MyAjax extends ServiceProvider {
 
   public function trusted()
   {
+          $reservation = new Reservations;
+          $res = $reservation->all();
           $checkIn = $_POST['checkIn'];
           $checkOut = $_POST['checkOut'];
           $data= array (
                 'in' => $checkIn ,
-                'out' => $checkOut);
+                'out' => $checkOut,
+                'res' => $res);
 
 bshb_get_template_part('search/search-results/rooms', null , $data);
 

@@ -40,13 +40,18 @@ class MyAjax extends ServiceProvider {
   public function trusted()
   {
           $reservation = new Reservations;
-          $res = $reservation->all();
+          $res = $reservation->get();
+        $roomData = get_posts(array(
+                        'post_type' => 'bshb_room',
+                        'fields'          => 'ids'
+                ));
           $checkIn = $_POST['checkIn'];
           $checkOut = $_POST['checkOut'];
           $data= array (
                 'in' => $checkIn ,
                 'out' => $checkOut,
-                'res' => $res);
+                'res' => $res,
+        'rooms' => $roomData);
 
 bshb_get_template_part('search/search-results/rooms', null , $data);
 

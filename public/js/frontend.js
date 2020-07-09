@@ -23,8 +23,8 @@
                                         checkOut: checkOut
                                 },
                                 function (response) {
-                                        alert(response);
-                                        // $('#bshb-search-content').html(response);
+                                        // alert(response);
+                                        $('#bshb-search-content').html(response);
                                 }
                         );
 

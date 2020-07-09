@@ -40,8 +40,9 @@ class MyAjax extends ServiceProvider {
   {
           $checkIn = $_POST['checkIn'];
           $checkOut = $_POST['checkOut'];
-          $data= array ('in' => $checkIn ,
-        'out' => $checkOut);
+          $data= array (
+                'in' => $checkIn ,
+                'out' => $checkOut);
 
 bshb_get_template_part('search/search-results/rooms', null , $data);
 

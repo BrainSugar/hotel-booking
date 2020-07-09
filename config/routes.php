@@ -25,4 +25,12 @@ return [
                         'get' => 'Admin\PricingController@individualRoomTypePricing',      
                 ]
         ],
+        'search_results' => [
+                'title' => 'Search Results',
+                'capability' => 'read',
+                 'route'      => [
+                        'get' => 'Frontend\SearchController@showSearchResults',      
+                ]
+
+        ],
 ];

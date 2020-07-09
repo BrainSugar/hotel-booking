@@ -38,9 +38,18 @@ class MyAjax extends ServiceProvider {
 
   public function trusted()
   {
-    $response = "You have clicked Ajax Trusted";
+          $checkIn = $_POST['checkIn'];
+          $checkOut = $_POST['checkOut'];
+          $data= array ('in' => $checkIn ,
+        'out' => $checkOut);
 
-    wp_send_json( $response );
+bshb_get_template_part('search/search-results/rooms', null , $data);
+
+
+
+
+
+
   }
 
   public function logged()

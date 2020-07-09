@@ -48,3 +48,15 @@ function abc() {
         echo "hooking in";
 }
 add_action( 'bshb_room_type_container_end', 'abc', 10, 1 );
+
+
+
+
+add_action('wp_head', 'myplugin_ajaxurl');
+
+function myplugin_ajaxurl() {
+
+   echo '<script type="text/javascript">
+           var ajaxurl = "' . admin_url('admin-ajax.php') . '";
+         </script>';
+}

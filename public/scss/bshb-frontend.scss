@@ -1,8 +1,46 @@
+// Import Variables
+@import "var";
+
+// Import Mixins
+@import "mixins";
+
+// Vendors
+@import "vendors/font-awesome/fontawesome.scss";
+@import "vendors/font-awesome/duotone.scss";
+@import "vendors/font-awesome/solid.scss";
+
+
+
 .bshb-container {
         @import"vendors/bootstrap/bootstrap";
+        @import"modules/button";
+        @import"modules/form_elements";
+
+        font-size: 14px !important;
+        padding: 5rem;
 
         .bshb-search-form {
+
                 width: 100%;
- 
+                background: $color-white;
+                border: 1px solid black;
+                border-radius: $border-radius;
+                padding: 2rem;
+
+
+                .check-in,
+                .check-out,
+                .guests {
+                        margin: 2rem 0;
+                        padding-bottom: 1rem;
+
+                        label {
+                                color: $color-text;
+                                font-size: 14px;
+                                margin-bottom: 2rem;
+                        }
+
+                }
+
         }
 }

@@ -55,7 +55,9 @@ class TemplateServiceProvider extends ServiceProvider
                         else {
                                 return $template;
                         }
-                }                
+                }
+                // If none of the above pages return the template.
+                return $template;
         }
         
         

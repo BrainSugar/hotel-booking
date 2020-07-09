@@ -8,8 +8,8 @@
  * @param [type] $slug
  * @param [type] $name
  * @return void
- */
-function bshb_get_template_part($slug, $name = null) {
+ */ 
+function bshb_get_template_part($slug, $name = null , $data = []) {
         
         do_action("bshb_get_template_part_{$slug}", $slug, $name);
         
@@ -17,9 +17,9 @@ function bshb_get_template_part($slug, $name = null) {
         if (isset($name))
         $templates[] = "{$slug}-{$name}.php";
         
-        $templates[] = "{$slug}.php";
+        $templates[] = "{$slug}.php";       
         
-        bshb_get_template_path($templates, true, false);
+        bshb_get_template_path($templates, true, false , $data);
 }
 
 
@@ -33,16 +33,17 @@ function bshb_get_template_part($slug, $name = null) {
  * @param [type] $template_names
  * @param boolean $load
  * @param boolean $require_once
+ * @param object $data
  * @return void
  */
-function bshb_get_template_path($template_names, $load = false, $require_once = true ) {
+function bshb_get_template_path($template_names, $load = false, $require_once = true , $data ) {
         $located = ''; 
         foreach ( (array) $template_names as $template_name ) { 
                 if ( !$template_name ) 
                 continue; 
 
-                if ( file_exists(locate_template( array( 'bshb-template/' . $template_name ) ))) { 
-                        $located = locate_template( array( 'bshb-template/' . $template_name));
+                if ( file_exists(locate_template( array( 'bshb-templates/' . $template_name ) ))) { 
+                        $located = locate_template( array( 'bshb-templates/' . $template_name));
                 break; 
         } 
         
@@ -51,11 +52,15 @@ function bshb_get_template_path($template_names, $load = false, $require_once = 
         break; 
 } 
 }
+if($data){
+        set_query_var('data', $data );
+}
 
-if ( $load && '' != $located )
-load_template( $located, $require_once );
-
-return $located;
+if ( $load && '' != $located ) {
+        load_template( $located , $require_once);
+        }
+        return $located;
+        
 }
 
 /**

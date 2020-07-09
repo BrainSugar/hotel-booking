@@ -127,9 +127,13 @@ function footerScripts () {
 function frontendScripts() {
         wp_enqueue_style( 'brainsugar-frontend', plugins_url( '/brainsugar-hotel-booking/public/css/bshb-frontend.css'), array());
         wp_enqueue_style( 'brainsugar-frontend' ); 
-        wp_register_script( "flatpickr", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/flatpickr.js'), array( "jquery")); 
+        wp_enqueue_style( 'flatpickr-css', plugins_url( '/brainsugar-hotel-booking/public/css/flatpickr.css'), array());
+        wp_enqueue_style( 'flatpickr-css' ); 
+        wp_register_script( "flatpickr-range", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/range.js'), array( "jquery")); 
+        wp_enqueue_script( 'flatpickr-range' );
+        wp_register_script( "flatpickr", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/flatpickr.js'), array( "jquery" , "flatpickr-range")); 
         wp_enqueue_script( 'flatpickr' );
-                wp_register_script( "frontend", plugins_url(  '/brainsugar-hotel-booking/public/js/frontend.js'), array( "jquery")); 
+                wp_register_script( "frontend", plugins_url(  '/brainsugar-hotel-booking/public/js/frontend.js'), array( "jquery" , "moment")); 
         wp_enqueue_script( 'frontend' );
 
 }

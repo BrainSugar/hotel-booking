@@ -9,8 +9,7 @@ class CoreFunctions {
         * @param [float] $value
         * @return void
         */
-        public static function formatCurrency($value) {
-                
+        public static function formatCurrency($value) {                
                 $symbol = Brainsugar()->options->get( 'General.currency.symbol' ); 
                 $symbolPosition =  Brainsugar()->options->get( 'General.currency.symbol_position' ); 
                 $decimals = Brainsugar()->options->get( 'General.currency.decimals' ); 

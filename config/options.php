@@ -48,6 +48,7 @@ return [
         ],
         'Reservation' => [
                 'mode' => 'instant',
+                'children_bookable' => 'true',
                 'rules' => [
                         'max_nights' => '0',
                         'min_nights' => '1',

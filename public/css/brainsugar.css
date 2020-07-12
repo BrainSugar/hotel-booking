@@ -24960,8 +24960,8 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
           box-shadow: none;
   line-height: 21px;
   position: relative;
-  -webkit-transition: color 0.1s linear 0s,background-color 0.1s linear 0s,opacity 0.2s linear 0s !important;
-  transition: color 0.1s linear 0s,background-color 0.1s linear 0s,opacity 0.2s linear 0s !important;
+  -webkit-transition: color 0.1s linear 0s, background-color 0.1s linear 0s, opacity 0.2s linear 0s !important;
+  transition: color 0.1s linear 0s, background-color 0.1s linear 0s, opacity 0.2s linear 0s !important;
   padding: 6px 17px;
 }
 
@@ -25252,7 +25252,8 @@ fieldset[disabled] .bshb .btn-danger.active {
   background-color: #fff;
 }
 
-.bshb .btn-default, .bshb .btn-default:focus {
+.bshb .btn-default,
+.bshb .btn-default:focus {
   color: #5e5e5e;
   background-color: #fff;
   border-color: #f3fdfc;
@@ -25276,7 +25277,7 @@ fieldset[disabled] .bshb .btn-danger.active {
 
 .bshb .quantity-number {
   width: auto;
-  max-width: 4rem;
+  max-width: 6rem;
   padding: 0;
   background: none;
   min-width: 1.5rem;
@@ -25284,12 +25285,12 @@ fieldset[disabled] .bshb .btn-danger.active {
   font-weight: 600;
   text-align: center;
   border: none;
-  color: #4CAF50;
+  color: #10cfbd;
 }
 
 .bshb .minus,
 .bshb .plus {
-  color: #4CAF50;
+  color: #10cfbd;
   font-size: 1.3rem;
   margin-top: 2rem;
   cursor: pointer;

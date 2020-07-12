@@ -1,0 +1,37 @@
+        .bshb-search-form {
+
+                width: 100%;
+                background: $color-white;
+                border-radius: $border-radius;
+                padding: 2em;
+                -webkit-box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
+                -moz-box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
+                box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
+
+                .check-in,
+                .check-out,
+                .guests {
+                        margin: 2em 0;
+                        padding-bottom: 1em;
+
+                        .form-heading {
+                                color: $color-text;
+                                font-size: 14px;
+                                margin-bottom: 2em;
+                        }
+                }
+
+                .guests {
+                        .guest-input {
+                                display: flex;
+                                flex-direction: column;
+                        }
+
+                        .guests-title {
+                                text-align: center;
+                                color: $color-grey;
+                        }
+
+                }
+
+        }

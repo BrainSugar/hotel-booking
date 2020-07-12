@@ -16,5 +16,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 
-<button id="search-submit" type="button" class="btn btn-primary m-auto" style = "<?php echo esc_attr(bshb_get_style('search-button')); ?>"><?php esc_html_e( 'Check Availability', 'bshb' ); ?></button>
+<button id="search-submit" type="submit" class="btn btn-primary m-auto" style = "<?php echo esc_attr(bshb_get_style('search-button')); ?>"><?php esc_html_e( 'Check Availability', 'bshb' ); ?></button>
 

@@ -101,7 +101,7 @@ return [
   |
   */
 
-  'ajax' => [ '\Brainsugar\Ajax\MyAjax',
+  'ajax' => [ '\Brainsugar\Ajax\SearchAjax',
                 '\Brainsugar\Ajax\RoomAjax',
                 '\Brainsugar\Ajax\PricingAjax'
 ],

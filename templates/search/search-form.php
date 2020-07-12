@@ -1,5 +1,5 @@
 
-        <div class="bshb-search-form">
+        <form id="bshb-search-form" class="bshb-search-form" method="post" enctype="multipart/form-data" encoding="multipart/form-data">
                 <div class="container-fluid">
                         <div class="row">
                                 <div class="col-sm-6">
@@ -13,5 +13,5 @@
                                 </div>
                         </div>
                 </div>
-        </div>
+        </form>
 

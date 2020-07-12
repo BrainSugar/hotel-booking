@@ -1,4 +1,5 @@
 <?php 
+use Brainsugar\Core\CoreFunctions;
 // The functions for the Frontend Templates.
 
 /**
@@ -63,6 +64,7 @@ if ( $load && '' != $located ) {
         
 }
 
+
 /**
  * Loads the Single Content
  *
@@ -72,6 +74,7 @@ function bshb_get_single_content() {
         bshb_get_template_part('template-parts/single/content');
 }
 
+
 /**
  * Loads the single Title
  *
@@ -80,6 +83,7 @@ function bshb_get_single_content() {
 function bshb_get_single_title() {
         bshb_get_template_part('template-parts/single/title');
 }
+
 
 /**
  * Echo the starting Divs
@@ -91,6 +95,7 @@ function bshb_container_start() {
 }
 add_action( 'bshb_container_start' , 'bshb_container_start' , 10 , 5 );
 
+
 /**
  * Echo the output Divs
  *
@@ -101,6 +106,13 @@ function bshb_container_end() {
 }
 add_action( 'bshb_container_end' , 'bshb_container_end' , 10 , 5 );
 
+
+/**
+ * Get the styles for the template elements specified in the settings.
+ *
+ * @param [type] $element
+ * @return void
+ */
 function bshb_get_style($element) {
         $style = "";
         switch($element) {
@@ -109,4 +121,11 @@ function bshb_get_style($element) {
                 break;
         }
         return $style;
+}
+
+
+function bshb_get_room_price($post_id) {
+        $room_price = get_post_meta($post_id , 'bshb_room_price' , true);
+        $format_price = CoreFunctions::formatCurrency($room_price);
+        return $format_price;
 }

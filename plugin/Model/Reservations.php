@@ -2,6 +2,8 @@
 
 namespace Brainsugar\Model;
 use Illuminate\Database\Eloquent\Model;
+use Brainsugar\Model\Pricing;
+use Brainsugar\Model\Room;
 
 class Reservations extends Model
 {
@@ -22,5 +24,14 @@ class Reservations extends Model
         global $wpdb;
 
         return $wpdb->prefix . preg_replace('/[[:<:]]' . $wpdb->prefix . '/', '', parent::getTable(), 1);
+    }
+
+    public function getAvailableRooms($checkIn , $checkOut , $guests) {
+                    $roomTypes = get_posts(array(
+                        'post_type' => 'bshb_room',
+                        'fields'          => 'ids',
+                        'status' => 'published'
+                ));
+                return $roomTypes;
     }
 }

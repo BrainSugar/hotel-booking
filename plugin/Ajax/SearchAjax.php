@@ -5,7 +5,7 @@ namespace Brainsugar\Ajax;
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
 use Brainsugar\Model\Reservations;
 
-class MyAjax extends ServiceProvider {
+class SearchAjax extends ServiceProvider {
 
   /**
    * List of the ajax actions executed by both logged and not logged users.
@@ -14,7 +14,7 @@ class MyAjax extends ServiceProvider {
    * @var array
    */
   protected $trusted = [
-    'trusted'
+    'availabilitySearch'
   ];
 
   /**
@@ -37,7 +37,7 @@ class MyAjax extends ServiceProvider {
     'notLogged'
   ];
 
-  public function trusted()
+  public function availabilitySearch()
   {
           $reservation = new Reservations;
           $res = $reservation->get();
@@ -47,18 +47,17 @@ class MyAjax extends ServiceProvider {
                 ));
           $checkIn = $_POST['checkIn'];
           $checkOut = $_POST['checkOut'];
+          $adults = $_POST['adults'];
+          $children = $_POST['children'];
           $data= array (
                 'in' => $checkIn ,
                 'out' => $checkOut,
                 'res' => $res,
+                'adults' => $adults,
+                'children' => $children,
         'rooms' => $roomData);
 
-bshb_get_template_part('search/search-results/rooms', null , $data);
-
-
-
-
-
+bshb_get_template_part('search/search-results/rooms', 'list' , $data);
 
   }
 

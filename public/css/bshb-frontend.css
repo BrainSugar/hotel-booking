@@ -16621,6 +16621,8 @@ readers do not read off random characters that represent icons */
 }
 
 .bshb-container {
+  font-size: 14px !important;
+  padding: 5rem;
   /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -16645,8 +16647,6 @@ Alternate buttons
 --------------------------------------------------
 */
   /* CSS3 on/off switches */
-  font-size: 14px !important;
-  padding: 5rem;
 }
 
 .bshb-container :root {
@@ -24961,8 +24961,8 @@ a.bshb-container .badge-dark:focus, a.bshb-container .badge-dark.focus {
           box-shadow: none;
   line-height: 21px;
   position: relative;
-  -webkit-transition: color 0.1s linear 0s,background-color 0.1s linear 0s,opacity 0.2s linear 0s !important;
-  transition: color 0.1s linear 0s,background-color 0.1s linear 0s,opacity 0.2s linear 0s !important;
+  -webkit-transition: color 0.1s linear 0s, background-color 0.1s linear 0s, opacity 0.2s linear 0s !important;
+  transition: color 0.1s linear 0s, background-color 0.1s linear 0s, opacity 0.2s linear 0s !important;
   padding: 6px 17px;
 }
 
@@ -25253,7 +25253,8 @@ fieldset[disabled] .bshb-container .btn-danger.active {
   background-color: #fff;
 }
 
-.bshb-container .btn-default, .bshb-container .btn-default:focus {
+.bshb-container .btn-default,
+.bshb-container .btn-default:focus {
   color: #5e5e5e;
   background-color: #fff;
   border-color: #f3fdfc;
@@ -25277,7 +25278,7 @@ fieldset[disabled] .bshb-container .btn-danger.active {
 
 .bshb-container .quantity-number {
   width: auto;
-  max-width: 4rem;
+  max-width: 6rem;
   padding: 0;
   background: none;
   min-width: 1.5rem;
@@ -25285,12 +25286,12 @@ fieldset[disabled] .bshb-container .btn-danger.active {
   font-weight: 600;
   text-align: center;
   border: none;
-  color: #4CAF50;
+  color: #10cfbd;
 }
 
 .bshb-container .minus,
 .bshb-container .plus {
-  color: #4CAF50;
+  color: #10cfbd;
   font-size: 1.3rem;
   margin-top: 2rem;
   cursor: pointer;
@@ -25766,23 +25767,80 @@ fieldset[disabled] .bshb-container .form-control {
 .bshb-container .bshb-search-form {
   width: 100%;
   background: #fff;
-  border: 1px solid black;
   border-radius: 0.25rem;
-  padding: 2rem;
+  padding: 2em;
+  -webkit-box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
 }
 
 .bshb-container .bshb-search-form .check-in,
 .bshb-container .bshb-search-form .check-out,
 .bshb-container .bshb-search-form .guests {
-  margin: 2rem 0;
-  padding-bottom: 1rem;
+  margin: 2em 0;
+  padding-bottom: 1em;
 }
 
-.bshb-container .bshb-search-form .check-in label,
-.bshb-container .bshb-search-form .check-out label,
-.bshb-container .bshb-search-form .guests label {
+.bshb-container .bshb-search-form .check-in .form-heading,
+.bshb-container .bshb-search-form .check-out .form-heading,
+.bshb-container .bshb-search-form .guests .form-heading {
   color: #676767;
   font-size: 14px;
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
+}
+
+.bshb-container .bshb-search-form .guests .guest-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.bshb-container .bshb-search-form .guests .guests-title {
+  text-align: center;
+  color: #9e9e9e;
+}
+
+.bshb-container .room-item {
+  background: #fff;
+  border-radius: 0.25rem;
+  margin: 2rem;
+}
+
+.bshb-container .room-item .room-image {
+  height: 300px;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.bshb-container .room-item .room-image img {
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+}
+
+.bshb-container .room-item .room-title {
+  padding: 2rem;
+}
+
+.bshb-container .room-item .room-price {
+  padding: 2rem;
+  text-align: right;
+}
+
+.bshb-container .room-item .room-price h1 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  display: inline;
+}
+
+.bshb-container .room-item .room-price p {
+  display: inline;
+  color: #676767;
 }
 /*# sourceMappingURL=bshb-frontend.css.map */

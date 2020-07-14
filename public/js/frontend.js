@@ -11,8 +11,8 @@
                 // alert(defaultDates);
 
                 // var today = moment().format('D M Y');
-                var dates = flatpickr("#check-in-input", {
-                        "plugins": [new rangePlugin({ input: "#check-out-input" })],
+                var dates = flatpickr("#input-check-in", {
+                        "plugins": [new rangePlugin({ input: "#input-check-out" })],
                         "minDate": today,
                         altInput: true,
                         altFormat: "F j, Y",

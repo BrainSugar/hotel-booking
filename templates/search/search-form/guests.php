@@ -1,6 +1,7 @@
 <?php
 
-        $children_bookable = Brainsugar()->options->get('Reservation.children_bookable');
+        // $children_bookable = Brainsugar()->options->get('Reservation.children_bookable');
+        $children_bookable = "true";
         $maxRooms = 5;
 ?>
 <div class="guests-wrapper">
@@ -12,7 +13,7 @@
                                 <span class="minus cursor-pointer">
                                         <i class='fad fa-minus'></i>
                                 </span>
-                                <input type="number" class="quantity-number" name="bshb_generate_room" id="Adults" value="2" max="8" min="0" required>
+                                <input type="number" class="quantity-number" name="bshb-adults-input" id="input-adults" value="2" max="8" min="0" required  readonly="readonly">
                                 <!-- Plus button -->
                                 <span class="plus  cursor-pointers">
                                         <i class='fad fa-plus'></i>
@@ -20,13 +21,15 @@
                         </div>    
                         <p class="guests-title"><?php echo esc_html('Adults' , 'bshb') ?></p>                  
                 </div>
+
+                 <?php if($children_bookable == "true") { ?>
                 <div class="col guest-input">
                         <div class="input-wrapper d-flex m-auto">
                                 <!-- Minus Button -->
                                 <span class="minus cursor-pointer">
                                         <i class='fad fa-minus'></i>
                                 </span>
-                                <input type="number" class="quantity-number" name="bshb_generate_room" id="Children" value="0" max="8" min="0" readonly="readonly">
+                                <input type="number" class="quantity-number" name="bshb-children-input" id="input-children" value="0" max="8" min="0" readonly="readonly">
                                 <!-- Plus button -->
                                 <span class="plus  cursor-pointers">
                                         <i class='fad fa-plus'></i>
@@ -34,38 +37,11 @@
                         </div>
                         <p class="guests-title"><?php echo esc_html('Children' , 'bshb') ?></p>
                 </div>
+                <?php } ?>
         </div>
 </div>
 
 
-<!-- 
-
-        <div class="col-sm-12">
-                <div class="guests-selected">
-                        <h1 class="adults">2</h1>
-                        <p>Adults</p>
-                        <?php if($children_bookable == "true") { ?>
-                                <h1 class="children">0</h1>
-                                <p>Children</p>
-                        <?php } ?>
-                </div>
-        </div>
-</div>
-        <div class="row ">
-        <div class="col-sm-12">
-        <div class="input-group">
-                                <label>Adults</label>
-                                <input type="number" id="adults" value= "2" class="form-control" required>
-        </div>
-                
-        </div>
-        <?php if($children_bookable == "true") { ?>
-                <div class="col-sm-12">
-                        <input type="number" id="children" value="0" class="form-control" required>
-                </div>
-        <?php } ?>
-        </div>
-</div> -->
 <!-- Script to  incremend and decrement the plus and minus buttons -->
 <script>
         (function ($) {

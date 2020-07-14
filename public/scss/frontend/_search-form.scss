@@ -8,9 +8,10 @@
                 -moz-box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
                 box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
 
-                .check-in,
-                .check-out,
-                .guests {
+                // Common styles for search form elements
+                .check-in-wrapper,
+                .check-out-wrapper,
+                .guests-wrapper {
                         margin: 2em 0;
                         padding-bottom: 1em;
 
@@ -19,13 +20,26 @@
                                 font-size: 14px;
                                 margin-bottom: 2em;
                         }
+
+                        .flatpickr-wrapper {
+                                width: 100%;
+                        }
                 }
 
-                .guests {
+                // Date Inputs
+                .check-in-input,
+                .check-out-input {
+                        color: $color-black;
+                        padding: 1.5em;
+                        border: none;
+                }
+
+                .guests-wrapper {
                         .guest-input {
                                 display: flex;
                                 flex-direction: column;
                         }
+
 
                         .guests-title {
                                 text-align: center;

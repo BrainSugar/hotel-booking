@@ -1,0 +1,52 @@
+// Add styles to the Flatpicker instance.
+// Declared in Frontend.js
+
+.bshb-datepicker {
+
+        .dayContainer {
+                .flatpickr-day {
+                        &:hover {
+                                background: $color-master-light;
+                                border-radius: $border-radius;
+                        }
+                        &.selected {
+                                &.startRange+.endRange:not(:nth-child(7n+1)) {
+                                        box-shadow: -10px 0 0 $color-master; 
+                                }
+
+                        }
+                }
+
+                .today {
+                        border-radius: $border-radius;
+                        color: $color-black;
+                        background: $color-master-lighter;
+                        border: none;
+                }
+
+                .startRange,
+                .endRange {
+                        color: $color-white;
+                        background: $color-master;
+                        border-radius: $border-radius;
+                        border: none;
+
+                        &:hover {
+                                color: $color-white;
+                                background: $color-master;
+                                border-radius: $border-radius;
+                                border: none;
+                        }
+
+                }
+
+                .inRange {
+                        color: $color-black;
+                        background: $color-master-light;
+                        border-color: $color-master-light;
+                        box-shadow: -5px 0 0 $color-master-light, 5px 0 0 $color-master-light;
+                }
+        }
+
+
+}

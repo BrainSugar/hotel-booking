@@ -3,7 +3,7 @@
         $children_bookable = Brainsugar()->options->get('Reservation.children_bookable');
         $maxRooms = 5;
 ?>
-<div class="guests">
+<div class="guests-wrapper">
         <p class="form-heading"><?php echo esc_html('Guests'); ?></p>
         <div class="row">
                 <div class="col guest-input">
@@ -12,7 +12,7 @@
                                 <span class="minus cursor-pointer">
                                         <i class='fad fa-minus'></i>
                                 </span>
-                                <input type="number" class="quantity-number" name="bshb_generate_room" id="inputRoomNumber" value="2" max="8" min="0" required>
+                                <input type="number" class="quantity-number" name="bshb_generate_room" id="Adults" value="2" max="8" min="0" required>
                                 <!-- Plus button -->
                                 <span class="plus  cursor-pointers">
                                         <i class='fad fa-plus'></i>
@@ -26,7 +26,7 @@
                                 <span class="minus cursor-pointer">
                                         <i class='fad fa-minus'></i>
                                 </span>
-                                <input type="number" class="quantity-number" name="bshb_generate_room" id="inputRoomNumber" value="0" max="8" min="0" readonly="readonly">
+                                <input type="number" class="quantity-number" name="bshb_generate_room" id="Children" value="0" max="8" min="0" readonly="readonly">
                                 <!-- Plus button -->
                                 <span class="plus  cursor-pointers">
                                         <i class='fad fa-plus'></i>

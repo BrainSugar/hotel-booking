@@ -25878,6 +25878,12 @@ fieldset[disabled] .bshb-container .form-control {
 
 .bshb-container .landing-page .landing-content {
   padding: 3em;
+  margin-bottom: 2em;
+}
+
+.bshb-container .landing-page .landing-content img {
+  height: 200px;
+  margin: auto;
 }
 
 .bshb-container .bshb-datepicker .dayContainer .flatpickr-day:hover {

@@ -28,8 +28,8 @@
 
                 $('body').on('submit', '#bshb-search-form', function (e) {
                         e.preventDefault();
-                        var checkInDate = dates.selectedDates[0];
-                        var checkOutDate = dates.selectedDates[1];
+                        var checkInDate = moment(dates.selectedDates[0]).format('YYYY-MM-DD');
+                        var checkOutDate = moment(dates.selectedDates[1]).format('YYYY-MM-DD');
                         var adults = $('#input-adults').val();
                         var children = $('#input-children').val();
                         if (checkInDate == null) {
@@ -53,13 +53,16 @@
                         $.post(
                                 ajaxurl,
                                 {
-                                        action: 'availabilitySearch',
-                                        checkIn: checkInDate,
-                                        checkOut: checkOutDate,
+                                        action: 'searchAvailability',
+                                        checkInDate: checkInDate,
+                                        checkOutDate: checkOutDate,
                                         adults: adults,
                                         children: children,
                                 },
                                 function (response) {
+                                        alert(response);
+                                        console.log(response);
+                                        $('#bshb-sidebar-dates').html(response.sidebarDates);
                                         $('#bshb-search-content').html(response);
                                 }
                         );

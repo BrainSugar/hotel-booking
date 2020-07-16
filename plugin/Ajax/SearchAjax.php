@@ -3,7 +3,9 @@
 namespace Brainsugar\Ajax;
 
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
-use Brainsugar\Model\Reservations;
+ use Brainsugar\Http\Controllers\Frontend\SearchController;
+
+
 
 class SearchAjax extends ServiceProvider {
 
@@ -14,7 +16,7 @@ class SearchAjax extends ServiceProvider {
    * @var array
    */
   protected $trusted = [
-    'availabilitySearch'
+    'searchAvailability'
   ];
 
   /**
@@ -37,18 +39,32 @@ class SearchAjax extends ServiceProvider {
     'notLogged'
   ];
 
-  public function availabilitySearch()
+  public function searchAvailability()
   {
-          $reservation = new Reservations;
-          $res = $reservation->get();
-        $roomData = get_posts(array(
-                        'post_type' => 'bshb_room',
-                        'fields'          => 'ids'
-                ));
-          $checkIn = $_POST['checkIn'];
-          $checkOut = $_POST['checkOut'];
-          $adults = $_POST['adults'];
-          $children = $_POST['children'];
+        $checkIn = $_POST['checkInDate'];
+        $checkOut = $_POST['checkOutDate'];
+        $adults = $_POST['adults'];
+        $children = $_POST['children'];
+        
+
+        $searchController = new SearchController;
+
+        $sidebarDatesTemplate = $searchController->getSidebarDatesTemplate($checkIn , $checkOut);
+
+        $templates = [
+                "sidebarDates" => $sidebarDatesTemplate,
+        ];
+
+        wp_send_json($templates);
+
+
+        //   $reservation = new Reservations;
+        //   $res = $reservation->get();
+        // $roomData = get_posts(array(
+        //                 'post_type' => 'bshb_room',
+        //                 'fields'          => 'ids'
+        //         ));
+
         //   $data= array (
         //         'in' => $checkIn ,
         //         'out' => $checkOut,
@@ -57,12 +73,12 @@ class SearchAjax extends ServiceProvider {
         //         'children' => $children,
         // 'rooms' => $roomData);
 
-        $dates = (object) [
-                "check_in" => $checkIn ,
-                "check_out" => $checkOut
-        ];
+        // $dates = (object) [
+        //         "check_in" => $checkIn ,
+        //         "check_out" => $sidebarDates
+        // ];
 
-        bshb_get_template_part('search/search-results/sidebar', 'dates' , $dates);
+        // bshb_get_template_part('search/search-results/sidebar', 'dates' , $dates);
 
 // bshb_get_template_part('search/search-results/rooms', 'list' , $data);
 

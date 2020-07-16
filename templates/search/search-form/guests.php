@@ -13,7 +13,7 @@
                                 <span class="minus cursor-pointer">
                                         <i class='fad fa-minus'></i>
                                 </span>
-                                <input type="number" class="quantity-number" name="bshb-adults-input" id="input-adults" value="2" max="8" min="0" required  readonly="readonly">
+                                <input type="number" class="quantity-number" name="input-adults" id="input-adults" value="2" max="8" min="1" required  readonly="readonly">
                                 <!-- Plus button -->
                                 <span class="plus  cursor-pointers">
                                         <i class='fad fa-plus'></i>
@@ -29,7 +29,7 @@
                                 <span class="minus cursor-pointer">
                                         <i class='fad fa-minus'></i>
                                 </span>
-                                <input type="number" class="quantity-number" name="bshb-children-input" id="input-children" value="0" max="8" min="0" readonly="readonly">
+                                <input type="number" class="quantity-number" name="input-children" id="input-children" value="0" max="8" min="0" required readonly="readonly">
                                 <!-- Plus button -->
                                 <span class="plus  cursor-pointers">
                                         <i class='fad fa-plus'></i>

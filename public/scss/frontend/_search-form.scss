@@ -27,11 +27,15 @@
                 }
 
                 // Date Inputs
-                .check-in-input,
-                .check-out-input {
+                .input-check-in,
+                .input-check-out {
                         color: $color-black;
                         padding: 1.5em;
                         border: none;
+                }
+
+                .validate-fail {
+                        background-color: #ffefef;
                 }
 
                 .guests-wrapper {

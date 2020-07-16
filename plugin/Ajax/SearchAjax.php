@@ -49,15 +49,23 @@ class SearchAjax extends ServiceProvider {
           $checkOut = $_POST['checkOut'];
           $adults = $_POST['adults'];
           $children = $_POST['children'];
-          $data= array (
-                'in' => $checkIn ,
-                'out' => $checkOut,
-                'res' => $res,
-                'adults' => $adults,
-                'children' => $children,
-        'rooms' => $roomData);
+        //   $data= array (
+        //         'in' => $checkIn ,
+        //         'out' => $checkOut,
+        //         'res' => $res,
+        //         'adults' => $adults,
+        //         'children' => $children,
+        // 'rooms' => $roomData);
 
-bshb_get_template_part('search/search-results/rooms', 'list' , $data);
+        $dates = (object) [
+                "check_in" => $checkIn ,
+                "check_out" => $checkOut
+        ];
+
+        bshb_get_template_part('search/search-results/sidebar', 'dates' , $dates);
+
+// bshb_get_template_part('search/search-results/rooms', 'list' , $data);
+
 
   }
 
@@ -74,5 +82,7 @@ bshb_get_template_part('search/search-results/rooms', 'list' , $data);
 
     wp_send_json( $response );
   }
+
+
 
 }

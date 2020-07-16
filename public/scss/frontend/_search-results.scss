@@ -1,0 +1,18 @@
+.search-content,
+.search-sidebar {
+        margin: 5em 0;
+}
+
+.search-sidebar {
+        padding: 2em;
+        border-left: solid 1px $color-grey;
+}
+
+.landing-page {
+        background: $color-white;
+        border-radius: $border-radius;
+
+        .landing-content {
+                padding: 3em;
+        }
+}

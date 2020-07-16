@@ -24,26 +24,42 @@
                 // Add Brainsugar Styles to flatpickr 
                 dates.calendarContainer.classList.add("bshb-datepicker");
 
-                console.log(dates.calendarContainer);
+
 
                 $('body').on('submit', '#bshb-search-form', function (e) {
                         e.preventDefault();
-                        var checkIn = $('#check-in').val();
-                        var checkOut = $('#check-out').val();
-                        var adults = $('#adults').val();
-                        var children = $('#children').val();
+                        var checkInDate = dates.selectedDates[0];
+                        var checkOutDate = dates.selectedDates[1];
+                        var adults = $('#input-adults').val();
+                        var children = $('#input-children').val();
+                        if (checkInDate == null) {
+                                $('.input-check-in').addClass('validate-fail');
+                                $('.input-check-out').addClass('validate-fail');
+                                $('.validate-msg').removeClass('d-none');
+                                return;
+                        }
+                        else {
+                                $('.input-check-in').removeClass('validate-fail');
+                                $('.input-check-out').removeClass('validate-fail');
+                                $('.validate-msg').addClass('d-none');
+
+                        }
+                        if (adults == 0) {
+                                $('#input-adults').val('1');
+
+                        }
+                        console.log(dates.selectedDates[0]);
 
                         $.post(
                                 ajaxurl,
                                 {
                                         action: 'availabilitySearch',
-                                        checkIn: checkIn,
-                                        checkOut: checkOut,
+                                        checkIn: checkInDate,
+                                        checkOut: checkOutDate,
                                         adults: adults,
                                         children: children,
                                 },
                                 function (response) {
-                                        // alert(response);
                                         $('#bshb-search-content').html(response);
                                 }
                         );

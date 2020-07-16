@@ -1,8 +1,12 @@
-<div class="row">
-<div class="col-sm-12 text-center">
- <i class="fa fa-search fa-5x" aria-hidden="true" alt="<?php echo esc_html__( 'No rooms available', 'bshb' ); ?>"></i>
-                        <p><?php esc_html_e( 'Enter dates to check for available rooms.', 'bshb' ); ?></p>
+<div class="landing-page">
+        <div class="row">
+                <div class="col-sm-12  text-center">
+                        <div class="landing-content">
+                                <img src="<?php echo esc_url(BSHB_ASSETS_PATH . '/img/download.png' ) ?>">
+                                <h1 class="text-center display-4">Lets start your search!</h1>
+                                <p><?php esc_html_e( 'Enter dates to check for available rooms.', 'bshb' ); ?></p>
+                        </div>                        
+                </div>
+        </div>
 </div>
-</div>
-<?php var_dump($data->landing); ?>
-<?php var_dump($data); ?>
+

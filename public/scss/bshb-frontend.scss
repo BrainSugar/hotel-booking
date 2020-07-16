@@ -20,6 +20,8 @@
         // Frontend Modules
         @import "frontend/search-form";
         @import "frontend/room-item";
+        @import"frontend/search-results";
+
 
         // Flatpicker Instance should be a static instance for the styles to apply inside the container
         @import"frontend/date-picker";

@@ -16622,7 +16622,7 @@ readers do not read off random characters that represent icons */
 
 .bshb-container {
   font-size: 14px !important;
-  padding: 5rem;
+  padding: 4em;
   /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -25277,12 +25277,12 @@ fieldset[disabled] .bshb-container .btn-danger.active {
 }
 
 .bshb-container .quantity-number {
-  width: auto;
-  max-width: 6rem;
+  width: 1.5em;
+  max-width: 3em;
   padding: 0;
   background: none;
-  min-width: 1.5rem;
-  font-size: 4rem;
+  min-width: 1.5em;
+  font-size: 3em;
   font-weight: 600;
   text-align: center;
   border: none;
@@ -25292,8 +25292,8 @@ fieldset[disabled] .bshb-container .btn-danger.active {
 .bshb-container .minus,
 .bshb-container .plus {
   color: #10cfbd;
-  font-size: 1.3rem;
-  margin-top: 2rem;
+  font-size: 1.3em;
+  margin-top: 1em;
   cursor: pointer;
 }
 
@@ -25764,51 +25764,50 @@ fieldset[disabled] .bshb-container .form-control {
   background-color: #f8d053;
 }
 
-.bshb-container .loader {
-  position: relative;
+.bshb-container .bshb-loader {
   background: #fff;
   border-radius: 0.25rem;
   min-height: 200px;
+  position: relative;
   width: 100%;
-  -webkit-transition: all 2s ease-in-out;
-  transition: all 2s ease-in-out;
 }
 
-.bshb-container .loader::before {
-  content: '';
-  position: absolute;
-  border-radius: 0.25rem;
-  display: block;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.bshb-container .bshb-loader::before {
   background: #fff;
+  border-radius: 0.25rem;
+  bottom: 0;
+  content: '';
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   z-index: 5;
 }
 
-.bshb-container .loader::after {
-  content: '';
-  position: absolute;
-  top: 47%;
-  left: 47.5%;
-  display: block;
-  height: 2em;
-  width: 2em;
-  z-index: 10;
+.bshb-container .bshb-loader::after {
+  -ms-transform: translateZ(0);
+  -webkit-animation: bshbspinner 1.1s infinite linear;
+  -webkit-transform: translateZ(0);
+  animation: bshbspinner 1.1s infinite linear;
   background: none;
-  border-radius: 50%;
-  border-top: 0.4em solid #e7faf8;
-  border-right: 0.4em solid #e7faf8;
   border-bottom: 0.4em solid #e7faf8;
   border-left: 0.4em solid #10cfbd;
-  -webkit-transform: translateZ(0);
+  border-radius: 50%;
+  border-right: 0.4em solid #e7faf8;
+  border-top: 0.4em solid #e7faf8;
+  content: '';
+  display: block;
+  height: 2em;
+  left: 47.5%;
+  position: absolute;
+  top: 47%;
   transform: translateZ(0);
-  -webkit-animation: spinner 1.1s infinite linear;
-  animation: spinner 1.1s infinite linear;
+  width: 2em;
+  z-index: 10;
 }
 
-@-webkit-keyframes spinner {
+@-webkit-keyframes bshbspinner {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -25819,18 +25818,7 @@ fieldset[disabled] .bshb-container .form-control {
   }
 }
 
-@-webkit-keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes load8 {
+@keyframes bshbspinner {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -25854,7 +25842,6 @@ fieldset[disabled] .bshb-container .form-control {
 .bshb-container .bshb-search-form .check-out-wrapper,
 .bshb-container .bshb-search-form .guests-wrapper {
   margin: 2em 0;
-  padding-bottom: 1em;
 }
 
 .bshb-container .bshb-search-form .check-in-wrapper .form-heading,
@@ -25961,6 +25948,33 @@ fieldset[disabled] .bshb-container .form-control {
 .bshb-container .landing-page .landing-content img {
   height: 200px;
   margin: auto;
+}
+
+.bshb-container .sidebar-dates {
+  padding: 1em;
+  border-radius: 0.25rem;
+}
+
+.bshb-container .sidebar-dates .date-heading {
+  color: #676767;
+}
+
+.bshb-container .sidebar-dates .stay-dates {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bshb-container .sidebar-dates .month-year {
+  text-align: center;
+  padding: 1em 0 0.5em 0;
+}
+
+.bshb-container .sidebar-dates .day span {
+  font-size: 3.5em;
 }
 
 .bshb-container .bshb-datepicker .dayContainer .flatpickr-day:hover {

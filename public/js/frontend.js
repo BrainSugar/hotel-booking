@@ -49,9 +49,8 @@
 
                         }
                         console.log(dates.selectedDates[0]);
-
-                        $('#bshb-sidebar-dates').addClass('loader');
-                        $('#bshb-search-content').addClass('loader');
+                        $('#bshb-sidebar-dates').addClass('bshb-loader');
+                        $('#bshb-search-content').addClass('bshb-loader');
 
                         $.post(
                                 ajaxurl,
@@ -63,12 +62,12 @@
                                         children: children,
                                 },
                                 function (response) {
-                                        alert(response);
-                                        console.log(response);
+                                        // alert(response);
+                                        // console.log(response);
                                         $('#bshb-sidebar-dates').html(response.sidebarDates);
                                         $('#bshb-search-content').html(response);
-                                        $('#bshb-sidebar-dates').removeClass('loader');
-                                        $('#bshb-search-content').removeClass('loader');
+                                        $('#bshb-sidebar-dates').removeClass('bshb-loader');
+                                        $('#bshb-search-content').removeClass('bshb-loader');
                                 },
                         );
 

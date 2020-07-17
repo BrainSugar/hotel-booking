@@ -9,7 +9,7 @@
         <div class="col-sm-6">
                 <h1 class="font-weight-light">data not set</h1>
         </div>
-       <?php } ?>
+       <?php } ?>  
 
               <?php if(isset($data->check_out)){ ?>
         <div class="col-sm-6">

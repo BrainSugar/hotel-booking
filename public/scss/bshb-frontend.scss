@@ -10,6 +10,7 @@
 @import "vendors/font-awesome/solid.scss";
 
 
+
 .bshb-container {
         font-size: 14px !important;
         padding: 5rem;
@@ -17,7 +18,10 @@
         @import"modules/button";
         @import"modules/form_elements";
 
+
+
         // Frontend Modules
+        @import"frontend/loader";
         @import "frontend/search-form";
         @import "frontend/room-item";
         @import"frontend/search-results";

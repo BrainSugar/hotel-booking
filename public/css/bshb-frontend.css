@@ -25908,6 +25908,10 @@ fieldset[disabled] .bshb-container .form-control {
   padding: 2rem;
 }
 
+.bshb-container .room-item .room-desc {
+  padding: 2rem;
+}
+
 .bshb-container .room-item .room-price {
   padding: 2rem;
   text-align: right;
@@ -25923,6 +25927,55 @@ fieldset[disabled] .bshb-container .form-control {
 .bshb-container .room-item .room-price p {
   display: inline;
   color: #676767;
+}
+
+.bshb-container .room-item .room-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bshb-container .room-item .room-info .room-size,
+.bshb-container .room-item .room-info .room-adults,
+.bshb-container .room-item .room-info .room-children {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.bshb-container .room-item .room-info .room-size i,
+.bshb-container .room-item .room-info .room-adults i,
+.bshb-container .room-item .room-info .room-children i {
+  margin: 0.5rem 1rem;
+  color: #10cfbd;
+}
+
+.bshb-container .room-item .room-info .room-size i :after,
+.bshb-container .room-item .room-info .room-adults i :after,
+.bshb-container .room-item .room-info .room-children i :after {
+  opacity: 0.5;
+}
+
+.bshb-container .room-item .room-info .room-size p,
+.bshb-container .room-item .room-info .room-adults p,
+.bshb-container .room-item .room-info .room-children p {
+  margin: 0.2rem 0;
+}
+
+.bshb-container .room-item .available-rooms {
+  text-align: right;
+  margin: 0 2rem 2rem 2rem;
+  padding: 1rem;
+  background-color: #e7faf8;
+  border-radius: 0.25rem;
 }
 
 .bshb-container .search-content,

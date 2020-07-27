@@ -57,12 +57,23 @@ class RoomMetabox extends ManageMetaboxes {
             ),
             array(
                 'id'    => 'pricing',
-                'icon' => 'dashicons-align-left',
+                'icon' => 'fad fa-time',
                 'title' => 'Pricing',                
                 'fields' => array(
                         $prefix . 'pricing_title',
                     $prefix . 'room_price'                    
                 ),
+            ),
+            array(
+                    'id' => 'occupancy',
+                    'icon' => 'fad fa-time',
+                    'title' => 'Occupancy',
+                    'fields' => array(
+                            $prefix.'occupancy_title',
+                            $prefix.'max_occupancy',
+                            $prefix.'max_adults',
+                            $prefix.'max_children',
+                    ),
             ),
         //                 array(
         //         'id'    => 'occupancy',
@@ -84,6 +95,7 @@ class RoomMetabox extends ManageMetaboxes {
         //     ),
         )
         ) );
+
         
         $cmb_demo->add_field( array(
 	'name' => __('Rooms'),
@@ -122,12 +134,55 @@ class RoomMetabox extends ManageMetaboxes {
         'name'          => __( 'Room Price', 'cmb2' ),
         'id'            => $prefix . 'room_price',
         'type'          => 'text',
+        'attributes' => array(
+                'type' => 'number',
+        ),
         'class' => 'form-control',
                 'repeatable' => false,
 
     ) );
     
+//     Ocuupancy fields
+            $cmb_demo->add_field( array(
+	'name' => __('Occupancy'),
+	'desc' => 'Set limits on number of people this room type can handle.',
+        'type' => 'title',        
+        'id'   => $prefix . 'occupancy_title',
+        'classes' => 'bshb-title',
+) );
 
+    $cmb_demo->add_field( array(
+        'name'          => __( 'Maximum Occupancy', 'cmb2' ),
+        'id'            => $prefix . 'max_occupancy',
+        'type'          => 'text',      
+         'attributes' => array(
+        'type' => 'number',
+    ),
+                'repeatable' => false,
+
+    ) );
+
+        $cmb_demo->add_field( array(
+        'name'          => __( 'Adults', 'cmb2' ),
+        'id'            => $prefix . 'max_adults',
+        'type'          => 'text',      
+         'attributes' => array(
+        'type' => 'number',
+    ),
+                'repeatable' => false,
+
+    ) );
+
+        $cmb_demo->add_field( array(
+        'name'          => __( ' Children', 'cmb2' ),
+        'id'            => $prefix . 'max_children',
+        'type'          => 'text',      
+         'attributes' => array(
+        'type' => 'number',
+    ),
+                'repeatable' => false,
+
+    ) );
 //     $cmb_demo->add_field( array(
 //         'name'          => __( 'Test field 4', 'cmb2' ),
 //         'id'            => $prefix . '_field_4',

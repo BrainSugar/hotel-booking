@@ -43,16 +43,19 @@ class SearchAjax extends ServiceProvider {
   {
         $checkIn = $_POST['checkInDate'];
         $checkOut = $_POST['checkOutDate'];
-        $adults = $_POST['adults'];
-        $children = $_POST['children'];
+        $adults = absint($_POST['adults']);
+        $children = absint($_POST['children']);
         
 
         $searchController = new SearchController;
 
         $sidebarDatesTemplate = $searchController->getSidebarDatesTemplate($checkIn , $checkOut);
 
+        $searchResultsTemplate = $searchController->getSearchResultsTemplate($checkIn , $checkOut , $adults , $children);
+
         $templates = [
                 "sidebarDates" => $sidebarDatesTemplate,
+                "searchResults" => $searchResultsTemplate
         ];
 
         wp_send_json($templates);

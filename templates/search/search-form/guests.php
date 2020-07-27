@@ -7,7 +7,7 @@
 <div class="guests-wrapper">
         <p class="form-heading"><?php echo esc_html('Guests'); ?></p>
         <div class="row">
-                <div class="col-sm-6 col-xs-12 guest-input">
+                <div class="col col-xs-12 guest-input">
                         <div class="input-wrapper d-flex m-auto">
                                 <!-- Minus Button -->
                                 <span class="minus cursor-pointer">
@@ -23,7 +23,7 @@
                 </div>
 
                  <?php if($children_bookable == "true") { ?>
-                <div class="col-sm-6 col-xs-12 guest-input">
+                <div class="col col-xs-12 guest-input">
                         <div class="input-wrapper d-flex m-auto">
                                 <!-- Minus Button -->
                                 <span class="minus cursor-pointer">

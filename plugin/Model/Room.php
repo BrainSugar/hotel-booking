@@ -98,6 +98,29 @@ class Room extends Model
                 $response = $this->where('id', $roomId)->update(['name'=> $roomName]);
                 return $response;
 
-        }        
+        }
+        /**
+         * Get all the published room Types and get the room units for them.
+         *
+         * Used in Search Controller
+         * 
+         * @return void
+         */
+        public function getAllRoomTypeAndRoomUnits() {
+
+                // Get all published room types
+                $postIds = get_posts(array(
+                        'post_type' => 'bshb_room',
+                        'fields'          => 'ids',
+                        'status' => 'published'
+                ));
+                
+                // loop through each room type and get all room ids for each room type.
+                  foreach ($postIds as $postId){
+                        $roomIds = $this->getRoomIds($postId);
+                        $response[$postId] = $roomIds;
+                }
+                return $response;
+        }
         
 }

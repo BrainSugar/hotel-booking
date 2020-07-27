@@ -9,8 +9,38 @@ Use Carbon\Carbon;
 
 class SearchController extends Controller
 {
-        public function getSearchResults($checkInDate , $checkOutDate , $adults , $children = null) {
-                
+        public function getSearchResultsTemplate($checkIn , $checkOut , $adults , $children = null) {
+                $reservations = new Reservations;
+
+                // Get Available rooms for the search criteria.
+                $availableRooms = $reservations->getAvailableRooms($checkIn , $checkOut , $adults , $children);
+
+                // Get the available room types.
+                $roomTypes = [];
+                foreach($availableRooms as $key => $value) {
+                        array_push($roomTypes , $key);                        
+                }
+
+                // Get post data for the avai;able room types.
+                $posts = get_posts(
+                        array(
+                                'post_type' => 'bshb_room',
+                                'post__in' => $roomTypes,       
+                        )        
+                );
+
+                // Send all the data into an object to be sent to the template
+                $data = (object)[                        
+                        'room_data' => $availableRooms,
+                        'posts' => $posts,
+                ];
+
+                // Call the searcj results template and fill the data
+                ob_start();
+                        echo  bshb_get_template_part('search/search-results/rooms', 'list' , $data);
+               $response = ob_get_clean();
+
+                return $response;
                
         }
         public function getSidebarDatesTemplate($checkInDate , $checkOutDate) {

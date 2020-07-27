@@ -62,10 +62,10 @@
                                         children: children,
                                 },
                                 function (response) {
-                                        // alert(response);
-                                        // console.log(response);
+                                        alert(response.searchResults);
+                                        console.log(response.searchResults);
                                         $('#bshb-sidebar-dates').html(response.sidebarDates);
-                                        $('#bshb-search-content').html(response);
+                                        $('#bshb-search-content').html(response.searchResults);
                                         $('#bshb-sidebar-dates').removeClass('bshb-loader');
                                         $('#bshb-search-content').removeClass('bshb-loader');
                                 },

@@ -45,13 +45,18 @@ class SearchAjax extends ServiceProvider {
         $checkOut = $_POST['checkOutDate'];
         $adults = absint($_POST['adults']);
         $children = absint($_POST['children']);
+        $filterView = $_POST['view'];
+
+        if (!$filterView) {
+                $filterView = "list";
+        }
         
 
         $searchController = new SearchController;
 
         $sidebarDatesTemplate = $searchController->getSidebarDatesTemplate($checkIn , $checkOut);
 
-        $searchResultsTemplate = $searchController->getSearchResultsTemplate($checkIn , $checkOut , $adults , $children);
+        $searchResultsTemplate = $searchController->getSearchResultsTemplate($checkIn , $checkOut , $adults , $children , $filterView);
 
         $templates = [
                 "sidebarDates" => $sidebarDatesTemplate,

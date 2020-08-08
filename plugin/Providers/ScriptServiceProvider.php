@@ -131,10 +131,13 @@ function frontendScripts() {
         wp_enqueue_script( 'flatpickr-range' );
         wp_register_script( "flatpickr", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/flatpickr.js'), array( "jquery" , "flatpickr-range")); 
         wp_enqueue_script( 'flatpickr' );
-        
+        wp_register_script( 'bootstrap-bundle',  plugins_url('/brainsugar-hotel-booking/public/js/bootstrap.bundle.js'), array( "jquery" ));
                 wp_enqueue_style( 'brainsugar-frontend', plugins_url( '/brainsugar-hotel-booking/public/css/bshb-frontend.css'), array());
         wp_enqueue_style( 'brainsugar-frontend' ); 
-                wp_register_script( "frontend", plugins_url(  '/brainsugar-hotel-booking/public/js/frontend.js'), array( "jquery" , "moment")); 
+                        wp_enqueue_style( 'swipercss', plugins_url( '/brainsugar-hotel-booking/public/css/swiper.css'), array());
+        wp_enqueue_style( 'swipercss' ); 
+                      wp_register_script( "swiper", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/swiper-bundle.min.js')); 
+                wp_register_script( "frontend", plugins_url(  '/brainsugar-hotel-booking/public/js/frontend.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
         wp_enqueue_script( 'frontend' );
 
 }

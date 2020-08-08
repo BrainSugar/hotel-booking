@@ -3,14 +3,9 @@
         'use strict';
 
         $(document).ready(function () {
-
-                // alert('frontend');
+                
+                
                 var today = moment().format('YYYY-MM-DD');
-                // var tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
-                // var defaultDates = [today, tomorrow];
-                // alert(defaultDates);
-
-                // var today = moment().format('D M Y');
                 var dates = flatpickr("#input-check-in", {
                         "plugins": [new rangePlugin({ input: "#input-check-out" })],
                         "minDate": today,
@@ -24,10 +19,7 @@
                 // Add Brainsugar Styles to flatpickr 
                 dates.calendarContainer.classList.add("bshb-datepicker");
 
-
-
-                $('body').on('submit', '#bshb-search-form', function (e) {
-                        e.preventDefault();
+                function performSearch(filterView) {
                         var checkInDate = dates.selectedDates[0];
                         var checkOutDate = dates.selectedDates[1];
                         var adults = $('#input-adults').val();
@@ -60,10 +52,11 @@
                                         checkOutDate: moment(checkOutDate).format('YYYY-MM-DD'),
                                         adults: adults,
                                         children: children,
+                                        view: filterView,
                                 },
                                 function (response) {
-                                        alert(response.searchResults);
-                                        console.log(response.searchResults);
+                                        // alert(response.searchResults);
+                                        // console.log(response.searchResults);
                                         $('#bshb-sidebar-dates').html(response.sidebarDates);
                                         $('#bshb-search-content').html(response.searchResults);
                                         $('#bshb-sidebar-dates').removeClass('bshb-loader');
@@ -71,8 +64,22 @@
                                 },
                         );
 
-                });
+                }
 
+
+
+                $('body').on('submit', '#bshb-search-form', function (e) {
+                        e.preventDefault();
+                        performSearch('list');
+                });
+                $('body').on('click', '#filter-grid', function (e) {
+                        e.preventDefault();
+                        performSearch('grid');
+                });
+                $('body').on('click', '#filter-list', function (e) {
+                        e.preventDefault();
+                        performSearch('list');
+                });
 
                 console.log(dates);
         });

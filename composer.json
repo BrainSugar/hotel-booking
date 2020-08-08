@@ -1,41 +1,39 @@
 {
-  "name": "Brainsugar",
-  "type": "wordpress-plugin",
-  "description": "The sweetest hotel booking system.",
-  "keywords": [ "wordpress" ],
-  "homepage": "http://brainsugar.studio/hotel-booking",
-  "license": "GPL-3.0",
-  "authors": [
-    {
-      "name": "Brainsugar Studio",
-      "email": "support@brainsugar.studio",
-      "homepage": "http://brainsugar.studio"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/BrainSugar/hotel-booking/issues",
-    "source": "https://github.com/BrainSugar/hotel-booking"
-  },
-  "require": {
-    "php": ">=7.1",
-    "wpbones/wpbones": "dev-master",     
-    "wpbones/wptables": "~1.0",
-    "wpbones/useragent": "^1.0",    
-    "cmb2/cmb2": "^2.7",
-    "nette/utils": "^3.1"
-  },
-  "autoload": {
-    "psr-4": {
-      "Brainsugar\\": "plugin/"
-    },    
-    "files": [
-      "functions.php"
-    ]
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "php -r \"copy('vendor/wpbones/wpbones/src/Console/bin/bones', 'bones');\"",
-      "php bones rename"
-    ]
-  }
+        "name": "Brainsugar",
+        "type": "wordpress-plugin",
+        "description": "The sweetest hotel booking system.",
+        "keywords": ["wordpress"],
+        "homepage": "http://brainsugar.studio/hotel-booking",
+        "license": "GPL-3.0",
+        "authors": [{
+                "name": "Brainsugar Studio",
+                "email": "support@brainsugar.studio",
+                "homepage": "http://brainsugar.studio"
+        }],
+        "support": {
+                "issues": "https://github.com/BrainSugar/hotel-booking/issues",
+                "source": "https://github.com/BrainSugar/hotel-booking"
+        },
+        "require": {
+                "php": ">=7.1",
+                "wpbones/wpbones": "dev-master",
+                "wpbones/wptables": "~1.0",
+                "wpbones/useragent": "^1.0",
+                "cmb2/cmb2": "^2.7",
+                "nette/utils": "^3.1"
+        },
+        "autoload": {
+                "psr-4": {
+                        "Brainsugar\\": "plugin/"
+                },
+                "files": [
+                        "functions.php"
+                ]
+        },
+        "scripts": {
+                "post-autoload-dump": [
+                        "php -r \"copy('vendor/wpbones/wpbones/src/Console/bin/bones', 'bones');\"",
+                        "php bones rename"
+                ]
+        }
 }

@@ -10,6 +10,8 @@
 @import "vendors/font-awesome/solid.scss";
 
 
+
+
 .bshb-container {
         font-size: 14px !important;
         padding: 4em;
@@ -21,12 +23,18 @@
         // Frontend Modules
         @import"frontend/loader";
         @import "frontend/search-form";
-        @import "frontend/room-item";
+        @import "frontend/room";
+        @import"frontend/search-filters";
         @import"frontend/search-results";
         @import"frontend/sidebar-dates";
 
 
+
+
+
+
         // Flatpicker Instance should be a static instance for the styles to apply inside the container
         @import"frontend/date-picker";
+        @import"frontend/sliders";
 
 }

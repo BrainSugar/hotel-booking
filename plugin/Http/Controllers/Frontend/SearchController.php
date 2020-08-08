@@ -9,7 +9,7 @@ Use Carbon\Carbon;
 
 class SearchController extends Controller
 {
-        public function getSearchResultsTemplate($checkIn , $checkOut , $adults , $children = null) {
+        public function getSearchResultsTemplate($checkIn , $checkOut , $adults , $children = null , $filterView) {
                 $reservations = new Reservations;
 
                 // Get Available rooms for the search criteria.
@@ -23,9 +23,11 @@ class SearchController extends Controller
 
                 // Get post data for the avai;able room types.
                 $posts = get_posts(
-                        array(
+                        array(                                
                                 'post_type' => 'bshb_room',
-                                'post__in' => $roomTypes,       
+                                'post__in' => $roomTypes,
+                                // 'orderby'=> 'title',
+                                // 'order'	=> 'ASC',
                         )        
                 );
 
@@ -37,7 +39,7 @@ class SearchController extends Controller
 
                 // Call the searcj results template and fill the data
                 ob_start();
-                        echo  bshb_get_template_part('search/search-results/rooms', 'list' , $data);
+                        echo  bshb_get_template_part('search/search-results/rooms', $filterView , $data);
                $response = ob_get_clean();
 
                 return $response;

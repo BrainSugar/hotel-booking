@@ -4,9 +4,9 @@
                 background: $color-white;
                 border-radius: $border-radius;
                 padding: 2em;
-                -webkit-box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
-                -moz-box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
-                box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
+                -webkit-box-shadow: $box-shadow;
+                -moz-box-shadow: $box-shadow;
+                box-shadow: $box-shadow;
 
                 // Common styles for search form elements
                 .check-in-wrapper,

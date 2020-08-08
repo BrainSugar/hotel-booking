@@ -22727,8 +22727,8 @@ a.bshb-container .badge-dark:focus, a.bshb-container .badge-dark.focus {
 }
 
 .bshb-container .shadow {
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
 }
 
 .bshb-container .shadow-lg {
@@ -25834,8 +25834,8 @@ fieldset[disabled] .bshb-container .form-control {
   background: #fff;
   border-radius: 0.25rem;
   padding: 2em;
-  -webkit-box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
-  box-shadow: 0px 17px 22px 9px rgba(0, 0, 0, 0.14);
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .bshb-container .bshb-search-form .check-in-wrapper,
@@ -25884,93 +25884,137 @@ fieldset[disabled] .bshb-container .form-control {
   color: #9e9e9e;
 }
 
-.bshb-container .room-item {
+.bshb-container .room-list-wrapper {
   background: #fff;
   border-radius: 0.25rem;
-  margin: 2rem;
+  margin: 4rem 0;
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.bshb-container .room-item .room-image {
+.bshb-container .room-list-wrapper .room-display {
+  position: relative;
+}
+
+.bshb-container .room-list-wrapper .room-display .room-image {
   height: 300px;
   background-position: center;
   background-size: cover;
   overflow: hidden;
 }
 
-.bshb-container .room-item .room-image img {
+.bshb-container .room-list-wrapper .room-display .room-image img {
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
 }
 
-.bshb-container .room-item .room-title {
+.bshb-container .room-list-wrapper .room-display .room-amenities {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bshb-container .room-list-wrapper .room-display .room-amenities:before {
+  display: block;
+  content: '';
+  background: #fff;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.bshb-container .room-list-wrapper .room-content {
+  padding: 2rem 1rem;
+}
+
+.bshb-container .room-title {
   padding: 2rem;
 }
 
-.bshb-container .room-item .room-desc {
+.bshb-container .room-desc {
   padding: 2rem;
 }
 
-.bshb-container .room-item .room-price {
-  padding: 2rem;
-  text-align: right;
+.bshb-container .room-desc p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
-.bshb-container .room-item .room-price h1 {
+.bshb-container .room-price {
+  padding: 2rem;
+  text-align: center;
+}
+
+.bshb-container .room-price h1 {
   font-size: 3.5rem;
   font-weight: 300;
   line-height: 1.2;
   display: inline;
 }
 
-.bshb-container .room-item .room-price p {
+.bshb-container .room-price p {
   display: inline;
   color: #676767;
 }
 
-.bshb-container .room-item .room-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.bshb-container .room-item .room-info .room-size,
-.bshb-container .room-item .room-info .room-adults,
-.bshb-container .room-item .room-info .room-children {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 1rem;
+.bshb-container .room-info {
   margin: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.bshb-container .room-item .room-info .room-size i,
-.bshb-container .room-item .room-info .room-adults i,
-.bshb-container .room-item .room-info .room-children i {
+.bshb-container .room-info .room-size,
+.bshb-container .room-info .room-adults,
+.bshb-container .room-info .room-children {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bshb-container .room-info .room-size i,
+.bshb-container .room-info .room-adults i,
+.bshb-container .room-info .room-children i {
   margin: 0.5rem 1rem;
   color: #10cfbd;
 }
 
-.bshb-container .room-item .room-info .room-size i :after,
-.bshb-container .room-item .room-info .room-adults i :after,
-.bshb-container .room-item .room-info .room-children i :after {
+.bshb-container .room-info .room-size i :after,
+.bshb-container .room-info .room-adults i :after,
+.bshb-container .room-info .room-children i :after {
   opacity: 0.5;
 }
 
-.bshb-container .room-item .room-info .room-size p,
-.bshb-container .room-item .room-info .room-adults p,
-.bshb-container .room-item .room-info .room-children p {
+.bshb-container .room-info .room-size p,
+.bshb-container .room-info .room-adults p,
+.bshb-container .room-info .room-children p {
   margin: 0.2rem 0;
 }
 
-.bshb-container .room-item .available-rooms {
+.bshb-container .room-add-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  padding: 2rem;
+}
+
+.bshb-container .available-rooms {
   text-align: right;
   margin: 0 2rem 2rem 2rem;
   padding: 1rem;
@@ -25978,9 +26022,45 @@ fieldset[disabled] .bshb-container .form-control {
   border-radius: 0.25rem;
 }
 
+.bshb-container .search-filters {
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.bshb-container .search-filters .filter {
+  background: #fff;
+  border-radius: 0.25rem;
+  margin: 1rem;
+  font-size: 1.8rem;
+}
+
+.bshb-container .search-filters .filter i {
+  margin: 1rem;
+  color: #10cfbd;
+}
+
+.bshb-container .search-filters .filter i :after {
+  opacity: 0.5;
+}
+
+.bshb-container .search-filters .filter:hover {
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
+.bshb-container .search-filters .filter .dropdown-menu .dropdown-item:hover {
+  background: #e7faf8;
+}
+
 .bshb-container .search-content,
 .bshb-container .search-sidebar {
-  margin: 5em 0;
+  margin: 2em 0;
 }
 
 .bshb-container .search-sidebar {
@@ -26069,5 +26149,67 @@ fieldset[disabled] .bshb-container .form-control {
   border-color: #e7faf8;
   -webkit-box-shadow: -5px 0 0 #e7faf8, 5px 0 0 #e7faf8;
           box-shadow: -5px 0 0 #e7faf8, 5px 0 0 #e7faf8;
+}
+
+.bshb-container .amenity-slider {
+  width: 100%;
+  height: auto;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.bshb-container .amenity-slider .swiper-slide {
+  text-align: center;
+}
+
+.bshb-container .amenity-slider .swiper-slide .amenity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.bshb-container .amenity-slider .swiper-slide .amenity i {
+  font-size: 1.8em;
+  color: #10cfbd;
+  margin: 2rem 0;
+}
+
+.bshb-container .amenity-slider .swiper-slide .amenity i :after {
+  opacity: 0.5;
+}
+
+.bshb-container .amenity-slider .swiper-slide .amenity span {
+  color: #676767;
+  font-size: 0.9em;
+  margin: 0 0 2rem 0;
+}
+
+.bshb-container .button-prev,
+.bshb-container .button-next {
+  position: absolute;
+  top: 45%;
+  z-index: 10;
+}
+
+.bshb-container .button-prev i,
+.bshb-container .button-next i {
+  color: #10cfbd;
+}
+
+.bshb-container .button-prev i :after,
+.bshb-container .button-next i :after {
+  opacity: 0.5;
+}
+
+.bshb-container .button-next {
+  right: 1rem;
+}
+
+.bshb-container .button-prev {
+  left: 1rem;
 }
 /*# sourceMappingURL=bshb-frontend.css.map */

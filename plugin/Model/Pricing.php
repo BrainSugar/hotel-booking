@@ -186,9 +186,10 @@ class Pricing extends Model
         foreach($prices as $key => $value){
                 $total = $total + $value;
         }
-
+        $pricePerNight = $total / $nights;
         $response= [
                 'nights' => $nights,
+                'pricePerNights' => $pricePerNight,
                 'total' => $total
         ];
         

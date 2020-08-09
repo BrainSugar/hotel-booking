@@ -1,5 +1,6 @@
 <?php 
 use Brainsugar\Core\CoreFunctions;
+use Brainsugar\Model\Pricing;
 // The functions for the Frontend Templates.
 
 /**
@@ -124,8 +125,10 @@ function bshb_get_style($element) {
 }
 
 
-function bshb_get_room_price($post_id) {
-        $room_price = get_post_meta($post_id , 'bshb_room_price' , true);
-        $format_price = CoreFunctions::formatCurrency($room_price);
-        return $format_price;
+function bshb_get_room_price($post_id , $checkIn , $checkOut) {   
+        $pricingModel = new Pricing;
+        $price = $pricingModel->get_room_rates_between_dates($post_id , $checkIn , $checkOut) ;
+        // $room_price = get_post_meta($post_id , 'bshb_rack_rate' , true);
+        // $format_price = CoreFunctions::formatCurrency($room_price);
+        return $price;
 }

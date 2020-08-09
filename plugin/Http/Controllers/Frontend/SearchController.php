@@ -34,6 +34,8 @@ class SearchController extends Controller
                 // Send all the data into an object to be sent to the template
                 $data = (object)[                        
                         'room_data' => $availableRooms,
+                        'check_in' => $checkIn,
+                        'check_out' => $checkOut,
                         'posts' => $posts,
                 ];
 

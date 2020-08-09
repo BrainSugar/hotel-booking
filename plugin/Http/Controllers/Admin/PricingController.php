@@ -22,7 +22,7 @@ class PricingController extends Controller
                 // Add Room Featured image to the Data.
                 foreach($roomData as $room) {                        
                         $room->room_thumbnail_url = get_the_post_thumbnail_url($room->ID);
-                        $room->room_price = get_post_meta($room->ID , $key = 'bshb_room_price');
+                        $room->room_price = get_post_meta($room->ID , $key = 'bshb_rack_rate');
                 }
                 
                 // Send room data to calendar template.
@@ -48,7 +48,7 @@ class PricingController extends Controller
                 
                 // Add Room Featured image to the Data.        
                 $roomData->room_thumbnail_url = get_the_post_thumbnail_url($roomType);
-                $roomData->room_price = get_post_meta($roomType , $key = 'bshb_room_price');
+                $roomData->room_price = get_post_meta($roomType , $key = 'bshb_rack_rate');
 
                 // Send room data to calendar template.
                 wp_localize_script('room-pricing', 'roomData', array('room' => $roomData, 'price' => $priceRange));               

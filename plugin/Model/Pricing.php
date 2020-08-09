@@ -150,4 +150,69 @@ class Pricing extends Model
                 return $response;
 
         }
+
+
+        public function get_room_rates_between_dates( $roomType, $startDate, $endDate ) {
+        $rack_rate = get_post_meta( $roomType, 'bshb_rack_rate', true );
+        $startDate = Carbon::parse($startDate);
+        $endDate = Carbon::parse($endDate);       
+
+        $prices = [];
+
+
+             
+        while($startDate->lessThan($endDate)) {
+    
+                $price = $this->select('price')
+                ->where( 'room_type', $roomType )
+                ->whereRaw('? between start_date and end_date' , $startDate->toDateString())  
+                ->first()->price;
+
+                if($price != null) {
+                        $prices[$startDate->toDateString()] =  $price;
+                }
+                else {
+                        $prices[$startDate->toDateString()] =  $rack_rate;
+                }
+
+                // $prices[] = array($startDate->toDateString() => $price);
+
+                $startDate->addDay(1);               
+
+        }
+
+        $nights = count($prices);
+
+        foreach($prices as $key => $value){
+                $total = $total + $value;
+        }
+
+        $response= [
+                'nights' => $nights,
+                'total' => $total
+        ];
+        
+        // $rates = [];
+        // foreach($priceRanges as $range) {
+        //         if($startDate->between($range->start_date , $range->end_date))
+        //         {
+        //                array_push($rates , $range->price);
+        //         }
+                
+        // }
+
+        // while ( $startDate->lessThan( $endDate ) ) {
+        //     $rate = $this->where( 'room_type', $roomType )->filter( function( $item ) use ( $startDate ) {
+        //         if ( $startDate->between( $item->start_date, $item->end_date ) ) {
+        //           return $item;
+        //         }
+        //     })->get();
+      
+
+        //     $rates[] = array( $startDate->toDateString() => isset( $rate ) ? $rate->toArray()[ 'price' ] : $rack_rate );
+        //     $startDate->addDay( 1 );
+        // // }
+       
+        return $response;
+        }
 }

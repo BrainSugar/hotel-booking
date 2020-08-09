@@ -61,7 +61,7 @@ class RoomMetabox extends ManageMetaboxes {
                 'title' => 'Pricing',                
                 'fields' => array(
                         $prefix . 'pricing_title',
-                    $prefix . 'room_price'                    
+                    $prefix . 'rack_rate'                    
                 ),
             ),
             array(
@@ -132,7 +132,7 @@ class RoomMetabox extends ManageMetaboxes {
 
     $cmb_demo->add_field( array(
         'name'          => __( 'Room Price', 'cmb2' ),
-        'id'            => $prefix . 'room_price',
+        'id'            => $prefix . 'rack_rate',
         'type'          => 'text',
         'attributes' => array(
                 'type' => 'number',

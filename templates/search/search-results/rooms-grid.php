@@ -36,7 +36,7 @@ global $wp_query;
                         <div class="row">
                                 <div class="col-sm-12">
                                         <div class="room-price">
-                                                <h1><?php echo bshb_get_room_price($post->ID);?></h1>
+                                                <h1><?php echo bshb_get_room_price($post->ID, $data->check_in , $data->check_out);?></h1>
                                                 <p class="font-italic">/ 3 Nights</p>
                                         </div> 
                                 </div>

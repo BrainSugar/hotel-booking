@@ -35,10 +35,7 @@ global $wp_query;
                         <!-- Room Price and book button -->
                         <div class="row">
                                 <div class="col-sm-12">
-                                        <div class="room-price">
-                                                <h1><?php echo bshb_get_room_price($post->ID, $data->check_in , $data->check_out);?></h1>
-                                                <p class="font-italic">/ 3 Nights</p>
-                                        </div> 
+                                     <?php bshb_get_template_part('template-parts/archive/room' , 'price') ?> 
                                 </div>
                                 <div class="col-sm-12">
                                         <div class="room-add-cart d-flex">

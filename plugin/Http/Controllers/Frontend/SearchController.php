@@ -9,7 +9,7 @@ Use Carbon\Carbon;
 
 class SearchController extends Controller
 {
-        public function getSearchResultsTemplate($checkIn , $checkOut , $adults , $children = null , $filterView) {
+        public function getSearchResultsTemplate($checkIn , $checkOut , $adults , $children = null , $filterView , $filterPrice) {
                 $reservations = new Reservations;
 
                 // Get Available rooms for the search criteria.
@@ -36,6 +36,7 @@ class SearchController extends Controller
                         'room_data' => $availableRooms,
                         'check_in' => $checkIn,
                         'check_out' => $checkOut,
+                        'price_filter' => $filterPrice,
                         'posts' => $posts,
                 ];
 

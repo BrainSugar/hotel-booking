@@ -125,10 +125,24 @@ function bshb_get_style($element) {
 }
 
 
-function bshb_get_room_price($post_id , $checkIn , $checkOut) {   
+function bshb_get_room_price($post_id , $checkIn , $checkOut , $filter = 'total') {   
+        
         $pricingModel = new Pricing;
         $price = $pricingModel->get_room_rates_between_dates($post_id , $checkIn , $checkOut) ;
-        // $room_price = get_post_meta($post_id , 'bshb_rack_rate' , true);
-        // $format_price = CoreFunctions::formatCurrency($room_price);
-        return $price;
+
+        if($filter == 'total'){
+                               $response = [
+                        'total' => CoreFunctions::formatCurrency($price['total']) ,
+                        'nights' => ' / ' . $price['nights'] . ' Nights'
+                ];
+
+        }
+        else if($filter == 'perNight'){
+                 $response = [
+                        'total' => CoreFunctions::formatCurrency($price['pricePerNight']) ,
+                        'nights' => ' / Night ' ,
+                ];
+        }
+
+        return $response;
 }

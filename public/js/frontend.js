@@ -3,8 +3,9 @@
         'use strict';
 
         $(document).ready(function () {
-                
-                
+
+
+
                 var today = moment().format('YYYY-MM-DD');
                 var dates = flatpickr("#input-check-in", {
                         "plugins": [new rangePlugin({ input: "#input-check-out" })],
@@ -19,7 +20,8 @@
                 // Add Brainsugar Styles to flatpickr 
                 dates.calendarContainer.classList.add("bshb-datepicker");
 
-                function performSearch(filterView) {
+                // Function to perform search
+                function performSearch(filterView, filterPrice) {
                         var checkInDate = dates.selectedDates[0];
                         var checkOutDate = dates.selectedDates[1];
                         var adults = $('#input-adults').val();
@@ -52,7 +54,9 @@
                                         checkOutDate: moment(checkOutDate).format('YYYY-MM-DD'),
                                         adults: adults,
                                         children: children,
-                                        view: filterView,
+                                        filterView: filterView,
+                                        filterPrice: filterPrice
+
                                 },
                                 function (response) {
                                         // alert(response.searchResults);
@@ -67,18 +71,35 @@
                 }
 
 
+                // Filter and search actions
+                var filterPrice;
+                var filterView;
 
                 $('body').on('submit', '#bshb-search-form', function (e) {
                         e.preventDefault();
-                        performSearch('list');
+                        filterPrice = "total";
+                        filterView = "list";
+                        performSearch(filterView, filterPrice);
                 });
+
                 $('body').on('click', '#filter-grid', function (e) {
                         e.preventDefault();
-                        performSearch('grid');
+                        filterView = "grid";
+                        performSearch(filterView, filterPrice);
+
                 });
                 $('body').on('click', '#filter-list', function (e) {
                         e.preventDefault();
-                        performSearch('list');
+                        filterView = "list";
+                        performSearch(filterView, filterPrice);
+                });
+                $('#price-total').click(function () {
+                        filterPrice = 'total';
+                        performSearch(filterView, filterPrice);
+                });
+                $('#price-night').click(function () {
+                        filterPrice = 'perNight';
+                        performSearch(filterView, filterPrice);
                 });
 
                 console.log(dates);

@@ -189,7 +189,7 @@ class Pricing extends Model
         $pricePerNight = $total / $nights;
         $response= [
                 'nights' => $nights,
-                'pricePerNights' => $pricePerNight,
+                'pricePerNight' => $pricePerNight,
                 'total' => $total
         ];
         

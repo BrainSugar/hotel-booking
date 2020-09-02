@@ -3,8 +3,8 @@
 namespace Brainsugar\Ajax;
 
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
- use Brainsugar\Http\Controllers\Frontend\SearchController;
-
+use Brainsugar\Http\Controllers\Frontend\SearchController;
+use Brainsugar\Model\Sessions;
 
 
 class SearchAjax extends ServiceProvider {
@@ -56,8 +56,12 @@ class SearchAjax extends ServiceProvider {
                 $filterPrice = "total";
         }
 
-        
+        // Create a session
+        // Set search values in session_value.
+        $session = new Sessions;      
+        $session->setSessionValue($checkIn , $checkOut , $adults , $children);
 
+        // Get search result templates.        
         $searchController = new SearchController;
 
         $sidebarDatesTemplate = $searchController->getSidebarDatesTemplate($checkIn , $checkOut);

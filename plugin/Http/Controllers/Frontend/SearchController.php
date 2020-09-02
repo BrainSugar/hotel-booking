@@ -21,6 +21,12 @@ class SearchController extends Controller
                         array_push($roomTypes , $key);                        
                 }
 
+                $roomsLeft = [];
+                foreach($availableRooms as $key => $value) {
+                        $countOfRooms = count($value);
+                       $roomsLeft[$key] = $countOfRooms;
+                }
+
                 // Get post data for the avai;able room types.
                 $posts = get_posts(
                         array(                                
@@ -34,10 +40,12 @@ class SearchController extends Controller
                 // Send all the data into an object to be sent to the template
                 $data = (object)[                        
                         'room_data' => $availableRooms,
+                        'roomsLeft' => $roomsLeft,
                         'check_in' => $checkIn,
                         'check_out' => $checkOut,
                         'price_filter' => $filterPrice,
                         'posts' => $posts,
+
                 ];
 
                 // Call the searcj results template and fill the data

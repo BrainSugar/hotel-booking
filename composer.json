@@ -20,7 +20,8 @@
                 "wpbones/wptables": "~1.0",
                 "wpbones/useragent": "^1.0",
                 "cmb2/cmb2": "^2.7",
-                "nette/utils": "^3.1"
+                "nette/utils": "^3.1",
+                "bumbummen99/shoppingcart": "^2.9"
         },
         "autoload": {
                 "psr-4": {

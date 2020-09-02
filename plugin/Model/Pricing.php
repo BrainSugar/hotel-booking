@@ -158,6 +158,7 @@ class Pricing extends Model
         $endDate = Carbon::parse($endDate);       
 
         $prices = [];
+        $total = 0;
 
 
              
@@ -166,7 +167,7 @@ class Pricing extends Model
                 $price = $this->select('price')
                 ->where( 'room_type', $roomType )
                 ->whereRaw('? between start_date and end_date' , $startDate->toDateString())  
-                ->first()->price;
+                ->first();
 
                 if($price != null) {
                         $prices[$startDate->toDateString()] =  $price;

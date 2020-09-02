@@ -59,8 +59,8 @@
 
                                 },
                                 function (response) {
-                                        // alert(response.searchResults);
-                                        // console.log(response.searchResults);
+                                        // alert(response);
+                                        console.log(response);
                                         $('#bshb-sidebar-dates').html(response.sidebarDates);
                                         $('#bshb-search-content').html(response.searchResults);
                                         $('#bshb-sidebar-dates').removeClass('bshb-loader');
@@ -85,7 +85,6 @@
                 $('body').on('click', '#filter-grid', function (e) {
                         e.preventDefault();
                         filterView = "grid";
-                        performSearch(filterView, filterPrice);
 
                 });
                 $('body').on('click', '#filter-list', function (e) {
@@ -103,6 +102,6 @@
                 });
 
                 console.log(dates);
-        });
 
+        });
 })(window.jQuery);

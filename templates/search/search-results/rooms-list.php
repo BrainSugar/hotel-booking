@@ -45,10 +45,7 @@
                                         <?php bshb_get_template_part('template-parts/archive/room' , 'price') ?> 
                                 </div>
                                 <div class="col-sm-6">
-                                        <div class="room-add-cart d-flex">
-                                                <p><?php echo 'Only ' .  count($data->room_data[$post->ID]) . ' rooms left';?></p>
-                                                <button class="btn btn-success">Add to cart</button>                                        
-                                        </div>
+                                        <?php bshb_get_template_part('template-parts/archive/room' , 'add-to-cart') ?> 
                                 </div>
                         </div>
                 </div>

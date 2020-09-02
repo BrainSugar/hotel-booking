@@ -54,6 +54,7 @@ return [
 
 'custom_post_types' => [        
         '\Brainsugar\CustomPostTypes\RoomCustomPostType' ,
+          '\Brainsugar\CustomPostTypes\ReservationCustomPostType' ,
 ],
 
 
@@ -103,7 +104,8 @@ return [
 
   'ajax' => [ '\Brainsugar\Ajax\SearchAjax',
                 '\Brainsugar\Ajax\RoomAjax',
-                '\Brainsugar\Ajax\PricingAjax'
+                '\Brainsugar\Ajax\PricingAjax',
+                '\Brainsugar\Ajax\CartAjax'
 ],
 
   /*
@@ -119,7 +121,8 @@ return [
 
   'providers' => [
         '\Brainsugar\Providers\TemplateServiceProvider',
-        '\Brainsugar\Providers\ScriptServiceProvider'
+        '\Brainsugar\Providers\ScriptServiceProvider',
+        '\Brainsugar\Providers\SessionServiceProvider'
 ],
 
 

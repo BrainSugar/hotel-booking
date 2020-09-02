@@ -4,6 +4,7 @@ namespace Brainsugar\Providers;
 
 use Brainsugar\WPBones\Support\ServiceProvider;
 
+
 class TemplateServiceProvider extends ServiceProvider
 {
         
@@ -13,7 +14,7 @@ class TemplateServiceProvider extends ServiceProvider
                 add_action( 'template_include', array($this ,'loadTemplate' ) , 10, 5 );
                 
                 //   Register all the template functions for the frontend
-                include( plugin_dir_path( __DIR__ ) .  'Core/TemplateFunctions.php');
+                include( plugin_dir_path( __DIR__ ) .  'Core/TemplateFunctions.php');               
                 
         }
         
@@ -27,7 +28,7 @@ class TemplateServiceProvider extends ServiceProvider
         * @return void
         */
         public function loadTemplate($template){
-                
+               
                 // Get post type for cpt pages
                 $postId = get_post_type();
                 
@@ -87,6 +88,8 @@ class TemplateServiceProvider extends ServiceProvider
                 
                 return $file;
         }
+
+
         
         
         

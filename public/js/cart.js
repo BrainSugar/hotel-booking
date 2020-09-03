@@ -27,7 +27,7 @@
                 });
 
                 function addToCart(itemId, itemType) {
-
+                        $('#bshb-sidebar-cart').addClass('bshb-loader');
                         $.post(
                                 ajaxurl,
                                 {
@@ -38,6 +38,10 @@
                                 function (response) {
                                         alert(response);
                                         console.log(response);
+                                        $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
+                                        $('#bshb-sidebar-cart').append(response);
+                                        $('#bshb-sidebar-cart').removeClass('bshb-loader');
+
                                 },
                         );
                 }

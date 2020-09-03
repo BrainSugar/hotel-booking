@@ -18,7 +18,7 @@ class Sessions extends Model
         *
         * @var array
         */
-        protected $fillable = [ 'session_key', 'session_value', 'cart_id' , 'session_expiry'];
+        protected $fillable = [ 'session_key', 'session_value', 'reservation_id' , 'session_expiry'];
         
         /**
         * Disable Timestamps
@@ -65,7 +65,14 @@ class Sessions extends Model
                          
                 $_SESSION['bshb_session_value'] = $sessionValue;
         }
-        
+
+        public function getSessionValue() {
+                if(isset($_SESSION['bshb_session_value'])) {
+                        $response = \unserialize($_SESSION['bshb_session_value']);
+                        return $response;
+                }
+        }
+
         
         public function generateSessionKey() {
                 if ( is_user_logged_in() ) {

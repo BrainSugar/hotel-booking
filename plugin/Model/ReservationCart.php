@@ -4,6 +4,7 @@ namespace Brainsugar\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Brainsugar\Model\Pricing;
+use Brainsugar\Model\Sessions;
 class ReservationCart extends Model
 {
         /**
@@ -20,8 +21,8 @@ class ReservationCart extends Model
         * @var array
         */
         protected $fillable = [ 'reservation_id', 'item_id', 'item_quantity' , 'item_total'];
-
-                /**
+        
+        /**
         * Disable Timestamps
         *
         * @var boolean
@@ -39,16 +40,22 @@ class ReservationCart extends Model
                 
                 return $wpdb->prefix . preg_replace('/[[:<:]]' . $wpdb->prefix . '/', '', parent::getTable(), 1);
         }
-
-        public function createCart($reservationId , $itemId , $itemQuantity) {
-
-        $checkIn = "2020-08-17";
-        $checkOut = "2020-08-20";
-        $itemQuantity = 1;
-        $pricing = new Pricing;
-        $price = $pricing->get_room_rates_between_dates($itemId , $checkIn , $checkOut);
-        $total = $price['total'];
-
+        
+        
+        
+        public function insertRoomToCart($reservationId , $itemId , $itemQuantity) {
+                
+                $session = new Sessions;
+                $sessionValue = $session->getSessionValue();
+                
+                $checkIn = $sessionValue['check_in'];
+                $checkOut = $sessionValue['check_out'];
+                
+                $itemQuantity = 1;
+                $pricing = new Pricing;
+                $price = $pricing->get_room_rates_between_dates($itemId , $checkIn , $checkOut);
+                $total = $price['total'];
+                
                 $itemTotal = $itemQuantity * $total;                
                 $this->fill(array(
                         'reservation_id' => $reservationId , 
@@ -57,6 +64,11 @@ class ReservationCart extends Model
                         'item_total' => $itemTotal
                 )); 
                 $response = $this->save();
+                return $response;
+        }
+
+        public function getCartContents($reservationId) {
+                $response = $this->where('reservation_id' , $reservationId)->get()->toArray();
                 return $response;
         }
         

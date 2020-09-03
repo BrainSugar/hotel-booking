@@ -14,7 +14,7 @@ class CartController extends Controller
                 $new_post = array(
                         'post_title'    => 'Ongoing Reservation',
                         'post_content'  => '',
-                        'post_status'   => 'publish',          
+                        'post_status'   => 'draft',          
                         'post_type'     => 'bshb_reservation' 
                 );
                 
@@ -23,15 +23,44 @@ class CartController extends Controller
                 $response = wp_insert_post($new_post);
                 return $response;
         }
-        
+
+                public function isCartSessionActive() {
+                 if(isset($_SESSION['bshb_session_cart'])){
+                        return true;
+                }
+                else {
+                          $_SESSION['bshb_session_cart'] = $this->createOngoingReservation();
+                          return true;
+                }
+        }
+        public function unsetCartSession() {
+                unset($_SESSION['bshb_session_cart']);
+        }
+ 
         public function addRoomToCart($itemId , $itemQuantity) {
-                // $cart = new ReservationCart;
-                // $session = new SessionServiceProvider;
-                // $sessionData = $this->startSession();
-                // $reservationId = $this->createOngoingReservation();
-                // $response = $cart->createCart($reservationId , $itemId , $itemQuantity);
-                return "abc";
+                // $this->unsetCartSession();
+                if($this->isCartSessionActive() == true) {
+                        $cart = new ReservationCart;
+                        $reservationId = $_SESSION['bshb_session_cart'];
+
+                        $insertRoom = $cart->insertRoomToCart($reservationId , $itemId , $itemQuantity);
+                        if($insertRoom == true) {
+                                $cartContents = $cart->getCartContents($reservationId);
+
+                                $response = $this->getCartTemplate($cartContents);
+                        }
+                }                
+                return $response;
                 
+        }
+
+        public function getCartTemplate($cartContents) {          
+                  // Call the searcj results template and fill the data       
+                ob_start();
+                        echo  bshb_get_template_part('cart/item', 'room' , $cartContents);
+               $response = ob_get_clean();
+
+                return $response;
         }
 
         // public function startSession() {                

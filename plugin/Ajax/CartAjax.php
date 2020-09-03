@@ -59,7 +59,7 @@ class CartAjax extends ServiceProvider
                 
                 
                 // $response = wp_get_current_user();
-                return( $response );
+                wp_send_json( $response );
                 
         }
         

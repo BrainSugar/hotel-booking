@@ -23,73 +23,108 @@ class CartController extends Controller
                 $response = wp_insert_post($new_post);
                 return $response;
         }
-
-                public function isCartSessionActive() {
-                 if(isset($_SESSION['bshb_session_cart'])){
+        
+        public function isCartSessionActive() {
+                if(isset($_SESSION['bshb_session_cart'])){
                         return true;
                 }
                 else {
-                          $_SESSION['bshb_session_cart'] = $this->createOngoingReservation();
-                          return true;
+                        $this->setCartSession();
+                        return true;
                 }
+        }
+        public function setCartSession() {
+                $_SESSION['bshb_session_cart'] = $this->createOngoingReservation();
         }
         public function unsetCartSession() {
                 unset($_SESSION['bshb_session_cart']);
         }
- 
+        
         public function addRoomToCart($itemId , $itemQuantity) {
                 // $this->unsetCartSession();
                 if($this->isCartSessionActive() == true) {
                         $cart = new ReservationCart;
                         $reservationId = $_SESSION['bshb_session_cart'];
-
-                        $insertRoom = $cart->insertRoomToCart($reservationId , $itemId , $itemQuantity);
+                        
+                        $insertRoom = $cart->insertRoomItem($reservationId , $itemId , $itemQuantity);
                         if($insertRoom == true) {
-                                $cartContents = $cart->getCartContents($reservationId);
-
-                                $response = $this->getCartTemplate($cartContents);
+                                $cartItems = $cart->getCartItems($reservationId);
+                                $response = $this->getCartTemplate($cartItems);
                         }
                 }                
                 return $response;
                 
         }
-
-        public function getCartTemplate($cartContents) {          
-                  // Call the searcj results template and fill the data       
+        public function deleteRoomFromCart($itemId) {
+                   if($this->isCartSessionActive() == true) {
+                        $cart = new ReservationCart;
+                        $reservationId = $_SESSION['bshb_session_cart'];     
+                        $deleteRoom = $cart->deleteRoomItem($reservationId , $itemId);
+                        if($deleteRoom == true) {
+                                $cartItems = $cart->getCartItems($reservationId);
+                                $response = $this->getCartTemplate($cartItems);
+                        }
+                   }
+                   return $response;
+        }
+        
+        public function getCartTemplate($cartItems) {          
+                // Call the searcj results template and fill the data       
                 ob_start();
-                        echo  bshb_get_template_part('cart/item', 'room' , $cartContents);
-               $response = ob_get_clean();
-
+                echo  bshb_get_template_part('cart/cart', 'room' , $cartItems);
+                $response = ob_get_clean();
+                
                 return $response;
         }
 
-        // public function startSession() {                
-        //         $session = new SessionServiceProvider;
-        //         $sessionData = $session->getSessionData();
-        //         return $sessionData;
+        public function getSessionCart() {
+                 if(isset($_SESSION['bshb_session_cart'])) {
+                        $cart = new ReservationCart;
+                        $reservationId = $_SESSION['bshb_session_cart'];
+                        $cartItems = $cart->getCartItems($reservationId); 
+                        $response = $this->getCartTemplate($cartItems);
+                        return $response;
+                 }
 
-        // }
+                  
+        }
+
+        public function emptyCart() {
+                if(isset($_SESSION['bshb_session_cart'])) {
+                        $cart = new ReservationCart;
+                        $reservationId = $_SESSION['bshb_session_cart'];
+                        $response = $cart->deleteCartItems($reservationId);
+                        return $response;
+        }
+}
         
-        //   public function index()
-        //   {
-                //     // GET
-                //   }
+        // public function startSession() {                
+                //         $session = new SessionServiceProvider;
+                //         $sessionData = $session->getSessionData();
+                //         return $sessionData;
                 
+                // }
                 
-                
-                //   public function store()
+                //   public function index()
                 //   {
-                        //     // POST
+                        //     // GET
                         //   }
                         
-                        //   public function update()
+                        
+                        
+                        //   public function store()
                         //   {
-                                //     // PUT AND PATCH
+                                //     // POST
                                 //   }
                                 
-                                //   public function destroy()
+                                //   public function update()
                                 //   {
-                                        //     // DELETE
+                                        //     // PUT AND PATCH
                                         //   }
                                         
-                                }
+                                        //   public function destroy()
+                                        //   {
+                                                //     // DELETE
+                                                //   }
+                                                
+                                        }

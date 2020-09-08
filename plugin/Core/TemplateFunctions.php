@@ -1,6 +1,7 @@
 <?php 
 use Brainsugar\Core\CoreFunctions;
 use Brainsugar\Model\Pricing;
+use Carbon\Carbon;
 // The functions for the Frontend Templates.
 
 /**
@@ -145,4 +146,20 @@ function bshb_get_room_price($post_id , $checkIn , $checkOut , $filter = 'total'
         }
 
         return $response;
+}
+
+function bshb_format_currency($price) {
+        $pricingModel = new Pricing;
+        $formattedPrice = CoreFunctions::formatCurrency($price);
+        return $formattedPrice;        
+}
+
+function bshb_get_stay_nights() {
+        if(isset($_SESSION['bshb_session_value'])){
+                $sessionValue = unserialize($_SESSION['bshb_session_value']);
+                $checkIn = Carbon::parse($sessionValue['check_in']);
+                $checkOut = Carbon::parse($sessionValue['check_out']);
+                $numberOfNights =Carbon::parse($checkOut)->diffInDays($checkIn);
+        }
+        return $numberOfNights;
 }

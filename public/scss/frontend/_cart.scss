@@ -1,0 +1,74 @@
+.sidebar-cart {
+        background: $color-white;
+        padding: 2rem;
+        margin: 3rem 0;
+}
+
+.cart-empty {
+        padding: 2rem;
+}
+
+.room-item {
+        border-radius: $border-radius;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        padding: 1rem;
+        margin: 2rem 1rem;
+        color: $color-text;
+
+        .room-header {
+                display: inline-flex;
+                align-items: center;
+
+                .room-image {
+                        padding: 1rem;
+
+                        img {
+                                height: 3rem;
+                                width: 3rem;
+                                border-radius: 50%;
+                        }
+                }
+
+                h4 {
+                        color: $color-text;
+                }
+        }
+
+
+        .room-details {
+                padding: 1rem;
+                border-bottom: solid 1px $color-grey;
+
+                .room-detail {
+                        display: inline-flex;
+                        justify-content: space-between;
+                        width: 100%;
+                        padding: 0.5rem;
+                }
+        }
+
+        .room-total {
+                padding: 1rem 2rem;
+                display: inline-flex;
+                justify-content: space-between;
+                width: 100%;
+
+                p {
+                        color: $color-text;
+                }
+
+                h4 {
+                        margin: 0;
+                }
+        }
+
+        .remove-cart-item {
+                width: 90%;
+                margin: 1rem;
+                display: inline-flex;
+                justify-content: flex-end;
+        }
+
+
+}

@@ -4,8 +4,6 @@
 
         $(document).ready(function () {
 
-
-
                 var today = moment().format('YYYY-MM-DD');
                 var dates = flatpickr("#input-check-in", {
                         "plugins": [new rangePlugin({ input: "#input-check-out" })],
@@ -19,6 +17,31 @@
 
                 // Add Brainsugar Styles to flatpickr 
                 dates.calendarContainer.classList.add("bshb-datepicker");
+
+                // Check if a previous search session is active and load the active session data.
+                // checkSearchSession();
+                // function checkSearchSession() {
+                //         $.post(
+                //                 ajaxurl,
+                //                 {
+                //                         action: 'searchSession',
+                //                 },
+                //                 function (response) {
+                //                         // alert(response);
+                //                         // console.log(dates);
+                //                         if (response != null) {
+                //                                 // Set up all variables with session values and perform search again.
+                //                                 var sessionDates = [response.check_in, response.check_out];
+                //                                 dates.setDate(sessionDates, true);
+                //                                 $('#input-adults').val(response.adults);
+                //                                 $('#input-children').val(response.children);
+                //                                 performSearch();
+                //                         }
+
+                //                 },
+                //         );
+                // }
+
 
                 // Function to perform search
                 function performSearch(filterView, filterPrice) {
@@ -60,7 +83,7 @@
                                 },
                                 function (response) {
                                         // alert(response);
-                                        console.log(response);
+                                        // console.log(response);                                        
                                         $('#bshb-sidebar-dates').html(response.sidebarDates);
                                         $('#bshb-search-content').html(response.searchResults);
                                         $('#bshb-sidebar-dates').removeClass('bshb-loader');
@@ -85,6 +108,7 @@
                 $('body').on('click', '#filter-grid', function (e) {
                         e.preventDefault();
                         filterView = "grid";
+                        performSearch(filterView, filterPrice);
 
                 });
                 $('body').on('click', '#filter-list', function (e) {

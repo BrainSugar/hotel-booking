@@ -4,6 +4,7 @@ namespace Brainsugar\Http\Controllers\Frontend;
 
 use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\Model\Reservations;
+use Brainsugar\Model\ReservationCart;
 Use Carbon\Carbon;
 // use Brainsugar\Core\CoreFunctions;
 
@@ -11,7 +12,7 @@ class SearchController extends Controller
 {
         public function getSearchResultsTemplate($checkIn , $checkOut , $adults , $children = null , $filterView , $filterPrice) {
                 $reservations = new Reservations;
-
+                $cart = new ReservationCart;
                 // Get Available rooms for the search criteria.
                 $availableRooms = $reservations->getAvailableRooms($checkIn , $checkOut , $adults , $children);
 
@@ -21,9 +22,22 @@ class SearchController extends Controller
                         array_push($roomTypes , $key);                        
                 }
 
-                $roomsLeft = [];
+                $roomsLeft = [];                
                 foreach($availableRooms as $key => $value) {
                         $countOfRooms = count($value);
+
+                        // If Session is set for same dates then retain rooms present in cart and 
+                        // show difference of all available rooms and the rooms in cart session.
+                        // if(isset($_SESSION['bshb_session_cart'])) {
+                        //         $cartId = $_SESSION['bshb_session_cart'];
+                        //         $cartItem = $cart->getCartItems($cartId);
+                        //         foreach ($cartItem as $item) {
+                        //                 if($item['item_id'] == $key) {
+                        //                          $countOfRooms = $countOfRooms - absint($item['item_quantity']);  
+                        //                 }                                    
+                        //         }                        
+                        // }
+
                        $roomsLeft[$key] = $countOfRooms;
                 }
 
@@ -83,5 +97,7 @@ class SearchController extends Controller
                 
 
                 return $response;
-        }
+        }   
+
+
 }

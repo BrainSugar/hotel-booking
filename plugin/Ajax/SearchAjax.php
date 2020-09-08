@@ -5,6 +5,7 @@ namespace Brainsugar\Ajax;
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
 use Brainsugar\Http\Controllers\Frontend\SearchController;
 use Brainsugar\Model\Sessions;
+use Brainsugar\Model\ReservationCart;
 
 
 class SearchAjax extends ServiceProvider {
@@ -16,6 +17,7 @@ class SearchAjax extends ServiceProvider {
    * @var array
    */
   protected $trusted = [
+          'searchSession',
     'searchAvailability'
   ];
 
@@ -56,9 +58,10 @@ class SearchAjax extends ServiceProvider {
                 $filterPrice = "total";
         }
 
-        // Create a session
+        // Check previous search and destroy their cart values
+        $this->clearPreviousSearch();
         // Set search values in session_value.
-        $session = new Sessions;      
+        $session = new Sessions;        
         $session->setSessionValue($checkIn , $checkOut , $adults , $children);
 
         // Get search result templates.        
@@ -74,49 +77,19 @@ class SearchAjax extends ServiceProvider {
         ];
 
         wp_send_json($templates);
-
-
-        //   $reservation = new Reservations;
-        //   $res = $reservation->get();
-        // $roomData = get_posts(array(
-        //                 'post_type' => 'bshb_room',
-        //                 'fields'          => 'ids'
-        //         ));
-
-        //   $data= array (
-        //         'in' => $checkIn ,
-        //         'out' => $checkOut,
-        //         'res' => $res,
-        //         'adults' => $adults,
-        //         'children' => $children,
-        // 'rooms' => $roomData);
-
-        // $dates = (object) [
-        //         "check_in" => $checkIn ,
-        //         "check_out" => $sidebarDates
-        // ];
-
-        // bshb_get_template_part('search/search-results/sidebar', 'dates' , $dates);
-
-// bshb_get_template_part('search/search-results/rooms', 'list' , $data);
-
-
   }
 
-  public function logged()
-  {
-    $response = "You have clicked Ajax Logged";
+//   public function searchSession() {
+//           if(isset($_SESSION['bshb_session_value'])){
+//                   $searchSession = \unserialize($_SESSION['bshb_session_value']);                  
+//           }
+//           wp_send_json( $searchSession ); 
+//   }
 
-    wp_send_json( $response );
-  }
-
-  public function notLogged()
-  {
-    $response = "You have clicked Ajax notLogged";
-
-    wp_send_json( $response );
-  }
-
-
-
+  public function clearPreviousSearch() {
+                 if(isset($_SESSION['bshb_session_cart'])){                 
+                          $cart = new ReservationCart;
+                          $cart->deleteCartItems($_SESSION['bshb_session_cart']);
+                  }
+          }  
 }

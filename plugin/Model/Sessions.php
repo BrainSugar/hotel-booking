@@ -66,6 +66,9 @@ class Sessions extends Model
                 $_SESSION['bshb_session_value'] = $sessionValue;
         }
 
+        
+    
+
         public function getSessionValue() {
                 if(isset($_SESSION['bshb_session_value'])) {
                         $response = \unserialize($_SESSION['bshb_session_value']);

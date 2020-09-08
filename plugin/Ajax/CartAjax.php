@@ -16,7 +16,9 @@ class CartAjax extends ServiceProvider
         * @var array
         */
         protected $trusted = [
-                'addToCart'
+                'cartSession',
+                'addToCart',
+                'removeFromCart'
         ];
         
         /**
@@ -60,7 +62,29 @@ class CartAjax extends ServiceProvider
                 
                 // $response = wp_get_current_user();
                 wp_send_json( $response );
+        }
+
+        public function removeFromCart() {
+                $itemId = $_POST['itemId'];   
+                $itemType =  $_POST['itemType'];
+                $cart = new CartController;
+                 if($itemType == "room_item")
+                {
+                       $response = $cart->deleteRoomFromCart($itemId);                        
+                }
                 
+                if($itemType == "service")
+                {
+                        $response = $itemType;
+                } 
+                wp_send_json( $response);
+
+        }
+        
+        public function cartSession() {
+                $cart = new CartController;
+                $sessionCart = $cart->getSessionCart();
+                wp_send_json($sessionCart); 
         }
         
         //   public function trusted()

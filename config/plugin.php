@@ -55,6 +55,7 @@ return [
 'custom_post_types' => [        
         '\Brainsugar\CustomPostTypes\RoomCustomPostType' ,
           '\Brainsugar\CustomPostTypes\ReservationCustomPostType' ,
+           '\Brainsugar\CustomPostTypes\TaxCustomPostType' 
 ],
 
 

@@ -49,7 +49,8 @@ class CartController extends Controller
                         $insertRoom = $cart->insertRoomItem($reservationId , $itemId , $itemQuantity);
                         if($insertRoom == true) {
                                 $cartItems = $cart->getCartItems($reservationId);
-                                $response = $this->getCartTemplate($cartItems);
+                                $cartTotal = $cart->getCartTotal($reservationId);
+                                $response = $this->getCartTemplate($cartItems , $cartTotal);
                         }
                 }                
                 return $response;
@@ -62,17 +63,26 @@ class CartController extends Controller
                         $deleteRoom = $cart->deleteRoomItem($reservationId , $itemId);
                         if($deleteRoom == true) {
                                 $cartItems = $cart->getCartItems($reservationId);
-                                $response = $this->getCartTemplate($cartItems);
+                                $cartTotal = $cart->getCartTotal($reservationId);
+                                $response = $this->getCartTemplate($cartItems, $cartTotal);
                         }
                    }
                    return $response;
         }
         
-        public function getCartTemplate($cartItems) {          
+        public function getCartTemplate($cartItems , $cartTotal) {
+                if($cartItems == null) {
+                ob_start();
+                echo  bshb_get_template_part('cart/cart', 'empty' , $cartItems);
+                $response = ob_get_clean();
+                }
+                else {
                 // Call the searcj results template and fill the data       
                 ob_start();
                 echo  bshb_get_template_part('cart/cart', 'room' , $cartItems);
+                 echo  bshb_get_template_part('cart/cart', 'total' , $cartTotal);
                 $response = ob_get_clean();
+                }
                 
                 return $response;
         }

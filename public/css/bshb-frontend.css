@@ -25917,6 +25917,40 @@ fieldset[disabled] .bshb-container .form-control {
           justify-content: flex-end;
 }
 
+.bshb-container .cart-total,
+.bshb-container .cart-sub-total {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bshb-container .cart-tax {
+  width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.bshb-container .cart-tax .tax-rate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+}
+
+.bshb-container .cart-tax .tax-amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+}
+
 .bshb-container .bshb-search-form {
   width: 100%;
   background: #fff;

@@ -10,8 +10,7 @@
 
 .room-item {
         border-radius: $border-radius;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         padding: 1rem;
         margin: 2rem 1rem;
         color: $color-text;
@@ -34,7 +33,6 @@
                         color: $color-text;
                 }
         }
-
 
         .room-details {
                 padding: 1rem;
@@ -69,6 +67,27 @@
                 display: inline-flex;
                 justify-content: flex-end;
         }
+}
 
+.cart-total,
+.cart-sub-total {
+        display: inline-flex;
+        width: 100%;
+        align-items: center;
+}
 
+.cart-tax {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-around;
+
+        .tax-rate {
+                display: flex;
+                padding: 1rem;
+        }
+
+        .tax-amount {
+                display: flex;
+                padding: 1rem;
+        }
 }

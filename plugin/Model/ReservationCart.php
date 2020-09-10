@@ -51,7 +51,7 @@ class ReservationCart extends Model
                 $checkIn = $sessionValue['check_in'];
                 $checkOut = $sessionValue['check_out'];
                 
-                $storedItem = $this->checkItemExists($reservationId , $itemId);
+                $storedItem = $this->_checkItemExists($reservationId , $itemId);
                 $pricing = new Pricing;
                 $price = $pricing->get_room_rates_between_dates($itemId , $checkIn , $checkOut);
                 $total = $price['total'];
@@ -90,69 +90,136 @@ class ReservationCart extends Model
                         return $response;
                 }
                 
-                public function checkItemExists($reservationId , $itemId) {
-                        $storedItem = $this->where('reservation_id' , $reservationId)
-                        ->where('item_id' , $itemId)
-                        ->first();
-                        
-                        if($storedItem != null) {
-                                $response = $storedItem->toArray();
+                /**
+                * Get cart total
+                *
+                * @param [type] $reservationId
+                * @return array - cart total , cart tax , cart subtotal
+                */
+                public function getCartTotal($reservationId) {
+                        $cartItems = $this->where('reservation_id' , $reservationId)->get()->toArray();
+                        $itemPrices = [];
+                        foreach($cartItems as $item) {
+                                array_push($itemPrices ,$item['item_total']);
                         }
-                        else{
-                                $response = false;
-                        }
-                        return $response;
-                }
-                
-                public function deleteRoomItem($reservationId , $itemId ) {
+                        $cartSubTotal = array_sum($itemPrices);
+                        $calclulateTaxes = $this->_calculateTaxRates($cartSubTotal);
                         
-                        $session = new Sessions;
-                        $sessionValue = $session->getSessionValue();
-                        
-                        $checkIn = $sessionValue['check_in'];
-                        $checkOut = $sessionValue['check_out'];
-                        
-                        
-                        $storedItem = $this->checkItemExists($reservationId , $itemId);
-                        $pricing = new Pricing;
-                        $price = $pricing->get_room_rates_between_dates($itemId , $checkIn , $checkOut);
-                        $total = $price['total'];
-                        $itemQuantity = 1; 
-                        if($storedItem == false){ 
-                                return false;
+                        if($calclulateTaxes == false) 
+                        {
+                                $response = $cartSubTotal;
                         }
                         else {
-                                $storedQuantity = $storedItem['item_quantity'];
-                                
-                                if($storedQuantity > 1)                        
-                                {
-                                        $storedPrice = $storedItem['item_total'];
-                                        
-                                        $newQuantity = $storedQuantity - $itemQuantity;
-                                        $newTotal =  $storedPrice - $total;
-                                        
-                                        $this->where('id' , $storedItem['id'])
-                                        ->update(array(
-                                                'item_quantity' => $newQuantity , 
-                                                'item_total' => $newTotal
-                                        ));
-                                        
-                                }
-                                else {
-                                        $response = $this->where('reservation_id' , $reservationId)
-                                        ->where('item_id' , $itemId)->delete();
-                                }
+                                $response = [
+                                        'sub_total' => $cartSubTotal,
+                                        'tax' => $calclulateTaxes['tax_data'], 
+                                        'total' => $calclulateTaxes['total']
+                                ];
                         }
-                        return true;
-                }
-                
-                
-                
-                public function deleteCartItems($reservationId) {
-                        $response = $this->where('reservation_id' , $reservationId)->delete();
                         
                         return $response;
                 }
                 
                 
-        }
+                private function _calculateTaxRates($cartSubTotal) {
+                        // TODO: create tax for separate rooms and services in the cart
+                        // blanket tax rates
+                        $posts = get_posts(
+                                array(                                
+                                        'post_type' => 'bshb_tax',                                
+                                        )
+                                );
+                                
+                                $taxData = [];
+                                $taxes = [];
+                                if(!empty($posts)) {
+                                        foreach($posts as $post){
+                                                $taxRate = get_post_meta( $post->ID , '_bshb_tax_percentage' , true);
+                                                $tax = $cartSubTotal * $taxRate/100;
+                                                array_push($taxes , $tax);
+                                                array_push($taxData , [
+                                                        'tax_name' => $post->post_title,
+                                                        'tax_rate' => $taxRate . '%',
+                                                        'tax' => $tax
+                                                        ]);                       
+                                                }
+                                                
+                                                $totalTax = array_sum($taxes);
+                                                $total = $cartSubTotal + $totalTax;
+                                                $response = [
+                                                        'tax_data' => $taxData, 
+                                                        'total' => $total
+                                                ];
+                                        }
+                                        else {
+                                                $response = false;
+                                        }
+                                        return $response;
+                                }
+                                
+                                private function _checkItemExists($reservationId , $itemId) {
+                                        $storedItem = $this->where('reservation_id' , $reservationId)
+                                        ->where('item_id' , $itemId)
+                                        ->first();
+                                        
+                                        if($storedItem != null) {
+                                                $response = $storedItem->toArray();
+                                        }
+                                        else{
+                                                $response = false;
+                                        }
+                                        return $response;
+                                }
+                                
+                                public function deleteRoomItem($reservationId , $itemId ) {
+                                        
+                                        $session = new Sessions;
+                                        $sessionValue = $session->getSessionValue();
+                                        
+                                        $checkIn = $sessionValue['check_in'];
+                                        $checkOut = $sessionValue['check_out'];
+                                        
+                                        
+                                        $storedItem = $this->_checkItemExists($reservationId , $itemId);
+                                        $pricing = new Pricing;
+                                        $price = $pricing->get_room_rates_between_dates($itemId , $checkIn , $checkOut);
+                                        $total = $price['total'];
+                                        $itemQuantity = 1; 
+                                        if($storedItem == false){ 
+                                                return false;
+                                        }
+                                        else {
+                                                $storedQuantity = $storedItem['item_quantity'];
+                                                
+                                                if($storedQuantity > 1)                        
+                                                {
+                                                        $storedPrice = $storedItem['item_total'];
+                                                        
+                                                        $newQuantity = $storedQuantity - $itemQuantity;
+                                                        $newTotal =  $storedPrice - $total;
+                                                        
+                                                        $this->where('id' , $storedItem['id'])
+                                                        ->update(array(
+                                                                'item_quantity' => $newQuantity , 
+                                                                'item_total' => $newTotal
+                                                        ));
+                                                        
+                                                }
+                                                else {
+                                                        $response = $this->where('reservation_id' , $reservationId)
+                                                        ->where('item_id' , $itemId)->delete();
+                                                }
+                                        }
+                                        return true;
+                                }
+                                
+                                
+                                
+                                public function deleteCartItems($reservationId) {
+                                        $response = $this->where('reservation_id' , $reservationId)->delete();
+                                        
+                                        return $response;
+                                }
+                                
+                                
+                        }

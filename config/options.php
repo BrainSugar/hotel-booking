@@ -57,6 +57,7 @@ return [
         ],
         'Pages' => [
                 'search' => '',
+                'check_out' => '',
         ],
 ];
 //    'Form'          => [

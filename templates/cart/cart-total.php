@@ -19,7 +19,8 @@
                 
                 <div class="cart-total">
                         <h1 class="total "><?php echo esc_html("Total" , "bshb"); ?></h1>
-                        <h1 class="total-amount"><?php echo bshb_format_currency($data['total']);?></h1>
-                </div>        
+                        <h1 class="total-amount"><?php echo bshb_format_currency($data['total']);?></h1>                        
+                </div>
         </div>
+        <a href="" class="btn btn-primary w-100 my-2 mx-3">Checkout</a>
 </div>

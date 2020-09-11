@@ -37,6 +37,7 @@ class TemplateServiceProvider extends ServiceProvider
 
                 // Pages set by the user.
                 $searchPage = Brainsugar()->options->get( 'Pages.search');
+                $checkOutPage = Brainsugar()->options->get('Pages.check_out');
                 
                 // If is page then return page templates or return default.
                 if( is_page() ){

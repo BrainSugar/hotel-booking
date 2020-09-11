@@ -83,14 +83,15 @@
                                 },
                                 function (response) {
                                         // alert(response);
-                                        // console.log(response);                                        
+                                        // console.log(response); 
+                                        $('html, body').animate({
+                                                scrollTop: $("#bshb-search-content").offset().top
+                                        }, 100);
                                         $('#bshb-sidebar-dates').html(response.sidebarDates);
                                         $('#bshb-search-content').html(response.searchResults);
                                         $('#bshb-sidebar-dates').removeClass('bshb-loader');
                                         $('#bshb-search-content').removeClass('bshb-loader');
-                                        $('html, body').animate({
-                                                scrollTop: $("#bshb-search-content").offset().top
-                                        }, 100);
+
                                 },
                         );
 

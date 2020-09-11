@@ -167,7 +167,7 @@ class Pricing extends Model
                 $price = $this->select('price')
                 ->where( 'room_type', $roomType )
                 ->whereRaw('? between start_date and end_date' , $startDate->toDateString())  
-                ->first();
+                ->first()->price;
 
                 if($price != null) {
                         $prices[$startDate->toDateString()] =  $price;
@@ -194,6 +194,13 @@ class Pricing extends Model
                 'total' => $total
         ];
         
+        return $response;
+        }
+}
+
+
+
+
         // $rates = [];
         // foreach($priceRanges as $range) {
         //         if($startDate->between($range->start_date , $range->end_date))
@@ -215,6 +222,3 @@ class Pricing extends Model
         //     $startDate->addDay( 1 );
         // // }
        
-        return $response;
-        }
-}

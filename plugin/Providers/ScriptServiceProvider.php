@@ -138,6 +138,9 @@ function frontendScripts() {
         wp_enqueue_style( 'swipercss' ); 
                       wp_register_script( "swiper", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/swiper-bundle.min.js')); 
 
+                                     
+
+
                 //       Frontend
                 wp_register_script( "cart", plugins_url(  '/brainsugar-hotel-booking/public/js/cart.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
         wp_enqueue_script( 'cart' );

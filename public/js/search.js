@@ -88,6 +88,9 @@
                                         $('#bshb-search-content').html(response.searchResults);
                                         $('#bshb-sidebar-dates').removeClass('bshb-loader');
                                         $('#bshb-search-content').removeClass('bshb-loader');
+                                        $('html, body').animate({
+                                                scrollTop: $("#bshb-search-content").offset().top
+                                        }, 100);
                                 },
                         );
 

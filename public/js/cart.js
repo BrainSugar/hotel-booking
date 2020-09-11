@@ -3,6 +3,7 @@
         'use strict';
 
         $(document).ready(function () {
+
                 // Check if items are available in cart and load the cart.
                 // checkCartSession();
                 // function checkCartSession() {
@@ -60,11 +61,15 @@
                                         itemType: itemType
                                 },
                                 function (response) {
-                                        alert(response);
-                                        console.log(response);
+                                        // alert(response);
+                                        // console.log(response);
+                                        $('html, body').animate({
+                                                scrollTop: $("#bshb-sidebar-cart").offset().top
+                                        }, 100);
                                         $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
                                         $('#bshb-sidebar-cart').html(response);
                                         $('#bshb-sidebar-cart').removeClass('bshb-loader');
+
                                 },
                         );
                         return true;
@@ -80,8 +85,11 @@
                                         itemType: itemType
                                 },
                                 function (response) {
-                                        alert(response);
-                                        console.log(response);
+                                        // alert(response);
+                                        // $('#bshb-sidebar-cart').scrollTop(300);
+                                        $('html, body').animate({
+                                                scrollTop: $("#bshb-sidebar-cart").offset().top
+                                        }, 100);
                                         $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
                                         $('#bshb-sidebar-cart').html(response);
                                         $('#bshb-sidebar-cart').removeClass('bshb-loader');
@@ -95,7 +103,7 @@
                         var itemId = $(this).attr('data-item-id');
                         var itemType = 'room_item';
                         var response = removeFromCart(itemId, itemType);
-                        alert(response);
+                        // alert(response);
                 });
 
 

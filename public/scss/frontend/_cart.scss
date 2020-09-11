@@ -73,21 +73,60 @@
 .cart-sub-total {
         display: inline-flex;
         width: 100%;
+        justify-content: space-between;
+        font-weight: 200;
         align-items: center;
+        padding: 2rem 0;
+        margin-top: 1rem;
+        border-top: 1px solid $color-grey;
+
+        h1,
+        h2 {
+                margin: 0;
+        }
 }
+
+.cart-sub-total {
+        h2 {
+                font-weight: 200;
+        }
+}
+
+.cart-total {
+        .total {
+                font-weight: 200;
+        }
+
+        .total-amount {
+                font-size: 3.5rem;
+                font-weight: 300;
+                line-height: 1.2;
+        }
+}
+
 
 .cart-tax {
         width: 100%;
         display: inline-flex;
-        justify-content: space-around;
+        justify-content: space-between;
+
 
         .tax-rate {
-                display: flex;
-                padding: 1rem;
+                display: inline-flex;
+                width: 45%;
+                padding: 1rem 0;
+                color: $color-text;
+                justify-content: space-between;
+
         }
 
         .tax-amount {
                 display: flex;
-                padding: 1rem;
+                padding: 1rem 0;
+
+                h2 {
+                        font-weight: 200;
+                }
+
         }
 }

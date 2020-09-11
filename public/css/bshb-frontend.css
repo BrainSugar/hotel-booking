@@ -25923,9 +25923,37 @@ fieldset[disabled] .bshb-container .form-control {
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-weight: 200;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 2rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid #9e9e9e;
+}
+
+.bshb-container .cart-total h1,
+.bshb-container .cart-total h2,
+.bshb-container .cart-sub-total h1,
+.bshb-container .cart-sub-total h2 {
+  margin: 0;
+}
+
+.bshb-container .cart-sub-total h2 {
+  font-weight: 200;
+}
+
+.bshb-container .cart-total .total {
+  font-weight: 200;
+}
+
+.bshb-container .cart-total .total-amount {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
 }
 
 .bshb-container .cart-tax {
@@ -25933,22 +25961,32 @@ fieldset[disabled] .bshb-container .form-control {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .bshb-container .cart-tax .tax-rate {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 1rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 45%;
+  padding: 1rem 0;
+  color: #676767;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .bshb-container .cart-tax .tax-amount {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 1rem;
+  padding: 1rem 0;
+}
+
+.bshb-container .cart-tax .tax-amount h2 {
+  font-weight: 200;
 }
 
 .bshb-container .bshb-search-form {

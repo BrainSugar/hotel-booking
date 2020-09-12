@@ -154,6 +154,11 @@ function bshb_format_currency($price) {
         return $formattedPrice;        
 }
 
+/**
+ * Calculate the number of nights from session variables
+ *
+ * @return int
+ */
 function bshb_get_stay_nights() {
         if(isset($_SESSION['bshb_session_value'])){
                 $sessionValue = unserialize($_SESSION['bshb_session_value']);
@@ -162,4 +167,27 @@ function bshb_get_stay_nights() {
                 $numberOfNights =Carbon::parse($checkOut)->diffInDays($checkIn);
         }
         return $numberOfNights;
+}
+
+/**
+ * Get search page ID stored in the wp_options table
+ *
+ * @return url
+ */
+function bshb_get_search_page() {
+        $searchPageId = Brainsugar()->options->get( 'Pages.search');
+        $searchPageUrl = get_permalink( $searchPageId );
+
+        return esc_url($searchPageUrl); 
+}
+/**
+ * Get checkout page ID stored in the wp_options table
+ *
+ * @return void
+ */
+function bshb_get_checkout_page() {
+        $checkoutPageId = Brainsugar()->options->get( 'Pages.check_out');
+        $checkoutPageUrl = get_permalink( $checkoutPageId );
+        
+        return esc_url($checkoutPageUrl); 
 }

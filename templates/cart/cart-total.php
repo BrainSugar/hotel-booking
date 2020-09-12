@@ -22,5 +22,5 @@
                         <h1 class="total-amount"><?php echo bshb_format_currency($data['total']);?></h1>                        
                 </div>
         </div>
-        <a href="" class="btn btn-primary w-100 my-2 mx-3">Checkout</a>
+        <a href="<?php echo bshb_get_checkout_page(); ?>" class="btn btn-primary w-100 my-2 mx-3">Checkout</a>
 </div>

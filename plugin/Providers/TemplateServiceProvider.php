@@ -41,10 +41,17 @@ class TemplateServiceProvider extends ServiceProvider
                 
                 // If is page then return page templates or return default.
                 if( is_page() ){
-                        if ($pageId == $searchPage) {                        
-                                return $this->getTemplate( 'search-page' );
-                        }
-                        else {
+                        switch($pageId){
+                                // Load the template for search page.
+                                case $searchPage:
+                                         return $this->getTemplate( 'search-page' );
+                                break;
+                                // Load the template for checkout page.
+                                case $checkOutPage:
+                                        return $this->getTemplate('checkout-page');
+                                break;
+                                // Return the default page template.
+                                default: 
                                 return $template;
                         }
                 } 

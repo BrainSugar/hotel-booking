@@ -5,13 +5,13 @@ use Brainsugar\CustomPostTypes\ServiceCustomPostType;
 use Brainsugar\Admin\Collections\CollectionsList;
 
 class ServiceMetabox extends ManageMetaboxes {
-    protected $postType;
+    protected $post_type;
     protected $prefix;
     
     public function __construct() {
-        $postType = ServiceCustomPostType::getPostType();
+        $post_type = ServiceCustomPostType::getPostType();
 
-        $this->postType = $postType;
+        $this->post_type = $post_type;
         $this->prefix = 'bshb';
 
 		$this->bshb_register_hooks();
@@ -34,6 +34,7 @@ class ServiceMetabox extends ManageMetaboxes {
 
         $service_metabox->add_field( array(
             'id'                => "_{$this->prefix}_heading",
+			'type'              => 'text',
             'render_row_cb'     => array( $this, "{$this->prefix}_render_heading" ),
         )   );
 

@@ -4,13 +4,13 @@ namespace Brainsugar\Admin\Metaboxes;
 use Brainsugar\CustomPostTypes\TaxCustomPostType;
 
 class TaxMetabox extends ManageMetaboxes {
-    protected $postType;
+    protected $post_type;
     protected $prefix;
     
     public function __construct() {
-        $postType = TaxCustomPostType::getPostType();
+        $post_type = TaxCustomPostType::getPostType();
 
-        $this->postType = $postType;
+        $this->post_type = $post_type;
         $this->prefix = 'bshb';
 
 		$this->bshb_register_hooks();
@@ -26,13 +26,14 @@ class TaxMetabox extends ManageMetaboxes {
         $tax_metabox = new_cmb2_box( array(
             'id'                => "{$this->prefix}_tax_metabox",
             'title'             => __( 'Tax Details', 'bshb-td' ),
-            'object_types'      => array( $this->postType ),
+            'object_types'      => array( $this->post_type ),
             'classes'           => array( $this->prefix ),
             'cmb_styles'        => false,
         )   );
         
         $tax_metabox->add_field( array(
             'id'                => "{$this->prefix}_heading",
+			'type'              => 'text',
             'render_row_cb'     => array( $this, "{$this->prefix}_render_heading" ),
         )   );
 

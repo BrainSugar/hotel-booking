@@ -26270,6 +26270,11 @@ fieldset[disabled] .bshb-container .form-control {
   font-size: 3.5em;
 }
 
+.bshb-container .checkout-container {
+  background: #fff;
+  padding: 2rem;
+}
+
 .bshb-container .bshb-datepicker .dayContainer .flatpickr-day:hover {
   background: #e7faf8;
   border-radius: 0.25rem;

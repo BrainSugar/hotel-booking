@@ -144,6 +144,8 @@ function frontendScripts() {
                 //       Frontend
                 wp_register_script( "cart", plugins_url(  '/brainsugar-hotel-booking/public/js/cart.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
         wp_enqueue_script( 'cart' );
+        wp_register_script( "checkout", plugins_url(  '/brainsugar-hotel-booking/public/js/checkout.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
+        wp_enqueue_script( 'checkout' );
                         wp_register_script( "search", plugins_url(  '/brainsugar-hotel-booking/public/js/search.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
         wp_enqueue_script( 'search' );
 

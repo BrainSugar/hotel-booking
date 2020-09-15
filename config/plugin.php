@@ -55,7 +55,8 @@ return [
 'custom_post_types' => [        
         '\Brainsugar\CustomPostTypes\RoomCustomPostType' ,
           '\Brainsugar\CustomPostTypes\ReservationCustomPostType' ,
-           '\Brainsugar\CustomPostTypes\TaxCustomPostType' 
+           '\Brainsugar\CustomPostTypes\TaxCustomPostType' ,
+            '\Brainsugar\CustomPostTypes\ServiceCustomPostType' 
 ],
 
 
@@ -106,7 +107,8 @@ return [
   'ajax' => [ '\Brainsugar\Ajax\SearchAjax',
                 '\Brainsugar\Ajax\RoomAjax',
                 '\Brainsugar\Ajax\PricingAjax',
-                '\Brainsugar\Ajax\CartAjax'
+                '\Brainsugar\Ajax\CartAjax',
+                 '\Brainsugar\Ajax\CheckoutAjax'
 ],
 
   /*

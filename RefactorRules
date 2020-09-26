@@ -10,3 +10,4 @@ Do not hardcode bshb as a prefix anywhere. Save it as a variable (eg: $prefix) a
 Use the right access modifiers ( public, private, protected ) for functions.
 For consistent styling across the project, style controls in this hierarchy: bshb>form-control. The form-control class must be on the input/select/text/textarea html element.If you want to prepend/append an icon or text of anything to the control, follow this hierarchy:bshb>input-group>form-control 
 Opening brackets for functions can either be at the end of the function name or on a new line. I suggest we go with the same line option, but whatever the option we choose, we stick to one style. 
+Figure out the difference between esc_html__ and esc_html__x and all the other variations of escaping string, and use it accordingly

@@ -2,8 +2,8 @@
 <div class="container-fluid">
         <div class="row">
                 <div class="col-sm-8">
-                        <div class="checkout-container">
-                                <h1 class="display-4"> Services  </h1>
+                        <div id="checkout-container" class="checkout-container">
+                                <?php bshb_get_template_part('checkout/checkout','services'); ?> 
                         </div>                     
                 </div>
                 <div class="col-sm-4">

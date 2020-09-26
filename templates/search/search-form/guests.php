@@ -47,19 +47,20 @@
         (function ($) {
                 'use strict';
                 $('body').on('click', '.minus', function () {
-                        var $input = $(this).parent().find('input');
-                        var count = parseInt($input.val()) - 1;
+                        var input = $(this).parent().find('input');
+                        var count = parseInt(input.val()) - 1;
                         count = count < 1 ? 0 : count;
-                        $input.val(count);
-                        $input.change();
+                        input.val(count);
+                        input.change();
                         return false;
                 });
                 $('body').on('click', '.plus', function () {
-                        var $input = $(this).parent().find('input');
-                        var count = parseInt($input.val()) + 1;
-                        count = count > <?php echo $maxRooms; ?> ? <?php echo $maxRooms; ?> : count;
-                        $input.val(count);
-                        $input.change();
+                        var input = $(this).parent().find('input');
+                        var count = parseInt(input.val()) + 1;
+                         var max = input.attr('max');
+                        count = count > max ? max : count;
+                        input.val(count);
+                        input.change();
                         return false;
                 });
         })(jQuery)

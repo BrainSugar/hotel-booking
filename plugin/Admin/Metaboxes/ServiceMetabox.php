@@ -23,7 +23,7 @@ class ServiceMetabox extends ManageMetaboxes {
         $postType = ServiceCustomPostType::getPostType();
 
         $this->postType = $postType;
-        $this->prefix = '_bshb_';
+        $this->prefix = 'bshb_';
 		$this->bshb_register_actions_and_filters();
     }
     
@@ -46,6 +46,23 @@ class ServiceMetabox extends ManageMetaboxes {
             'type'              => 'select',
             'show_option_none'  => false,
             'options_cb'        => array( $this, 'bshb_get_service_operations' ) ,
+        )   );
+
+        $service_metabox->add_field( array(
+            'id'                => $this->prefix . 'stock_operation',
+            'name'              => __( 'Stock', 'cmb2' ),
+            'type'              => 'radio',
+            'show_option_none'  => false,       
+            'options'          => array(
+		'single' => __( 'Single Selectable', 'cmb2' ),
+		'multiple'   => __( 'Multiple Selectable', 'cmb2' ),		
+	),     
+        )   );
+
+        $service_metabox->add_field( array(
+            'id'                => $this->prefix . 'service_max_selectable',
+            'name'              => __( 'Maximum Selectable', 'cmb2' ),
+            'type'              => 'text',
         )   );
 
         $service_metabox->add_field( array(

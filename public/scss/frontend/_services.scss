@@ -1,0 +1,68 @@
+.service-container {
+        padding: 1rem;
+}
+
+.service-item {
+        border-radius: $border-radius;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        padding: 1rem;
+        margin: 2rem 1rem;
+        color: $color-text;
+
+        .service-header {
+                display: flex;
+                align-items: center;
+
+                .service-image {
+                        padding: 0.5rem;
+
+                        img {
+                                height: 5rem;
+                                width: 5rem;
+                                border-radius: 50%;
+                        }
+                }
+
+                h3 {
+                        color: $color-text;
+                        font-weight: 400;
+                }
+        }
+
+        .service-description {
+                padding: 1rem;
+
+                p {
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                }
+        }
+
+        .service-content {
+                display: flex;
+                justify-content: space-around;
+                margin: 1rem 0 2rem 0;
+
+                .service-quantity {
+
+                        .plus,
+                        .minus {
+                                font-size: 1em;
+                        }
+
+                        .quantity-number {
+                                font-size: 1.5em;
+                        }
+                }
+
+                .service-price {
+                        align-self: flex-end;
+
+                        h2 {
+                                margin: auto;
+                        }
+                }
+        }
+}

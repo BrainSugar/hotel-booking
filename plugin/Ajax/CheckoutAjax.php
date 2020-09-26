@@ -3,6 +3,7 @@
 namespace Brainsugar\Ajax;
 
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
+use Brainsugar\Http\Controllers\Frontend\CheckoutController;
 
 class CheckoutAjax extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class CheckoutAjax extends ServiceProvider
    * @var array
    */
   protected $trusted = [
-    'trusted'
+    'getServiceTemplate'
   ];
 
   /**
@@ -37,9 +38,11 @@ class CheckoutAjax extends ServiceProvider
     'notLogged'
   ];
 
-  public function trusted()
+  public function getServiceTemplate()
   {
-    $response = "You have clicked Ajax Trusted";
+          $checkoutController = new CheckoutController;
+          $response = $checkoutController->getServicesTemplate();
+// s
 
     wp_send_json( $response );
   }

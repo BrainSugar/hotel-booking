@@ -1,6 +1,7 @@
 <?php 
 use Brainsugar\Core\CoreFunctions;
 use Brainsugar\Model\Pricing;
+use Brainsugar\Model\Service;
 use Carbon\Carbon;
 // The functions for the Frontend Templates.
 
@@ -190,4 +191,25 @@ function bshb_get_checkout_page() {
         $checkoutPageUrl = get_permalink( $checkoutPageId );
         
         return esc_url($checkoutPageUrl); 
+}
+
+function bshb_get_services() {
+        $services =  get_posts(array(
+                        'post_type' => 'bshb_service',
+                        'status' => 'published'
+                ));
+        return $services;
+}
+
+function bshb_get_service_price($post_id){
+        $service = new Service;
+        $price =  $service->getServicePrice($post_id);
+        return bshb_format_currency($price);
+
+}
+
+function bshb_get_service_stock($post_id) {
+        $service = new Service;
+        $stock = $service->getServiceStock($post_id);
+        return $stock;
 }

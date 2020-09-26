@@ -33,8 +33,7 @@ class CollectionsList {
 	public static function bshb_get_service_operations() {
 		$response = [
             'add_to_price'               	=> esc_html_x( 'Adds to Price', 'Service Operation', 'bshb' ),
-            'add_to_price_per_night'     	=> esc_html_x( 'Adds to Price/Night', 'Service Operation', 'bshb' ),
-            'add_percent_amount_to_total'	=> esc_html_x( 'Adds % of Amount to the Total', 'Service Operation', 'bshb' ),
+            'add_to_price_per_night'     	=> esc_html_x( 'Adds to Price/Night', 'Service Operation', 'bshb' ),            
 		];
 
         return $response ;

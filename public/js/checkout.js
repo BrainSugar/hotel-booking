@@ -2,8 +2,8 @@
 
         'use strict';
 
-        $(document).ready(function () {
-                alert("chckout");
+        $(document).load(function () {
+
         });
 
 })(window.jQuery);

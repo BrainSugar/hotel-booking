@@ -25290,9 +25290,11 @@ fieldset[disabled] .bshb .btn-danger.active {
 
 .bshb .minus,
 .bshb .plus {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   color: #10cfbd;
   font-size: 1.3em;
-  margin-top: 1em;
   cursor: pointer;
 }
 

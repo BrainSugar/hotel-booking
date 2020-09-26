@@ -140,14 +140,30 @@ function frontendScripts() {
 
                                      
 
+                // Get page id for all the frontend pages.
+                $pageId = get_the_ID(); 
 
-                //       Frontend
+                // Pages set by the user.
+                $searchPage = Brainsugar()->options->get( 'Pages.search');
+                $checkOutPage = Brainsugar()->options->get('Pages.check_out');
+
+        if($pageId ==  $searchPage ){
+                wp_register_script( "search", plugins_url(  '/brainsugar-hotel-booking/public/js/search.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
+                wp_enqueue_script( 'search' );
+
+                }
+                else if($pageId == $checkOutPage) {
+                        wp_register_script( "checkout", plugins_url(  '/brainsugar-hotel-booking/public/js/checkout.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
+                        wp_enqueue_script( 'checkout' );
+                }
+
+
+
+                
                 wp_register_script( "cart", plugins_url(  '/brainsugar-hotel-booking/public/js/cart.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
         wp_enqueue_script( 'cart' );
-        wp_register_script( "checkout", plugins_url(  '/brainsugar-hotel-booking/public/js/checkout.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
-        wp_enqueue_script( 'checkout' );
-                        wp_register_script( "search", plugins_url(  '/brainsugar-hotel-booking/public/js/search.js'), array( "jquery" , "moment" , "swiper" , "bootstrap-bundle")); 
-        wp_enqueue_script( 'search' );
+
+
 
 }
 

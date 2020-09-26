@@ -14,7 +14,7 @@ class ServiceMetabox extends ManageMetaboxes {
         $this->post_type = $post_type;
         $this->prefix = 'bshb';
 
-		$this->bshb_register_hooks();
+	$this->bshb_register_hooks();
     }
     
     private function bshb_register_hooks() {

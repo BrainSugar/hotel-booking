@@ -27,14 +27,14 @@ class ServiceMetabox extends ManageMetaboxes {
         $service_metabox = new_cmb2_box( array(
             'id'                => "_{$this->prefix}_service_metabox",
             'title'             => __( 'Service Details', 'bshb-td' ),
-            'object_types'      => array( $this->postType ),
+            'object_types'      => array( $this->post_type ),
             'classes'           => array( $this->prefix ),
             'cmb_styles'        => false,
         )   );
 
         $service_metabox->add_field( array(
             'id'                => "_{$this->prefix}_heading",
-			'type'              => 'text',
+            'type'              => 'text',
             'render_row_cb'     => array( $this, "{$this->prefix}_render_heading" ),
         )   );
 
@@ -53,8 +53,8 @@ class ServiceMetabox extends ManageMetaboxes {
             //     'name'              => 'Operation',
             // ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_service_operation_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_service_operation_field" ),
+            'before'            => '<div class="col-8">',
+            'after'             => '<p class="option-desc">Choose how this Service affects the total amount of a Reservation</p></div>',
         )   );
 
         $service_metabox->add_field( array(
@@ -69,10 +69,6 @@ class ServiceMetabox extends ManageMetaboxes {
                 'placeholder'       => 'Amount',
                 'required'          => 'required',
             ),
-            // 'column'            => array(
-            //     'position'          => 3,
-            //     'name'              => 'Amount',
-            // ),
             'show_names'        => false,
             'before'            => array( $this, "{$this->prefix}_before_service_amount_field" ),
             'after'             => array( $this, "{$this->prefix}_after_service_amount_field" ),
@@ -88,8 +84,8 @@ class ServiceMetabox extends ManageMetaboxes {
                 'rows'              => 2,
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_service_description_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_service_description_field" ),
+            'before'            => '<div class="col-8">',
+            'after'             => '<p class="option-desc">Optional Description for this Service Type</p></div>',
         )   );
     }
     
@@ -106,19 +102,6 @@ class ServiceMetabox extends ManageMetaboxes {
                     </p>
                 </div>
             </div>
-        <?php 
-    }
-
-    public function bshb_before_service_operation_field() {
-        ?>
-            <div class="col-8">
-        <?php 
-    }
-
-    public function bshb_after_service_operation_field() {
-        ?>
-            <p class="option-desc">Choose how this Service affects the total amount of a Reservation</p>
-            </div> <!--col -->
         <?php 
     }
 
@@ -144,21 +127,6 @@ class ServiceMetabox extends ManageMetaboxes {
         <?php 
     }
 
-    public function bshb_before_service_description_field() {
-        ?>
-            <div class="col-8">
-        <?php
-    }
-
-    public function bshb_after_service_description_field() {
-        ?>
-            <div>
-                    <p class="option-desc">Optional Description for this Service Type</p>
-                </div>
-            </div> <!-- col -->
-        <?php 
-    }
-    
     public function bshb_hide_publishing_actions() {
         global $post;
         

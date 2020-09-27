@@ -4,13 +4,13 @@ namespace Brainsugar\Admin\Metaboxes;
 use Brainsugar\CustomPostTypes\TaxCustomPostType;
 
 class TaxMetabox extends ManageMetaboxes {
-    protected $post_type;
+    protected $postType;
     protected $prefix;
     
     public function __construct() {
-        $post_type = TaxCustomPostType::getPostType();
+        $postType = TaxCustomPostType::getPostType();
 
-        $this->post_type = $post_type;
+        $this->postType = $postType;
         $this->prefix = 'bshb';
 
 		$this->bshb_register_hooks();
@@ -26,14 +26,14 @@ class TaxMetabox extends ManageMetaboxes {
         $tax_metabox = new_cmb2_box( array(
             'id'                => "{$this->prefix}_tax_metabox",
             'title'             => __( 'Tax Details', 'bshb-td' ),
-            'object_types'      => array( $this->post_type ),
+            'object_types'      => array( $this->postType ),
             'classes'           => array( $this->prefix ),
             'cmb_styles'        => false,
         )   );
         
         $tax_metabox->add_field( array(
             'id'                => "{$this->prefix}_heading",
-			'type'              => 'text',
+            'type'              => 'text',
             'render_row_cb'     => array( $this, "{$this->prefix}_render_heading" ),
         )   );
 
@@ -46,16 +46,27 @@ class TaxMetabox extends ManageMetaboxes {
                 'min'               => '1',
                 'max'               => '99',
                 'class'             => 'form-control',
-                'placeholder'       => 'Tax Percentage',
+                'placeholder'       => 'Input a number 1-99',
                 'required'          => 'required',
+                'pattern'           => '\d*',
             ),
-            // 'column'            => array(
-            //     'position'          => 2,
-            //     'name'              => 'Tax Percentage',
-            // ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_tax_percentage_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_tax_percentage_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-percentage"></i>
+                            </span>
+                        </div>';
+            },
+            'after'             => function(){
+                echo
+                    '</div>
+                    <p class="option-desc">The percentage of the Amount as Tax. A value of 20 means 20%</p>
+                </div>';
+            },
         )   );
 
         $tax_metabox->add_field( array(
@@ -64,15 +75,28 @@ class TaxMetabox extends ManageMetaboxes {
             'type'              => 'text',
             'attributes'        => array(
                 'class'             => 'form-control',
-                'placeholder'       => 'Order of Appearance',
+                'placeholder'       => 'Input a number 0-9',
                 'type'              => 'number',
                 'min'               => '0',
-                'max'               => '999999',
-                'value'             => '0'
+                'max'               => '9',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_tax_order_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_tax_order_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-sort-numeric-down"></i>
+                            </span>
+                        </div>';
+            },
+            'after'             => function(){
+                echo
+                    '</div>
+                <p class="option-desc">Optional order of appearance (lower comes first)</p>
+                </div>';
+            },
         )   );
 
         $tax_metabox->add_field( array(
@@ -85,8 +109,14 @@ class TaxMetabox extends ManageMetaboxes {
                 'rows'              => 2,
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_tax_description_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_tax_description_field" ),
+            'before'            => function(){
+                echo 
+                '<div class="col-8">';
+            },
+            'after'             => function(){
+                echo
+                '<p class="option-desc">Optional Description for this Tax</p></div>';
+            },
         )   );
     }
 
@@ -105,66 +135,7 @@ class TaxMetabox extends ManageMetaboxes {
             </div>
         <?php 
     }
-
-    public function bshb_before_tax_percentage_field() {
-        ?>
-            <div class="col-8">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-percentage"></i>
-                        </span>
-                    </div>
-        <?php
-    }
-
-    public function bshb_after_tax_percentage_field() {
-        ?>
-                    </div> <!-- input-group -->
-                <div>
-                    <p class="option-desc">The percentage of the Amount as Tax</p>
-                </div>
-            </div> <!-- col -->
-        <?php 
-    }
-
-    public function bshb_before_tax_description_field() {
-        ?>
-            <div class="col-8">
-        <?php
-    }
-
-    public function bshb_after_tax_description_field() {
-        ?>
-            <div>
-                    <p class="option-desc">Optional Description for this Tax Type</p>
-                </div>
-            </div> <!-- col -->
-        <?php 
-    }
     
-    public function bshb_before_tax_order_field() {
-        ?>
-            <div class="col-8">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-sort-numeric-down"></i>
-                        </span>
-                    </div>
-        <?php
-    }
-
-    public function bshb_after_tax_order_field() {
-        ?>
-                    </div> <!-- input-group -->
-                <div>
-                    <p class="option-desc">Optional order of appearance (lower comes first)</p>
-                </div>
-            </div> <!-- col -->
-        <?php 
-    }
-
     public function bshb_hide_publishing_actions() {
         global $post;
         

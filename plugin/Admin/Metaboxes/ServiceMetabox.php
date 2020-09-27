@@ -14,7 +14,7 @@ class ServiceMetabox extends ManageMetaboxes {
         $this->post_type = $post_type;
         $this->prefix = 'bshb';
 
-	$this->bshb_register_hooks();
+		$this->bshb_register_hooks();
     }
     
     private function bshb_register_hooks() {
@@ -53,8 +53,15 @@ class ServiceMetabox extends ManageMetaboxes {
             //     'name'              => 'Operation',
             // ),
             'show_names'        => false,
-            'before'            => '<div class="col-8">',
-            'after'             => '<p class="option-desc">Choose how this Service affects the total amount of a Reservation</p></div>',
+            'before'            => function(){
+                echo 
+                '<div class="col-8">';
+            },
+            'after'             => function(){
+                echo 
+                '<p class="option-desc">Choose how this Service affects the total amount of a Reservation</p>
+                </div>';
+            },
         )   );
 
         $service_metabox->add_field( array(
@@ -70,8 +77,22 @@ class ServiceMetabox extends ManageMetaboxes {
                 'required'          => 'required',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_service_amount_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_service_amount_field" ),
+            'before'            => function(){
+                echo 
+                '<div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-rupee-sign"></i>
+                            </span>
+                        </div>';
+            },
+            'after'             => function(){
+                echo 
+                    '</div>
+                    <p class="option-desc">How much does this Service cost</p>
+                </div>';
+            },
         )   );
 
         $service_metabox->add_field( array(
@@ -84,8 +105,15 @@ class ServiceMetabox extends ManageMetaboxes {
                 'rows'              => 2,
             ),
             'show_names'        => false,
-            'before'            => '<div class="col-8">',
-            'after'             => '<p class="option-desc">Optional Description for this Service Type</p></div>',
+            'before'            => function(){
+                echo 
+                '<div class="col-8">';
+            },
+            'after'             => function(){
+                echo 
+                '<p class="option-desc">Optional Description for this Service</p>
+                </div>';
+            },
         )   );
     }
     
@@ -102,28 +130,6 @@ class ServiceMetabox extends ManageMetaboxes {
                     </p>
                 </div>
             </div>
-        <?php 
-    }
-
-    public function bshb_before_service_amount_field() {
-        ?>
-            <div class="col-8">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-rupee-sign"></i>
-                        </span>
-                    </div>
-        <?php
-    }
-
-    public function bshb_after_service_amount_field() {
-        ?>
-                    </div> <!-- input-group -->
-                <div>
-                    <p class="option-desc">How much does this Service cost</p>
-                </div>
-            </div> <!-- col -->
         <?php 
     }
 

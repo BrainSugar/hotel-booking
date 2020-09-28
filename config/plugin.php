@@ -52,10 +52,13 @@ return [
   |
   */
 
-'custom_post_types' => [        
-        '\Brainsugar\CustomPostTypes\RoomCustomPostType' ,
-          '\Brainsugar\CustomPostTypes\ReservationCustomPostType' ,
-],
+    'custom_post_types' => [        
+        '\Brainsugar\CustomPostTypes\RoomCustomPostType',
+        '\Brainsugar\CustomPostTypes\ReservationCustomPostType',
+        '\Brainsugar\CustomPostTypes\TaxCustomPostType',
+        '\Brainsugar\CustomPostTypes\ServiceCustomPostType',
+        '\Brainsugar\CustomPostTypes\AmenityCustomPostType',
+    ],
 
 
 
@@ -68,7 +71,10 @@ return [
   |
   */
 
-  'custom_taxonomy_types' => [ '\Brainsugar\CustomTaxonomyTypes\Amenities' ],
+  'custom_taxonomy_types' => [ 
+    '\Brainsugar\CustomTaxonomyTypes\Amenities',
+    '\Brainsugar\CustomTaxonomyTypes\Facilities',
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -105,7 +111,9 @@ return [
   'ajax' => [ '\Brainsugar\Ajax\SearchAjax',
                 '\Brainsugar\Ajax\RoomAjax',
                 '\Brainsugar\Ajax\PricingAjax',
-                '\Brainsugar\Ajax\CartAjax'
+                '\Brainsugar\Ajax\CartAjax',
+                 '\Brainsugar\Ajax\Cart',
+                 '\Brainsugar\Ajax\Reservation',
 ],
 
   /*

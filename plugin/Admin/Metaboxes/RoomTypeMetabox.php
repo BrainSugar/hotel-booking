@@ -56,8 +56,22 @@ class RoomTypeMetabox extends ManageMetaboxes {
                 'placeholder'       => 'Input a number 1-999',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_stock_rooms_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_stock_rooms_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-ruler-combined"></i>
+                            </span>
+                        </div>';
+            },
+            'after'             => function(){
+                echo
+                    '</div>
+                    <p class="option-desc">How many rooms of this type are available?</p>
+                </div>';
+            },
         )   );
 
         $basic_details_metabox->add_field( array(
@@ -71,8 +85,14 @@ class RoomTypeMetabox extends ManageMetaboxes {
                 'readonly'          => 'readonly',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_headcount_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_headcount_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-12">';
+            },
+            'after'             => function(){
+                echo
+                '</div>';
+            },
         )   );
 
         $basic_details_metabox->add_field( array(
@@ -86,8 +106,14 @@ class RoomTypeMetabox extends ManageMetaboxes {
                 'readonly'          => 'readonly',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_los_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_los_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-12">';
+            },
+            'after'             => function(){
+                echo
+                '</div>';
+            },
         )   );
 
         $basic_details_metabox->add_field( array(
@@ -99,11 +125,25 @@ class RoomTypeMetabox extends ManageMetaboxes {
                 'min'               => '1',
                 'max'               => '99999',
                 'class'             => 'form-control',
-                'placeholder'       => 'Input a number 1-99999',
+                'placeholder'       => 'Base rate between 1-99999',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_rack_rate_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_rack_rate_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-rupee-sign"></i>
+                            </span>
+                        </div>';
+            },
+            'after'             => function(){
+                echo
+                    '</div>
+                    <p class="option-desc">Base Rate of the Room</p>
+                </div>';
+            },
         )   );
 
         $basic_details_metabox->add_field( array(
@@ -113,16 +153,29 @@ class RoomTypeMetabox extends ManageMetaboxes {
             'attributes'        => array(
                 'type'              => 'number',
                 'min'               => '1',
-                'max'               => '999999',
+                'max'               => '99999',
                 'class'             => 'form-control',
-                'placeholder'       => 'Area in m2',
+                'placeholder'       => 'Area between 1-99999',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_room_area_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_room_area_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-ruler-combined"></i>
+                            </span>
+                        </div>';
+            },
+            'after'             => function(){
+                echo
+                    '</div>
+                    <p class="option-desc">Area of the Room</p>
+                </div>';
+            },
         )   );
 
-        
 
 
         
@@ -145,8 +198,29 @@ class RoomTypeMetabox extends ManageMetaboxes {
             'name'              => __( 'Require Deposit', 'bshb-td' ),
             'type'              => 'deposits',
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_deposit_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_deposit_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-12">';
+            },
+            'after'             => function(){
+                echo
+                '</div>';
+            },
+        )   );
+
+        $additional_details_metabox->add_field( array(
+            'id'                => "_{$this->prefix}_require_deposit",
+            'name'              => __( 'Require Deposit', 'bshb-td' ),
+            'type'              => 'deposits',
+            'show_names'        => false,
+            'before'            => function(){
+                echo
+                '<div class="col-12">';
+            },
+            'after'             => function(){
+                echo
+                '</div>';
+            },
         )   );
 
         $additional_details_metabox->add_field( array(
@@ -157,8 +231,15 @@ class RoomTypeMetabox extends ManageMetaboxes {
                 'desc'              => 'Non Cancellable',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_non_cancellable_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_non_cancellable_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-8">';
+            },
+            'after'             => function(){
+                echo
+                '<p class="option-desc">When enabled, reservations that include this room will be non cancellable and non refundable</p>
+                </div>';
+            },
         )   );
 
         $additional_details_metabox->add_field( array(
@@ -169,40 +250,100 @@ class RoomTypeMetabox extends ManageMetaboxes {
                 'desc'              => 'Non Taxable',
             ),
             'show_names'        => false,
-            'before'            => array( $this, "{$this->prefix}_before_non_taxable_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_non_taxable_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-8">';
+            },
+            'after'             => function(){
+                echo
+                '<p class="option-desc">When enabled, tax rules will not be applied for this room type</p>
+                </div>';
+            },
         )   );
 
-        // $additional_details_metabox->add_field( array(
-        //     'id'                => "_{$this->prefix}_facility",
-        //     'name'              => __( 'Facility', 'bshb-td' ),
-        //     'type'              => 'taxonomy_multicheck',
-        //     'taxonomy'          => 'bshb_facility_taxonomy',
-        //     'show_names'        => false,
-        //     'before'            => array( $this, "{$this->prefix}_before_facility_field" ),
-        //     'after'             => array( $this, "{$this->prefix}_after_facility_field" ),
-        // )   );
-
-        // $additional_details_metabox->add_field( array(
-		// 	'id'          	    => "_{$this->prefix}_beds",
-		// 	'type'        	    => 'text',
-		// 	'repeatable'  	    => true,
-		// 	'options'           => array(
-        //         'add_row_text'              => __( 'Add Bed', 'cmb2' ),
-        //         'remove_row_button_title'   => __( 'Delete Bed', 'cmb2' ),
-        //     ),
-        // )   );
-
         $additional_details_metabox->add_field( array(
-			'id'          	    => "_{$this->prefix}_beds2",
+			'id'          	    => "_{$this->prefix}_beds",
             'type'        	    => 'beds',
             'repeatable'  	    => true,
 			'options'           => array(
                 'add_row_text'              => __( 'Add Bed', 'cmb2' ),
                 'remove_row_button_title'   => __( 'Delete Bed', 'cmb2' ),
             ),
-            'before'            => array( $this, "{$this->prefix}_before_beds_field" ),
-            'after'             => array( $this, "{$this->prefix}_after_beds_field" ),
+            'before'            => function(){
+                echo
+                '<div class="col-12">';
+            },
+            'after'             => function(){
+                echo
+                '<p class="option-desc">Specify what type of bed(s) are available in this room type</p>
+                </div>';
+            },
+        )   );
+
+
+
+        $order_metabox = new_cmb2_box( array(
+            'id'                => "{$this->prefix}_room_type_order",
+            'title'             => __( 'Order of Appearance', 'bshb-td' ),
+            'object_types'      => array( $this->postType ),
+            'classes'           => array( $this->prefix ),
+            'cmb_styles'        => false,
+            'context'           => 'side',
+        )   );
+
+        $order_metabox->add_field( array(
+            'id'                => "{$this->prefix}_room_type_order",
+            'name'              => __( 'Order of Appearance', 'bshb-td' ),
+            'type'              => 'text',
+            'attributes'        => array(
+                'type'              => 'number',
+                'min'               => '0',
+                'max'               => '20',
+                'class'             => 'form-control',
+                'value'         => '0',
+            ),
+            'show_names'        => false,
+            'before'            => function(){
+                echo
+                '<div class="col-12 p-0">';
+            },
+            'after'             => function(){
+                echo
+                '<p class="option-desc">Specify a particular order for this room type (Optional)</p>
+                </div>';
+            },
+        )   );
+
+        
+
+        $policy_metabox = new_cmb2_box( array(
+            'id'                => "{$this->prefix}_room_type_policies",
+            'title'             => __( 'Policies/Rules', 'bshb-td' ),
+            'object_types'      => array( $this->postType ),
+            'classes'           => array( $this->prefix ),
+            'cmb_styles'        => false,
+            'context'           => 'side',
+        )   );
+
+        $policy_metabox->add_field( array(
+            'id'                => "{$this->prefix}_room_type_policy",
+            'name'              => __( 'Policies/Rules', 'bshb-td' ),
+            'type'              => 'text',
+            'show_names'        => false,
+            'repeatable'  	    => true,
+			'options'           => array(
+                'add_row_text'              => __( 'Add Policy', 'cmb2' ),
+                'remove_row_button_title'   => __( 'Delete Policy', 'cmb2' ),
+            ),
+            'before'            => function(){
+                echo
+                '<div class="col-12 p-0">';
+            },
+            'after'             => function(){
+                echo
+                '<p class="option-desc">Specify a particular order for this room type (Optional)</p>
+                </div>';
+            },
         )   );
     }
     
@@ -239,184 +380,7 @@ class RoomTypeMetabox extends ManageMetaboxes {
         <?php 
     }
 
-
-
-    public function bshb_before_room_area_field() {
-        ?>
-            <div class="col-8">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-ruler-combined"></i>
-                        </span>
-                    </div>
-        <?php
-    }
-
-    public function bshb_after_room_area_field() {
-        ?>
-                    </div> <!-- input-group -->
-                <div>
-                    <p class="option-desc">Area of the Room</p>
-                </div>
-            </div> <!-- col -->
-        <?php 
-    }
-
-
-    public function bshb_before_rack_rate_field() {
-        ?>
-            <div class="col-8">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-rupee-sign"></i>
-                        </span>
-                    </div>
-        <?php
-    }
-
-    public function bshb_after_rack_rate_field() {
-        ?>
-                    </div> <!-- input-group -->
-                <div>
-                    <p class="option-desc">Base Rate of the Room</p>
-                </div>
-            </div> <!-- col -->
-        <?php 
-    }
-
-
-    public function bshb_before_stock_rooms_field() {
-        ?>
-            <div class="col-8">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-ruler-combined"></i>
-                        </span>
-                    </div>
-        <?php
-    }
-
-    public function bshb_after_stock_rooms_field() {
-        ?>
-                    </div> <!-- input-group -->
-                <div>
-                    <p class="option-desc">How many rooms of this type are available?</p>
-                </div>
-            </div> <!-- col -->
-        <?php 
-    }
-
-
-
-    
-    public function bshb_before_headcount_field() {
-        ?>
-            <div class="col-12">
-        <?php
-    }
-
-    public function bshb_after_headcount_field() {
-        ?>
-            </div>
-        <?php
-    }
-
-    public function bshb_before_los_field() {
-        ?>
-            <div class="col-12">
-        <?php
-    }
-
-    public function bshb_after_los_field() {
-        ?>
-            </div>
-        <?php
-    }
-
-    public function bshb_before_deposit_field() {
-        ?>
-            <div class="col-12">
-        <?php
-    }
-
-    public function bshb_after_deposit_field() {
-        ?>
-            </div>
-        <?php 
-    }
-
-
-
-    
-    public function bshb_before_non_cancellable_field() {
-        ?>
-            <div class="col-8">
-        <?php
-    }
-
-    public function bshb_after_non_cancellable_field() {
-        ?>
-            <p class="option-desc">When enabled, reservations that include this room will be non cancellable and non refundable</p>
-            </div> <!--col-->
-        <?php 
-    }
-
-
-    public function bshb_before_non_taxable_field() {
-        ?>
-            <div class="col-8">
-        <?php
-    }
-
-    public function bshb_after_non_taxable_field() {
-        ?>
-            <p class="option-desc">When enabled, tax rules will not be applied for this room type</p>
-            </div> <!--col-->
-        <?php 
-    }
-
-
-    public function bshb_before_beds_field() {
-        ?>
-            <div class="col-12">
-        <?php
-    }
-
-    public function bshb_after_beds_field() {
-        ?>
-            <p class="option-desc">Specify what type of bed(s) are available in this room type</p>
-            </div> <!--col-->
-        <?php 
-    }
-
-
-    
-
-    
-
-    public function bshb_before_deposit_amount_field() {
-        ?>
-            <div class="col-8">
-        <?php
-    }
-
-    public function bshb_after_deposit_amount_field() {
-        ?>
-            <p class="option-desc">Percentage of the Amount required as an advance deposit</p>
-            </div> <!--col-->
-        <?php 
-    }
-
-    
-
-    public function bshb_get_room_variation_type() {
-        return CollectionsList::bshb_get_room_variation_type() ;
-    }
-
-    function bshb_hide_publishing_actions(){
+    public function bshb_hide_publishing_actions(){
         global $post;
         
         if( $post->post_type == RoomTypeCustomPostType::getPostType() ){
@@ -427,10 +391,5 @@ class RoomTypeMetabox extends ManageMetaboxes {
                     }
                 </style>';
         }
-    }
-    
-    public function bshb_show_if_deposit_required( $field ) {
-        $require_deposit = get_post_meta( $field->object_id(), "_{$this->prefix}_deposit_amount", 1 );
-        return 'on' === $require_deposit;
     }
 }

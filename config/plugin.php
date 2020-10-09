@@ -72,7 +72,8 @@ return [
   */
 
   'custom_taxonomy_types' => [ 
-
+    '\Brainsugar\CustomTaxonomyTypes\Amenities',
+    '\Brainsugar\CustomTaxonomyTypes\Facilities',
   ],
 
   /*

@@ -42,23 +42,13 @@ class CartAjax extends ServiceProvider
         ];
         
         public function addToCart() {
-                $itemQuantity = 1;
+                $itemQuantity = $_POST['itemQuantity'];
                 $itemId = $_POST['itemId'];         
                 $itemType =  $_POST['itemType'];         
                 
-                $cart = new CartController;
-                
-                if($itemType == "room_item")
-                {
-                        $response = $cart->addRoomToCart($itemId , $itemQuantity);                         
-                }
-                
-                if($itemType == "service")
-                {
-                        $response = $itemType;
-                }
-                
-                
+                $cart = new CartController;                
+     
+                $response = $cart->addItemToCart($itemId , $itemType , $itemQuantity);
                 
                 // $response = wp_get_current_user();
                 wp_send_json( $response );

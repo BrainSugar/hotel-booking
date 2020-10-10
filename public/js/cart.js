@@ -24,12 +24,22 @@
                 //                 },
                 //         );
                 // }
+                $('.service-add-btn').click(function () {
+                        var itemType = 'service_item';
+                        var itemId = $(this).data('item-id');
+                        var itemQuantity = $(this).parent().find('#item-quantity').val();
+                        alert(itemQuantity);
+                        addToCart(itemId, itemType, itemQuantity);
+
+
+                });
 
 
                 $('body').on('click', '.room-add-btn', function (e) {
                         var itemId = $(this).data('item-id');
                         var roomCount = $(this).attr('data-room-count');
                         var itemType = 'room_item';
+                        var itemQuantity = 1;
 
                         var roomCountText = $(this).parent().find('.room-count-text');
                         if (roomCount == 1) {
@@ -45,24 +55,26 @@
                                 roomCount = roomCount - 1;
                                 roomCountText.html("Only " + roomCount + " rooms left");
                                 $(this).attr('data-room-count', roomCount);
-                                addToCart(itemId, itemType)
+                                addToCart(itemId, itemType, itemQuantity)
                         }
 
 
                 });
 
-                function addToCart(itemId, itemType) {
+                function addToCart(itemId, itemType, itemQuantity) {
                         $('#bshb-sidebar-cart').addClass('bshb-loader');
                         $.post(
                                 ajaxurl,
                                 {
                                         action: 'addToCart',
                                         itemId: itemId,
-                                        itemType: itemType
+                                        itemType: itemType,
+                                        itemQuantity: itemQuantity
                                 },
                                 function (response) {
                                         // alert(response);
                                         // console.log(response);
+                                        alert(response);
                                         $('html, body').animate({
                                                 scrollTop: $("#bshb-sidebar-cart").offset().top
                                         }, 100);

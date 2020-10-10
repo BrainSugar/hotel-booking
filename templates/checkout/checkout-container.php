@@ -7,7 +7,7 @@
                         </div>                     
                 </div>
                 <div class="col-sm-4">
-                      <?php bshb_get_template_part('search/search-results/sidebar/sidebar', 'cart' ); ?>
+                      <?php bshb_get_template_part('cart/cart' , 'summary' ); ?>
                 </div>        
         </div>
         </div>

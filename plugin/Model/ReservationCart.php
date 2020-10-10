@@ -4,8 +4,11 @@ namespace Brainsugar\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Brainsugar\Model\Pricing;
+use Brainsugar\Model\Service;
 use Brainsugar\Model\Sessions;
-class ReservationCart extends Model
+
+
+class ReservationCart extends Model     
 {
         /**
         * The table associated with the model.
@@ -42,81 +45,114 @@ class ReservationCart extends Model
         }
         
         
-        
-        public function insertRoomItem($reservationId , $itemId , $itemQuantity) {
+        /**
+        * Insert Item into the database
+        * Checks whether the item is room or service and then gets price.
+        *
+        * @param [int] $reservationId
+        * @param [int] $itemId
+        * @param [int] $itemQuantity
+        * @param [string] $itemType
+        * @return void
+        */
+        public function insertItem($reservationId , $itemId , $itemQuantity , $itemType) {
                 
-                $session = new Sessions;
-                $sessionValue = $session->getSessionValue();
-                
-                $checkIn = $sessionValue['check_in'];
-                $checkOut = $sessionValue['check_out'];
-                
-                $storedItem = $this->_checkItemExists($reservationId , $itemId);
-                $pricing = new Pricing;
-                $price = $pricing->get_room_rates_between_dates($itemId , $checkIn , $checkOut);
-                $total = $price['total'];
-                $itemQuantity = 1;     
-                
-                if($storedItem == false){ 
+                if($itemType == 'room_item') {
+                        //  Get price of the room for the selected stay dates
+                        $session = new Sessions;
+                        $sessionValue = $session->getSessionValue();
+                        $checkIn = $sessionValue['check_in'];
+                        $checkOut = $sessionValue['check_out'];
+                        $pricing = new Pricing;
+                        $price = $pricing->get_room_rates_between_dates($itemId , $checkIn , $checkOut);
+                        $itemTotal = $price['total'];
                         
-                        $itemTotal = $itemQuantity * $total;                        
-                        $this->fill(array(
+                        // Store the room item in the cart database
+                        $response = $this->_storeItem($reservationId , $itemId , $itemQuantity , $itemTotal);
+                }
+                
+                else if($itemType == 'service_item') {
+                        $service = new Service;
+                        $price  =  $service->getServicePrice($itemId);
+                        // if stock is single quantity = 1
+                        $stockOperation = get_post_meta($itemId , 'bshb_stock_operation', true );
+                        if ($stockOperation == "single") {
+                                $itemQuantity = 1;
+                        }
+                        $itemTotal = $itemQuantity * $price;
+                        
+                        // Store the service item in the cart database
+                        $response = $this->_storeItem($reservationId , $itemId , $itemQuantity , $itemTotal);
+                }
+                return $response;
+        }
+        
+        
+        
+        public function getCartItems($reservationId) {
+                // $cartItems = $this->
+                $response = $this->where('reservation_id' , $reservationId)->get()->toArray();
+                return $response;
+        }
+        
+        /**
+        * Get cart total
+        *
+        * @param [type] $reservationId
+        * @return array - cart total , cart tax , cart subtotal
+        */
+        public function getCartTotal($reservationId) {
+                $cartItems = $this->where('reservation_id' , $reservationId)->get()->toArray();
+                $itemPrices = [];
+                foreach($cartItems as $item) {
+                        array_push($itemPrices ,$item['item_total']);
+                }
+                $cartSubTotal = array_sum($itemPrices);
+                $calclulateTaxes = $this->_calculateTaxRates($cartSubTotal);
+                
+                if($calclulateTaxes == false) 
+                {
+                        $response = $cartSubTotal;
+                }
+                else {
+                        $response = [
+                                'sub_total' => $cartSubTotal,
+                                'tax' => $calclulateTaxes['tax_data'], 
+                                'total' => $calclulateTaxes['total']
+                        ];
+                }
+                
+                return $response;
+        }
+        
+        private function _storeItem($reservationId , $itemId , $itemQuantity , $itemTotal) {
+                
+                // Check if the item already exists
+                $storedItem = $this->_checkItemExists($reservationId , $itemId);
+                
+                // If the item doesn't exist insert into the db
+                if($storedItem == false){ 
+                        $response = $this->fill(array(
                                 'reservation_id' => $reservationId , 
                                 'item_id' => $itemId,
                                 'item_quantity' => absint($itemQuantity),
                                 'item_total' => $itemTotal
                                 ))->save(); 
                         }
+                        // If the item exists then change the quantity and price of the item stored in the db.
                         else {
                                 $storedQuantity = $storedItem['item_quantity'];
                                 $storedPrice = $storedItem['item_total'];
                                 
                                 $newQuantity = $storedQuantity + $itemQuantity;
-                                $newTotal = $storedPrice + $total;
+                                $newTotal = $storedPrice + $itemTotal;
                                 
-                                $this->where('id' , $storedItem['id'])
+                                $response = $this->where('id' , $storedItem['id'])
                                 ->update(array(
                                         'item_quantity' => $newQuantity , 
                                         'item_total' => $newTotal
                                 ));
-                        }                 
-                        
-                        return true;
-                }
-                
-                public function getCartItems($reservationId) {
-                        // $cartItems = $this->
-                        $response = $this->where('reservation_id' , $reservationId)->get()->toArray();
-                        return $response;
-                }
-                
-                /**
-                * Get cart total
-                *
-                * @param [type] $reservationId
-                * @return array - cart total , cart tax , cart subtotal
-                */
-                public function getCartTotal($reservationId) {
-                        $cartItems = $this->where('reservation_id' , $reservationId)->get()->toArray();
-                        $itemPrices = [];
-                        foreach($cartItems as $item) {
-                                array_push($itemPrices ,$item['item_total']);
                         }
-                        $cartSubTotal = array_sum($itemPrices);
-                        $calclulateTaxes = $this->_calculateTaxRates($cartSubTotal);
-                        
-                        if($calclulateTaxes == false) 
-                        {
-                                $response = $cartSubTotal;
-                        }
-                        else {
-                                $response = [
-                                        'sub_total' => $cartSubTotal,
-                                        'tax' => $calclulateTaxes['tax_data'], 
-                                        'total' => $calclulateTaxes['total']
-                                ];
-                        }
-                        
                         return $response;
                 }
                 
@@ -191,7 +227,7 @@ class ReservationCart extends Model
                                         else {
                                                 $storedQuantity = $storedItem['item_quantity'];
                                                 
-                                                if($storedQuantity > 1)                        
+                                                if($storedQuantity > 1)
                                                 {
                                                         $storedPrice = $storedItem['item_total'];
                                                         

@@ -1,4 +1,8 @@
-<?php $maxSelectable = bshb_get_service_stock($post->ID); ?>
+<?php 
+// Template Files
+
+$maxSelectable = bshb_get_service_stock($post->ID); 
+?>
 <div class="service-item">
         <div class="service-header">
                 <div class="service-image">
@@ -18,7 +22,7 @@
                                 <span class="minus cursor-pointer">
                                         <i class='fad fa-minus'></i>
                                 </span>
-                                <input type="number" class="quantity-number" name="input-stocks" id="input-stocks-<?php echo $post->ID; ?>" value="1" max="<?php echo esc_attr($maxSelectable); ?>" min="1" required readonly="readonly">
+                                <input type="number" class="quantity-number" id="item-quantity" name="input-stocks" value="1" max="<?php echo esc_attr($maxSelectable); ?>" min="1" required readonly="readonly">
                                 <!-- Plus button -->
                                 <span class="plus  cursor-pointers">
                                         <i class='fad fa-plus'></i>
@@ -32,6 +36,6 @@
                         <h2><?php echo bshb_get_service_price($post->ID); ?></h2>
                 </div>
         </div>
-        <button class="btn btn-primary w-100">Add to Cart</button>
+        <button class="btn btn-primary w-100 service-add-btn" data-item-id = "<?php echo $post->ID; ?>">Add to Cart</button>
 </div>
 

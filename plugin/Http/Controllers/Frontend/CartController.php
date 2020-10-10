@@ -40,18 +40,23 @@ class CartController extends Controller
                 unset($_SESSION['bshb_session_cart']);
         }
         
-        public function addRoomToCart($itemId , $itemQuantity) {
+        public function addItemToCart($itemId , $itemType , $itemQuantity) {
                 // $this->unsetCartSession();
                 if($this->isCartSessionActive() == true) {
                         $cart = new ReservationCart;
                         $reservationId = $_SESSION['bshb_session_cart'];
-                        
-                        $insertRoom = $cart->insertRoomItem($reservationId , $itemId , $itemQuantity);
-                        if($insertRoom == true) {
+
+                       
+                        $insertItem = $cart->insertItem($reservationId , $itemId , $itemQuantity , $itemType);
+                 
+
+                         if($insertItem == true) {
                                 $cartItems = $cart->getCartItems($reservationId);
                                 $cartTotal = $cart->getCartTotal($reservationId);
                                 $response = $this->getCartTemplate($cartItems , $cartTotal);
                         }
+                        
+                       
                 }                
                 return $response;
                 

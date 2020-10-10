@@ -2,6 +2,7 @@
 use Brainsugar\Core\CoreFunctions;
 use Brainsugar\Model\Pricing;
 use Brainsugar\Model\Service;
+use Brainsugar\Model\ReservationCart;
 use Carbon\Carbon;
 // The functions for the Frontend Templates.
 
@@ -212,4 +213,11 @@ function bshb_get_service_stock($post_id) {
         $service = new Service;
         $stock = $service->getServiceStock($post_id);
         return $stock;
+}
+
+function bshb_get_order_summary() {
+        $reservation = $_SESSION['bshb_session_cart'];
+        $cart = new ReservationCart;
+        $cartItems = $cart->getCartItems($reservation);
+        return $cartItems;
 }

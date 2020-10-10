@@ -2,7 +2,11 @@
 
         'use strict';
 
-        $(document).load(function () {
+        $(document).ready(function () {
+                // $('.service-add-btn').click(function () {
+                //         alert('service-add');
+
+                // });
 
         });
 

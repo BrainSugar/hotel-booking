@@ -96,7 +96,8 @@ $services =  bshb_get_services();
                 $('body').on('click', '.minus', function () {
                         var input = $(this).parent().find('input');
                         var count = parseInt(input.val()) - 1;
-                        count = count < 1 ? 0 : count;
+                         var min = input.attr('min');
+                        count = count < min ? 0 : count;
                         input.val(count);
                         input.change();
                         return false;

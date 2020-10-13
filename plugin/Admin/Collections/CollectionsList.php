@@ -126,5 +126,13 @@ class CollectionsList {
 		];
 		
         return $response ;
-	}
+        }
+        public static function get_coupon_operation() {
+                $response = [
+                        'percentage'    => esc_html_x( 'Percentage', 'Coupon Operation', 'bshb' ),
+                        'amount' 	=> esc_html_x( 'Amount', 'Coupon Operation', 'bshb' ),
+
+                ];
+                return $response;
+        }
 }

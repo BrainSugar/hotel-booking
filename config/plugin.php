@@ -56,7 +56,8 @@ return [
         '\Brainsugar\CustomPostTypes\RoomCustomPostType' ,
           '\Brainsugar\CustomPostTypes\ReservationCustomPostType' ,
            '\Brainsugar\CustomPostTypes\TaxCustomPostType' ,
-            '\Brainsugar\CustomPostTypes\ServiceCustomPostType' 
+            '\Brainsugar\CustomPostTypes\ServiceCustomPostType' ,
+               '\Brainsugar\CustomPostTypes\CouponCustomPostType' 
 ],
 
 

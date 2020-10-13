@@ -221,3 +221,10 @@ function bshb_get_order_summary() {
         $cartItems = $cart->getCartItems($reservation);
         return $cartItems;
 }
+
+function bshb_get_cart_total() {
+        $reservation = $_SESSION['bshb_session_cart'];
+        $cart = new ReservationCart;
+        $total = $cart->getCartTotal($reservation);
+        return $total;
+}

@@ -30,8 +30,11 @@
                         var itemQuantity = $(this).parent().find('#item-quantity').val();
                         alert(itemQuantity);
                         addToCart(itemId, itemType, itemQuantity);
+                });
 
-
+                $('#apply-coupon').click(function () {
+                        var couponCode = $('#input-coupon').val();
+                        $('#coupon-message').removeClass('d-none');
                 });
 
 

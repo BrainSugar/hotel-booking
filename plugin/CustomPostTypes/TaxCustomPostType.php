@@ -26,8 +26,8 @@ class TaxCustomPostType extends ServiceProvider
 	];
 	
 	public function boot() {
-		$register_columns = new TaxColumns;
-		$register_metabox = new TaxMetabox;        
+		$register_columns = new TaxColumns( static::$postType );
+		$register_metabox = new TaxMetabox( static::$postType );        
 	}
 	
 	public function supports() {
@@ -35,9 +35,5 @@ class TaxCustomPostType extends ServiceProvider
 			'title',       
 			'revisions',
 		];
-	}
-	
-	public static function getPostType() {
-		return self::$postType;
 	}
 }

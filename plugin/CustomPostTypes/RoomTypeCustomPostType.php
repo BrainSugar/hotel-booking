@@ -26,8 +26,8 @@ class RoomTypeCustomPostType extends ServiceProvider
 	];
 	
 	public function boot() {
-		$register_columns = new RoomTypeColumns;
-		$register_metabox = new RoomTypeMetabox;
+		$register_columns = new RoomTypeColumns( static::$postType );
+		$register_metabox = new RoomTypeMetabox( static::$postType );
 	}
 	
 	public function supports() {
@@ -37,9 +37,5 @@ class RoomTypeCustomPostType extends ServiceProvider
 			'thumbnail',
 			'revisions',
 		];
-	}
-	
-	public static function getPostType() {
-		return self::$postType;
 	}
 }

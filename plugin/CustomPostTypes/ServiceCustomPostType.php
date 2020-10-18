@@ -26,8 +26,8 @@ class ServiceCustomPostType extends ServiceProvider
 	];
 	
 	public function boot() {
-		$register_columns = new ServiceColumns;
-		$register_metabox = new ServiceMetabox;
+		$register_columns = new ServiceColumns( static::$postType );
+		$register_metabox = new ServiceMetabox( static::$postType );
 	}
 	
 	public function supports() {
@@ -36,9 +36,5 @@ class ServiceCustomPostType extends ServiceProvider
 			'revisions',
 			'thumbnail',
 		];
-	}
-	
-	public static function getPostType() {
-		return self::$postType;
 	}
 }

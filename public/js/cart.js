@@ -28,14 +28,20 @@
                         var itemType = 'service_item';
                         var itemId = $(this).data('item-id');
                         var itemQuantity = $(this).parent().find('#item-quantity').val();
-                        alert(itemQuantity);
+                        // alert(itemQuantity);
                         addToCart(itemId, itemType, itemQuantity);
                 });
 
-                $('#apply-coupon').click(function () {
+                $('body').on('click', '#apply-coupon', function () {
                         var couponCode = $('#input-coupon').val();
-                        $('#coupon-message').removeClass('d-none');
+                        applyCouponCode(couponCode);
                 });
+
+                $('body').on('click', '#remove-coupon', function () {
+                        removeCouponCode();
+                        $('.coupon-status').addClass('d-none');
+                });
+
 
 
                 $('body').on('click', '.room-add-btn', function (e) {
@@ -64,8 +70,14 @@
 
                 });
 
+
                 function addToCart(itemId, itemType, itemQuantity) {
-                        $('#bshb-sidebar-cart').addClass('bshb-loader');
+                        if (itemType == "room_item") {
+                                $('#bshb-sidebar-cart').addClass('bshb-loader');
+                        }
+                        else if (itemType == "service_item") {
+                                $("#bshb-cart-summary").addClass('bshb-loader');
+                        }
                         $.post(
                                 ajaxurl,
                                 {
@@ -75,16 +87,13 @@
                                         itemQuantity: itemQuantity
                                 },
                                 function (response) {
-                                        // alert(response);
-                                        // console.log(response);
-                                        alert(response);
-                                        $('html, body').animate({
-                                                scrollTop: $("#bshb-sidebar-cart").offset().top
-                                        }, 100);
-                                        $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
-                                        $('#bshb-sidebar-cart').html(response);
-                                        $('#bshb-sidebar-cart').removeClass('bshb-loader');
 
+                                        if (itemType == "room_item") {
+                                                loadSidebar(response);
+                                        }
+                                        else if (itemType == "service_item") {
+                                                loadCartSummary();
+                                        }
                                 },
                         );
                         return true;
@@ -102,15 +111,96 @@
                                 function (response) {
                                         // alert(response);
                                         // $('#bshb-sidebar-cart').scrollTop(300);
-                                        $('html, body').animate({
-                                                scrollTop: $("#bshb-sidebar-cart").offset().top
-                                        }, 100);
-                                        $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
-                                        $('#bshb-sidebar-cart').html(response);
-                                        $('#bshb-sidebar-cart').removeClass('bshb-loader');
+                                        loadSidebar(response);
+
                                 },
                         );
                         return true;
+                }
+                function loadSidebar(data) {
+                        $('html, body').animate({
+                                scrollTop: $("#bshb-sidebar-cart").offset().top
+                        }, 100);
+                        $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
+                        $('#bshb-sidebar-cart').html(data);
+                        $('#bshb-sidebar-cart').removeClass('bshb-loader');
+                }
+                function loadCartSummary() {
+                        $('html, body').animate({
+                                scrollTop: $("#bshb-cart-summary").offset().top
+                        }, 100);
+
+                        $("#bshb-cart-summary").load(" #bshb-cart-summary > *", function () {
+                                $("#bshb-cart-summary").removeClass('bshb-loader');
+                        });
+                        loadPayment();
+
+                }
+                function loadCartTotal() {
+                        $("#bshb-cart-final-total").addClass('bshb-loader');
+
+                        $('html, body').animate({
+                                scrollTop: $("#bshb-cart-final-total").offset().top
+                        }, 100);
+                        $("#bshb-cart-final-total").load(" #bshb-cart-final-total > *", function () {
+                                $("#bshb-cart-final-total").removeClass('bshb-loader');
+                        });
+                        loadPayment();
+                }
+                function loadPayment() {
+                        $("#bshb-payment-total").addClass('bshb-loader');
+                        $("#bshb-payment-total").load(" #bshb-payment-total > *", function () {
+                                $("#bshb-payment-total").removeClass('bshb-loader');
+                        });
+
+                }
+
+                function applyCouponCode(couponCode) {
+                        var couponMsg = "";
+                        if (couponCode == "") {
+                                couponMsg = "Please enter a coupon code";
+                                $('#coupon-message').html(couponMsg);
+                                $('#coupon-message').css('color', 'red');
+                                return;
+                        }
+                        else {
+                                $.post(
+                                        ajaxurl,
+                                        {
+                                                action: 'applyCouponCode',
+                                                couponCode: couponCode,
+                                        },
+                                        function (response) {
+                                                if (response.coupon_status == true) {
+                                                        $('#coupon-message').html(response.coupon_message);
+                                                        $('#coupon-message').css('color', 'green');
+                                                        loadCartTotal();
+                                                }
+                                                else {
+                                                        $('#coupon-message').html(response.coupon_message);
+                                                        $('#coupon-message').css('color', 'red');
+                                                }
+                                                $('.coupon-status').removeClass('d-none');
+                                        },
+                                );
+                        }
+
+                }
+
+                function removeCouponCode() {
+                        $.post(
+                                ajaxurl,
+                                {
+                                        action: 'removeCouponCode',
+                                },
+                                function (response) {
+                                        if (response) {
+                                                $('#input-coupon').val("");
+                                                loadCartTotal();
+                                        }
+
+                                },
+                        );
 
                 }
 

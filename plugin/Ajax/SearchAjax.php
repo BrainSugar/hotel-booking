@@ -4,6 +4,7 @@ namespace Brainsugar\Ajax;
 
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
 use Brainsugar\Http\Controllers\Frontend\SearchController;
+use Brainsugar\Model\Coupon;
 use Brainsugar\Model\Sessions;
 use Brainsugar\Model\ReservationCart;
 
@@ -87,9 +88,14 @@ class SearchAjax extends ServiceProvider {
 //   }
 
   public function clearPreviousSearch() {
+                $isCouponApplied = Coupon::getSessionCoupon();
                  if(isset($_SESSION['bshb_session_cart'])){                 
                           $cart = new ReservationCart;
                           $cart->deleteCartItems($_SESSION['bshb_session_cart']);
                   }
+                  if($isCouponApplied){
+                          Coupon::unsetSessionCoupon();
+                  }
+                 
           }  
 }

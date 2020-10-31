@@ -1,8 +1,10 @@
 <?php 
 use Brainsugar\Core\CoreFunctions;
+use Brainsugar\Core\World;
 use Brainsugar\Model\Pricing;
 use Brainsugar\Model\Service;
 use Brainsugar\Model\ReservationCart;
+use Brainsugar\Model\Coupon;
 use Carbon\Carbon;
 // The functions for the Frontend Templates.
 
@@ -194,6 +196,27 @@ function bshb_get_checkout_page() {
         return esc_url($checkoutPageUrl); 
 }
 
+/**
+ * Check if the given page is assigned as checkout page.
+ *
+ * @return void
+ */
+function bshb_is_checkout_page(){
+        global $wp_query;
+        $post_id = $wp_query->get_queried_object_id();
+        // Pages set by the user.
+               $checkoutPageId = Brainsugar()->options->get( 'Pages.check_out');
+    
+                if($post_id == $checkoutPageId){
+                        $response = true;
+                }
+                else {
+                        $response =  false;
+                }
+        return $response;
+}
+
+
 function bshb_get_services() {
         $services =  get_posts(array(
                         'post_type' => 'bshb_service',
@@ -222,9 +245,42 @@ function bshb_get_order_summary() {
         return $cartItems;
 }
 
+function bshb_get_cart_items() {
+        $reservation = $_SESSION['bshb_session_cart'];
+        $cart = new ReservationCart;
+        $response = $cart->getCartItems($reservation);
+        return $response;
+}
+
 function bshb_get_cart_total() {
         $reservation = $_SESSION['bshb_session_cart'];
         $cart = new ReservationCart;
-        $total = $cart->getCartTotal($reservation);
-        return $total;
+        $response = $cart->getCartTotal($reservation);
+        return $response;
+}
+
+
+function bshb_get_coupon_code() {
+      $coupon = new Coupon;
+      $appliedCoupon = $coupon->getSessionCoupon();
+
+      if($appliedCoupon == false){
+              return null;
+      }
+      else {
+              $couponCode = $coupon->getCouponCode($appliedCoupon);
+              return $couponCode;
+      }
+}
+
+function bshb_get_coupon_message() {
+        $coupon = new Coupon;
+        $couponMessage = $coupon->getCouponMessage();
+        return $couponMessage;
+}
+
+function bshb_get_countries() {
+        $world = new World;
+        $countries = $world->getCountries();
+        return $countries;
 }

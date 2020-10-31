@@ -1,4 +1,33 @@
 .checkout-container {
         background: $color-white;
         padding: 2rem;
+        box-shadow:$box-shadow;
+}
+
+.guest-container {
+        padding:2rem;
+
+        #guest-information{
+                .error {
+                        width:80%;
+                        color:$color-danger;                       
+                }
+        }
+        
+}
+.payment-container {
+        padding:2rem;
+
+        .reserve-booking {
+                display:flex;
+                padding:2rem;
+                justify-content:space-between;
+
+                h1{
+                        margin:0;
+                }
+        }
+}
+.validate-fail {
+        background-color: #ffefef;
 }

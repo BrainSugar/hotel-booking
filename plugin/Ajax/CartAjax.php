@@ -18,7 +18,9 @@ class CartAjax extends ServiceProvider
         protected $trusted = [
                 'cartSession',
                 'addToCart',
-                'removeFromCart'
+                'removeFromCart',
+                'applyCouponCode',
+                'removeCouponCode'
         ];
         
         /**
@@ -48,9 +50,8 @@ class CartAjax extends ServiceProvider
                 
                 $cart = new CartController;                
      
-                $response = $cart->addItemToCart($itemId , $itemType , $itemQuantity);
-                
-                // $response = wp_get_current_user();
+                $response = $cart->addItemToCart($itemId , $itemType , $itemQuantity);                
+
                 wp_send_json( $response );
         }
 
@@ -68,7 +69,19 @@ class CartAjax extends ServiceProvider
                         $response = $itemType;
                 } 
                 wp_send_json( $response);
+        }
 
+        public function applyCouponCode() {
+                $userCode = $_POST['couponCode'];
+                $cart = new CartController;
+                $response = $cart->checkCouponCode($userCode);
+               wp_send_json( $response);
+        }
+
+        public function removeCouponCode() {
+                $cart = new CartController;
+                $response = $cart->removeCouponCode();
+                wp_send_json( $response );
         }
         
         public function cartSession() {
@@ -77,25 +90,4 @@ class CartAjax extends ServiceProvider
                 wp_send_json($sessionCart); 
         }
         
-        //   public function trusted()
-        //   {
-                //     $response = "You have clicked Ajax Trusted";
-                
-                //     wp_send_json( $response );
-                //   }
-                
-                //   public function logged()
-                //   {
-                        //     $response = "You have clicked Ajax Logged";
-                        
-                        //     wp_send_json( $response );
-                        //   }
-                        
-                        //   public function notLogged()
-                        //   {
-                                //     $response = "You have clicked Ajax notLogged";
-                                
-                                //     wp_send_json( $response );
-                                //   }
-                                
-                        }
+}

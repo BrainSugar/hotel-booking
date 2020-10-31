@@ -25948,6 +25948,27 @@ fieldset[disabled] .bshb-container .form-control {
   font-weight: 200;
 }
 
+.bshb-container .cart-discount {
+  width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.bshb-container .cart-discount span {
+  color: #676767;
+}
+
+.bshb-container .cart-discount h2 {
+  margin: 0;
+  font-weight: 200;
+  color: green;
+}
+
 .bshb-container .cart-total .total {
   font-weight: 200;
 }
@@ -26039,9 +26060,23 @@ fieldset[disabled] .bshb-container .form-control {
   margin: 0;
 }
 
-.bshb-container .promo-code {
+.bshb-container .coupon-code {
   padding: 3rem 2rem;
   border-top: solid 1px #9e9e9e;
+}
+
+.bshb-container .coupon-code h6 {
+  margin-bottom: 1rem;
+}
+
+.bshb-container .coupon-code .coupon-status {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .bshb-container .bshb-search-form {
@@ -26328,10 +26363,43 @@ fieldset[disabled] .bshb-container .form-control {
 .bshb-container .checkout-container {
   background: #fff;
   padding: 2rem;
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.bshb-container .service-container {
-  padding: 1rem;
+.bshb-container .guest-container {
+  padding: 2rem;
+}
+
+.bshb-container .guest-container #guest-information .error {
+  width: 80%;
+  color: #f55753;
+}
+
+.bshb-container .payment-container {
+  padding: 2rem;
+}
+
+.bshb-container .payment-container .reserve-booking {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.bshb-container .payment-container .reserve-booking h1 {
+  margin: 0;
+}
+
+.bshb-container .validate-fail {
+  background-color: #ffefef;
+}
+
+.bshb-container .services-container {
+  padding: 2rem;
 }
 
 .bshb-container .service-item {

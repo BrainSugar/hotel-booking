@@ -92,6 +92,23 @@
 	}
 }
 
+.cart-discount{
+       	width: 100%;
+	display: inline-flex;
+        justify-content: space-between;
+        padding:1rem 0;
+
+        span{
+                color: $color-text;
+        }
+        
+        h2{
+                margin:0;
+                font-weight: 200;
+                color:green;
+        }
+}
+
 .cart-total {
 	.total {
 		font-weight: 200;
@@ -170,7 +187,17 @@
 }
 
 // Promo code section
-.promo-code {
+.coupon-code {
 	padding: 3rem 2rem;
-	border-top: solid 1px $color-grey;
+        border-top: solid 1px $color-grey;
+        
+        h6 {
+                margin-bottom:1rem;
+        }
+        .coupon-status {
+                display:inline-flex;
+                justify-content:space-around;
+                width:100%;
+                margin-top:2rem;
+        }
 }

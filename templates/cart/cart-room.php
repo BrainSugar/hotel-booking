@@ -1,6 +1,7 @@
+<?php $cartItems = bshb_get_cart_items();?>
 <div class="row">
         <div class="col-sm-12">
-                <?php foreach($data as $item){ ?>
+                <?php foreach($cartItems as $item){ ?>
                 <div class="room-item">
                         <div class="room-header">
                                 <div class="room-image">

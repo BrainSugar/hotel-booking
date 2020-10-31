@@ -73,7 +73,7 @@ $services =  bshb_get_services();
                                         },
                                         1024: {
                                                 slidesPerView: 3,
-                                                spaceBetween: 20,
+                                                spaceBetween: 10,
                                         },
                                 },
 

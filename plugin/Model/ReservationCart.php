@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Brainsugar\Model\Pricing;
 use Brainsugar\Model\Service;
 use Brainsugar\Model\Sessions;
+use Brainsugar\Model\Tax;
+use Brainsugar\Model\Coupon;
 
 
-class ReservationCart extends Model     
+
+class ReservationCart extends Model
 {
         /**
         * The table associated with the model.
@@ -102,25 +105,59 @@ class ReservationCart extends Model
         * @return array - cart total , cart tax , cart subtotal
         */
         public function getCartTotal($reservationId) {
+                
                 $cartItems = $this->where('reservation_id' , $reservationId)->get()->toArray();
                 $itemPrices = [];
                 foreach($cartItems as $item) {
                         array_push($itemPrices ,$item['item_total']);
                 }
-                $cartSubTotal = array_sum($itemPrices);
-                $calclulateTaxes = $this->_calculateTaxRates($cartSubTotal);
-                
-                if($calclulateTaxes == false) 
-                {
-                        $response = $cartSubTotal;
+                $cartSubTotal = array_sum($itemPrices);                
+            
+                // $subTotal = ($cartSubTotal  * ((100 - 20) / 100));
+                // $coupon = new Coupon;
+                // $couponApplied = $coupon->getSessionCoupon();
+
+                // if($couponApplied) {
+                //         $cartSubTotal = $this->_applyDiscountCoupon($cartSubTotal); 
+                // }
+                $coupon = new Coupon;                
+                $tax = new Tax;
+                        
+                $discountPrice = $coupon->applyDiscountToSubTotal($cartSubTotal);
+
+                if($discountPrice != false){
+                        $discount = $cartSubTotal - $discountPrice;
+                        $calculateTaxes =$tax->calculateTaxRates($discountPrice);
                 }
                 else {
-                        $response = [
-                                'sub_total' => $cartSubTotal,
-                                'tax' => $calclulateTaxes['tax_data'], 
-                                'total' => $calclulateTaxes['total']
-                        ];
+                        $discount = false;
+                        $calculateTaxes =$tax->calculateTaxRates($cartSubTotal);
                 }
+               
+                
+                if($calculateTaxes == false) 
+                {
+                        $taxes = false;
+
+                        if($discountPrice != false){
+                                $total = $discountPrice;
+                        }
+                        else {
+                                 $total = $cartSubTotal;
+                        }
+                       
+                }
+                else {
+                        $taxes = $calculateTaxes['tax_data'];
+                        $total = $calculateTaxes['total'];
+                }
+
+                  $response = [
+                                'sub_total' => $cartSubTotal,
+                                'discount' => $discount,
+                                'tax' => $taxes,
+                                'total' => $total
+                        ];
                 
                 return $response;
         }
@@ -153,45 +190,16 @@ class ReservationCart extends Model
                                         'item_total' => $newTotal
                                 ));
                         }
-                        return $response;
-                }
-                
-                
-                private function _calculateTaxRates($cartSubTotal) {
-                        // TODO: create tax for separate rooms and services in the cart
-                        // blanket tax rates
-                        $posts = get_posts(
-                                array(                                
-                                        'post_type' => 'bshb_tax',                                
-                                        )
-                                );
-                                
-                                $taxData = [];
-                                $taxes = [];
-                                if(!empty($posts)) {
-                                        foreach($posts as $post){
-                                                $taxRate = get_post_meta( $post->ID , '_bshb_tax_percentage' , true);
-                                                $tax = $cartSubTotal * $taxRate/100;
-                                                array_push($taxes , $tax);
-                                                array_push($taxData , [
-                                                        'tax_name' => $post->post_title,
-                                                        'tax_rate' => $taxRate . '%',
-                                                        'tax' => $tax
-                                                        ]);                       
-                                                }
-                                                
-                                                $totalTax = array_sum($taxes);
-                                                $total = $cartSubTotal + $totalTax;
-                                                $response = [
-                                                        'tax_data' => $taxData, 
-                                                        'total' => $total
-                                                ];
-                                        }
-                                        else {
-                                                $response = false;
-                                        }
-                                        return $response;
-                                }
+                return $response;
+        }
+
+        private function _applyDiscountCoupon($cartSubTotal) {
+                $coupon = new Coupon;
+                $response = $coupon->applyDiscountToSubTotal($cartSubTotal);
+                return $response;
+
+        }
+               
                                 
                                 private function _checkItemExists($reservationId , $itemId) {
                                         $storedItem = $this->where('reservation_id' , $reservationId)

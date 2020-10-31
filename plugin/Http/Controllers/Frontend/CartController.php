@@ -6,6 +6,7 @@ use Brainsugar\Providers\SessionServiceProvider;
 use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\Model\ReservationCart;
 use Brainsugar\Model\Sessions;
+use Brainsugar\Model\Coupon;
 
 class CartController extends Controller
 {
@@ -45,101 +46,107 @@ class CartController extends Controller
                 if($this->isCartSessionActive() == true) {
                         $cart = new ReservationCart;
                         $reservationId = $_SESSION['bshb_session_cart'];
-
-                       
-                        $insertItem = $cart->insertItem($reservationId , $itemId , $itemQuantity , $itemType);
-                 
-
-                         if($insertItem == true) {
-                                $cartItems = $cart->getCartItems($reservationId);
-                                $cartTotal = $cart->getCartTotal($reservationId);
-                                $response = $this->getCartTemplate($cartItems , $cartTotal);
+                        
+                        
+                        $insertItem = $cart->insertItem($reservationId , $itemId , $itemQuantity , $itemType);                       
+                        
+                        
+                        if($insertItem == true && $itemType == "room_item") {
+                                $response = $this->getCartTemplate($reservationId);
+                        }
+                        elseif($insertItem == true && $itemType == "service_item"){
+                                 $response = $this->getCartSummary();
                         }
                         
-                       
+                        
                 }                
                 return $response;
-                
         }
         public function deleteRoomFromCart($itemId) {
-                   if($this->isCartSessionActive() == true) {
+                if($this->isCartSessionActive() == true) {
                         $cart = new ReservationCart;
                         $reservationId = $_SESSION['bshb_session_cart'];     
                         $deleteRoom = $cart->deleteRoomItem($reservationId , $itemId);
-                        if($deleteRoom == true) {
-                                $cartItems = $cart->getCartItems($reservationId);
-                                $cartTotal = $cart->getCartTotal($reservationId);
-                                $response = $this->getCartTemplate($cartItems, $cartTotal);
+                        if($deleteRoom == true) {                              
+                                $response = $this->getCartTemplate($reservationId);
                         }
-                   }
-                   return $response;
+                }
+                return $response;
+        }
+
+        public function checkCouponCode($userCode) {
+                 if($this->isCartSessionActive() == true) {
+
+                         $coupon = new Coupon;
+                         $couponValid = $coupon->isCouponValid($userCode);
+
+                         if($couponValid == false) {
+                              $response = [
+                                        'coupon_status' => false,
+                                        'coupon_message' => sprintf("Invalid Coupon")
+                                ];
+                         }
+                         else {
+                                $response =  [
+                                        'coupon_status' => true,
+                                        'coupon_message' => $coupon->getCouponMessage()
+                                ];
+                         }
+                 }
+                 return $response;
+        }
+
+        public function removeCouponCode() {
+                if($this->isCartSessionActive() == true) {                        
+                         $response = Coupon::unsetSessionCoupon();
+                         return $response;
+                }
         }
         
-        public function getCartTemplate($cartItems , $cartTotal) {
+        public function getCartTemplate($reservationId) {
+                $cart = new ReservationCart;
+                $cartItems = $cart->getCartItems($reservationId);
                 if($cartItems == null) {
-                ob_start();
-                echo  bshb_get_template_part('cart/cart', 'empty' , $cartItems);
-                $response = ob_get_clean();
+                        ob_start();
+                        echo  bshb_get_template_part('cart/cart', 'empty');
+                        $response = ob_get_clean();
                 }
                 else {
-                // Call the searcj results template and fill the data       
-                ob_start();
-                echo  bshb_get_template_part('cart/cart', 'room' , $cartItems);
-                 echo  bshb_get_template_part('cart/cart', 'total' , $cartTotal);
-                $response = ob_get_clean();
+                        // Call the searcj results template and fill the data       
+                        ob_start();
+                        echo  bshb_get_template_part('cart/cart', 'room');
+                        echo  bshb_get_template_part('cart/cart', 'total' );
+                        $response = ob_get_clean();
                 }
                 
                 return $response;
         }
 
+        public function getCartSummary(){
+                ob_start();
+                echo  bshb_get_template_part('cart/cart', 'summary');
+                $response = ob_get_clean();
+                return $response;
+        }
+
+        
         public function getSessionCart() {
-                 if(isset($_SESSION['bshb_session_cart'])) {
+                if(isset($_SESSION['bshb_session_cart'])) {
                         $cart = new ReservationCart;
                         $reservationId = $_SESSION['bshb_session_cart'];
                         $cartItems = $cart->getCartItems($reservationId); 
                         $response = $this->getCartTemplate($cartItems);
                         return $response;
-                 }
-
-                  
+                }
         }
 
+        
         public function emptyCart() {
                 if(isset($_SESSION['bshb_session_cart'])) {
                         $cart = new ReservationCart;
                         $reservationId = $_SESSION['bshb_session_cart'];
                         $response = $cart->deleteCartItems($reservationId);
                         return $response;
+                }
         }
 }
-        
-        // public function startSession() {                
-                //         $session = new SessionServiceProvider;
-                //         $sessionData = $session->getSessionData();
-                //         return $sessionData;
-                
-                // }
-                
-                //   public function index()
-                //   {
-                        //     // GET
-                        //   }
-                        
-                        
-                        
-                        //   public function store()
-                        //   {
-                                //     // POST
-                                //   }
-                                
-                                //   public function update()
-                                //   {
-                                        //     // PUT AND PATCH
-                                        //   }
-                                        
-                                        //   public function destroy()
-                                        //   {
-                                                //     // DELETE
-                                                //   }
-                                                
-                                        }

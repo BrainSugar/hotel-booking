@@ -2,6 +2,7 @@
 
 namespace Brainsugar\Model;
 use Illuminate\Database\Eloquent\Model;
+use Brainsugar\Model\Reservations;
 
 class Room extends Model
 {
@@ -113,7 +114,7 @@ class Room extends Model
                         'post_type' => 'bshb_room',
                         'fields'          => 'ids',
                         'status' => 'published'
-                ));
+                ));              
                 
                 // loop through each room type and get all room ids for each room type.
                   foreach ($postIds as $postId){
@@ -122,5 +123,67 @@ class Room extends Model
                 }
                 return $response;
         }
+
+                /**
+        * Get all available rooms for a given search Query.
+        *
+        * @param [date] $checkIn
+        * @param [date] $checkOut
+        * @param [int] $adults
+        * @param [int] $children
+        * @return object
+        */
+        public function getAvailableRooms($checkIn , $checkOut , $adults , $children = null) {                
+                                
+                // Get All Room Types and their rooms that are published                        
+                $allRoomTypesAndRoomUnits = $this->getAllRoomTypeAndRoomUnits();
+
+                // The Remaining rooms after filtering occupancy
+                $roomData =  $this->filterOccupancy($allRoomTypesAndRoomUnits , $adults , $children);
+                
+                // Get all reservations which are confirmed and inbetween the query dates.
+                $reservationModel = new Reservations;
+                $reservations = $reservationModel->getReservationBetweenQueryDates($checkIn , $checkOut , 'reserved');
+                
+                // Get all the rooms which are reserved between the query dates.
+                $reservationItems = new ReservationItems;
+                $reservedRooms = [];
+                
+                foreach($reservations as $reservation) {
+                        // Get reserved rooms for each reservation.
+                        $rooms = $reservationItems->getRoomItems($reservation->reservation_id);
+                        foreach($rooms as $room) {
+                                array_push($reservedRooms , $room);
+                        }
+                }
+                
+                // Check reserved rooms with  all the rooms and get rooms which are available.
+                $availableRooms = [];
+                foreach($roomData as $key=>$value) {                                                       
+                        $availableRooms[$key] = array_values(array_diff($value , $reservedRooms));
+                }                
+                return $availableRooms;
+        }
+
+           public function filterOccupancy($roomData , $adults , $children = null) {
+
+                 foreach($roomData as $key => $value) {
+                         $maximumOccupancy = get_post_meta( $key, 'bshb_max_occupancy', true );
+                         $maxAdults = get_post_meta( $key, 'bshb_max_adults', true );
+                         $maxChildren = get_post_meta( $key, 'bshb_max_children', true );
+
+                         if($adults + $children > $maximumOccupancy) {
+                                 unset($roomData[$key]);
+                         }
+                         else if($adults > $maxAdults) {
+                                 unset($roomData[$key]);
+                         }
+                         else if($children > $maxChildren){
+                                  unset($roomData[$key]);
+                         }
+                }
+                return $roomData;                
+        }
+        
         
 }

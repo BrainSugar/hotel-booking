@@ -49,8 +49,7 @@
                         var roomCount = $(this).attr('data-room-count');
                         var itemType = 'room_item';
                         var itemQuantity = 1;
-
-                        var roomCountText = $(this).parent().find('.room-count-text');
+                        var roomCountText = $(this).parent().find('.room-count-text');                       
                         if (roomCount == 1) {
                                 $(this).prop('disabled', true);
                                 roomCountText.html("Fully Booked");

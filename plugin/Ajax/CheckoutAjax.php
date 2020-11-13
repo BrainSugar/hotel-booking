@@ -15,7 +15,7 @@ class CheckoutAjax extends ServiceProvider
    * @var array
    */
   protected $trusted = [
-    'getServiceTemplate'
+    'createReservation'
   ];
 
   /**
@@ -38,13 +38,20 @@ class CheckoutAjax extends ServiceProvider
     'notLogged'
   ];
 
-  public function getServiceTemplate()
+  public function createReservation()
   {
-          $checkoutController = new CheckoutController;
-          $response = $checkoutController->getServicesTemplate();
-// s
+        $guestDetails = [];
+        $paymentMethod = [];
+        parse_str($_POST['guestDetails'] , $guestDetails);
+        parse_str($_POST['paymentMethod'] , $paymentMethod);
 
-    wp_send_json( $response );
+        $checkout = new CheckoutController();
+        $response = $checkout->setReservationData();
+        // $checkout->setReservationData($guestDetails , $paymentMethod);
+
+        
+          return   wp_send_json( $response );
+ 
   }
 
   public function logged()

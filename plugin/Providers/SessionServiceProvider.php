@@ -22,9 +22,9 @@ class SessionServiceProvider extends ServiceProvider
         }
 
         public function initializeSession() {
-                $session = new Sessions;
-                $session->startSession();               
-                $session->initializeSessionKey();
+                $sessions = new Sessions;
+                // $session->startSession();
+                // $session->initializeSessionKey();
         }
 
         public function resetSessionKey() {

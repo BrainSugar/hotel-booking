@@ -25,7 +25,9 @@ class Sessions extends Model
         *
         * @var boolean
         */
-        public $timestamps = false;        
+        public $timestamps = false;
+
+        
         
         /**
         * Get the table associated with the model.
@@ -37,6 +39,11 @@ class Sessions extends Model
                 global $wpdb;
                 
                 return $wpdb->prefix . preg_replace('/[[:<:]]' . $wpdb->prefix . '/', '', parent::getTable(), 1);
+        }
+
+        public function __construct() {
+                $this->startSession();
+                $this->initializeSessionKey();
         }
         
         public function startSession() {
@@ -50,7 +57,7 @@ class Sessions extends Model
                         return;
                 }
                 else {
-                          $_SESSION['bshb_session_key'] = $this->generateSessionKey();                       
+                          $_SESSION['bshb_session_key'] = $this->generateSessionKey();
                 }
         }
         

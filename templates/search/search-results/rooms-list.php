@@ -5,7 +5,8 @@
 ?>
 <!-- Maya Room Cards -->
 <div class="row">
-<?php foreach($data->posts as $post) :  setup_postdata($post);  ?> 
+<?php foreach($data->posts as $post) :  setup_postdata($post);  ?>
+<?php if($data->roomsLeft[$post->ID] != 0) {?>
 <div class="col-sm-12">
         <!-- Room Container -->
         <article class="room-list-wrapper">
@@ -51,6 +52,7 @@
                 </div>
         </article>
 </div>
+<?php } ?>
 <?php endforeach; ?>
 </div>
 

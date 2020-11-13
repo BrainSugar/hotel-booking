@@ -2,11 +2,13 @@
         <h1 class="display-4 mb-5"><?php echo esc_html('Payment' , 'bshb'); ?></h1>
         <div class="row mx-5">      
                 <div class="col-sm-12">
+                <span class="payment-error"></span>
+                <form id="payment_gateways">
                         <div class="radio">
-                                <input type="radio" value="manual" name="Room/sorting" id="sorting_manual" <?php if (Brainsugar()->options->get( 'Room.display.sorting' ) == 'manual') echo ' checked="checked"';?>>
-                                <label for="sorting_manual"><?php esc_html_e( 'Pay at desk', 'bshb' ) ?></label>
-                                <p class="mx-5">Pay the full amount when you check in.</p>
+                                <input type="radio" id="pay-desk" name="payment_option" value="pay_at_desk" >
+                                <label for="pay-desk"><?php esc_html_e( 'Pay at desk', 'bshb' ) ?></label>
                         </div>
+                </form>
                 </div>
         </div>
         <hr>

@@ -4,10 +4,30 @@
 
         $(document).ready(function () {
                 $('body').on('click', '#bshb-reserve-booking', function (e) {
-                        guestInputValidate();
+                        if (guestInputValidate() == true && paymentInputValidate() == true) {
+                                var guestDetails = $("#guest-information").serialize();
+                                var paymentMethod = $('#payment_gateways').serialize();
+                                createReservation(guestDetails, paymentMethod);
+                        }
 
                 });
 
+                function paymentInputValidate() {
+                        $('#payment_gateways').validate({
+                                rules: {
+                                        payment_option: "required"
+                                },
+                                messages: {
+                                        payment_option: "Please select a payment method"
+                                },
+                                errorElement: 'span',
+                                errorLabelContainer: '.payment-error'
+                        });
+                        if ($('#payment_gateways').valid()) {
+                                return true;
+                        }
+
+                }
                 function guestInputValidate() {
                         $("#guest-information").validate({
                                 rules: {
@@ -30,11 +50,24 @@
                                 },
                         });
                         if ($("#guest-information").valid()) {
-                                alert("valid");
+                                return true;
                         }
-                        else {
-                                alert("invalid");
-                        }
+                }
+
+                function createReservation(guestDetails, paymentMethod) {
+                        $.post(
+                                ajaxurl,
+                                {
+                                        action: 'createReservation',
+                                        guestDetails: guestDetails,
+                                        paymentMethod: paymentMethod
+                                },
+                                function (response) {
+                                        alert(response);
+                                        console.log(response);
+
+                                },
+                        );
                 }
         });
 

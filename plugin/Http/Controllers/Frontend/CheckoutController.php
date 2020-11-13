@@ -11,17 +11,15 @@ Use Carbon\Carbon;
 
 class CheckoutController extends Controller {
 
-        public function getServicesTemplate() {
+public function setReservationData(){
+        $reservation = new Reservations;
 
-                $service = new Service;
-                $serviceIds = $service->getServiceId();
+                 $response = $reservation->createReservation();                
+          
+        
+       
+        return $response;
 
-                ob_start();
-                        echo  bshb_get_template_part('checkout/checkout', 'services' ,$serviceIds);
-               $response = ob_get_clean();
-
-                return $response;
-
-        }
+}
 
 }

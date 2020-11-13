@@ -27,6 +27,9 @@
                         margin:0;
                 }
         }
+        .payment-error{
+                color:$color-danger;
+        }
 }
 .validate-fail {
         background-color: #ffefef;

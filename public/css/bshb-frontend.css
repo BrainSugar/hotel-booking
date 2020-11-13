@@ -26394,6 +26394,10 @@ fieldset[disabled] .bshb-container .form-control {
   margin: 0;
 }
 
+.bshb-container .payment-container .payment-error {
+  color: #f55753;
+}
+
 .bshb-container .validate-fail {
   background-color: #ffefef;
 }

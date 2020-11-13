@@ -25963,11 +25963,11 @@ fieldset[disabled] .bshb .form-control {
   margin-left: 1rem;
 }
 
-.bshb .bookings.booked {
+.bshb .bookings.reserved {
   background: #e7faf8;
 }
 
-.bshb .bookings.booked.start-day {
+.bshb .bookings.reserved.start-day {
   border-left: 5px solid #10cfbd;
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
@@ -25978,11 +25978,11 @@ fieldset[disabled] .bshb .form-control {
   z-index: 10;
 }
 
-.bshb .bookings.booked.start-day p {
+.bshb .bookings.reserved.start-day p {
   display: block;
 }
 
-.bshb .bookings.booked.end-day {
+.bshb .bookings.reserved.end-day {
   border-right: 5px solid #10cfbd;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
@@ -25991,7 +25991,7 @@ fieldset[disabled] .bshb .form-control {
   right: 55%;
 }
 
-.bshb .bookings.booked.end-day p {
+.bshb .bookings.reserved.end-day p {
   display: block;
 }
 

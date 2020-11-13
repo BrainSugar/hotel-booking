@@ -3,7 +3,7 @@
 namespace Brainsugar\Http\Controllers\Frontend;
 
 use Brainsugar\Http\Controllers\Controller;
-use Brainsugar\Model\Reservations;
+use Brainsugar\Model\Room;
 use Brainsugar\Model\ReservationCart;
 Use Carbon\Carbon;
 // use Brainsugar\Core\CoreFunctions;
@@ -11,36 +11,20 @@ Use Carbon\Carbon;
 class SearchController extends Controller
 {
         public function getSearchResultsTemplate($checkIn , $checkOut , $adults , $children = null , $filterView , $filterPrice) {
-                $reservations = new Reservations;
+                $rooms = new Room;
                 $cart = new ReservationCart;
                 // Get Available rooms for the search criteria.
-                $availableRooms = $reservations->getAvailableRooms($checkIn , $checkOut , $adults , $children);
+                $availableRooms = $rooms->getAvailableRooms($checkIn , $checkOut , $adults , $children);
 
                 // Get the available room types.
                 $roomTypes = [];
+                $roomsLeft = [];
                 foreach($availableRooms as $key => $value) {
-                        array_push($roomTypes , $key);                        
-                }
-
-                $roomsLeft = [];                
-                foreach($availableRooms as $key => $value) {
+                        array_push($roomTypes , $key);
                         $countOfRooms = count($value);
-
-                        // If Session is set for same dates then retain rooms present in cart and 
-                        // show difference of all available rooms and the rooms in cart session.
-                        // if(isset($_SESSION['bshb_session_cart'])) {
-                        //         $cartId = $_SESSION['bshb_session_cart'];
-                        //         $cartItem = $cart->getCartItems($cartId);
-                        //         foreach ($cartItem as $item) {
-                        //                 if($item['item_id'] == $key) {
-                        //                          $countOfRooms = $countOfRooms - absint($item['item_quantity']);  
-                        //                 }                                    
-                        //         }                        
-                        // }
-
-                       $roomsLeft[$key] = $countOfRooms;
+                        $roomsLeft[$key] = $countOfRooms;
                 }
-
+                
                 // Get post data for the avai;able room types.
                 $posts = get_posts(
                         array(                                
@@ -54,7 +38,7 @@ class SearchController extends Controller
                 // Send all the data into an object to be sent to the template
                 $data = (object)[                        
                         'room_data' => $availableRooms,
-                        'roomsLeft' => $roomsLeft,
+                        'roomsLeft' => $roomsLeft,                       
                         'check_in' => $checkIn,
                         'check_out' => $checkOut,
                         'price_filter' => $filterPrice,

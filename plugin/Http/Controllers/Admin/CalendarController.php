@@ -5,20 +5,18 @@ namespace Brainsugar\Http\Controllers\Admin;
 use Brainsugar\Http\Controllers\Controller;
 use Brainsugar\Model\Room;
 use Brainsugar\Model\Pricing;
+use Brainsugar\Model\Reservations;
 use Brainsugar\Core\CoreFunctions;
 
-class CalendarController extends Controller
-{
+class CalendarController extends Controller     {
         
         public function availabilityCalendar()
         {
                 $roomModel = new Room;
-                $sort = CoreFunctions::getRoomSorting();
-                var_dump($sort['column']);
-                $roomData = $roomModel->orderBy('room_type' )->orderBy($sort['column'],$sort['order'] )->get();
-                
-                
-                //     $roomJson = json_encode($roomIds); 
+                $sort = CoreFunctions::getRoomSorting();                
+                $roomData = $roomModel->orderBy($sort['column'],$sort['order'] )->get();
+                $reservationModel = new Reservations;
+                $reservations = $reservationModel->getReservationsForAvailabilityCalendar();
                 
                 // Add Room Featured image to the Data.
                 foreach($roomData as $room) {
@@ -31,6 +29,7 @@ class CalendarController extends Controller
                 
                 // Send room data to calendar template.
                 wp_localize_script('availability-calendar', 'roomData', $roomData );
+                 wp_localize_script('availability-calendar', 'reservations', $reservations );
                 
                 return Brainsugar()
                 ->view('Admin.availability-calendar')
@@ -51,6 +50,9 @@ class CalendarController extends Controller
                 // Get the details of the room by specifying room ID.
                 $roomModel = new Room;
                 $roomData = $roomModel->where('id' , $roomId)->first();
+
+                $reservationModel = new Reservations;
+                $reservations = $reservationModel->getReservationsForAvailabilityCalendar($roomId);
                 
                 // Add Featured image for the retrieved room ID.
                 $roomData->room_thumbnail_url = get_the_post_thumbnail_url($roomData->room_type);
@@ -59,6 +61,7 @@ class CalendarController extends Controller
                 
                 // Send the Room Data to the calendar template.
                 wp_localize_script('room-calendar', 'roomData', $roomData );
+                wp_localize_script('room-calendar', 'reservations', $reservations);
                 
                 return Brainsugar()
                 ->view('Admin.room-availability') 

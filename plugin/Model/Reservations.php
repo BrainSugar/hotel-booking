@@ -6,6 +6,7 @@ use Brainsugar\Model\ReservationItems;
 use Brainsugar\Model\Pricing;
 use Brainsugar\Model\Room;
 use Carbon\Carbon;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class Reservations extends Model
 {
@@ -15,6 +16,20 @@ class Reservations extends Model
         * @var string
         */
         protected $table = 'bshb_reservations';
+
+        /**
+         * Fillable attributes for the table,
+         *
+         * @var array
+         */
+        protected $fillable = ['reservation_id', 'check_in', 'check_out' , 'reservation_status'];
+
+        /**
+        * Disable Timestamps
+        *
+        * @var boolean
+        */
+        public $timestamps = false;
         
         
         /**
@@ -28,51 +43,72 @@ class Reservations extends Model
                 
                 return $wpdb->prefix . preg_replace('/[[:<:]]' . $wpdb->prefix . '/', '', parent::getTable(), 1);
         }
-        
-        
-        /**
-        * Get all available rooms for a given search Query.
-        *
-        * @param [date] $checkIn
-        * @param [date] $checkOut
-        * @param [int] $adults
-        * @param [int] $children
-        * @return object
-        */
-        public function getAvailableRooms($checkIn , $checkOut , $adults , $children = null) {
-                
-                                
-                // Get All Room Types and their rooms that are published
-                $roomModel = new Room;                
-                $allRoomTypesAndRoomUnits = $roomModel->getAllRoomTypeAndRoomUnits();
 
-                // The Remaining rooms after filtering occupancy
-                $roomData =  $this->filterOccupancy($allRoomTypesAndRoomUnits , $adults , $children);
-                
-                // Get all reservations which are confirmed and inbetween the query dates.
-                $reservations = $this->getReservationBetweenQueryDates($checkIn , $checkOut , 'reserved');
-                
-                // Get all the rooms which are reserved between the query dates.
+
+        public function createReservation() {
+                 $session = new Sessions;
+                 $sessionValue = $session->getSessionValue();
+                                        
+                $checkIn = $sessionValue['check_in'];
+                $checkOut = $sessionValue['check_out'];
+                $adults = $sessionValue['adults'];
+                $children = $sessionValue['children'];
+                $reservationId = $_SESSION['bshb_session_cart'];
+                $reservationStatus = "reserved";
+                $items = new ReservationItems; 
+
+                try {
+                        DB::beginTransaction();
+
+                         $items->insertReservationItems($reservationId);
+
+                        $response = $this->fill(array(
+                                'reservation_id' => $reservationId , 
+                                'check_in' => $checkIn,
+                                'check_out' => $checkOut,
+                                'reservation_status' => $reservationStatus
+                                ))->save(); 
+                        DB::commit();
+                               
+                } catch (Exception $e){
+                        $response = $e;
+                }
+                if($response == true){
+                        $session->destroySession();
+                }
+                return $response;
+        }
+
+        public  function getReservationsForAvailabilityCalendar($roomId = null){
+
                 $reservationItems = new ReservationItems;
-                $reservedRooms = [];
-                
-                foreach($reservations as $reservation) {
-                        // Get reserved rooms for each reservation.
-                        $rooms = $reservationItems->getRoomItems($reservation->reservation_id);
-                        foreach($rooms as $room) {
-                                array_push($reservedRooms , $room);
+                $roomReservations = [];
+                $reservations = $this->get()->toArray();
+                foreach($reservations as $reservation){
+                        $rooms = $reservationItems->getRoomItems($reservation['reservation_id']);
+                        foreach($rooms as $room){
+                                if($roomId == null){
+                                        array_push($roomReservations , [
+                                                'reservation_id' => $reservation['reservation_id'],
+                                                'room_id' => $room,
+                                                'reservation_status' => $reservation['reservation_status'],
+                                                'end_date' => $reservation['check_out'],
+                                                'start_date' => $reservation['check_in']
+                                        ]);
+                                }
+                                else if($roomId == $room){
+                                        array_push($roomReservations , [
+                                                'reservation_id' => $reservation['reservation_id'],
+                                                'room_id' => $room,
+                                                'reservation_status' => $reservation['reservation_status'],
+                                                'end_date' => $reservation['check_out'],
+                                                'start_date' => $reservation['check_in']
+                                        ]);
+                                }
                         }
                 }
-                
-                // Check reserved rooms with  all the rooms and get rooms which are available.
-                $availableRooms = [];
-                foreach($roomData as $key=>$value) {                                                       
-                        $availableRooms[$key] = array_values(array_diff($value , $reservedRooms));
-                }                
-                return $availableRooms;
+                return $roomReservations;
         }
-        
-        
         
         /**
         * Get the reservation ID and dates of their reservation.
@@ -86,30 +122,11 @@ class Reservations extends Model
                 // get all reservations where checkin and checkout lies between reservations.
                 $response = $this->select('reservation_id' , 'check_in' , 'check_out')
                 ->where('reservation_status' , $status) 
-                ->whereRaw('? between check_in and check_out' , $checkIn)
+               ->whereRaw('? between check_in and check_out' , $checkIn)
                 ->orwhereRaw('? between check_in and check_out' , $checkOut)
                 ->get();
                 
                 return $response;
-        }
-        
-        public function filterOccupancy($roomData , $adults , $children = null) {
-
-                 foreach($roomData as $key => $value) {
-                         $maximumOccupancy = get_post_meta( $key, 'bshb_max_occupancy', true );
-                         $maxAdults = get_post_meta( $key, 'bshb_max_adults', true );
-                         $maxChildren = get_post_meta( $key, 'bshb_max_children', true );
-
-                         if($adults + $children > $maximumOccupancy) {
-                                 unset($roomData[$key]);
-                         }
-                         else if($adults > $maxAdults) {
-                                 unset($roomData[$key]);
-                         }
-                         else if($children > $maxChildren){
-                                  unset($roomData[$key]);
-                         }
-                }
-                return $roomData;                
-        }
+        } 
+   
 }

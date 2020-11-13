@@ -59,16 +59,16 @@
                                         <td class="p-0">
                                                 <div class="room-days  {{day.classes}}">
                                                 <# _.each(day.events, function (events) {    #>
-                                                        <# if(events.roomId == room.id) { #>
+                                                        <# if(events.room_id == room.id) { #>
                                                                 <!-- Check if its the start of an event or end of an event and output relevent class -->
-                                                                <span class="bookings {{events.status}}
-                                                                <# if(moment(events.startDate).isSame( day.date , 'date') ) { #>
+                                                                <span class="bookings {{events.reservation_status}}
+                                                                <# if(moment(events.start_date).isSame( day.date , 'date') ) { #>
                                                                 start-day
-                                                                <# } if(moment(events.endDate).isSame( day.date , 'date')) { #>
+                                                                <# } if(moment(events.end_date).isSame( day.date , 'date')) { #>
                                                                 end-day
-                                                                 <# } #>" data-booking-id = "{{events.bookingId}}">                                                                                                                                                                                                                                                       
+                                                                 <# } #>" data-booking-id = "{{events.reservation_id}}">                                                                                                                                                                                                                                                       
                                                                                 <p class="mb-0">Reservation</p>                                                                           
-                                                                                <p class="mb-0"># {{events.bookingId}}</p>
+                                                                                <p class="mb-0"># {{events.reservation_id}}</p>
                                                                 </span>
                                                         <# } #>
                                                 <# }); #>
@@ -91,7 +91,7 @@
 <!-- Modal for booking event Click -->
 
 <div class="bshb">
-        <div id="show-reservation-modal" class="modal  mt-5 fade" tabindex="-1" role="dialog">
+        <div id="show-reservation-modal" class="modal  mt-5 fade" tabindex="-1" role="dialog">       
                 <div class="modal-dialog" role="document">
                         <div class="modal-content">
                                 <div class="modal-header">
@@ -105,6 +105,7 @@
 
                                         </div>
                                 </div>
+                                <?php  echo Brainsugar()->view('Admin.Settings'); ?>
                                 <div class="modal-footer">
                                         <button id="add-modal-button" type="submit" class="btn btn-primary">Edit Reservation</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

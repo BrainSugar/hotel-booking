@@ -59,14 +59,14 @@
                                                 <td class="day-cell">
                                                         <div class="room-days {{data.days[d].classes}}">
                                                                 <# _.each(data.days[d].events, function (events) {    #>
-                                                                <span class="bookings {{events.status}}
-                                                                <# if(moment(events.startDate).isSame( data.days[d].date , 'date') ) { #>
+                                                                <span class="bookings {{events.reservation_status}}
+                                                                <# if(moment(events.start_date).isSame( data.days[d].date , 'date') ) { #>
                                                                 start-day
-                                                                <# } if(moment(events.endDate).isSame( data.days[d].date , 'date')) { #>
+                                                                <# } if(moment(events.end_date).isSame( data.days[d].date , 'date')) { #>
                                                                 end-day
-                                                                 <# } #>" data-booking-id = "{{events.bookingId}}"> 
+                                                                 <# } #>" data-booking-id = "{{events.reservation_id}}"> 
                                                                                 <p class="mb-0">Reservation</p>                                                                           
-                                                                                <p class="mb-0"># {{events.bookingId}}</p>
+                                                                                <p class="mb-0"># {{events.reservation_id}}</p>
                                                                 </span>
                                                                 <# });#>   
                                               

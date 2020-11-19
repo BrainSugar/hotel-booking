@@ -167,7 +167,7 @@ class Pricing extends Model
                 $price = $this->select('price')
                 ->where( 'room_type', $roomType )
                 ->whereRaw('? between start_date and end_date' , $startDate->toDateString())  
-                ->first()->price;
+                ->value('price');
 
                 if($price != null) {
                         $prices[$startDate->toDateString()] =  $price;

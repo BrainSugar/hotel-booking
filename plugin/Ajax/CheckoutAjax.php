@@ -46,7 +46,7 @@ class CheckoutAjax extends ServiceProvider
         parse_str($_POST['paymentMethod'] , $paymentMethod);
 
         $checkout = new CheckoutController();
-        $response = $checkout->setReservationData();
+        $response = $checkout->setReservationData($guestDetails , $paymentMethod);
         // $checkout->setReservationData($guestDetails , $paymentMethod);
 
         

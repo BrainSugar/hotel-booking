@@ -29,7 +29,7 @@ class CalendarController extends Controller     {
                 
                 // Send room data to calendar template.
                 wp_localize_script('availability-calendar', 'roomData', $roomData );
-                 wp_localize_script('availability-calendar', 'reservations', $reservations );
+                wp_localize_script('availability-calendar', 'reservations', $reservations );
                 
                 return Brainsugar()
                 ->view('Admin.availability-calendar')

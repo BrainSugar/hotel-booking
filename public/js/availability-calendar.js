@@ -13,27 +13,6 @@
                                 endDate: '2020-11-13',
                                 startDate: '2020-11-11'
                         },
-                        // {
-                        //         bookingId: '522',
-                        //         roomId: '361',
-                        //         status: 'booked',
-                        //         endDate: moment().add(2, 'days'),
-                        //         startDate: moment().subtract(2, 'days')
-                        // },
-                        // {
-                        //         bookingId: '367',
-                        //         roomId: '367',
-                        //         status: 'booked',
-                        //         endDate: moment().add(1, 'days'),
-                        //         startDate: moment()
-                        // },
-                        // {
-                        //         bookingId: '364',
-                        //         roomId: '364',
-                        //         status: 'booked',
-                        //         endDate: moment().add(7, 'days'),
-                        //         startDate: moment().add(1, 'days')
-                        // },
                 ];
 
                 var post_template = wp.template('availability-calendar');
@@ -60,10 +39,25 @@
 
         $('body').on('click', '.bookings', function () {
                 var bookingId = $(this).data('booking-id');
-                var modal = $('#show-reservation-modal');
-                modal.find('.modal-title').html("Reservation ID : #" + bookingId);
-                modal.find('.guest-name').html("Shreyas");
-                modal.modal('show');
+                $.post(
+                        ajaxurl,
+                        {
+                                action: 'getReservationDetails',
+                                reservationId: bookingId
+                        },
+                        function (response) {
+                                // alert(response);
+                                // console.log(response);
+
+                                var modal = $('#show-reservation-modal');
+                                modal.html(response);
+                                // modal.find('.modal-title').html("Reservation ID : #" + bookingId);
+                                // modal.find('.guest-name').html("Shreyas");
+                                modal.modal('show');
+
+                        },
+                );
+
         });
 })(window.jQuery);
 

@@ -9,11 +9,11 @@ class bshb_reservation_item_meta extends Migration
 	public function up(){
 		$this->create( "CREATE TABLE IF NOT EXISTS {$this->tablename} (
 			id bigint(20) UNSIGNED AUTO_INCREMENT,
-			item_id bigint(20) UNSIGNED NOT NULL,
+			reservation_id bigint(20) UNSIGNED NOT NULL,
 			meta_key VARCHAR(255) NOT NULL,
 			meta_value LONGTEXT,
 			PRIMARY KEY  (`id`),
-			KEY item_id (`item_id`)
+			KEY reservation_id (`reservation_id`)
 		) {$this->charsetCollate};" );
 	}
 }

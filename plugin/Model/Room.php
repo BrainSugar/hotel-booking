@@ -124,7 +124,7 @@ class Room extends Model
                 return $response;
         }
 
-                /**
+        /**
         * Get all available rooms for a given search Query.
         *
         * @param [date] $checkIn

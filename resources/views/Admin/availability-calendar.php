@@ -14,6 +14,11 @@
                         </div>
                 </div>
         </div>
+        <!-- Modal for booking event Click -->
+                <div id="show-reservation-modal" class="modal  mt-5 fade" tabindex="-1" role="dialog"></div>
+        <!-- End of Modal -->
+       
+
 </div>
 
 <!-- Wp template for the availability Calendar -->
@@ -88,32 +93,8 @@
 <!-- End of wp Template -->
 
 
-<!-- Modal for booking event Click -->
 
-<div class="bshb">
-        <div id="show-reservation-modal" class="modal  mt-5 fade" tabindex="-1" role="dialog">       
-                <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                        <h5 class="modal-title"></h5>
-                                </div>
-                                <div class="modal-body">
-                                        <div class="col-sm-12 my-2">
-                                                <h4 class="guest-name"></h4>
-                                                <h4 class="arrival"></h4>
-                                                <h4 class="checkout"></h4>
 
-                                        </div>
-                                </div>
-                                <?php  echo Brainsugar()->view('Admin.Settings'); ?>
-                                <div class="modal-footer">
-                                        <button id="add-modal-button" type="submit" class="btn btn-primary">Edit Reservation</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                        </div>
-                </div>
-        </div>
 
-<!-- End of Modal -->
 
 

@@ -11,10 +11,9 @@ Use Carbon\Carbon;
 
 class CheckoutController extends Controller {
 
-public function setReservationData(){
+public function setReservationData($guestDetails , $paymentMethod){
         $reservation = new Reservations;
-
-                 $response = $reservation->createReservation();                
+        $response = $reservation->createReservation($guestDetails , $paymentMethod);
           
         
        

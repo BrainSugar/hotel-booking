@@ -109,7 +109,8 @@ return [
                 '\Brainsugar\Ajax\RoomAjax',
                 '\Brainsugar\Ajax\PricingAjax',
                 '\Brainsugar\Ajax\CartAjax',
-                 '\Brainsugar\Ajax\CheckoutAjax'
+                 '\Brainsugar\Ajax\CheckoutAjax',
+                  '\Brainsugar\Ajax\PopupAjax',
 ],
 
   /*

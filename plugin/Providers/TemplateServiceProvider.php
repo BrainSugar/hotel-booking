@@ -87,7 +87,7 @@ class TemplateServiceProvider extends ServiceProvider
         $template = $template_slug.'.php';
 
         // Check if a custom template exists in the theme folder, if not, load the plugin template file
-        if ($theme_file = locate_template(['bshb-template/'.$template])) {
+        if ($theme_file == locate_template(['bshb-template/'.$template])) {
             $file = $theme_file;
         } else {
             $file = BSHB_BASE_PATH.'templates/'.$template;

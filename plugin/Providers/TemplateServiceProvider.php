@@ -39,17 +39,17 @@ class TemplateServiceProvider extends ServiceProvider
                                 // Load the template for search page.
                                 case $searchPage:
                                          return $this->_getTemplate('search-page');
-                                break;
+                               
                                 // Load the template for checkout page.
                                 case $checkOutPage:
                                         return $this->_getTemplate('checkout-page');
-                                break;
+                               
                                  // Load the template for Reservation confirmation.
                                 case $reservationConfirmation:
                                         do_action('bshb_reservation_end_point');
 
                                         return $this->_getTemplate('reservation-confirmation');
-                                break;
+                                
                                 // Return the default page template.
                                 default:
                                 return $template;

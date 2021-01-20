@@ -24957,6 +24957,7 @@ a.bshb-container .badge-dark:focus, a.bshb-container .badge-dark.focus {
   color: #10cfbd;
   background-color: #fff;
   text-shadow: none;
+  text-decoration: none;
   -webkit-box-shadow: none;
           box-shadow: none;
   line-height: 21px;
@@ -25295,8 +25296,19 @@ fieldset[disabled] .bshb-container .btn-danger.active {
       -ms-grid-row-align: center;
       align-self: center;
   color: #10cfbd;
+  padding: 0;
+  background: none;
   font-size: 1.3em;
   cursor: pointer;
+}
+
+.bshb-container .minus:focus, .bshb-container .minus:active:focus, .bshb-container .minus.active:focus,
+.bshb-container .plus:focus,
+.bshb-container .plus:active:focus,
+.bshb-container .plus.active:focus {
+  background: #e7faf8;
+  outline: none !important;
+  outline-style: none;
 }
 
 .bshb-container input::-webkit-outer-spin-button,
@@ -25766,11 +25778,19 @@ fieldset[disabled] .bshb-container .form-control {
   background-color: #f8d053;
 }
 
+.bshb-container .validation-fail {
+  background-color: #ffefef;
+  border: 1px solid #f09696;
+}
+
 .bshb-container .bshb-loader {
   background: #fff;
   border-radius: 0.25rem;
-  min-height: 200px;
   position: relative;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
   width: 100%;
 }
 
@@ -25785,6 +25805,7 @@ fieldset[disabled] .bshb-container .form-control {
   right: 0;
   top: 0;
   z-index: 5;
+  opacity: 0.9;
 }
 
 .bshb-container .bshb-loader::after {
@@ -25834,7 +25855,7 @@ fieldset[disabled] .bshb-container .form-control {
 .bshb-container .sidebar-cart {
   background: #fff;
   padding: 2rem;
-  margin: 3rem 0;
+  margin: 0;
 }
 
 .bshb-container .cart-empty {
@@ -26258,10 +26279,14 @@ fieldset[disabled] .bshb-container .form-control {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 2rem;
+}
+
+.bshb-container .room-add-cart .room-count-text {
+  margin: 0;
 }
 
 .bshb-container .available-rooms {
@@ -26286,6 +26311,7 @@ fieldset[disabled] .bshb-container .form-control {
   background: #fff;
   border-radius: 0.25rem;
   margin: 1rem;
+  padding: 1rem;
   font-size: 1.8rem;
 }
 
@@ -26304,13 +26330,22 @@ fieldset[disabled] .bshb-container .form-control {
   cursor: pointer;
 }
 
+.bshb-container .search-filters .filter:focus, .bshb-container .search-filters .filter:active:focus, .bshb-container .search-filters .filter.active:focus {
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background: #e7faf8;
+  outline: none !important;
+  outline-style: none;
+  color: #333;
+}
+
 .bshb-container .search-filters .filter .dropdown-menu .dropdown-item:hover {
   background: #e7faf8;
 }
 
 .bshb-container .search-content,
 .bshb-container .search-sidebar {
-  margin: 2em 0;
+  margin: 0;
 }
 
 .bshb-container .search-sidebar {
@@ -26333,16 +26368,17 @@ fieldset[disabled] .bshb-container .form-control {
   margin: auto;
 }
 
-.bshb-container .sidebar-dates {
+.bshb-container .session-dates {
   padding: 1em;
+  margin: 1em 0;
   border-radius: 0.25rem;
 }
 
-.bshb-container .sidebar-dates .date-heading {
+.bshb-container .session-dates .date-heading {
   color: #676767;
 }
 
-.bshb-container .sidebar-dates .stay-dates {
+.bshb-container .session-dates .stay-dates {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -26351,13 +26387,19 @@ fieldset[disabled] .bshb-container .form-control {
           justify-content: center;
 }
 
-.bshb-container .sidebar-dates .month-year {
+.bshb-container .session-dates .month-year {
   text-align: center;
   padding: 1em 0 0.5em 0;
 }
 
-.bshb-container .sidebar-dates .day span {
+.bshb-container .session-dates .day span {
   font-size: 3.5em;
+}
+
+.bshb-container .session-dates .empty-dates {
+  padding: 1em;
+  margin: 0;
+  text-align: center;
 }
 
 .bshb-container .checkout-container {
@@ -26371,7 +26413,7 @@ fieldset[disabled] .bshb-container .form-control {
   padding: 2rem;
 }
 
-.bshb-container .guest-container #guest-information .error {
+.bshb-container #bshb-guest-form .error {
   width: 80%;
   color: #f55753;
 }

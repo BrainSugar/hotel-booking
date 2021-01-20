@@ -1,5 +1,6 @@
-.sidebar-dates {
+.session-dates {
         padding: 1em;
+        margin:1em 0;
         border-radius: $border-radius;
 
         .date-heading {
@@ -20,5 +21,10 @@
                 span {
                         font-size: 3.5em;
                 }
+        }
+        .empty-dates {
+                padding: 1em;
+                margin:0;
+                text-align:center;
         }
 }

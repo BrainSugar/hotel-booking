@@ -4,6 +4,8 @@ namespace Brainsugar\Model;
 
 class Service {
 
+        
+
         public function getServiceId() {
                 $services = get_posts(array(
                         'post_type' => 'bshb_service',

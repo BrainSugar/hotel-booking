@@ -4,79 +4,14 @@
 
         $(document).ready(function () {
 
-                // Check if items are available in cart and load the cart.
-                // checkCartSession();
-                // function checkCartSession() {
-                //         $.post(
-                //                 ajaxurl,
-                //                 {
-                //                         action: 'cartSession',
-                //                 },
-                //                 function (response) {
-                //                         alert(response);
-                //                         console.log(response);
-                //                         if (response != null) {
-                //                                 $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
-                //                                 $('#bshb-sidebar-cart').html(response);
-                //                                 $('#bshb-sidebar-cart').removeClass('bshb-loader');
-                //                         }
-
-                //                 },
-                //         );
-                // }
-                $('.service-add-btn').click(function () {
-                        var itemType = 'service_item';
-                        var itemId = $(this).data('item-id');
-                        var itemQuantity = $(this).parent().find('#item-quantity').val();
-                        // alert(itemQuantity);
-                        addToCart(itemId, itemType, itemQuantity);
-                });
-
-                $('body').on('click', '#apply-coupon', function () {
-                        var couponCode = $('#input-coupon').val();
-                        applyCouponCode(couponCode);
-                });
-
-                $('body').on('click', '#remove-coupon', function () {
-                        removeCouponCode();
-                        $('.coupon-status').addClass('d-none');
-                });
-
-
-
-                $('body').on('click', '.room-add-btn', function (e) {
-                        var itemId = $(this).data('item-id');
-                        var roomCount = $(this).attr('data-room-count');
-                        var itemType = 'room_item';
-                        var itemQuantity = 1;
-                        var roomCountText = $(this).parent().find('.room-count-text');                       
-                        if (roomCount == 1) {
-                                $(this).prop('disabled', true);
-                                roomCountText.html("Fully Booked");
-                        }
-                        if (roomCount == 0) {
-                                $(this).prop('disabled', true);
-                                roomCountText.html("Fully Booked");
-                                // roomCountText.css('color', 'red');
-                        }
-                        else {
-                                roomCount = roomCount - 1;
-                                roomCountText.html("Only " + roomCount + " rooms left");
-                                $(this).attr('data-room-count', roomCount);
-                                addToCart(itemId, itemType, itemQuantity)
-                        }
-
-
-                });
-
-
+                /**Add to cart
+                 * 
+                 * @param {int} itemId 
+                 * @param {string} itemType 
+                 * @param {int} itemQuantity 
+                 */
                 function addToCart(itemId, itemType, itemQuantity) {
-                        if (itemType == "room_item") {
-                                $('#bshb-sidebar-cart').addClass('bshb-loader');
-                        }
-                        else if (itemType == "service_item") {
-                                $("#bshb-cart-summary").addClass('bshb-loader');
-                        }
+                        $('#bshb-sidebar-cart').addClass('bshb-loader');
                         $.post(
                                 ajaxurl,
                                 {
@@ -86,18 +21,16 @@
                                         itemQuantity: itemQuantity
                                 },
                                 function (response) {
-
-                                        if (itemType == "room_item") {
-                                                loadSidebar(response);
-                                        }
-                                        else if (itemType == "service_item") {
-                                                loadCartSummary();
-                                        }
+                                        _loadSidebar(response);
                                 },
                         );
-                        return true;
                 }
 
+                /**Remove from cart
+                 * 
+                 * @param {int} itemId 
+                 * @param {string} itemType 
+                 */
                 function removeFromCart(itemId, itemType) {
                         $('#bshb-sidebar-cart').addClass('bshb-loader');
                         $.post(
@@ -108,84 +41,45 @@
                                         itemType: itemType
                                 },
                                 function (response) {
-                                        // alert(response);
-                                        // $('#bshb-sidebar-cart').scrollTop(300);
-                                        loadSidebar(response);
+                                        _loadSidebar(response);
 
                                 },
                         );
-                        return true;
-                }
-                function loadSidebar(data) {
-                        $('html, body').animate({
-                                scrollTop: $("#bshb-sidebar-cart").offset().top
-                        }, 100);
-                        $('#bshb-sidebar-cart').find('.cart-empty').addClass('d-none');
-                        $('#bshb-sidebar-cart').html(data);
-                        $('#bshb-sidebar-cart').removeClass('bshb-loader');
-                }
-                function loadCartSummary() {
-                        $('html, body').animate({
-                                scrollTop: $("#bshb-cart-summary").offset().top
-                        }, 100);
-
-                        $("#bshb-cart-summary").load(" #bshb-cart-summary > *", function () {
-                                $("#bshb-cart-summary").removeClass('bshb-loader');
-                        });
-                        loadPayment();
-
-                }
-                function loadCartTotal() {
-                        $("#bshb-cart-final-total").addClass('bshb-loader');
-
-                        $('html, body').animate({
-                                scrollTop: $("#bshb-cart-final-total").offset().top
-                        }, 100);
-                        $("#bshb-cart-final-total").load(" #bshb-cart-final-total > *", function () {
-                                $("#bshb-cart-final-total").removeClass('bshb-loader');
-                        });
-                        loadPayment();
-                }
-                function loadPayment() {
-                        $("#bshb-payment-total").addClass('bshb-loader');
-                        $("#bshb-payment-total").load(" #bshb-payment-total > *", function () {
-                                $("#bshb-payment-total").removeClass('bshb-loader');
-                        });
-
                 }
 
+                /**Apply coupon code
+                 * 
+                 * @param {string} couponCode 
+                 */
                 function applyCouponCode(couponCode) {
-                        var couponMsg = "";
-                        if (couponCode == "") {
-                                couponMsg = "Please enter a coupon code";
-                                $('#coupon-message').html(couponMsg);
-                                $('#coupon-message').css('color', 'red');
-                                return;
-                        }
-                        else {
-                                $.post(
-                                        ajaxurl,
-                                        {
-                                                action: 'applyCouponCode',
-                                                couponCode: couponCode,
-                                        },
-                                        function (response) {
-                                                if (response.coupon_status == true) {
-                                                        $('#coupon-message').html(response.coupon_message);
-                                                        $('#coupon-message').css('color', 'green');
-                                                        loadCartTotal();
-                                                }
-                                                else {
-                                                        $('#coupon-message').html(response.coupon_message);
-                                                        $('#coupon-message').css('color', 'red');
-                                                }
+                        // $('#bshb-sidebar-cart').addClass('bshb-loader');
+                        $.post(
+                                ajaxurl,
+                                {
+                                        action: 'applyCouponCode',
+                                        couponCode: couponCode,
+                                },
+                                function (response) {
+                                        if (response == false) {
+                                                $('#coupon-message').html("Invalid Coupon");
+                                                $('#coupon-message').removeClass('text-success');
+                                                $('#coupon-message').addClass('text-danger');
                                                 $('.coupon-status').removeClass('d-none');
-                                        },
-                                );
-                        }
-
+                                        }
+                                        else {
+                                                $('#coupon-message').html(response);
+                                                $('#coupon-message').removeClass('text-danger');
+                                                $('#coupon-message').addClass('text-success');
+                                                $('.coupon-status').removeClass('d-none');
+                                                _loadPayment();
+                                        }
+                                },
+                        );
                 }
 
+                /**
+                 * Remove coupon code
+                 */
                 function removeCouponCode() {
                         $.post(
                                 ajaxurl,
@@ -193,25 +87,143 @@
                                         action: 'removeCouponCode',
                                 },
                                 function (response) {
-                                        if (response) {
-                                                $('#input-coupon').val("");
-                                                loadCartTotal();
+                                        $('#input-coupon').val("");
+                                        if (response == true) {
+                                                _loadPayment();
                                         }
-
                                 },
                         );
-
                 }
 
-                $('body').on('click', '#remove-room-item', function (e) {
-                        var itemId = $(this).attr('data-item-id');
+                /**Manage room count text
+                 * 
+                 * @param {object} element add-to-cart button element
+                 * @param {string} action 
+                 */
+                function _manageRoomCount(element, action) {
+                        var roomCount = $(element).data('room-count');
+                        var textelement = $(element).parent().find('.room-count-text');
+                        if (action == 'add') {
+                                roomCount = roomCount - 1;
+                        }
+                        else if (action == 'remove') {
+                                roomCount = roomCount + 1;
+                        }
+
+                        $(element).data('room-count', roomCount);
+
+                        if (roomCount < 1) {
+                                textelement.html("No rooms available");
+                                $(element).prop('disabled', true);
+                        }
+                        else if (roomCount == 1) {
+                                textelement.html(roomCount + " room available");
+                                $(element).prop('disabled', false);
+                        }
+                        else {
+                                textelement.html(roomCount + " rooms available");
+                                $(element).prop('disabled', false);
+                        }
+                }
+
+                /**Load sidebar template
+                 * 
+                 * @param {html} data json template file.
+                 */
+                function _loadSidebar(data = null) {
+                        $('html, body').animate({
+                                scrollTop: $("#bshb-sidebar-cart").offset().top
+                        }, 100);
+
+                        if (data) {
+                                $('#bshb-sidebar-cart').html(data);
+                                $('#bshb-sidebar-cart').removeClass('bshb-loader');
+                        }
+                        else {
+                                $("#bshb-sidebar-cart").load(" #bshb-sidebar-cart > *", function () {
+                                        $("#bshb-sidebar-cart").removeClass('bshb-loader');
+                                });
+                        }
+                }
+
+                /**
+                 * Reload reserve booking template
+                 */
+                function _loadPayment() {
+                        // Load cart totals
+                        $("#cart-total").addClass('bshb-loader');
+                        $("#cart-total").load(" #cart-total > *", function () {
+                                $("#cart-total").removeClass('bshb-loader');
+                        });
+
+                        // Load final booking payment values
+                        $("#bshb-payment-total").addClass('bshb-loader');
+                        $("#bshb-payment-total").load(" #bshb-payment-total > *", function () {
+                                $("#bshb-payment-total").removeClass('bshb-loader');
+                        });
+                }
+
+                // Click events
+
+                /**
+                 * Room add button
+                 */
+                $('body').on('click', '.room-add-btn', function (event) {
+                        var itemId = $(event.target).data('item-id');
                         var itemType = 'room_item';
-                        var response = removeFromCart(itemId, itemType);
-                        // alert(response);
+                        var itemQuantity = 1;
+
+                        addToCart(itemId, itemType, itemQuantity);
+                        _manageRoomCount(this, 'add');
+
                 });
 
+                /**
+                 * Remove room from cart button
+                 */
+                $('body').on('click', '#remove-room-item', function () {
+                        var itemId = $(this).attr('data-item-id');
+                        var itemType = 'room_item';
+                        var roomTextElement = $(".room-add-btn[data-item-id='" + itemId + "']");
 
+                        removeFromCart(itemId, itemType);
+                        _manageRoomCount(roomTextElement, "remove");
 
+                });
+
+                /**
+                 * Services add button
+                 */
+                $('.service-add-btn').click(function () {
+                        var itemId = $(this).data('item-id');
+                        var itemType = 'service_item';
+                        var itemQuantity = $(this).parent().find('#item-quantity').val();
+
+                        addToCart(itemId, itemType, itemQuantity);
+                });
+
+                /**
+                 * Apply Coupon button
+                 */
+                $('body').on('click', '#apply-coupon', function () {
+                        var couponCode = $('#input-coupon').val();
+                        if (couponCode == "") {
+                                $('#coupon-message').html("Please enter a coupon code");
+                                $('#coupon-message').removeClass('text-success');
+                                $('#coupon-message').addClass('text-danger');
+                                $('.coupon-status').removeClass('d-none');
+                        }
+                        else {
+                                applyCouponCode(couponCode);
+                        }
+                });
+
+                /**
+                 * Remove coupon button
+                 */
+                $('body').on('click', '#remove-coupon', function () {
+                        removeCouponCode();
+                        $('.coupon-status').addClass('d-none');
+                });
         });
-
 })(window.jQuery);

@@ -18,7 +18,7 @@ class Sessions extends Model
         *
         * @var array
         */
-        protected $fillable = [ 'session_key', 'session_value', 'reservation_id' , 'session_expiry'];
+        protected $fillable = [ 'reservation_id' , 'session_key' , 'session_value'];
         
         /**
         * Disable Timestamps
@@ -41,94 +41,89 @@ class Sessions extends Model
                 return $wpdb->prefix . preg_replace('/[[:<:]]' . $wpdb->prefix . '/', '', parent::getTable(), 1);
         }
 
-        public function __construct() {
-                $this->startSession();
-                $this->initializeSessionKey();
-        }
+
         
-        public function startSession() {
-                if(!session_id()) {
-                        session_start();                       
-                }                
-        }
+        // public function startSession() {
+
+        // }
         
-        public function initializeSessionKey() {                
-                if(isset($_SESSION['bshb_session_key'])){
-                        return;
-                }
-                else {
-                          $_SESSION['bshb_session_key'] = $this->generateSessionKey();
-                }
-        }
+        // public function initializeSessionKey() {                
+        //         if(isset($_SESSION['bshb_session_key'])){
+        //                 return;
+        //         }
+        //         else {
+        //                   $_SESSION['bshb_session_key'] = $this->generateSessionKey();
+        //         }
+        // }
         
-        public function setSessionValue($checkIn , $checkOut , $adults , $children) {               
-                $searchData = array(
-                        'check_in' => $checkIn , 
-                        'check_out' => $checkOut ,
-                        'adults' => $adults ,
-                        'children' => $children
-                );
-                $sessionValue = serialize($searchData);
+        // public function setSessionValue($checkIn , $checkOut , $adults , $children) {               
+        //         $searchData = array(
+        //                 'check_in' => $checkIn , 
+        //                 'check_out' => $checkOut ,
+        //                 'adults' => $adults ,
+        //                 'children' => $children
+        //         );
+        //         $sessionValue = serialize($searchData);
                          
-                $_SESSION['bshb_session_value'] = $sessionValue;
-        }
+        //         $_SESSION['bshb_session_value'] = $sessionValue;
+        // }
 
         
     
 
-        public function getSessionValue() {
-                if(isset($_SESSION['bshb_session_value'])) {
-                        $response = \unserialize($_SESSION['bshb_session_value']);
-                        return $response;
-                }
-        }
+        // public function getSessionValue() {
+        //         if(isset($_SESSION['bshb_session_value'])) {
+        //                 $response = \unserialize($_SESSION['bshb_session_value']);
+        //                 return $response;
+        //         }
+        // }
 
         
-        public function generateSessionKey() {
-                if ( is_user_logged_in() ) {
-                        return \get_current_user();                        
-                } else {
-                        require_once( ABSPATH . 'wp-includes/class-phpass.php');
-                        $hasher = new \PasswordHash( 8, false );
-                        return md5( $hasher->get_random_bytes( 32 ) );
-                }
-        }
+        // public function generateSessionKey() {
+        //         if ( is_user_logged_in() ) {
+        //                 return \get_current_user();                        
+        //         } else {
+        //                 require_once( ABSPATH . 'wp-includes/class-phpass.php');
+        //                 $hasher = new \PasswordHash( 8, false );
+        //                 return md5( $hasher->get_random_bytes( 32 ) );
+        //         }
+        // }
         
         
         
-        public function unsetSessionKey() {
-                unset($_SESSION['bshb_session_key']);
+        // public function unsetSessionKey() {
+        //         unset($_SESSION['bshb_session_key']);
                 
-        }
+        // }
 
-        public function destroySession() {
-                session_destroy();
-        }
+        // public function destroySession() {
+        //         session_destroy();
+        // }
         
         
-        public function createUserSession($sessionKey , $sessionValue) {
+        // public function createUserSession($sessionKey , $sessionValue) {
                 
-                $sessionExpiry = 60;
+        //         $sessionExpiry = 60;
                 
                 
-                $this->fill(array(
-                        'session_key' => $sessionKey , 
-                        'session_value' => $sessionValue,
-                        'session_expiry' =>$sessionExpiry
-                )); 
+        //         $this->fill(array(
+        //                 'session_key' => $sessionKey , 
+        //                 'session_value' => $sessionValue,
+        //                 'session_expiry' =>$sessionExpiry
+        //         )); 
                 
-        }
+        // }
         
-        public function getSession($sessionKey) {
-                $sessionId = $this->select('id')
-                ->where('session_key' , $sessionKey)
-                ->first()->id;
+        // public function getSession($sessionKey) {
+        //         $sessionId = $this->select('id')
+        //         ->where('session_key' , $sessionKey)
+        //         ->first()->id;
                 
-                return $sessionId;
-        }
+        //         return $sessionId;
+        // }
         
-        public function deleteUserSession() {
+        // public function deleteUserSession() {
                 
-        }
+        // }
         
 }

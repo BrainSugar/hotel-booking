@@ -1,8 +1,10 @@
+<pre><?php print_r($roomTypes); ?></pre>
+<?php var_dump($reservations); ?>
 <div class="bshb">
         <div class="container-fluid">
                 <div class="row">
                         <div class="col-sm-12">
-                                <h3 class="font-weight-light my-5"><?php echo esc_html( "Dashboard" ); ?></h3>
+                                <h3 class="font-weight-light my-5"><?php echo esc_html( "Dashboard" ); ?></h3>                               
                         </div>
                 </div>             
                 <div class="bshb-dashboard">                        
@@ -33,22 +35,22 @@
                         <h4 class="font-weight-light mb-5"><?php echo esc_html( "Check-Ins" ); ?></h4>
                         <div class="row" id="abc">
                                 <# _.each(data.eventsThisInterval, function (events) { #>
-                                        <# if(moment(events.startDate).isSame( data.extras.selectedDate , 'date' ) ) {#>                                                
+                                        <# if(moment(events.check_in).isSame( data.extras.selectedDate , 'date' ) ) {#>                                                
                                          <div class="col-sm-10 my-2 check-outs">
                                                 <h5 class="font-weight-light mb-2">Shreyas</h5>
-                                                <p>Reservation Number - #{{events.bookingId}}</p>
+                                                <p>Reservation Number - #{{events.reservation_id}}</p>
                                                 <hr>
                                                 <div class="row">
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-6">                                                        
                                                                 <span class="duration">                                                        
-                                                                        <i class="fad fa-plane-arrival   icon-dark" title="Check In"></i>                                                                 
-                                                                        <p class="mb-0">{{events.startDate.format('Do  MMMM , YYYY')}}</p>
+                                                                        <i class="fad fa-calendar-day icon-dark" title="Check In"></i>                                                                 
+                                                                        <p class="mb-0">{{events.check_in}}</p>
                                                                 </span>
                                                         </div>
                                                         <div class="col-sm-6">
                                                                 <span class="duration">                                                        
-                                                                        <i class="fad fa-plane-departure   icon-dark" title="Check Out"></i>                                                                 
-                                                                        <p class="mb-0">{{events.endDate.format('Do  MMMM , YYYY')}}</p>
+                                                                        <i class="fad fa-calendar-day icon-dark" title="Check Out"></i>                                                                 
+                                                                        <p class="mb-0">{{events.check_out}}</p>
                                                                 </span>
                                                         </div>
                                                 </div>
@@ -62,14 +64,14 @@
                         <h4 class="font-weight-light mb-5"><?php echo esc_html( "Check-Outs" ); ?></h4>
                           <div class="row">
                                <# _.each(data.eventsThisInterval, function (events) { #>
-                                        <# if(moment(events.endDate).isSame( data.extras.selectedDate , 'date' ) ) {#>
+                                        <# if(moment(events.check_out).isSame( data.extras.selectedDate , 'date' ) ) {#>
                                          <div class="col-sm-10 my-2 check-outs">
                                                  
                                                 <h5 class="font-weight-light mb-2">Shreyas</h5>
-                                                <p>Reservation Number - #{{events.bookingId}}</p>
+                                                <p>Reservation Number - #{{events.reservation_id}}</p>
                                                 <hr>
                                                 <span class="duration">
-                                                        <p>12th June to 15th June 2020</p>
+                                                        <p>{{events.check_in}} to {{events.check_out}}</p>
                                                 </span>
                                         </div>
                                         <# } #>

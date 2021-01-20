@@ -3,7 +3,10 @@
         'use strict';
 
         $(document).ready(function () {
-                alert("dashboard calendar");
+
+                console.log(reservations);
+
+
                 var post_template = wp.template('dashboard-calendar');
 
 
@@ -52,10 +55,10 @@
                         trackSelectedDate: true,
                         selectedDate: moment(),
 
-                        events: bookings,
+                        events: reservations,
                         multiDayEvents: {
-                                endDate: 'endDate',
-                                startDate: 'startDate'
+                                endDate: 'check_out',
+                                startDate: 'check_in'
                         },
                         lengthOfTime: {
                                 startDate: moment(),

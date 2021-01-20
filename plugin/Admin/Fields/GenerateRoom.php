@@ -3,6 +3,7 @@
 namespace Brainsugar\Admin\Fields;
 
 use Brainsugar\Model\Room;
+use Brainsugar\Repositories\RoomRepository;
 
 class GenerateRoom{ 
 
@@ -22,43 +23,44 @@ class GenerateRoom{
                 add_filter( 'cmb2_sanitize_generate_room', array( $this ,'sanitizeField'), 10, 2 ); 
                 
                 add_action( 'cmb2_save_field_bshb_generate_room',array( $this,'generateRooms'), 10, 3 );
+
         }
         
         
         
         
-        function renderField( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {       
+        function renderField( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
                 
                 global $post_id;
-               $roomModel = new Room;
-                // Get room units for the room type.
-                        $roomsGenerated = $roomModel->getRoomIds($post_id);
-                        $roomsPresent = count($roomsGenerated);
+                $room = new RoomRepository;
+                $roomUnits = $room->getRoomUnits()->where('room_type' , $post_id);
+                $maxRooms = Brainsugar()->options->get( 'Room.max_rooms');                
 
-                        // yet more work : Settings
-                        $maxRooms = Brainsugar()->options->get( 'Room.max_rooms');
-                        if($roomsGenerated){
-
-                                // Get all the Rooms for the Room Type
-                                 $roomUnits = $roomModel->getAllRoomUnits($post_id);
-                                  require_once(dirname(__FILE__) . '/Views/Html-DisplayRoom.php');
-                                
-                        }
-
-                        else {
-
+                if($roomUnits->isEmpty()){
                         $classes = "quantity-number";
                         $inputRoomNumber =  $field_type_object->input( array( 
                                 'type' => 'number',
                                 'id' => 'inputRoomNumber',
                                 'max' => $maxRooms,
                                 'min' => '0',
-                                'value' => $roomsPresent,
+                                'value' => count($roomUnits),
                                 'readonly' => 'readonly',
                                 'class' => 'quantity-number',
                                 ) );
                         
-                        require_once(dirname(__FILE__) . '/Views/Html-GenerateRoom.php');
+                        require_once(dirname(__FILE__) . '/Views/Html-GenerateRoom.php');                        
+                }
+                else {
+                        $classes = 'form-control';
+                        $editRoomName = $field_type_object->input( array( 
+                                'type' => 'text',
+                                'id' => 'edit_room_name',
+                                'value' => '',
+                                'placeholder' => 'Enter room name',
+                                'maxlength' => 25,                               
+                                'class' => 'form-control',
+                                ) );
+                        require_once(dirname(__FILE__) . '/Views/Html-DisplayRoom.php');
                 }
         }
         
@@ -78,33 +80,15 @@ class GenerateRoom{
         
         function generateRooms()
                 {
-                        global $post_id;
-                        // Get number of rooms from User Input.
-                        $numberOfRooms = $this->sanitizedValue;
-                        
-                        // The Default room name.
-                        // $roomName = "Room unit ";
+
+                        global $post_id;                      
                         $title = get_the_title() . " ";
-                        
-                        // Room Details
-                        $roomMeta  = [];
-                        
-                        // Loop to generate Rooms
-                        for($i = 1; $i <= $numberOfRooms; $i++) {
-                                
-                                $roomMeta = [
-                                        'name' => $title . $i,
-                                        'room_type' =>$post_id,
-                                        'order' => $i
-                                ];                       
-                                
-                                $roomModel = new Room;
-                                $response = $roomModel->createRoomUnit($roomMeta);                        
-                                
+
+                        for($i = 1; $i <= $this->sanitizedValue; $i++){
+                                $room = new RoomRepository;
+                                $roomName = $title . $i;
+                                $room->createRoomUnit($post_id , $roomName);
                         }
                         return true;
                 }
-                
-                
-                
         }

@@ -3,8 +3,7 @@
 namespace Brainsugar\Ajax;
 
 use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
-
-use Brainsugar\Model\Room;
+use Brainsugar\Repositories\RoomRepository;
 
 class RoomAjax extends ServiceProvider {
         
@@ -13,11 +12,8 @@ class RoomAjax extends ServiceProvider {
         * Here you will used a methods list.
         *
         * @var array
-        */
-        
-        protected $trusted = [
-                'trusted'
-        ];
+        */        
+        protected $trusted = [];
         
         /**
         * List of the ajax actions executed only by logged in users.
@@ -26,11 +22,10 @@ class RoomAjax extends ServiceProvider {
         * @var array
         */
         protected $logged = [   
-                'deleteRoomUnit',                
+                'addRoomUnit',
+                'deleteRoomUnit',
                 'updateRoomOrder',
                 'updateRoomName',
-                'addRoom',
-              
         ];
         
         /**
@@ -39,126 +34,74 @@ class RoomAjax extends ServiceProvider {
         *
         * @var array
         */
-        protected $notLogged = [
-                'notLogged'
-        ];
-        
+        protected $notLogged = [];
+
+        /**
+         * Room Respository Instance variable.
+         *
+         * @var RoomRepository
+         */
+        protected $room;
+
+
+        public function __construct(){                
+                $this->room = new RoomRepository;
+        }
         
         /**
-        * Generate room units specifed by the number of room units to be created.
-        *
-        * @return json
-        */
-        
-     public function addRoom() {
-           
-
-                
-
+         * Add a room unit 
+         *
+         * @return bool
+         */
+        public function addRoomUnit() {
+                $roomType = $_POST['postId'];
                 $roomName = $_POST['roomName'];
 
-                $postId = $_POST['postId'];                
+                $response = $this->room->createRoomUnit($roomType , $roomName);
 
-                
-                $roomModel = new Room;
-
-                // Get all the rooms already present.
-                $rooms = $roomModel->getRoomIds($postId);
-
-                // Checks already present rooms in the database.
-                $numberOfRooms = count($rooms);               
-
-                
-                // Room Details
-                $roomMeta  = [];
-
-                        // increntement by 1 so the order of the newly created individual room unit doesnt conflict.
-                        $roomMeta = [
-                                'name' => $roomName,
-                                'room_type' =>$postId,
-                                'order' => $numberOfRooms + 1,
-                        ];                       
-                   
-                        $response = $roomModel->createRoomUnit($roomMeta);
-                        
-                // }
-                
                 wp_send_json( $response );
         }
         
-        
-        
         /**
-        * Delete a Room unit.
-        *
-        * @return json
-        */
-
+         * Delete a room unit
+         *
+         * @return bool
+         */
         public function deleteRoomUnit() {
-
-                //Get the ID of the room unit to be deleted.
                 $roomId = $_POST['roomId'];
 
-                $roomModel = new Room;
-
-                // Delete from DB
-                $response = $roomModel->deleteRoomUnit($roomId) ;
+                $response = $this->room->deleteRoomUnit($roomId);
 
                 wp_send_json( $response );
         }
-
-
+        
         /**
-         * Update the Order of the Room Units.
+         * Update room order
          *
-         * @return json 
+         * @return bool
          */
-
         public function updateRoomOrder() {
 
-                // Reordered Array of RoomIDs
-                $roomIds = $_POST['roomIds'];
+                $roomSequence = $_POST['roomIds'];
 
-                // Empty array to contain the order sequence.
-                $order = [];
+                $response = $this->room->updateRoomOrder($roomSequence);
 
-                // Create the room order array for the rooms.
-                for($i=1; $i <= count($roomIds); $i++) {
-                        array_push($order, $i);
-                }
-              
-                // Merge the new order of rooms with an array of order.
-               $newOrder = array_combine($roomIds , $order);
-
-                //  New instance of Room Model.
-                $roomModel = new Room;
-
-                // Insert the new order into the DB 
-                foreach($newOrder as $key => $value) {
-                        $response = $roomModel->updateRoomOrder($key, $value);
-                }
                 wp_send_json($response);
         } 
-
+        
         /**
-         * Update Room Name
+         * Update the room name
          *
-         * @return void
+         * @return bool
          */
         public function updateRoomName() {
-                
-                // Room name by user input.
+
                 $roomName = $_POST['roomName'];
-                
                 $roomId = $_POST['roomId'];
 
-                $roomModel = new Room;
-
-                $response = $roomModel->updateRoomName($roomName,$roomId);
+                $response = $this->room->updateRoomUnit($roomId , $roomName);
 
                 wp_send_json($response);
-
         }
-             
 
 }

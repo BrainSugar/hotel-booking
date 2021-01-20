@@ -2,100 +2,110 @@
 
 namespace Brainsugar\Ajax;
 
-use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
 use Brainsugar\Http\Controllers\Frontend\SearchController;
-use Brainsugar\Model\Coupon;
-use Brainsugar\Model\Sessions;
-use Brainsugar\Model\ReservationCart;
+use Brainsugar\Repositories\SessionRepository;
+use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
 
+// use Brainsugar\Model\Coupon;
+// use Brainsugar\Model\Sessions;
+// use Brainsugar\Model\ReservationCart;
 
-class SearchAjax extends ServiceProvider {
-
-  /**
-   * List of the ajax actions executed by both logged and not logged users.
-   * Here you will used a methods list.
-   *
-   * @var array
-   */
-  protected $trusted = [
-          'searchSession',
-    'searchAvailability'
-  ];
-
-  /**
-   * List of the ajax actions executed only by logged in users.
-   * Here you will used a methods list.
-   *
-   * @var array
-   */
-  protected $logged = [
-    'logged'
-  ];
-
-  /**
-   * List of the ajax actions executed only by not logged in user, usually from frontend.
-   * Here you will used a methods list.
-   *
-   * @var array
-   */
-  protected $notLogged = [
-    'notLogged'
-  ];
-
-  public function searchAvailability()
-  {
-        $checkIn = $_POST['checkInDate'];
-        $checkOut = $_POST['checkOutDate'];
-        $adults = absint($_POST['adults']);
-        $children = absint($_POST['children']);
-        $filterView = $_POST['filterView'];
-        $filterPrice = $_POST['filterPrice'];
-
-        if (!$filterView) {
-                $filterView = "list";
-        }
-
-        if(!$filterPrice) {
-                $filterPrice = "total";
-        }
-
-        // Check previous search and destroy their cart values
-        $this->clearPreviousSearch();
-        // Set search values in session_value.
-        $session = new Sessions;        
-        $session->setSessionValue($checkIn , $checkOut , $adults , $children);
-
-        // Get search result templates.        
-        $searchController = new SearchController;
-
-        $sidebarDatesTemplate = $searchController->getSidebarDatesTemplate($checkIn , $checkOut);
-
-        $searchResultsTemplate = $searchController->getSearchResultsTemplate($checkIn , $checkOut , $adults , $children , $filterView , $filterPrice);
-
-        $templates = [
-                "sidebarDates" => $sidebarDatesTemplate,
-                "searchResults" => $searchResultsTemplate
+class SearchAjax extends ServiceProvider
+{
+    /**
+     * List of the ajax actions executed by both logged and not logged users.
+     * Here you will used a methods list.
+     *
+     * @var array
+     */
+    protected $trusted = [
+                'searchSession',
+                'searchAvailability',
         ];
 
-        wp_send_json($templates);
-  }
+    /**
+     * List of the ajax actions executed only by logged in users.
+     * Here you will used a methods list.
+     *
+     * @var array
+     */
+    protected $logged = [];
 
-//   public function searchSession() {
-//           if(isset($_SESSION['bshb_session_value'])){
-//                   $searchSession = \unserialize($_SESSION['bshb_session_value']);                  
-//           }
-//           wp_send_json( $searchSession ); 
-//   }
+    /**
+     * List of the ajax actions executed only by not logged in user, usually from frontend.
+     * Here you will used a methods list.
+     *
+     * @var array
+     */
+    protected $notLogged = [];
 
-  public function clearPreviousSearch() {
-                $isCouponApplied = Coupon::getSessionCoupon();
-                 if(isset($_SESSION['bshb_session_cart'])){                 
-                          $cart = new ReservationCart;
-                          $cart->deleteCartItems($_SESSION['bshb_session_cart']);
-                  }
-                  if($isCouponApplied){
-                          Coupon::unsetSessionCoupon();
-                  }
-                 
-          }  
+    /**
+     * Instance of search Controller.
+     *
+     * @var object
+     */
+    protected $search;
+
+    /**
+     * Instance of Session.
+     *
+     * @var object
+     */
+    protected $session;
+
+    public function __construct()
+    {
+        $this->search = new SearchController();
+        $this->session = new SessionRepository();
+    }
+
+    /**
+     * Search Available Rooms.
+     *
+     * Set session variables from post variables and
+     * get search and sidebar templates
+     *
+     * @return void
+     */
+    public function searchAvailability()
+    {
+        $this->_clearSearch();
+
+        // set search session variables
+        $this->session->set('bshb_check_in', $_POST['checkInDate']);
+        $this->session->set('bshb_check_out', $_POST['checkOutDate']);
+        $this->session->set('bshb_adults', $_POST['adults']);
+        $this->session->set('bshb_children', $_POST['children']);
+
+        // set filters and sorting
+        $this->session->set('bshb_search_view', $_POST['filterView']);
+        $this->session->set('bshb_search_price', $_POST['filterPrice']);
+        $this->session->set('bshb_search_sort', $_POST['sortPrice']);
+
+        // Search results
+        $response = $this->search->getSearchResults();
+
+        wp_send_json($response);
+    }
+
+    /**
+     * Clear previous search session.
+     *
+     * @return void
+     */
+    private function _clearSearch()
+    {
+        // unset coupon
+        $this->session->remove('bshb_coupon');
+
+        //   unset search variables
+        $this->session->remove('bshb_check_in');
+        $this->session->remove('bshb_check_out');
+        $this->session->remove('bshb_adults');
+
+        //   unset sorting and filters
+        $this->session->remove('bshb_search_view');
+        $this->session->remove('bshb_search_price');
+        $this->session->remove('bshb_search_sort');
+    }
 }

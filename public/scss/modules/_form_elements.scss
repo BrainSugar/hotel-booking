@@ -517,3 +517,9 @@ input[type=checkbox]:checked+label {
 .switch-warning>.switch.switch-button:checked+.switch-body::before {
         background-color: $color-warning;
 }
+
+// Admin Validations
+.validation-fail {
+        background-color: #ffefef;
+        border:1px solid rgb(240, 150, 150)
+}

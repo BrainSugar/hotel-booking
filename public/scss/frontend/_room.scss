@@ -116,8 +116,12 @@
 .room-add-cart {
         display: flex;
         justify-content: space-around;
-        align-items: baseline;
+        align-items: center;
         padding: 2rem;
+
+        .room-count-text{
+                margin:0;
+        }
 }
 
 

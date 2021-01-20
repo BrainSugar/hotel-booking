@@ -2,36 +2,26 @@
 
 namespace Brainsugar\Providers;
 
+use Brainsugar\Repositories\SessionRepository;
 use Brainsugar\WPBones\Support\ServiceProvider;
-use Brainsugar\Model\ReservationCart;
-use Brainsugar\Model\Sessions;
-
 
 class SessionServiceProvider extends ServiceProvider
-{ 
-        
-        public function register()
-        {  
-              
-                        $this->initializeSession();
-           
-                
-                // add_action('init' , array($this , 'initializeSession') , 1);
-                add_action('wp_logout', array($this ,'resetSessionKey') , 1);
-                add_action('wp_login', array($this,'resetSessionKey') , 1);
-        }
+{
+    protected $session;
 
-        public function initializeSession() {
-                $sessions = new Sessions;
-                // $session->startSession();
-                // $session->initializeSessionKey();
-        }
+    public function __construct()
+    {
+        $this->session = new SessionRepository();
+    }
 
-        public function resetSessionKey() {
-                $session = new Sessions;
+    public function register()
+    {
+        add_action('wp_logout', [$this, '_unsetSessionKey'], 10, 0);
+        add_action('wp_login', [$this, '_unsetSessionKey'], 10, 0);
+    }
 
-                $session->unsetSessionKey();
-                // $session->destroySession();              
-        }
-
+    public function _unsetSessionKey()
+    {
+        $this->session->remove('bshb_session_key');
+    }
 }

@@ -39,7 +39,7 @@ require_once __DIR__ . '/bootstrap/autoload.php';
 */
 
 // comodity define for text domain
-define( 'BRAINSUGAR_TEXTDOMAIN', 'brainsugar' );
+define( 'BRAINSUGAR_TEXTDOMAIN', 'bshb-td' );
 
 $GLOBALS[ 'Brainsugar' ] = require_once __DIR__ . '/bootstrap/plugin.php';
 

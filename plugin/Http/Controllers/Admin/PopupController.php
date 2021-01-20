@@ -13,6 +13,7 @@ class PopupController extends Controller
   {
           $reservationItems = new ReservationItemMeta;
           $guestDetails = $reservationItems->getGuestDetails($reservationId);
+        //TODO   get payment details and send into popup
           $reservation = new Reservations;
           $reservationDetails = $reservation->getReservation($reservationId);
         
@@ -21,9 +22,7 @@ class PopupController extends Controller
            ->with('reservation' , $reservationDetails)
           ->render('true');
 
-          return $popup;
-
-   
+          return $popup;   
   }
 
 }

@@ -17122,6 +17122,75 @@ Alternate buttons
   content: "\2014\00A0";
 }
 
+.bshb .img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.bshb .img-thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.bshb .figure {
+  display: inline-block;
+}
+
+.bshb .figure-img {
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.bshb .figure-caption {
+  font-size: 90%;
+  color: #6c757d;
+}
+
+.bshb code {
+  font-size: 87.5%;
+  color: #e83e8c;
+  word-break: break-word;
+}
+
+a > .bshb code {
+  color: inherit;
+}
+
+.bshb kbd {
+  padding: 0.2rem 0.4rem;
+  font-size: 87.5%;
+  color: #fff;
+  background-color: #212529;
+  border-radius: 0.2rem;
+}
+
+.bshb kbd kbd {
+  padding: 0;
+  font-size: 100%;
+  font-weight: 700;
+}
+
+.bshb pre {
+  display: block;
+  font-size: 87.5%;
+  color: #212529;
+}
+
+.bshb pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+}
+
+.bshb .pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
 .bshb .container {
   width: 100%;
   padding-right: 15px;
@@ -18231,6 +18300,41 @@ Alternate buttons
   }
   .bshb .offset-xl-11 {
     margin-left: 91.66667%;
+  }
+}
+
+.bshb .fade {
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bshb .fade {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+.bshb .fade:not(.show) {
+  opacity: 0;
+}
+
+.bshb .collapse:not(.show) {
+  display: none;
+}
+
+.bshb .collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+  transition: height 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bshb .collapsing {
+    -webkit-transition: none;
+    transition: none;
   }
 }
 
@@ -24956,6 +25060,7 @@ a.bshb .badge-dark:focus, a.bshb .badge-dark.focus {
   color: #10cfbd;
   background-color: #fff;
   text-shadow: none;
+  text-decoration: none;
   -webkit-box-shadow: none;
           box-shadow: none;
   line-height: 21px;
@@ -25294,8 +25399,19 @@ fieldset[disabled] .bshb .btn-danger.active {
       -ms-grid-row-align: center;
       align-self: center;
   color: #10cfbd;
+  padding: 0;
+  background: none;
   font-size: 1.3em;
   cursor: pointer;
+}
+
+.bshb .minus:focus, .bshb .minus:active:focus, .bshb .minus.active:focus,
+.bshb .plus:focus,
+.bshb .plus:active:focus,
+.bshb .plus.active:focus {
+  background: #e7faf8;
+  outline: none !important;
+  outline-style: none;
 }
 
 .bshb input::-webkit-outer-spin-button,
@@ -25306,6 +25422,27 @@ fieldset[disabled] .bshb .btn-danger.active {
 
 .bshb input[type=number] {
   -moz-appearance: textfield;
+}
+
+.bshb .status {
+  color: #676767;
+  position: relative;
+  margin: 0.5rem;
+}
+
+.bshb .status::after {
+  content: '';
+  display: block;
+  height: 15px;
+  width: 15px;
+  border: 5px solid #e7faf8;
+  border-radius: 50%;
+  background: #10cfbd;
+}
+
+.bshb .status.reserved::after {
+  border: 5px solid #95e095;
+  background: green;
 }
 
 .bshb label,
@@ -25765,6 +25902,11 @@ fieldset[disabled] .bshb .form-control {
   background-color: #f8d053;
 }
 
+.bshb .validation-fail {
+  background-color: #ffefef;
+  border: 1px solid #f09696;
+}
+
 .bshb .room-sortable,
 .bshb .room-add,
 .bshb .room-sortable-ghost {
@@ -25827,6 +25969,52 @@ fieldset[disabled] .bshb .form-control {
 .bshb .modal-footer .restore-price {
   margin-left: 1rem;
   margin-right: auto;
+  cursor: pointer;
+}
+
+.bshb .reservation-popup .modal-body {
+  padding: 0.5rem 2.5rem;
+}
+
+.bshb .reservation-popup .modal-body .guest-email,
+.bshb .reservation-popup .modal-body .guest-phone {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  margin: 1.1rem 0.5rem;
+}
+
+.bshb .reservation-popup .modal-body .guest-email i,
+.bshb .reservation-popup .modal-body .guest-phone i {
+  margin: 0 1rem 0 0;
+}
+
+.bshb .reservation-popup .modal-body .guest-email a,
+.bshb .reservation-popup .modal-body .guest-phone a {
+  color: #676767;
+}
+
+.bshb .reservation-popup .modal-body .timeline {
+  margin: 0;
+}
+
+.bshb .reservation-popup .modal-body .reservation-status,
+.bshb .reservation-popup .modal-body .payment-status {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bshb .reservation-popup .modal-body .reservation-status p,
+.bshb .reservation-popup .modal-body .payment-status p {
+  text-transform: capitalize;
+  margin: 0;
 }
 
 .bshb .bshb-calendar {
@@ -26143,6 +26331,7 @@ fieldset[disabled] .bshb .form-control {
   border-radius: 0.25rem;
   padding: 2rem;
   background: #f3fdfc;
+  border: 1px solid #e6e6e6;
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }

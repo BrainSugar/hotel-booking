@@ -49,6 +49,7 @@
               border-radius: $border-radius;        
         padding:2rem;
         background: $color-master-lighter;
+        border:$border;
         transition: all 1s ease-in-out;
         .duration {                
                 display: flex;

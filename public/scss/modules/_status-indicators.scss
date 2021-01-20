@@ -1,0 +1,24 @@
+.status {
+        color: $color-text;
+        position: relative;
+        margin: 0.5rem;
+
+        &::after {
+                content: '';
+                display: block;
+                height: 15px;
+                width: 15px;
+                border: 5px solid $color-master-light;
+
+                border-radius: 50%;
+                background: $color-master;
+        }
+
+        &.reserved {
+                &::after {
+                        border: 5px solid rgb(149, 224, 149);
+                        background: green;
+        }
+}
+
+}

@@ -4,51 +4,41 @@
 
         $(document).ready(function () {
 
+                // Initialize Flatpicker
                 var today = moment().format('YYYY-MM-DD');
-                var dates = flatpickr("#input-check-in", {
-                        "plugins": [new rangePlugin({ input: "#input-check-out" })],
-                        "minDate": today,
-                        altInput: true,
-                        altFormat: "F j, Y",
-                        dateFormat: "Y-m-d",
-                        static: "true",
-                        monthSelectorType: "static",
-                });
+                var dates = flatpickr("#input-check-in",
+                        {
+                                "plugins": [new rangePlugin({ input: "#input-check-out" })],
+                                "minDate": today,
+                                altInput: true,
+                                altFormat: "F j, Y",
+                                dateFormat: "Y-m-d",
+                                static: "true",
+                                monthSelectorType: "static",
+                        });
 
                 // Add Brainsugar Styles to flatpickr 
                 dates.calendarContainer.classList.add("bshb-datepicker");
 
-                // Check if a previous search session is active and load the active session data.
-                // checkSearchSession();
-                // function checkSearchSession() {
-                //         $.post(
-                //                 ajaxurl,
-                //                 {
-                //                         action: 'searchSession',
-                //                 },
-                //                 function (response) {
-                //                         // alert(response);
-                //                         // console.log(dates);
-                //                         if (response != null) {
-                //                                 // Set up all variables with session values and perform search again.
-                //                                 var sessionDates = [response.check_in, response.check_out];
-                //                                 dates.setDate(sessionDates, true);
-                //                                 $('#input-adults').val(response.adults);
-                //                                 $('#input-children').val(response.children);
-                //                                 performSearch();
-                //                         }
 
-                //                 },
-                //         );
-                // }
+                /**
+                 * Perform Search
+                 * 
+                 * Call Ajax Search availability with sortting preferences , 
+                 * get search results template and load in the HTML container
+                 * 
+                 * @param string filterView 
+                 * @param string filterPrice 
+                 * @param string sortPrice 
+                 */
+                function performSearch(filterView, filterPrice, sortPrice) {
 
-
-                // Function to perform search
-                function performSearch(filterView, filterPrice) {
                         var checkInDate = dates.selectedDates[0];
                         var checkOutDate = dates.selectedDates[1];
                         var adults = $('#input-adults').val();
                         var children = $('#input-children').val();
+
+                        // Validate Dates
                         if (checkInDate == null) {
                                 $('.input-check-in').addClass('validate-fail');
                                 $('.input-check-out').addClass('validate-fail');
@@ -61,11 +51,13 @@
                                 $('.validate-msg').addClass('d-none');
 
                         }
+
+                        // Set minimum for search.
                         if (adults == 0) {
                                 $('#input-adults').val('1');
-
                         }
-                        console.log(dates.selectedDates[0]);
+
+                        // Add Loaders
                         $('#bshb-sidebar-dates').addClass('bshb-loader');
                         $('#bshb-search-content').addClass('bshb-loader');
 
@@ -78,58 +70,84 @@
                                         adults: adults,
                                         children: children,
                                         filterView: filterView,
-                                        filterPrice: filterPrice
+                                        filterPrice: filterPrice,
+                                        sortPrice: sortPrice
 
                                 },
                                 function (response) {
-                                        // alert(response);
-                                        // console.log(response); 
+                                        // scroll top
                                         $('html, body').animate({
                                                 scrollTop: $("#bshb-search-content").offset().top
                                         }, 100);
+
+                                        // Load Content
                                         $('#bshb-sidebar-dates').html(response.sidebarDates);
                                         $('#bshb-search-content').html(response.searchResults);
+                                        // remove loaders
                                         $('#bshb-sidebar-dates').removeClass('bshb-loader');
                                         $('#bshb-search-content').removeClass('bshb-loader');
-
                                 },
                         );
 
                 }
 
+                /**
+                 * 
+                 * Filter and search actions
+                 * 
+                 */
 
-                // Filter and search actions
                 var filterPrice;
                 var filterView;
+                var sortPrice;
 
+
+                //   On search submit
                 $('body').on('submit', '#bshb-search-form', function (e) {
                         e.preventDefault();
                         filterPrice = "total";
                         filterView = "list";
-                        performSearch(filterView, filterPrice);
+                        sortPrice = "ASC";
+                        performSearch(filterView, filterPrice, sortPrice);
                 });
 
+                // Filter : Grid
                 $('body').on('click', '#filter-grid', function (e) {
                         e.preventDefault();
                         filterView = "grid";
-                        performSearch(filterView, filterPrice);
-
+                        performSearch(filterView, filterPrice, sortPrice);
                 });
+
+                // Filter : List
                 $('body').on('click', '#filter-list', function (e) {
                         e.preventDefault();
                         filterView = "list";
-                        performSearch(filterView, filterPrice);
+                        performSearch(filterView, filterPrice, sortPrice);
                 });
+
+                // Price filter : Total
                 $('#price-total').click(function () {
                         filterPrice = 'total';
-                        performSearch(filterView, filterPrice);
+                        performSearch(filterView, filterPrice, sortPrice);
                 });
+
+                // Price filter : Price / Night
                 $('#price-night').click(function () {
                         filterPrice = 'perNight';
-                        performSearch(filterView, filterPrice);
+                        performSearch(filterView, filterPrice, sortPrice);
                 });
 
-                console.log(dates);
+                // Sort : Lowest price first
+                $('#sort-asc').click(function () {
+                        sortPrice = 'asc';
+                        performSearch(filterView, filterPrice, sortPrice);
+                        // performSearch(filterView, filterPrice);
+                });
 
+                // Sort : Highest price first
+                $('#sort-desc').click(function () {
+                        sortPrice = 'desc';
+                        performSearch(filterView, filterPrice, sortPrice);
+                });
         });
 })(window.jQuery);

@@ -7,6 +7,7 @@
                 background: $color-white;
                 border-radius: $border-radius;
                 margin: 1rem;
+                padding:1rem;
                 font-size: 1.8rem;
 
                 i {
@@ -22,6 +23,16 @@
                         box-shadow: $box-shadow;
                         cursor: pointer;
                 }
+                
+        &:focus,
+        &:active:focus,
+        &.active:focus {
+                box-shadow: $box-shadow;
+                background: $color-master-light;
+                outline: none !important;
+                outline-style: none;
+                color: #333;
+        }
 
                 .dropdown-menu {
                         .dropdown-item {

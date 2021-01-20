@@ -16,6 +16,7 @@ class ScriptServiceProvider extends ServiceProvider
     add_action('admin_footer' , array($this,'footerScripts'));
 
     add_action( 'wp_enqueue_scripts', array($this,'frontendScripts') );
+
   }
 
 
@@ -25,12 +26,14 @@ class ScriptServiceProvider extends ServiceProvider
 // Register Global Scripts
 function registerGlobalAdminScripts(){
         if ( is_admin() ) {
+
+                  wp_register_script( 'validate', plugins_url( '/brainsugar-hotel-booking/resources/assets/js/jquery.validate.js'), array( 'jquery' ) , false , true);
                 // Register Bootstrap JS 
                 wp_register_script( 'bootstrap-bundle',  plugins_url('/brainsugar-hotel-booking/public/js/bootstrap.bundle.js'), array( "jquery" ));
                 // Sortable JS vendor script
                 wp_register_script( "sortable", plugins_url(  '/brainsugar-hotel-booking/public/js/vendor/Sortable.js'), array( "jquery")); 
                 // Register Scripts for generating room fields in CMB2
-                wp_register_script( "generate-room", plugins_url( '/brainsugar-hotel-booking/public/js/generate-room.js'), array( "jquery", "bootstrap-bundle" , "sortable"), Brainsugar()->Version , true);
+                wp_register_script( "generate-room", plugins_url( '/brainsugar-hotel-booking/public/js/generate-room.js'), array( "jquery", "bootstrap-bundle" , "sortable" , "validate"), Brainsugar()->Version , true);
 
 
         }

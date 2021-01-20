@@ -42,6 +42,9 @@ class ReservationItems extends Model
                 return $wpdb->prefix . preg_replace('/[[:<:]]' . $wpdb->prefix . '/', '', parent::getTable(), 1);
         }
         
+        public function Reservations() {
+                return $this->belongsTo(Reservations::class , 'reservation_id' , 'reservation_id')->toArray();
+        }
         
         public function insertReservationItems($reservationId){
                 

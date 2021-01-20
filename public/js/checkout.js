@@ -4,11 +4,11 @@
 
         $(document).ready(function () {
                 $('body').on('click', '#bshb-reserve-booking', function (e) {
-                        if (guestInputValidate() == true && paymentInputValidate() == true) {
-                                var guestDetails = $("#guest-information").serialize();
-                                var paymentMethod = $('#payment_gateways').serialize();
-                                createReservation(guestDetails, paymentMethod);
-                        }
+                        // if (guestInputValidate() == true && paymentInputValidate() == true) {
+                        var guestDetails = $("#bshb-guest-form").serialize();
+                        var paymentMethod = $('#payment_gateways').serialize();
+                        createReservation(guestDetails, paymentMethod);
+                        // }
 
                 });
 
@@ -29,7 +29,7 @@
 
                 }
                 function guestInputValidate() {
-                        $("#guest-information").validate({
+                        $("#bshb-guest-form").validate({
                                 rules: {
                                         guest_first_name: "required",
                                         guest_last_name: "required",
@@ -49,7 +49,7 @@
                                         }
                                 },
                         });
-                        if ($("#guest-information").valid()) {
+                        if ($("#bshb-guest-form").valid()) {
                                 return true;
                         }
                 }
@@ -58,12 +58,12 @@
                         $.post(
                                 ajaxurl,
                                 {
-                                        action: 'createReservation',
+                                        action: 'captureReservation',
                                         guestDetails: guestDetails,
                                         paymentMethod: paymentMethod
                                 },
                                 function (response) {
-                                        alert(response);
+                                        // window.location.href = response.href;
                                         console.log(response);
 
                                 },

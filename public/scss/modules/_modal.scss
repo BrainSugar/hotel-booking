@@ -20,5 +20,42 @@
         .restore-price {
                 margin-left: 1rem;
                 margin-right: auto;
+                cursor:pointer;
         }
+}
+
+// Reservation Popup Modal
+.reservation-popup{
+        .modal-body{
+                padding:0.5rem 2.5rem;
+
+                .guest-email,
+                .guest-phone{                        
+                        display:inline-flex;
+                        align-items:baseline;
+                        margin:1.1rem 0.5rem;
+
+                        i {
+                                margin:0 1rem 0 0;
+                        }
+                        a {
+                                color: $color-text;
+                        }                       
+                }
+                .timeline{
+                        margin:0;
+                }
+
+                .reservation-status,
+                .payment-status{
+                        display:inline-flex;
+                        align-items: center;
+                        p {
+                                text-transform: capitalize;
+                                margin:0;
+                        }
+                }
+
+        }
+
 }

@@ -1,9 +1,13 @@
 .bshb-loader {
         background: #fff;
         border-radius: $border-radius;
-        min-height: 200px;
+        // min-height: 200px;
         position: relative;
+        transition-property: all;
+        transition-duration: 1s;
         width: 100%;
+        
+        
 
         &::before {
                 background: $color-white;
@@ -16,6 +20,7 @@
                 right: 0;
                 top: 0;
                 z-index: 5;
+                opacity:0.9;
         }
 
         &::after {

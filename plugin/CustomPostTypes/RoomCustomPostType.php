@@ -6,7 +6,7 @@ use Brainsugar\WPBones\Foundation\WordPressCustomPostTypeServiceProvider as Serv
 
 use Brainsugar\Admin\Columns\RoomColumns;
 use Brainsugar\Admin\Metaboxes\RoomMetabox;
-use Brainsugar\Model\Room;
+use Brainsugar\Repositories\RoomRepository;
 
 
 class RoomCustomPostType extends ServiceProvider
@@ -18,7 +18,7 @@ class RoomCustomPostType extends ServiceProvider
   protected $publiclyQueryable = true;
   protected $mapMetaCap        = true;
   protected $menuIcon          = 'dashicons-universal-access-alt';
-  protected $showInRest = 'true';
+  protected $showInRest = false;
   protected $rewrite           = [
     'slug'       => 'room_type',   
     'with_front' => true,
@@ -33,12 +33,18 @@ class RoomCustomPostType extends ServiceProvider
    */
   public function boot()
   { 
+
+        add_action('trash_bshb_room', array($this , 'trashRoomType'), 10 , 2);
+        add_action('publish_bshb_room', array($this , 'restoreRoomType') , 10 , 2);
+        add_action('before_delete_post', array($this , 'deleteRoomType') , 10 , 2);
+
                
         $setRoomColumns = new RoomColumns;
         $registerRoomMetabox = new RoomMetabox;
 
         $setRoomColumns->addActionsAndFilters();
         $registerRoomMetabox->addActionsAndFilters();
+
   }
 
 
@@ -53,6 +59,36 @@ class RoomCustomPostType extends ServiceProvider
    */
   public function update( $post_id, $post )
   {
+       
+
+}
+
+
+public function trashRoomType() {
+        global $post;
+        $room = new RoomRepository;
+
+         if($post->post_type === $this->id) {                
+                 $room->trashRoomType($post->ID);
+         }
+}
+
+public function deleteRoomType() {
+        global $post;
+        $room = new RoomRepository;
+       
+        if($post->post_type === $this->id) :
+                $room->deleteRoomType($post->ID);
+        endif;
+}
+
+public function restoreRoomType() {
+        global $post;
+        $room = new RoomRepository;
+       
+        if($post->post_type === $this->id) :
+                $room->restoreRoomType($post->ID);
+        endif;
 
 }
 
@@ -72,13 +108,9 @@ class RoomCustomPostType extends ServiceProvider
   }
 
       public static function getPostType(){
-        $post_type        = "bshb_room";
-        return $post_type;
+        $response  = "bshb_room";
+        return $response;
     }
-
-     
-  
-    
 
 }
 

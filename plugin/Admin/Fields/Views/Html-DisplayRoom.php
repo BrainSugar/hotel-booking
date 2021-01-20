@@ -22,7 +22,7 @@
                                         
                                         
                                         <!-- Room Unit Name -->
-                                       <h5><?php echo esc_html( $room->name ); ?></h5>
+                                       <h5><?php echo esc_html( $room->room_name ); ?></h5>
                                         
                                 </div>
                         </div>                        
@@ -48,79 +48,22 @@
 
 <!-- Rename Room Modal -->
 <div id="edit-room-modal" class="modal  mt-5" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                        <div class="modal-header">
-                                <h5 class="modal-title">Edit Name</h5>                                
-                        </div>
-                        
-                        <div class="modal-body">
-                              <div class="col-sm-12 my-2">
-                                        <div class="input-group">                                                
-                                                <input id="edit-name-input" name="edit-name" type="text" placeholder="Enter room name." class="form-control" maxlength = "25" required="true">                                      
-                                        </div>                                          
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                                <button id="save-room-name" type="submit" class="btn btn-primary">Save changes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                        
-                </div>
-        </div>
+
+       <?php echo Brainsugar()->view('Admin.Popups.room-update')->with('nameInput' , $editRoomName); ?>
 </div>
 
 <!-- Confirm Delete Modal -->
 
 <div id="delete-room-modal" class="modal mt-5" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                        <div class="modal-header">
-                                <h5 class="modal-title">Are you sure you want to delete room?</h5>                                
-                        </div>
-                        <div class="modal-footer">
-                                <button id="delete-room" type="button" class="btn btn-primary">Delete Room</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                        
-                </div>
-        </div>
+     <?php echo Brainsugar()->view('Admin.Popups.room-delete'); ?>
 </div>
 
 
 <div id="add-room-modal" class="modal  mt-5" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                        <div class="modal-header">
-                                <h5 class="modal-title">Add a new room</h5>                                
-                        </div>
-                        
-                        <div class="modal-body">
-                              <div class="col-sm-12 my-2">     
-                              
-                              <!-- TODO -->
-                              <!-- If max rooms then display cant add anymore -->
-                              <?php if($roomsPresent < $maxRooms) { 
-                                      $inputStatus = "required"; ?>
-                              
-                                        <div class="input-group">                                                
-                                                <input id="room-name-modal-input" type="text" placeholder="Enter room name." class="form-control" maxlength = "25" required="true">                                      
-                                        </div>
-                              <?php } else {  $inputStatus= "disabled"; ?>
-
-                                
-                                <p>This room type has reached maximum number of rooms it can have.</p>
-                                <small>Change the limit in settings.</small>
-                              <?php } ?>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                                <button id="add-modal-button" type="submit" class="btn btn-primary" <?php echo esc_attr( $inputStatus ) ?>>Add Room</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                        
-                </div>
-        </div>
+<?php echo Brainsugar()->view('Admin.Popups.room-add')
+->with('roomUnits' , $roomUnits)
+->with('maxRooms' , $maxRooms); ?>
+     
 </div>
 
 

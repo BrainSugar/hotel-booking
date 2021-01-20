@@ -74,6 +74,7 @@
         color: $color-master;
         background-color: $color-white;
         text-shadow: none;
+        text-decoration:none;
         box-shadow: none;
         line-height: 21px;
         position: relative;
@@ -202,8 +203,18 @@ Alternate buttons
 .plus {
         align-self: center;
         color: $color-master;
+        padding: 0;
+        background:none;
         font-size: 1.3em;
         cursor: pointer;
+
+        &:focus,
+        &:active:focus,
+        &.active:focus {                
+                background: $color-master-light;
+                outline: none !important;
+                outline-style: none;                
+        }
 }
 
 input::-webkit-outer-spin-button,

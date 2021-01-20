@@ -18,10 +18,10 @@ class bshb_pricing extends Migration
                         `end_date` date   NOT NULL,
                         PRIMARY KEY (`id`)
                         ) {$this->charsetCollate};");
-                }
-                
-                public function down() {
-                        dropIfExists($this->tableName);
-                }
-                
         }
+                
+        public function down() {
+                        dropIfExists($this->tableName);
+        }
+                
+}

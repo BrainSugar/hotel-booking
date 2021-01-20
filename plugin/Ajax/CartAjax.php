@@ -2,92 +2,102 @@
 
 namespace Brainsugar\Ajax;
 
-use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
 use Brainsugar\Http\Controllers\Frontend\CartController;
-use Brainsugar\Providers\SessionServiceProvider;
+use Brainsugar\WPBones\Foundation\WordPressAjaxServiceProvider as ServiceProvider;
 
 class CartAjax extends ServiceProvider
 {
-        
-        /**
-        * List of the ajax actions executed by both logged and not logged users.
-        * Here you will used a methods list.
-        *
-        * @var array
-        */
-        protected $trusted = [
-                'cartSession',
+    /**
+     * List of the ajax actions executed by both logged and not logged users.
+     * Here you will used a methods list.
+     *
+     * @var array
+     */
+    protected $trusted = [
                 'addToCart',
                 'removeFromCart',
                 'applyCouponCode',
-                'removeCouponCode'
+                'removeCouponCode',
         ];
-        
-        /**
-        * List of the ajax actions executed only by logged in users.
-        * Here you will used a methods list.
-        *
-        * @var array
-        */
-        protected $logged = [
-                'logged'
-        ];
-        
-        /**
-        * List of the ajax actions executed only by not logged in user, usually from frontend.
-        * Here you will used a methods list.
-        *
-        * @var array
-        */
-        protected $notLogged = [
-                'notLogged'
-        ];
-        
-        public function addToCart() {
-                $itemQuantity = $_POST['itemQuantity'];
-                $itemId = $_POST['itemId'];         
-                $itemType =  $_POST['itemType'];         
-                
-                $cart = new CartController;                
-     
-                $response = $cart->addItemToCart($itemId , $itemType , $itemQuantity);                
 
-                wp_send_json( $response );
-        }
+    /**
+     * List of the ajax actions executed only by logged in users.
+     * Here you will used a methods list.
+     *
+     * @var array
+     */
+    protected $logged = [];
 
-        public function removeFromCart() {
-                $itemId = $_POST['itemId'];   
-                $itemType =  $_POST['itemType'];
-                $cart = new CartController;
-                 if($itemType == "room_item")
-                {
-                       $response = $cart->deleteRoomFromCart($itemId);                        
-                }
-                
-                if($itemType == "service")
-                {
-                        $response = $itemType;
-                } 
-                wp_send_json( $response);
-        }
+    /**
+     * List of the ajax actions executed only by not logged in user, usually from frontend.
+     * Here you will used a methods list.
+     *
+     * @var array
+     */
+    protected $notLogged = [];
 
-        public function applyCouponCode() {
-                $userCode = $_POST['couponCode'];
-                $cart = new CartController;
-                $response = $cart->checkCouponCode($userCode);
-               wp_send_json( $response);
-        }
+    /**
+     * Cart controller instance.
+     *
+     * @var object
+     */
+    protected $cart;
 
-        public function removeCouponCode() {
-                $cart = new CartController;
-                $response = $cart->removeCouponCode();
-                wp_send_json( $response );
-        }
-        
-        public function cartSession() {
-                $cart = new CartController;
-                $sessionCart = $cart->getSessionCart();
-                wp_send_json($sessionCart); 
-        }
-        
+    public function __construct()
+    {
+        $this->cart = new CartController();
+    }
+
+    /**
+     * Add to Cart.
+     *
+     * @return html cart template
+     */
+    public function addToCart()
+    {
+        $itemId = $_POST['itemId'];
+        $itemType = $_POST['itemType'];
+        $itemQuantity = $_POST['itemQuantity'];
+
+        $response = $this->cart->addItemToCart($itemId, $itemQuantity, $itemType);
+        wp_send_json($response);
+    }
+
+    /**
+     * Remove from cart.
+     *
+     * @return html cart template
+     */
+    public function removeFromCart()
+    {
+        $itemId = $_POST['itemId'];
+        $itemType = $_POST['itemType'];
+
+        $response = $this->cart->removeItemFromCart($itemId, $itemType);
+        wp_send_json($response);
+    }
+
+    /**
+     * Apply coupon code.
+     *
+     * @return string coupon message
+     */
+    public function applyCouponCode()
+    {
+        $userCode = $_POST['couponCode'];
+
+        $response = $this->cart->applyCoupon($userCode);
+        wp_send_json($response);
+    }
+
+    /**
+     * Remove coupon code.
+     *
+     * @return bool
+     */
+    public function removeCouponCode()
+    {
+        $response = $this->cart->removeCoupon();
+        wp_send_json($response);
+    }
 }

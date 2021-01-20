@@ -13,7 +13,6 @@
 */
 
 return [
-        
         'version' => '1.0',
         'General' => [
                 'hotel' => [
@@ -25,11 +24,10 @@ return [
                         'postcode' => '',
                         'phone' => '',
                         'email' => '',
-                        
-                ],                
+                ],
                 'currency' => [
                         'code' => '',
-                        'name' => '',                        
+                        'name' => '',
                         'symbol' => '',
                         'symbol_position' => 'before',
                         'decimals' => '2',
@@ -58,6 +56,7 @@ return [
         'Pages' => [
                 'search' => '',
                 'check_out' => '',
+                'reservation_confirmation',
         ],
 ];
 //    'Form'          => [
@@ -96,7 +95,7 @@ return [
                                                 //         'maximum_nights'                    => '50',
                                                 //         'limit_available_days_from_today'   => '',
                                                 //         'disabled_dates'                    => '',
-                                                //     ],   
+                                                //     ],
                                                 //     'SearchForm'    => [
                                                         //         'display_search_form'               => true,
                                                         //         'display_filter_form'               => true,

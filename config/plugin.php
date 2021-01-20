@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
@@ -52,15 +51,13 @@ return [
   |
   */
 
-'custom_post_types' => [        
-        '\Brainsugar\CustomPostTypes\RoomCustomPostType' ,
-          '\Brainsugar\CustomPostTypes\ReservationCustomPostType' ,
-           '\Brainsugar\CustomPostTypes\TaxCustomPostType' ,
-            '\Brainsugar\CustomPostTypes\ServiceCustomPostType' ,
-               '\Brainsugar\CustomPostTypes\CouponCustomPostType' 
+'custom_post_types' => [
+        '\Brainsugar\CustomPostTypes\RoomCustomPostType',
+          '\Brainsugar\CustomPostTypes\ReservationCustomPostType',
+           '\Brainsugar\CustomPostTypes\TaxCustomPostType',
+            '\Brainsugar\CustomPostTypes\ServiceCustomPostType',
+               '\Brainsugar\CustomPostTypes\CouponCustomPostType',
 ],
-
-
 
   /*
   |--------------------------------------------------------------------------
@@ -71,7 +68,7 @@ return [
   |
   */
 
-  'custom_taxonomy_types' => [ '\Brainsugar\CustomTaxonomyTypes\Amenities' ],
+  'custom_taxonomy_types' => ['\Brainsugar\CustomTaxonomyTypes\Amenities'],
 
   /*
   |--------------------------------------------------------------------------
@@ -82,7 +79,7 @@ return [
   |
   */
 
-  'shortcodes' => [ '\Brainsugar\Shortcodes\MyShortcodes' ],
+  'shortcodes' => ['\Brainsugar\Shortcodes\MyShortcodes'],
 
   /*
   |--------------------------------------------------------------------------
@@ -93,8 +90,7 @@ return [
   |
   */
 
-  'widgets' => [ '\Brainsugar\Widgets\MyWidget' ],
-
+  'widgets' => ['\Brainsugar\Widgets\MyWidget'],
 
   /*
   |--------------------------------------------------------------------------
@@ -105,12 +101,12 @@ return [
   |
   */
 
-  'ajax' => [ '\Brainsugar\Ajax\SearchAjax',
+  'ajax' => ['\Brainsugar\Ajax\SearchAjax',
                 '\Brainsugar\Ajax\RoomAjax',
                 '\Brainsugar\Ajax\PricingAjax',
                 '\Brainsugar\Ajax\CartAjax',
-                 '\Brainsugar\Ajax\CheckoutAjax',
-                  '\Brainsugar\Ajax\PopupAjax',
+                '\Brainsugar\Ajax\CheckoutAjax',
+                '\Brainsugar\Ajax\PopupAjax',
 ],
 
   /*
@@ -125,11 +121,10 @@ return [
   */
 
   'providers' => [
+        'Brainsugar\Providers\ApiServiceProvider',
         '\Brainsugar\Providers\TemplateServiceProvider',
         '\Brainsugar\Providers\ScriptServiceProvider',
-        '\Brainsugar\Providers\SessionServiceProvider'
+        '\Brainsugar\Providers\SessionServiceProvider',
+        'Brainsugar\Providers\PaymentGatewayServiceProvider',
 ],
-
-
-
 ];

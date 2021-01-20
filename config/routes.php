@@ -12,25 +12,24 @@
 
 return [
         'room_calendar' => [
-                'title'      => 'Room Calendar',
+                'title' => 'Room Calendar',
                 'capability' => 'read',
-                'route'      => [
-                        'get' => 'Admin\CalendarController@individualRoomCalendar',      
+                'route' => [
+                        'get' => 'Admin\CalendarController@individualRoomCalendar',
                 ],
         ],
         'room_pricing' => [
-                'title'      => 'Room Pricing',
+                'title' => 'Room Pricing',
                 'capability' => 'read',
-                'route'      => [
-                        'get' => 'Admin\PricingController@individualRoomTypePricing',      
-                ]
+                'route' => [
+                        'get' => 'Admin\PricingController@individualRoomTypePricing',
+                ],
         ],
-        'search_results' => [
-                'title' => 'Search Results',
-                'capability' => 'read',
-                 'route'      => [
-                        'get' => 'Frontend\SearchController@showSearchResults',      
-                ]
-
-        ],
+        // 'bshb_api' => [
+        //         'title' => 'Brainsugar API',
+        //         'capability' => 'read',
+        //          'route' => [
+        //                 'get' => 'Frontend\CheckoutController@captureReservation',
+        //         ],
+        // ],
 ];

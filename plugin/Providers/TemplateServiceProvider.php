@@ -39,17 +39,17 @@ class TemplateServiceProvider extends ServiceProvider
                                 // Load the template for search page.
                                 case $searchPage:
                                          return $this->_getTemplate('search-page');
-                               
+
                                 // Load the template for checkout page.
                                 case $checkOutPage:
                                         return $this->_getTemplate('checkout-page');
-                               
+
                                  // Load the template for Reservation confirmation.
                                 case $reservationConfirmation:
                                         do_action('bshb_reservation_end_point');
 
                                         return $this->_getTemplate('reservation-confirmation');
-                                
+
                                 // Return the default page template.
                                 default:
                                 return $template;
@@ -85,9 +85,10 @@ class TemplateServiceProvider extends ServiceProvider
         // Get the template slug
         $template_slug = rtrim($template, '.php');
         $template = $template_slug.'.php';
+        $theme_file = locate_template(['bshb-template/'.$template]);
 
         // Check if a custom template exists in the theme folder, if not, load the plugin template file
-        if ($theme_file == locate_template(['bshb-template/'.$template])) {
+        if ($theme_file) {
             $file = $theme_file;
         } else {
             $file = BSHB_BASE_PATH.'templates/'.$template;

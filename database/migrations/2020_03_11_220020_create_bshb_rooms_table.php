@@ -9,9 +9,9 @@ class bshb_rooms extends Migration
 	public function up() {
 		$this->create("CREATE TABLE {$this->tablename} (
 			`id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-			`name` varchar(191) NOT NULL,
+			`room_name` varchar(191) NOT NULL,
 			`room_type` bigint(20) UNSIGNED NOT NULL,
-			`order` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+			`room_order` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
 			PRIMARY KEY  (`id`),                        
 			KEY `room_type` (`room_type`)
 			) {$this->charsetCollate};"
